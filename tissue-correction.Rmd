@@ -1,0 +1,126 @@
+---
+title: "Tissue correction"
+date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+bibliography: references.bib
+csl: american-medical-association.csl
+link-citations: yes
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, child = "js/back-to-top.js"}
+```
+
+<br>
+
+Gannet quantifies metabolite levels in a number of different ways at various points in the pipeline depending on what reference signals are present and if structural image data are available. It is important to understand what the underlying formulas are for interpretation and reporting.
+
+## GannetFit
+
+`MRS_struct.out.vox1.(metab).ConcCr`, `MRS_struct.out.vox1.(metab).ConcCho`, and `MRS_struct.out.vox1.(metab).ConcNAA` are simple signal integral ratios of the metabolite of interest and the metabolite reference signals Cr, Cho, and NAA, respectively:
+
+$$C = \frac{I_{M}}{I_{ref}}$$
+
+If a water reference is provided, `MRS_struct.out.vox1.(metab).ConcIU` is also calculated. It is defined as the signal integral ratio of the metabolite of interest and water reference scaled by a number of global signal scaling factors:
+
+$$C_{corr} =
+\frac{I_{M}}{I_{W}}\cdot
+\frac{H_{W}}{H_{M}}\cdot
+\frac{MM}{\kappa}\cdot
+C_{W}\cdot
+W_{vis}\cdot
+\left\{\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}
+$$
+
+where:
+
+| <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
+| :- | :-------- | :------ |
+| $C_{corr}$ | Estimated metabolite concentration in institutional units | - |
+| $I_{M}$ | Metabolite signal integral | - |
+| $I_{W}$ | Water signal integral | - |
+| $H_{M}$ | Number of ^1^H protons that give rise to the metabolite signal | Metabolite dependent |
+| $H_{W}$ | Number of ^1^H protons that give rise to the water signal | 2 |
+| $MM$ | Correction factor for the contribution of the co-edited macromolecule signal in the metabolite signal | 0.45 for GABA editing and 1 for all other edited metabolites |
+| $\kappa$ | Editing efficiency | Acquisition dependent; 0.5 for GABA editing |
+| $C_{W}$ | Molal concentration of pure water | 55.51 mol/kg |
+| $W_{vis}$ | Average relative visibility (density) of water in GM and WM | 0.65 [@Ernst1993] |
+| $TE_{W}$ | Echo time of the water reference acquisition | Acquisition dependent |
+| $TR_{W}$ | Repetition time of the water reference acquisition | Acquisition dependent |
+| $TE_{M}$ | Echo time of the metabolite acquisition | Acquisition dependent |
+| $TR_{M}$ | Repetition time of the metabolite acquisition | Acquisition dependent |
+| $T_{2W}$ | Average transverse relaxation time of water in GM and WM | 1.100 s [@Wansapura1999] |
+| $T_{2W}$ | Average longitudinal relaxation time of water in GM and WM | 0.095 s [@Wansapura1999] |
+| $T_{2M}$ | Transverse relaxation time of metabolite | Metabolite dependent; see `GannetFit.m` and `GannetQuantify.m` for default values |
+| $T_{1M}$ | Longitudinal relaxation time of metabolite | Metabolite dependent; see `GannetFit.m` and `GannetQuantify.m` for default values |
+
+## GannetSegment
+
+`MRS_struct.out.vox1.(metab).ConcIU_CSFcorr`:
+
+$$C_{CSFcorr} =
+\frac{I_{M}}{I_{W}}\cdot
+\frac{H_{W}}{H_{M}}\cdot
+\frac{MM}{\kappa}\cdot
+C_{W}\cdot
+W_{vis}\cdot
+\left\{\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
+\frac{1}{1-f_{CSF}}
+$$
+
+where $f_{CSF}$ is the volume fraction of CSF in the MRS voxel.
+
+## GannetQuantify
+
+`MRS_struct.out.vox1.(metab).ConcIU_TissCorr`:
+
+$$C_{TissCorr} =
+\frac{I_{M}}{I_{W}}\cdot
+\frac{H_{W}}{H_{M}}\cdot
+\frac{MM}{\kappa}\cdot
+C_{W}\cdot
+\left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}\beta_{i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
+{(1-f_{CSF})\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}$$
+
+where:
+
+| <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
+| :- | :-------- | :------ |
+| $f_{i}$ | Volume fraction of GM, WM or CSF in the MRS voxel | Data dependent |
+| $\beta_i$ | Relative visibility (density) of water in GM, WM and CSF | 0.78, 0.65 and 0.97 [@Ernst1993] |
+| $T_{2W,i}$ | Transverse relaxation time of water in GM, WM and CSF | 0.110, 0.0792 and 0.503 s [@Wansapura1999; @Piechnik2009] |
+| $T_{1W,i}$ | Longitudinal relaxation time of water in GM, WM and CSF | 1.331, 0.832 and 3.817 s [@Wansapura1999; @Lu2005] |
+
+`MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr`:
+
+$$C_{corr} =
+\frac{I_{M}}{I_{W}}\cdot
+\frac{H_{W}}{H_{M}}\cdot
+\frac{MM}{\kappa}\cdot
+\left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
+\frac{1}{f_{GM}+\alpha{f_{WM}}}$$
+
+`MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr_GrpNorm`:
+
+$$C_{corr} =
+\frac{I_{M}}{I_{W}}\cdot
+\frac{H_{W}}{H_{M}}\cdot
+\frac{MM}{\kappa}\cdot
+\left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
+\frac{\mu_{GM}+\alpha{\mu_{WM}}}{(f_{GM}+\alpha{f_{WM}})(\mu_{GM}+{\mu_{WM}})}$$
+
+where:
+
+
+
+### References
+
+
+

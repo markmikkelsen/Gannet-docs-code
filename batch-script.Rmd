@@ -1,0 +1,42 @@
+---
+title: "Batch processing script"
+date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, child = "js/back-to-top.js"}
+```
+
+<br>
+
+```{matlab, eval = FALSE}
+% Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images
+% Remember to check GannetPreInitialise.m has the appropriate settings for your data
+
+data_dir = '/Users/username/Documents/my_project/data';
+
+metab = {'S01_GABA_68_act.sdat'
+         'S02_GABA_68_act.sdat'
+         'S03_GABA_68_act.sdat'};
+metab = fullfile(data_dir, metab); % It is good practice to include the full path of files
+         
+water = {'S01_GABA_68_ref.sdat'
+         'S02_GABA_68_ref.sdat'
+         'S03_GABA_68_ref.sdat'};
+water = fullfile(data_dir, water);
+
+anat = {'S01_T1_anat.nii'
+        'S02_T1_anat.nii'
+        'S03_T1_anat.nii'};
+anat = fullfile(data_dir, anat);
+
+MRS = GannetLoad(metab, water);
+MRS = GannetFit(MRS);
+MRS = GannetCoRegister(MRS, anat);
+MRS = GannetSegment(MRS);
+MRS = GannetQuantify(MRS);
+```

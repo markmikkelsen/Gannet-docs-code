@@ -1,0 +1,94 @@
+---
+title: "Output structure attributes"
+date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: TRUE
+    toc_depth: 2
+    toc_float:
+      collapsed: FALSE
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, child = "js/back-to-top.js"}
+```
+
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
+
+<br>
+
+<div class="info">
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp;&nbsp; The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.
+</div>
+
+## `MRS_struct`
+
+| <u>Field</u> | <u>Description</u> |
+| :- | :--------- |
+| `version` | Release numbers of Gannet and the Gannet modules |
+| `ii` | During analysis, the current file being loaded; after analysis, the number of files that were loaded |
+| `metabfile` | String array containing the inputted metabolite data filenames |
+| `waterfile` | String array containing the inputted water reference data filenames |
+
+## `MRS_struct.p`
+
+| <u>Field</u> | <u>Description</u> |
+| :- | :--------- |
+`Reference_compound` | Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr |
+`target` | 
+`ONOFForder` | 
+`seqorig` | 
+`LB` | 
+`water_phase_correction` |
+`data_phase_correction` |
+`water_removal` |
+`AlignTo` |
+`Vox` | 
+`FitResidWater` |
+`HERMES` |
+`HERCULES` | 
+`PRIAM` |
+`phantom` |
+`mat` |
+`sdat` |
+`csv` |
+`vendor` | Scanner vendor |
+`spar_string` |
+`numscans` | Total number of scans in the batch |
+`npoints` | Number of data points |
+`nrows` |
+`Navg` | Total number of averages |
+`TR` | Repetition time (ms) |
+`TE` | Echo time (m) |
+`LarmorFreq` | Larmor frequency (kHz) |
+`sw` | Spectral width (Hz) |
+`voxdim` | Voxel dimensions (mm) |
+`voxoff` | Voxel position offset (mm) |
+`voxang` | Voxel angulation (deg) |
+`Nwateravg` | Total number of water averages |
+`ZeroFillTo` | Processed spectra are zero-filled to this many data points |
+`zf` | Zero-filling factor |
+`df` | 
+`SpecRes` | Spectral resolution of the raw data |
+`SpecResNominal` | Nominal spectral resolution of the processed data |
+`Tacq` | Acquisition time |
+
+## `MRS_struct.fids`
+
+| <u>Field</u> | <u>Description</u> |
+| :- | :--------- |
+| `data` | Raw time-domain metabolite data (dimensions: `npoints` $\times$ `nrows`) of the last loaded dataset |
+| `data_water` |
+| `ON_OFF` |
+| `data_align` |
+| `vox1` |
+
+
+

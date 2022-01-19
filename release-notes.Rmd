@@ -1,0 +1,148 @@
+---
+title: "Release notes"
+date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: TRUE
+    toc_depth: 2
+    toc_float:
+      collapsed: FALSE
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, child = "js/back-to-top.js"}
+```
+
+<br>
+
+This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in between releases. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a> on GitHub.
+
+## 3.2.0
+<span style="color: grey;">2021-07-30</span>
+
+### New features
+
+- Added `GannetVersion.m`, `VersionCheck.m`, and `UpdateGannet.m`; these new functions let users know the version of Gannet they have, if a newer release of Gannet is available, and will allow them to automatically update if wanted
+- Added `ToolboxCheck.m` to check for missing MATLAB toolboxes needed to run Gannet
+- Error dialog boxes are displayed at the end of the analysis pipeline if an error occurred (during a batch analysis, Gannet will skip to the next dataset and continue running)
+- Users can now choose to use weighted (the default) or conventional signal averaging in `GannetPreInitialise.m` (outlier scans are removed when using conventional averaging, as before)
+- Added a new (optional) method for robust, weighted signal averaging: weighted averaging by criterion function minimization (WACFM) using the generalized Cauchy distribution as the cost function; see doi: <a href="https://dx.doi.org/10.1016/j.bbe.2015.06.002" target="_blank">10.1016/j.bbe.2015.06.002</a> for more details; additionally, instead of weighting difference pairs, the subspectra of each editing subexperiment are weighted to generate weighted subspectra, which are then subtracted; see `SignalAveraging.m`
+- Yair Altman's <a href="https://github.com/altmany/export_fig" target="_blank">export_fig toolbox</a> is included as an optional toolbox that, if added to MATLAB's search path, Gannet will use to append all output PDFs from each module into a single PDF (a flag must be set in `GannetPreInitialise.m` to do this); this is very useful for easy QA of lots of data; note that <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> needs to be installed for the appending of PDFs to work (NB: macOS users should use this <a href="https://pages.uoregon.edu/koch/" target="_blank">version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript)
+- Implemented use of hyperlinks in info and error messages printed in the command window so that users can: (1) directly run a certain function (such as `UpdateGannet.m` when `VersionCheck.m` informs the user a new release is available); (2) go straight to the line of code where an encountered error can be fixed (such as errors in `GannetPreInitialise.m`); or (3) go to a website by clicking on the printed URL (such as to download SPM12); the relevant code has been borrowed from export_fig
+- Added an option in `GannetPreInitialise.m` that allows users, when using robust spectral registration, to use the averaged pre-aligned subspectra as references for aligning the averaged post-aligned subspectra (this may be helpful when robust spectral registration makes the alignment of already good-quality pre-aligned spectra worse)
+- `PaperPlot.m` now allows users to plot an exemplary voxel mask co-registered to the respective structural image
+- Added `GannetMask_GE_nii.m`; GE users can now use NIfTI images instead of DICOMs to co-register their MRS voxels to structural images
+- Added the ability to trim datasets
+- Extended the ability to concatenate files, including over multiple subjects
+- Added a flag in `GannetPreInitialise.m` (`MRS_struct.p.hide`) to prevent output figures from displaying (useful when processing a large batch of files)
+
+### Major changes
+
+- The outdated manual PDF has been removed; up-to-date software documentation will now be found online: https://markmikkelsen.github.io/Gannet-docs/index.html
+- Gannet is now licensed under the BSD 3-Clause License
+- Alpha tissue correction is now performed on a by-metabolite basis rather than fixing the intrinsic WM:GM concentration to 1:2 (alpha) for all metabolites (assuming for now the ratio is 1:2 for GABA and Glx and 1:1 for GSH, EtOH and Lac); the alpha that is assumed is displayed in the GannetQuantify output figure
+- Removed `MRS_struct.p.ON_OFF_order` from `GannetPreInitialise.m`; the order of editing pulses is now determined automatically; the relevant code has been borrowed from Osprey (this has only been tested to a limited extent so may require further tweaking)
+- The exception to this change is phantom data, where users will still need to specify the order of editing pulses
+
+### Minor changes
+
+- Datasets with differing number of averages can now be batch-processed together
+- Turned off the progress bar displayed when loading Siemens TWIX data to reduce loading time
+- Renamed some files for the sake of clarity and style; removed obsolete `GannetMask.m`
+- Signal averaging and subtraction are now done in the new function `SignalAveraging.m`
+- Various improvements to `RobustSpectralRegistration.m` (formerly `Robust_Spectral_Registration.m`) for better handling of data acquired using very strong water suppression
+- The assumed concentration of pure water in `GannetFit.m` and `GannetFitPhantom.m` (PureWaterConc) has been changed from 55 to 55.51 mol/kg; this puts it in line with the same constant used in `GannetQuantify.m`
+- Added edits from Ralph Noeske (GE Berlin) to `GERead.m` for better handling of data when nechoes == 1; also changed the scaling factor if nechoes > 1 (hopefully this makes water-referenced measurements consistent across all data encoding flavors)
+- In `GERead.m` and `PhilipsRead_data.m`, instead of using the first point in the FID for signal weighting, the most common point that is the max in the magnitude signal across all FIDs is now used
+- Some changes to `SiemensDICOMRead.m` and `DICOMRead.m` for smarter handling of data files: for each dataset, metabolite and water data files should be stored in separate folders
+- Improved `ExportToCSV.m`; a single .csv file is now exported for HERMES datasets; useful variables such as signal areas and Cr fit quality metrics are now also exported
+- Rewrote `DiscernDataType.m` (formerly `GannetDiscernDatatype.m`)
+- Minor changes and improvements to `PaperPlot.m`
+- Minor changes to `CoRegStandAlone.m` functions
+- Minor changes to `SignalFilter.m`
+- Simplified `EddyCurrentCorrection.m` (formerly `phase_correction_fids.m`)
+- Set up SPM12 for batch tissue segmentation only when tissue segmentation has not already been run and do it only once in a batch
+- AllFramesFT (for the last loaded dataset) is now also saved in `MRS_struct.spec`
+- When saving the `MRS_struct` structure, the .mat file is now saved using version 7.3 (for the rare case when the structure is >= 2 GB on 64-bit computers)
+- Removed `MRS_struct.p.sdat` from `GannetPreInitialise.m` and the corresponding code from `GannetLoad.m` (this feature was never really used by users afaik)
+- Improved global zero-order phasing in `SpectralRegistrationHERMES.m`
+- Many cosmetic/aesthetic changes
+  - The module output figures now show information useful for reporting acquisition parameters and results (in line with the <a href="https://onlinelibrary.wiley.com/doi/10.1002/nbm.4484" target="_blank">MRSinMRS</a> checklist)
+  - Co-registered/segmented voxel masks displayed in GannetCoRegister, GannetSegment, and GannetQuantify output figures are now shown in yellow rather than grayscale
+  - Smarter stacking of HERMES difference spectra in `PlotPrePostAlign.m` and `PlotPrePostAlign2.m` (formerly `GannetPlotPrePostAlign.m` and `GannetPlotPrePostAlign2.m`)
+  - The Gannet documentation website URL is printed at the bottom of every output figure
+  - Removed irrelevant messages from being printed in the command window during the analysis pipeline, replacing them with more useful messages
+  - Minor rearranging of results text in GannetSegment and GannetQuantify output figures
+  - Slight change to the y-axis labels of the Cr frequency spectrogram in the GannetLoad output figure
+  - Better reordering of `MRS_struct.out` subfields created in `GannetFit.m`
+
+### Bug fixes
+
+- Frequency and phase offset estimates are now tracked correctly and saved when running any of the spectral registration-based alignment methods
+- Removed old debugging conditional statement in `TWIXDeIdentify.m`
+- Explicitly specify color of water frequency trace in GannetLoad output figure as there appears to be a bug since MATLAB R2019b when using hold to overlay plots
+- Added EtOH signal parameters to `GannetQuantify.m`
+- In `SiemensTwixRead.m`, if no water reference is provided, use the most common point that is the max in the magnitude signal across all FIDs instead of just using the first point
+- Fixed an orientation problem in `GannetMask_GE.m`
+- Removed unnecessary complex conjugate transpose during FFT of water data in `GannetLoad.m`
+- Turned off warnings about legacy number generator in `RobustSpectralRegistration.m` (for when rng and randn are run in `SignalFilter.m`) if they are already turned on
+
+<br>
+
+## 3.1.5
+<span style="color: grey;">2020-03-02</span>
+
+### New features
+
+- Smarter checking of incorrect settings in `GannetPreInitialise.m` by `CheckTargets.m`
+- Major changes to `GannetFitPhantom.m` to bring it more in line with `GannetFit.m`
+- Added support for CMRR MEGA-sLASER sequence in `SiemensTwixRead.m`
+- In `SubSpectralAlign.m`, if very strong water suppression was used, use Cho instead of residual water to align subspectra of GABA-, Lac-, and EtOH-edited datasets
+
+### Minor changes
+
+- Noise estimation in `CalcNoise.m`, `Robust_Spectral_Registration.m`, and `SignalFilter.m` is now performed between 8 and 10 ppm to account for datasets that have shorter spectral widths
+- Cleaned up code in `GannetFit.m`
+- Quantification of Lac now explicitly defined as Lac+MM
+- Improved functionality of `PaperPlot.m`
+- In `SiemensTwixRead.m`, when a water reference is present, coil sensitivity and phase is based on the point index that is at the top of the echo, rather than simply fixing it to the first point
+
+### Bug fixes
+
+- Minor bug fixes in CoRegStandAlone functions
+- Corrected use of random number generation in `SignalFilter.m` when performing noise replacement to ensure the same results are reproduced each time it is run on a dataset
+
+<br>
+
+## 3.1.4
+<span style="color: grey;">2019-10-03</span>
+
+### Bug fix
+
+- Fixed error in the calculation of `AvgDeltaF0` for MEGA-PRESS data
+
+<br>
+
+## 3.1.3
+<span style="color: grey;">2019-08-06</span>
+
+### New features
+
+- Major improvements to `Robust_Spectral_Registration.m`
+- Wavelet toolbox no longer required
+- Raw data is now phase-corrected prior to alignment
+- `GannetLoad.m` and `GannetFit.m` no longer crash if an error occurs during a batch analysis
+- An error report is printed after the final dataset is loaded/fitted so users can check which datasets failed
+- Added support for GE revision header 20.007
+
+### Minor change
+
+- `Water_Positive` flag in `GannetPreInitialise.m` removed
+
+
+
+
+

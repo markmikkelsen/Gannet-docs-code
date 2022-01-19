@@ -1,0 +1,64 @@
+---
+title: "FAQ"
+date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: TRUE
+    toc_depth: 3
+    toc_float:
+      collapsed: FALSE
+---
+
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, child = "js/back-to-top.js"}
+```
+
+<br>
+
+### General
+
+#### **Can Gannet process GSH-edited data?**
+
+Yes, Gannet can process GABA-, GSH-, and Lac-edited MEGA-PRESS data as well as HERMES data. Simply set the appropriate `target` option(s) in `GannetPreInitialise.m`.
+
+#### **Can Gannet process phantom data?**
+
+Yes. Make sure to set `phantom` to `1` under 'Flags' in `GannetPreInitialise.m`. If you want to fit your data, run `GannetFitPhantom(MRS_struct);` instead of `GannetFit(MRS_struct);`.
+
+
+### Output
+
+#### **Why is my spectrum upside down after I run GannetLoad?**
+
+**Example:**
+
+```{r echo = FALSE, out.width = '35%', fig.align = 'left'}
+knitr::include_graphics('images/faq/upside-down-spectrum.png')
+```
+
+The `ONOFForder` parameter set in `GannetPreInitialise.m` is incorrect for your data. Change the setting to either `'onfirst'` or `'offfirst'`, depending on what it is currently set as.
+
+
+### Errors
+
+#### **Why am I getting this error:** <span style="color: red;">`Subscripted assignment dimension mismatch`</span>**?**
+
+This is one of the errors that may appear during batch processing if acquisition parameters are not consistent across datasets.
+
+#### **Why am I getting this error:** <span style="color: red;">`Unable to perform assignment because the size of the left side is 1-by-#### and the size of the right side is 1-by-###`</span>**?**
+
+You are batch-processing multiple datasets that contain different numbers of averages. Divide the files into separate batches so that each batch contains only datasets acquired with the same number of averages.
+
+
+
+
+

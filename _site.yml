@@ -1,0 +1,50 @@
+name: "gannet"
+navbar:
+  title: "Gannet"
+  left:
+    - text: "Home"
+      icon: fa-home
+      href: index.html
+    - text: "Documentation"
+      menu:
+        - text: "Getting started"
+          href: getting-started.html
+        - text: "Reference"
+          href: reference.html
+        - text: "Output structure attributes"
+          href: output-struc-attrib.html
+        - text: "Tissue correction"
+          href: tissue-correction.html
+        - text: "Additional tools"
+          href: additional-tools.html
+    - text: "Examples"
+      menu:
+        - text: "Batch processing script"
+          href: batch-script.html
+        - text: "GannetPreInitialise settings"
+          href: gannetpreinitialise-settings.html
+    - text: "FAQ"
+      href: faq.html
+    - text: "Release notes"
+      href: release-notes.html
+    - text: "Blog"
+      href: https://www.gabamrs.com/
+  right:
+    - text: "Report an issue"
+      href: https://github.com/markmikkelsen/Gannet/issues
+    - icon: fa-github fa-lg
+      href: https://github.com/markmikkelsen/Gannet
+    - icon: fa-envelope fa-lg
+      href: https://www.gabamrs.com/contact
+output:
+  html_document:
+    anchor_sections: TRUE
+    theme: lumen
+    highlight: tango
+    include:
+      after_body: footer.html
+    css: styles.css
+
+    
+    
+    

@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Reference</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+<style type="text/css">
+/* for pandoc --citeproc since 2.11 */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Gannet</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Documentation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="getting-started.html">Getting started</a>
+    </li>
+    <li>
+      <a href="reference.html">Reference</a>
+    </li>
+    <li>
+      <a href="output-struc-attrib.html">Output structure attributes</a>
+    </li>
+    <li>
+      <a href="tissue-correction.html">Tissue correction</a>
+    </li>
+    <li>
+      <a href="additional-tools.html">Additional tools</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="batch-script.html">Batch processing script</a>
+    </li>
+    <li>
+      <a href="gannetpreinitialise-settings.html">GannetPreInitialise settings</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="faq.html">FAQ</a>
+</li>
+<li>
+  <a href="release-notes.html">Release notes</a>
+</li>
+<li>
+  <a href="https://www.gabamrs.com/">Blog</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/markmikkelsen/Gannet/issues">Report an issue</a>
+</li>
+<li>
+  <a href="https://github.com/markmikkelsen/Gannet">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.gabamrs.com/contact">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Reference</h1>
+<h4 class="date">Last updated: January 19, 2022</h4>
+
+</div>
+
+
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<p><br></p>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i>   The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.</p>
+</div>
+<div id="pre-initialise-gannet" class="section level2">
+<h2>Pre-initialise Gannet</h2>
+<hr />
+<p><strong>Parent function</strong></p>
+<p><code>GannetPreInitialise.m</code></p>
+<p><br></p>
+<table>
+<colgroup>
+<col width="25%" />
+<col width="75%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Acquisition parameters</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>target</code></td>
+<td align="left">Sets the metabolite of interest that was edited in the MRS experiment; if HERMES was used, multiple metabolites should be selected</td>
+</tr>
+<tr class="even">
+<td align="left"><code>ONOFForder</code></td>
+<td align="left">Order of the ON/OFF editing scans in the MEGA-PRESS acquisitions determines (amongst other things in Gannet) how the subspectra are subtracted to derive the difference spectra; typically, Philips acquisitions are <code>'offfirst'</code> and GE and Siemens acquisitions are <code>'onfirst'</code> (but this is not always true so you should always check your acquisition parameters)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>seqorig</code></td>
+<td align="left">Specific to Philips data; specifies whether the data were acquired using the patch developed at Johns Hopkins University or the Philips product sequence</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Analysis parameters</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>LB</code></td>
+<td align="left">Sets the amount of exponential line-broadening to apply to the data (in Hz)</td>
+</tr>
+<tr class="even">
+<td align="left"><code>water_phase_correction</code></td>
+<td align="left">Whether to perform an eddy-current correction<span class="citation"><sup><a href="#ref-Klose1990" role="doc-biblioref">1</a></sup></span> on the water data</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>data_phase_correction</code></td>
+<td align="left">Whether to perform an eddy-current correction on the metabolite data</td>
+</tr>
+<tr class="even">
+<td align="left"><code>water_removal</code></td>
+<td align="left">Whether to remove the residual water signal from the difference spectra using an HSVD filter<span class="citation"><sup><a href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></sup></span></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>AlignTo</code></td>
+<td align="left">Which method to use for shot-to-shot frequency-and-phase correction</td>
+</tr>
+<tr class="even">
+<td align="left"><code>Vox</code></td>
+<td align="left">Only applies to PRIAM data; the desired naming of the output structure fields</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>FitResidWater</code></td>
+<td align="left">Whether to model the residual water signal in the difference spectrum; used to calculate the water suppression factor</td>
+</tr>
+</tbody>
+</table>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><strong>Flags</strong></th>
+<th align="left"><strong>Description</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>HERMES</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired using HERMES</td>
+</tr>
+<tr class="even">
+<td align="left"><code>HERCULES</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired using HERCULES (<code>HERMES</code> must also be set to <code>1</code>)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>PRIAM</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired using PRIAM</td>
+</tr>
+<tr class="even">
+<td align="left"><code>phantom</code></td>
+<td align="left">Set to <code>1</code> if the data were acquired in a phantom</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>mat</code></td>
+<td align="left">Set to <code>1</code> to save the output structure as a MAT-file</td>
+</tr>
+<tr class="even">
+<td align="left"><code>sdat</code></td>
+<td align="left">Set to <code>1</code> to export the difference spectra as a .sdat file (only for Philips .sdat MEGA-PRESS datasets)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>csv</code></td>
+<td align="left">Set to <code>1</code> to export a .csv file containing useful data for analysis (applies to <code>GannetFit.m</code>, <code>GannetSegment.m</code> and <code>GannetQuantify.m</code>)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="loading-and-preprocessing-data" class="section level2">
+<h2>Loading and preprocessing data</h2>
+<hr />
+<p><strong>Parent function</strong></p>
+<p><code>GannetLoad.m</code></p>
+<p><br></p>
+<p><strong>Example usage:</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<p><br></p>
+<p>Output:</p>
+<p><img src="images/reference/GannetLoad-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><br></p>
+</div>
+<div id="signal-fitting" class="section level2">
+<h2>Signal fitting</h2>
+<hr />
+<p><strong>Parent function</strong></p>
+<p><code>GannetFit.m</code></p>
+<p><br></p>
+<p><strong>Example usage:</strong></p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
+<p><br></p>
+<p>Output:</p>
+<p><img src="images/reference/GannetFit-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><br></p>
+</div>
+<div id="voxel-co-registration" class="section level2">
+<h2>Voxel co-registration</h2>
+<hr />
+<p><strong>Parent function</strong></p>
+<p><code>GannetCoRegister.m</code></p>
+<p><br></p>
+<p><strong>Example usage:</strong></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<p><br></p>
+<p>Output:</p>
+<p><img src="images/reference/GannetCoRegister-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><br></p>
+</div>
+<div id="tissue-segmentation" class="section level2">
+<h2>Tissue segmentation</h2>
+<hr />
+<p><strong>Parent function</strong></p>
+<p><code>GannetSegment.m</code></p>
+<p><br></p>
+<p><strong>Example usage:</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
+<p><br></p>
+<p>Output:</p>
+<p><img src="images/reference/GannetSegment-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
+<p><br></p>
+</div>
+<div id="quantification" class="section level2">
+<h2>Quantification</h2>
+<hr />
+<p><strong>Parent function</strong></p>
+<p><code>GannetQuantify.m</code></p>
+<p><br></p>
+<p><strong>Example usage:</strong></p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetQuantify</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
+<p><br></p>
+<p>Output:</p>
+<p><img src="images/reference/GannetQuantify-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
+<!-- Code for the modals -->
+<!-- <div id="myModal" class="modal"> -->
+<!--   <span class="close">&times;</span> -->
+<!--   <img class="modal-content" id="img01"> -->
+<!--   <div id="caption"></div> -->
+<!-- </div> -->
+<!-- <script src="js/img-modal.js"></script> -->
+<div id="references" class="section level3 unnumbered">
+<h3 class="unnumbered">References</h3>
+<div id="refs" class="references csl-bib-body">
+<div id="ref-Klose1990" class="csl-entry">
+<div class="csl-left-margin">1. </div><div class="csl-right-inline">Klose U. <span class="nocase">In vivo proton spectroscopy in presence of eddy currents</span>. <em>Magnetic Resonance in Medicine</em>. 1990;14(1):26-30. doi:<a href="https://doi.org/10.1002/mrm.1910140104">10.1002/mrm.1910140104</a></div>
+</div>
+<div id="ref-Barkhuijsen1987" class="csl-entry">
+<div class="csl-left-margin">2. </div><div class="csl-right-inline">Barkhuijsen H, Beer R de, Ormondt D van. <span class="nocase">Improved algorithm for noniterative time-domain model fitting to exponentially damped magnetic resonance signals</span>. <em>Journal of Magnetic Resonance</em>. 1987;73(3):553-557. doi:<a href="https://doi.org/10.1016/0022-2364(87)90023-0">10.1016/0022-2364(87)90023-0</a></div>
+</div>
+</div>
+</div>
+</div>
+
+<!DOCTYPE html>
+<br>
+<hr>
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+  <br><br>
+</p>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+</p>
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

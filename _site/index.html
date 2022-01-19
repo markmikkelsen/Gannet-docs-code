@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Gannet</title>
+
+<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
+<link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") continue;
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') continue;
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+<link rel="stylesheet" href="styles.css" type="text/css" />
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark it active
+  menuAnchor.tab('show');
+
+  // if it's got a parent navbar menu mark it active as well
+  menuAnchor.closest('li.dropdown').addClass('active');
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "&#xe258;";
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">Gannet</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li>
+  <a href="index.html">
+    <span class="fa fa-home"></span>
+     
+    Home
+  </a>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Documentation
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="getting-started.html">Getting started</a>
+    </li>
+    <li>
+      <a href="reference.html">Reference</a>
+    </li>
+    <li>
+      <a href="output-struc-attrib.html">Output structure attributes</a>
+    </li>
+    <li>
+      <a href="tissue-correction.html">Tissue correction</a>
+    </li>
+    <li>
+      <a href="additional-tools.html">Additional tools</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+    Examples
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="batch-script.html">Batch processing script</a>
+    </li>
+    <li>
+      <a href="gannetpreinitialise-settings.html">GannetPreInitialise settings</a>
+    </li>
+  </ul>
+</li>
+<li>
+  <a href="faq.html">FAQ</a>
+</li>
+<li>
+  <a href="release-notes.html">Release notes</a>
+</li>
+<li>
+  <a href="https://www.gabamrs.com/">Blog</a>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+  <a href="https://github.com/markmikkelsen/Gannet/issues">Report an issue</a>
+</li>
+<li>
+  <a href="https://github.com/markmikkelsen/Gannet">
+    <span class="fa fa-github fa-lg"></span>
+     
+  </a>
+</li>
+<li>
+  <a href="https://www.gabamrs.com/contact">
+    <span class="fa fa-envelope fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Gannet</h1>
+<h4 class="date">Last updated: January 19, 2022</h4>
+
+</div>
+
+
+<button onclick="topFunction()" id="myBtn" title="Go to top">
+Back to top
+</button>
+<script>
+//Get the button
+var mybutton = document.getElementById("myBtn");
+
+// When the user scrolls down 20px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+  if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+    mybutton.style.display = "block";
+  } else {
+    mybutton.style.display = "none";
+  }
+}
+
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
+</script>
+<p><br></p>
+<p><img src="images/logo.png" alt="Gannet logo" id="myImg2"/></p>
+<div class="release">
+<h3>
+<p>Current stable release:  <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.2.0</a></p>
+</h3>
+</div>
+<div id="overview" class="section level2">
+<h2>Overview</h2>
+<p>Gannet is a free, open-source MATLAB-based software toolkit for analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS) data. Its largely automated functions cover all the essential steps of modern MRS analysis:</p>
+<ul>
+<li>Loading raw data</li>
+<li>Substantial preprocessing</li>
+<li>Signal modeling</li>
+<li>Voxel co-registration with structural MR images</li>
+<li>Concentration estimation based on tissue composition</li>
+</ul>
+<p>Several existing software packages for MRS data analysis require substantial user input or offer a wide selection of processing options. In contrast, the philosophy behind Gannet is to provide users with a complete automated pipeline without the need for significant user input.</p>
+<p>Additionally, as open-source software, advanced users have the ability to modify the underlying routines for ad hoc purposes.</p>
+<p>Gannet is continually being updated and has an active support base. Visit our <a href="https://www.gabamrs.com/" target="_blank">blog</a> for the latest news on Gannet and our developments in edited MRS methodology.</p>
+</div>
+<div id="installation" class="section level2">
+<h2>Installation</h2>
+<div id="prerequisites" class="section level3">
+<h3>Prerequisites</h3>
+<p>Gannet runs in <a href="https://www.mathworks.com/products/matlab.html" target="_blank">MATLAB</a>. For best performance, we recommend using the latest release if possible. Additionally, Gannet requires that the following MATLAB toolboxes are installed:</p>
+<ul>
+<li>Image Processing</li>
+<li>Optimization</li>
+<li>Signal Processing</li>
+<li>Statistics and Machine Learning</li>
+</ul>
+<p>You can check which toolboxes you have installed by typing <code>ver</code> in the MATLAB command window. To install any missing toolboxes, please follow these <a href="https://www.mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab" target="_blank">instructions</a>.</p>
+<p>To run the voxel co-registration and structural image segmentation modules, <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> must be installed.</p>
+</div>
+<div id="download" class="section level3">
+<h3>Download</h3>
+<p>The simplest way to install Gannet is to download the zipped <a href="https://github.com/markmikkelsen/Gannet/archive/refs/heads/main.zip">main folder</a> from the <a href="https://github.com/markmikkelsen/Gannet" target="_blank">repository</a> on GitHub, unzip it, and move the <em>Gannet-main</em> folder into your MATLAB directory.</p>
+<p>Alternatively, git-savvy users can clone the Gannet repository into a directory of their choice:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/markmikkelsen/Gannet.git</span></code></pre></div>
+</div>
+<div id="setup" class="section level3">
+<h3>Setup</h3>
+<p>Open the <em>Set Path</em> dialog box from the MATLAB menu (or run the command <code>pathtool</code> in the Command Window), click <em>Add with Subfolders</em>, find the <em>Gannet-main</em> folder and then select it. When done, press <em>Save</em> to permanently save the Gannet folder to MATLAB’s default search path.</p>
+<p>SPM12 can be installed in the same manner after it has been downloaded from the SPM website.</p>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i>   It is highly recommended that you only add the main SPM12 folder (<em>spm12</em>) to your search path instead of including all the subfolders. This prevents potential function conflicts.</p>
+</div>
+</div>
+</div>
+<div id="compatibility" class="section level2">
+<h2>Compatibility</h2>
+<p>Gannet is currently being developed in MATLAB R2021b in macOS 11.6 Big Sur. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
+</div>
+<div id="supported-file-formats" class="section level2">
+<h2>Supported file formats</h2>
+<p>At present, the following MRS data file formats are supported:</p>
+<ul>
+<li>DICOM (.dcm)</li>
+<li>GE P-file (.7)</li>
+<li>Philips .data/.list</li>
+<li>Philips .raw</li>
+<li>Philips .sdat/.spar</li>
+<li>Siemens DICOM (.ima)</li>
+<li>Siemens .rda</li>
+<li>Siemens TWIX (.dat)</li>
+</ul>
+<p>For creating and co-registering voxel masks, structural images need to be in NIfTI format (DICOM files can also be used if processing GE P-files).</p>
+<div class="warning">
+<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Philips users: Do not use structural images exported using the <em>fsl-nifti</em> option as this creates problems with co-registration in Gannet.</p>
+</div>
+</div>
+<div id="getting-help" class="section level2">
+<h2>Getting help</h2>
+<p>If you encounter any problems, please first check the Documentation or <a href="https://markmikkelsen.github.io/Gannet-docs/faq.html">FAQ</a> for a solution.</p>
+<p>Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on the <a href="https://mrshub.org/" target="_blank">MRSHub</a>.</p>
+<p>The support team can also be directly reached using our blog’s <a href="https://www.gabamrs.com/contact" target="_blank">contact form</a>. We will do our best to work with you to solve your issue.</p>
+</div>
+<div id="versioning" class="section level2">
+<h2>Versioning</h2>
+<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style ‘x.x.x’. Versioning is also conducted on a module-specific basis using the style ‘YYMMDD’. That is, each Gannet module has its own release version.</p>
+</div>
+<div id="developers" class="section level2">
+<h2>Developers</h2>
+<ul>
+<li>Richard Edden (Johns Hopkins University)</li>
+<li>Mark Mikkelsen (Weill Cornell Medicine)</li>
+<li>Georg Oeltzschner (Johns Hopkins University)</li>
+<li>Muhammad Saleh (University of Maryland)</li>
+<li>C. John Evans (Cardiff University)</li>
+<li>Ashley Harris (University of Calgary)</li>
+<li>Nicolaas Puts (King’s College London)</li>
+</ul>
+</div>
+<div id="license-and-citing-gannet" class="section level2">
+<h2>License and citing Gannet</h2>
+<p>This software is licensed under the open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD 3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:</p>
+<p><strong>For all work using Gannet:</strong></p>
+<ul>
+<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> <em>Journal of Magnetic Resonance Imaging</em>. 2014;40(6):1445–1452</li>
+</ul>
+<p><strong>If you perform frequency-and-phase correction (FPC) using:</strong></p>
+<p>Robust spectral registration (<code>RobustSpecReg</code>):</p>
+<ul>
+<li>Mikkelsen M, Tapper S, Near J, Mostofsky SH, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting frequency and phase offsets in MRS data using robust spectral registration.</a> <em>NMR in Biomedicine</em>. 2020;33(10):e4368</li>
+</ul>
+<p>multi-step FPC (<code>SpecRegHERMES</code>):</p>
+<ul>
+<li>Mikkelsen M, Saleh MG, Near J, et al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency and phase correction for multiplexed edited MRS of GABA and glutathione.</a> <em>Magnetic Resonance in Medicine</em>. 2018;80(1):21-28</li>
+</ul>
+<p>or spectral registration (<code>SpecReg</code>):</p>
+<ul>
+<li>Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency and phase drift correction of magnetic resonance spectroscopy data by spectral registration in the time domain.</a> <em>Magnetic Resonance in Medicine</em>. 2015;73(1):44-50</li>
+</ul>
+<p><strong>If you perform tissue segmentation:</strong></p>
+<ul>
+<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> <em>NeuroImage</em>. 2005;26(3):839–851</li>
+</ul>
+<p><strong>If you report water-referenced measurements tissue-corrected using:</strong></p>
+<p>The Harris et al. method:</p>
+<ul>
+<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> <em>Journal of Magnetic Resonance Imaging</em>. 2015;42(5):1431–1440</li>
+</ul>
+<p>or the Gasparovic et al. method:</p>
+<ul>
+<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> <em>Magnetic Resonance in Medicine</em>. 2006;55(6):1219–1226</li>
+</ul>
+</div>
+<div id="acknowledgments" class="section level2">
+<h2>Acknowledgments</h2>
+<p>The development and dissemination of Gannet has been supported by the following NIH grants:</p>
+<ul>
+<li>R01 EB016089</li>
+<li>R01 EB023963</li>
+<li>P41 EB015909</li>
+<li>R01 MH106564</li>
+<li>R21 NS077300</li>
+<li>R21 MH098228</li>
+<li>R01 MH096263</li>
+<li>K99 EB028828</li>
+</ul>
+<p>We wish to thank the following individuals for their direct or indirect contributions:</p>
+<ul>
+<li>Yair Altman (Undocumented Matlab)</li>
+<li>Peter Barker (Johns Hopkins University)</li>
+<li>Alex Craven (University of Bergen)</li>
+<li>Philipp Ehses (Max Planck Institute for Biological Cybernetics)</li>
+<li>Robin de Graaf (Yale School of Medicine)</li>
+<li>Ralph Noeske (GE Healthcare)</li>
+<li>Jamie Near (McGill University)</li>
+<li>Wouter Potters (UMC Amsterdam)</li>
+</ul>
+</div>
+
+<!DOCTYPE html>
+<br>
+<hr>
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+  <br><br>
+</p>
+<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+</p>
+
+
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
