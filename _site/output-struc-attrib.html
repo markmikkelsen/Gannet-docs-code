@@ -13,7 +13,7 @@
 
 <title>Output structure attributes</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,8 +33,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -46,6 +47,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 
@@ -76,6 +78,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -307,7 +312,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -324,7 +329,7 @@ div.tocify {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -348,7 +353,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -398,7 +403,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Output structure attributes</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: June 30, 2022</h4>
 
 </div>
 
@@ -434,10 +439,13 @@ body .main-container {
 </style>
 <p><br></p>
 <div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i>   The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.</p>
+<p><i class="fa fa-info-circle" style="color: white"></i>   The
+variables listed on this page are applicable to release 3.1.5 and are
+not necessarily correct for earlier versions of Gannet.</p>
 </div>
-<div id="mrs_struct" class="section level2">
-<h2><code>MRS_struct</code></h2>
+<div id="mrs_struct" class="section level2 hasAnchor">
+<h2 class="hasAnchor"><code>MRS_struct</code><a href="#mrs_struct"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
 <col width="16%" />
@@ -456,21 +464,25 @@ body .main-container {
 </tr>
 <tr class="even">
 <td align="left"><code>ii</code></td>
-<td align="left">During analysis, the current file being loaded; after analysis, the number of files that were loaded</td>
+<td align="left">During analysis, the current file being loaded; after
+analysis, the number of files that were loaded</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>metabfile</code></td>
-<td align="left">String array containing the inputted metabolite data filenames</td>
+<td align="left">String array containing the inputted metabolite data
+filenames</td>
 </tr>
 <tr class="even">
 <td align="left"><code>waterfile</code></td>
-<td align="left">String array containing the inputted water reference data filenames</td>
+<td align="left">String array containing the inputted water reference
+data filenames</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="mrs_struct.p" class="section level2">
-<h2><code>MRS_struct.p</code></h2>
+<div id="mrs_struct.p" class="section level2 hasAnchor">
+<h2 class="hasAnchor"><code>MRS_struct.p</code><a href="#mrs_struct.p"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
 <col width="16%" />
@@ -485,7 +497,10 @@ body .main-container {
 <tbody>
 <tr class="odd">
 <td align="left"><code>Reference_compound</code></td>
-<td align="left">Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr</td>
+<td align="left">Concentrations will be calculated relative to this; if
+a water reference is provided, concentrations will be calculated
+relative to both water and Cr, otherwise they will be calculated
+relative to Cr</td>
 </tr>
 <tr class="even">
 <td align="left"><code>target</code></td>
@@ -613,7 +628,8 @@ body .main-container {
 </tr>
 <tr class="odd">
 <td align="left"><code>ZeroFillTo</code></td>
-<td align="left">Processed spectra are zero-filled to this many data points</td>
+<td align="left">Processed spectra are zero-filled to this many data
+points</td>
 </tr>
 <tr class="even">
 <td align="left"><code>zf</code></td>
@@ -638,8 +654,10 @@ body .main-container {
 </tbody>
 </table>
 </div>
-<div id="mrs_struct.fids" class="section level2">
-<h2><code>MRS_struct.fids</code></h2>
+<div id="mrs_struct.fids" class="section level2 hasAnchor">
+<h2 class="hasAnchor"><code>MRS_struct.fids</code><a
+href="#mrs_struct.fids" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
 <col width="16%" />
@@ -654,7 +672,9 @@ body .main-container {
 <tbody>
 <tr class="odd">
 <td align="left"><code>data</code></td>
-<td align="left">Raw time-domain metabolite data (dimensions: <code>npoints</code> <span class="math inline">\(\times\)</span> <code>nrows</code>) of the last loaded dataset</td>
+<td align="left">Raw time-domain metabolite data (dimensions:
+<code>npoints</code> <span class="math inline">\(\times\)</span>
+<code>nrows</code>) of the last loaded dataset</td>
 </tr>
 <tr class="even">
 <td align="left"><code>data_water</code></td>

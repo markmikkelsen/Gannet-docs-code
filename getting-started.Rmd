@@ -4,7 +4,7 @@ date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document:
     toc: TRUE
-    toc_depth: 2
+    toc_depth: 3
     toc_float:
       collapsed: FALSE
 ---
@@ -24,7 +24,7 @@ body .main-container {
 
 <br>
 
-Gannet simplifies the preprocessing and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of the MATLAB environment and programming language and the five Gannet modules (listed below).
+Gannet simplifies the preprocessing and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of MATLAB and the five Gannet modules (listed below).
 
 If this is your first time using Gannet, you will likely want to read through the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html) as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.
 
@@ -37,7 +37,7 @@ The linear workflow of Gannet is made up of five modules. For proper functionali
 | **GannetLoad** | Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the timecourse of the experiment. |
 | **GannetFit** | Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality. |
 | **GannetCoRegister** | Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image in three orthogonal slices. |
-| **GannetSegment** | Calls SPM12 to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates. |
+| **GannetSegment** | Calls SPM to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the MRS voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates. |
 | **GannetQuantify** | Uses the segmentation information to perform partial volume tissue correction and produces a figure displaying several quantitative metabolite measures. |
 
 Familiarize yourself with the five basic Gannet commands, as described below. The number of commands is deliberately kept to a minimum, as is the number of possible input arguments to these commands. Incorrect syntax is a common source of user error, so make sure that you understand the argument structure of each function you intend to use.
@@ -67,13 +67,34 @@ The default settings pre-initialize a standard analysis for in vivo GABA-edited 
 
 <br>
 
-## Batch processing
+### Running Gannet
 
-One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. In order to load a set of data, simply add more filenames to the respective cell arrays that are passed to `GannetLoad.m`, as exemplarily shown below for Siemens TWIX data:
+Depending on the format of your data, and if you have water reference data and/or structural images, the commands for running Gannet to load and fit your data follow a specific syntax.
+
+#### **GE data (.7 files)**
+
+Data from GE scanners are exported as a P-file, with the extension .7. Standard GE acquisitions automatically acquire a water reference, which is stored within the P-file. To run such data, use the following commands:
 
 ```{matlab, eval = FALSE}
-MRS_struct = GannetLoad({'S01_GABA_68_act.sdat', 'S02_GABA_68_act.sdat'}, ...
-                        {'S01_GABA_68_ref.sdat', 'S02_GABA_68_ref.sdat'});
+MRS_struct = GannetLoad({'sub-01.7'});
+MRS_struct = GannetFit(MRS_struct);
+```
+
+#### **Philips .sdat/.spar data**
+
+Data from Philips scanners are most commonly exported as a pair of .sdat/.spar files, where the .sdat file contains the data and the .spar contains the acquisition parameters. A water reference usually is also acquired and exported as a separate pair of files. The two are distinguished by the suffices _act_ and _ref_. To run such data, use the following commands:
+
+```{matlab, eval = FALSE}
+MRS_struct = GannetLoad({'sub-01_act.sdat'}, {'sub-01_ref.sdat'});
+MRS_struct = GannetFit(MRS_struct);
+```
+
+## Batch processing
+
+One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. In order to load a set of data, simply add more filenames to the respective cell arrays that are passed to `GannetLoad.m`, as shown below for Siemens TWIX data:
+
+```{matlab, eval = FALSE}
+MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat'}, {'sub-01_ref.sdat', 'sub-01_ref.sdat'});
 ```
 
 Note that the respective water-unsuppressed data files `S01_GABA_68_ref.sdat`, `S02_GABA_68_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `S01_GABA_68_act.sdat`, `S02_GABA_68_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a separate script as a clear way of defining the input cell arrays. We have provided an [example script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own analyses.

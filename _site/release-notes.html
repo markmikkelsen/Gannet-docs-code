@@ -13,7 +13,7 @@
 
 <title>Release notes</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,8 +33,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -46,6 +47,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 
@@ -76,6 +78,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -307,7 +312,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -324,7 +329,7 @@ div.tocify {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -348,7 +353,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -398,7 +403,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Release notes</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: June 30, 2022</h4>
 
 </div>
 
@@ -428,149 +433,299 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p>This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in between releases. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a> on GitHub.</p>
-<div id="section" class="section level2">
-<h2>3.2.0</h2>
+<p>This page logs the stable releases of Gannet. However, minor edits
+and bug fixes are also made in between releases. For a more
+comprehensive list of changes, see the commits logged on the
+<a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a>
+on GitHub.</p>
+<div id="section" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.2.0<a href="#section" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2021-07-30</span></p>
-<div id="new-features" class="section level3">
-<h3>New features</h3>
+<div id="new-features" class="section level3 hasAnchor">
+<h3 class="hasAnchor">New features<a href="#new-features"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Added <code>GannetVersion.m</code>, <code>VersionCheck.m</code>, and <code>UpdateGannet.m</code>; these new functions let users know the version of Gannet they have, if a newer release of Gannet is available, and will allow them to automatically update if wanted</li>
-<li>Added <code>ToolboxCheck.m</code> to check for missing MATLAB toolboxes needed to run Gannet</li>
-<li>Error dialog boxes are displayed at the end of the analysis pipeline if an error occurred (during a batch analysis, Gannet will skip to the next dataset and continue running)</li>
-<li>Users can now choose to use weighted (the default) or conventional signal averaging in <code>GannetPreInitialise.m</code> (outlier scans are removed when using conventional averaging, as before)</li>
-<li>Added a new (optional) method for robust, weighted signal averaging: weighted averaging by criterion function minimization (WACFM) using the generalized Cauchy distribution as the cost function; see doi: <a href="https://dx.doi.org/10.1016/j.bbe.2015.06.002" target="_blank">10.1016/j.bbe.2015.06.002</a> for more details; additionally, instead of weighting difference pairs, the subspectra of each editing subexperiment are weighted to generate weighted subspectra, which are then subtracted; see <code>SignalAveraging.m</code></li>
-<li>Yair Altman’s <a href="https://github.com/altmany/export_fig" target="_blank">export_fig toolbox</a> is included as an optional toolbox that, if added to MATLAB’s search path, Gannet will use to append all output PDFs from each module into a single PDF (a flag must be set in <code>GannetPreInitialise.m</code> to do this); this is very useful for easy QA of lots of data; note that <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> needs to be installed for the appending of PDFs to work (NB: macOS users should use this <a href="https://pages.uoregon.edu/koch/" target="_blank">version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript)</li>
-<li>Implemented use of hyperlinks in info and error messages printed in the command window so that users can: (1) directly run a certain function (such as <code>UpdateGannet.m</code> when <code>VersionCheck.m</code> informs the user a new release is available); (2) go straight to the line of code where an encountered error can be fixed (such as errors in <code>GannetPreInitialise.m</code>); or (3) go to a website by clicking on the printed URL (such as to download SPM12); the relevant code has been borrowed from export_fig</li>
-<li>Added an option in <code>GannetPreInitialise.m</code> that allows users, when using robust spectral registration, to use the averaged pre-aligned subspectra as references for aligning the averaged post-aligned subspectra (this may be helpful when robust spectral registration makes the alignment of already good-quality pre-aligned spectra worse)</li>
-<li><code>PaperPlot.m</code> now allows users to plot an exemplary voxel mask co-registered to the respective structural image</li>
-<li>Added <code>GannetMask_GE_nii.m</code>; GE users can now use NIfTI images instead of DICOMs to co-register their MRS voxels to structural images</li>
+<li>Added <code>GannetVersion.m</code>, <code>VersionCheck.m</code>, and
+<code>UpdateGannet.m</code>; these new functions let users know the
+version of Gannet they have, if a newer release of Gannet is available,
+and will allow them to automatically update if wanted</li>
+<li>Added <code>ToolboxCheck.m</code> to check for missing MATLAB
+toolboxes needed to run Gannet</li>
+<li>Error dialog boxes are displayed at the end of the analysis pipeline
+if an error occurred (during a batch analysis, Gannet will skip to the
+next dataset and continue running)</li>
+<li>Users can now choose to use weighted (the default) or conventional
+signal averaging in <code>GannetPreInitialise.m</code> (outlier scans
+are removed when using conventional averaging, as before)</li>
+<li>Added a new (optional) method for robust, weighted signal averaging:
+weighted averaging by criterion function minimization (WACFM) using the
+generalized Cauchy distribution as the cost function; see doi:
+<a href="https://dx.doi.org/10.1016/j.bbe.2015.06.002" target="_blank">10.1016/j.bbe.2015.06.002</a>
+for more details; additionally, instead of weighting difference pairs,
+the subspectra of each editing subexperiment are weighted to generate
+weighted subspectra, which are then subtracted; see
+<code>SignalAveraging.m</code></li>
+<li>Yair Altman’s
+<a href="https://github.com/altmany/export_fig" target="_blank">export_fig
+toolbox</a> is included as an optional toolbox that, if added to
+MATLAB’s search path, Gannet will use to append all output PDFs from
+each module into a single PDF (a flag must be set in
+<code>GannetPreInitialise.m</code> to do this); this is very useful for
+easy QA of lots of data; note that
+<a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a>
+needs to be installed for the appending of PDFs to work (NB: macOS users
+should use this
+<a href="https://pages.uoregon.edu/koch/" target="_blank">version</a> or
+use
+<a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a>
+to install Ghostscript)</li>
+<li>Implemented use of hyperlinks in info and error messages printed in
+the command window so that users can: (1) directly run a certain
+function (such as <code>UpdateGannet.m</code> when
+<code>VersionCheck.m</code> informs the user a new release is
+available); (2) go straight to the line of code where an encountered
+error can be fixed (such as errors in
+<code>GannetPreInitialise.m</code>); or (3) go to a website by clicking
+on the printed URL (such as to download SPM12); the relevant code has
+been borrowed from export_fig</li>
+<li>Added an option in <code>GannetPreInitialise.m</code> that allows
+users, when using robust spectral registration, to use the averaged
+pre-aligned subspectra as references for aligning the averaged
+post-aligned subspectra (this may be helpful when robust spectral
+registration makes the alignment of already good-quality pre-aligned
+spectra worse)</li>
+<li><code>PaperPlot.m</code> now allows users to plot an exemplary voxel
+mask co-registered to the respective structural image</li>
+<li>Added <code>GannetMask_GE_nii.m</code>; GE users can now use NIfTI
+images instead of DICOMs to co-register their MRS voxels to structural
+images</li>
 <li>Added the ability to trim datasets</li>
-<li>Extended the ability to concatenate files, including over multiple subjects</li>
-<li>Added a flag in <code>GannetPreInitialise.m</code> (<code>MRS_struct.p.hide</code>) to prevent output figures from displaying (useful when processing a large batch of files)</li>
+<li>Extended the ability to concatenate files, including over multiple
+subjects</li>
+<li>Added a flag in <code>GannetPreInitialise.m</code>
+(<code>MRS_struct.p.hide</code>) to prevent output figures from
+displaying (useful when processing a large batch of files)</li>
 </ul>
 </div>
-<div id="major-changes" class="section level3">
-<h3>Major changes</h3>
+<div id="major-changes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Major changes<a href="#major-changes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>The outdated manual PDF has been removed; up-to-date software documentation will now be found online: <a href="https://markmikkelsen.github.io/Gannet-docs/index.html" class="uri">https://markmikkelsen.github.io/Gannet-docs/index.html</a></li>
+<li>The outdated manual PDF has been removed; up-to-date software
+documentation will now be found online: <a
+href="https://markmikkelsen.github.io/Gannet-docs/index.html"
+class="uri">https://markmikkelsen.github.io/Gannet-docs/index.html</a></li>
 <li>Gannet is now licensed under the BSD 3-Clause License</li>
-<li>Alpha tissue correction is now performed on a by-metabolite basis rather than fixing the intrinsic WM:GM concentration to 1:2 (alpha) for all metabolites (assuming for now the ratio is 1:2 for GABA and Glx and 1:1 for GSH, EtOH and Lac); the alpha that is assumed is displayed in the GannetQuantify output figure</li>
-<li>Removed <code>MRS_struct.p.ON_OFF_order</code> from <code>GannetPreInitialise.m</code>; the order of editing pulses is now determined automatically; the relevant code has been borrowed from Osprey (this has only been tested to a limited extent so may require further tweaking)</li>
-<li>The exception to this change is phantom data, where users will still need to specify the order of editing pulses</li>
+<li>Alpha tissue correction is now performed on a by-metabolite basis
+rather than fixing the intrinsic WM:GM concentration to 1:2 (alpha) for
+all metabolites (assuming for now the ratio is 1:2 for GABA and Glx and
+1:1 for GSH, EtOH and Lac); the alpha that is assumed is displayed in
+the GannetQuantify output figure</li>
+<li>Removed <code>MRS_struct.p.ON_OFF_order</code> from
+<code>GannetPreInitialise.m</code>; the order of editing pulses is now
+determined automatically; the relevant code has been borrowed from
+Osprey (this has only been tested to a limited extent so may require
+further tweaking)</li>
+<li>The exception to this change is phantom data, where users will still
+need to specify the order of editing pulses</li>
 </ul>
 </div>
-<div id="minor-changes" class="section level3">
-<h3>Minor changes</h3>
+<div id="minor-changes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Datasets with differing number of averages can now be batch-processed together</li>
-<li>Turned off the progress bar displayed when loading Siemens TWIX data to reduce loading time</li>
-<li>Renamed some files for the sake of clarity and style; removed obsolete <code>GannetMask.m</code></li>
-<li>Signal averaging and subtraction are now done in the new function <code>SignalAveraging.m</code></li>
-<li>Various improvements to <code>RobustSpectralRegistration.m</code> (formerly <code>Robust_Spectral_Registration.m</code>) for better handling of data acquired using very strong water suppression</li>
-<li>The assumed concentration of pure water in <code>GannetFit.m</code> and <code>GannetFitPhantom.m</code> (PureWaterConc) has been changed from 55 to 55.51 mol/kg; this puts it in line with the same constant used in <code>GannetQuantify.m</code></li>
-<li>Added edits from Ralph Noeske (GE Berlin) to <code>GERead.m</code> for better handling of data when nechoes == 1; also changed the scaling factor if nechoes &gt; 1 (hopefully this makes water-referenced measurements consistent across all data encoding flavors)</li>
-<li>In <code>GERead.m</code> and <code>PhilipsRead_data.m</code>, instead of using the first point in the FID for signal weighting, the most common point that is the max in the magnitude signal across all FIDs is now used</li>
-<li>Some changes to <code>SiemensDICOMRead.m</code> and <code>DICOMRead.m</code> for smarter handling of data files: for each dataset, metabolite and water data files should be stored in separate folders</li>
-<li>Improved <code>ExportToCSV.m</code>; a single .csv file is now exported for HERMES datasets; useful variables such as signal areas and Cr fit quality metrics are now also exported</li>
-<li>Rewrote <code>DiscernDataType.m</code> (formerly <code>GannetDiscernDatatype.m</code>)</li>
+<li>Datasets with differing number of averages can now be
+batch-processed together</li>
+<li>Turned off the progress bar displayed when loading Siemens TWIX data
+to reduce loading time</li>
+<li>Renamed some files for the sake of clarity and style; removed
+obsolete <code>GannetMask.m</code></li>
+<li>Signal averaging and subtraction are now done in the new function
+<code>SignalAveraging.m</code></li>
+<li>Various improvements to <code>RobustSpectralRegistration.m</code>
+(formerly <code>Robust_Spectral_Registration.m</code>) for better
+handling of data acquired using very strong water suppression</li>
+<li>The assumed concentration of pure water in <code>GannetFit.m</code>
+and <code>GannetFitPhantom.m</code> (PureWaterConc) has been changed
+from 55 to 55.51 mol/kg; this puts it in line with the same constant
+used in <code>GannetQuantify.m</code></li>
+<li>Added edits from Ralph Noeske (GE Berlin) to <code>GERead.m</code>
+for better handling of data when nechoes == 1; also changed the scaling
+factor if nechoes &gt; 1 (hopefully this makes water-referenced
+measurements consistent across all data encoding flavors)</li>
+<li>In <code>GERead.m</code> and <code>PhilipsRead_data.m</code>,
+instead of using the first point in the FID for signal weighting, the
+most common point that is the max in the magnitude signal across all
+FIDs is now used</li>
+<li>Some changes to <code>SiemensDICOMRead.m</code> and
+<code>DICOMRead.m</code> for smarter handling of data files: for each
+dataset, metabolite and water data files should be stored in separate
+folders</li>
+<li>Improved <code>ExportToCSV.m</code>; a single .csv file is now
+exported for HERMES datasets; useful variables such as signal areas and
+Cr fit quality metrics are now also exported</li>
+<li>Rewrote <code>DiscernDataType.m</code> (formerly
+<code>GannetDiscernDatatype.m</code>)</li>
 <li>Minor changes and improvements to <code>PaperPlot.m</code></li>
 <li>Minor changes to <code>CoRegStandAlone.m</code> functions</li>
 <li>Minor changes to <code>SignalFilter.m</code></li>
-<li>Simplified <code>EddyCurrentCorrection.m</code> (formerly <code>phase_correction_fids.m</code>)</li>
-<li>Set up SPM12 for batch tissue segmentation only when tissue segmentation has not already been run and do it only once in a batch</li>
-<li>AllFramesFT (for the last loaded dataset) is now also saved in <code>MRS_struct.spec</code></li>
-<li>When saving the <code>MRS_struct</code> structure, the .mat file is now saved using version 7.3 (for the rare case when the structure is &gt;= 2 GB on 64-bit computers)</li>
-<li>Removed <code>MRS_struct.p.sdat</code> from <code>GannetPreInitialise.m</code> and the corresponding code from <code>GannetLoad.m</code> (this feature was never really used by users afaik)</li>
-<li>Improved global zero-order phasing in <code>SpectralRegistrationHERMES.m</code></li>
+<li>Simplified <code>EddyCurrentCorrection.m</code> (formerly
+<code>phase_correction_fids.m</code>)</li>
+<li>Set up SPM12 for batch tissue segmentation only when tissue
+segmentation has not already been run and do it only once in a
+batch</li>
+<li>AllFramesFT (for the last loaded dataset) is now also saved in
+<code>MRS_struct.spec</code></li>
+<li>When saving the <code>MRS_struct</code> structure, the .mat file is
+now saved using version 7.3 (for the rare case when the structure is
+&gt;= 2 GB on 64-bit computers)</li>
+<li>Removed <code>MRS_struct.p.sdat</code> from
+<code>GannetPreInitialise.m</code> and the corresponding code from
+<code>GannetLoad.m</code> (this feature was never really used by users
+afaik)</li>
+<li>Improved global zero-order phasing in
+<code>SpectralRegistrationHERMES.m</code></li>
 <li>Many cosmetic/aesthetic changes
 <ul>
-<li>The module output figures now show information useful for reporting acquisition parameters and results (in line with the <a href="https://onlinelibrary.wiley.com/doi/10.1002/nbm.4484" target="_blank">MRSinMRS</a> checklist)</li>
-<li>Co-registered/segmented voxel masks displayed in GannetCoRegister, GannetSegment, and GannetQuantify output figures are now shown in yellow rather than grayscale</li>
-<li>Smarter stacking of HERMES difference spectra in <code>PlotPrePostAlign.m</code> and <code>PlotPrePostAlign2.m</code> (formerly <code>GannetPlotPrePostAlign.m</code> and <code>GannetPlotPrePostAlign2.m</code>)</li>
-<li>The Gannet documentation website URL is printed at the bottom of every output figure</li>
-<li>Removed irrelevant messages from being printed in the command window during the analysis pipeline, replacing them with more useful messages</li>
-<li>Minor rearranging of results text in GannetSegment and GannetQuantify output figures</li>
-<li>Slight change to the y-axis labels of the Cr frequency spectrogram in the GannetLoad output figure</li>
-<li>Better reordering of <code>MRS_struct.out</code> subfields created in <code>GannetFit.m</code></li>
+<li>The module output figures now show information useful for reporting
+acquisition parameters and results (in line with the
+<a href="https://onlinelibrary.wiley.com/doi/10.1002/nbm.4484" target="_blank">MRSinMRS</a>
+checklist)</li>
+<li>Co-registered/segmented voxel masks displayed in GannetCoRegister,
+GannetSegment, and GannetQuantify output figures are now shown in yellow
+rather than grayscale</li>
+<li>Smarter stacking of HERMES difference spectra in
+<code>PlotPrePostAlign.m</code> and <code>PlotPrePostAlign2.m</code>
+(formerly <code>GannetPlotPrePostAlign.m</code> and
+<code>GannetPlotPrePostAlign2.m</code>)</li>
+<li>The Gannet documentation website URL is printed at the bottom of
+every output figure</li>
+<li>Removed irrelevant messages from being printed in the command window
+during the analysis pipeline, replacing them with more useful
+messages</li>
+<li>Minor rearranging of results text in GannetSegment and
+GannetQuantify output figures</li>
+<li>Slight change to the y-axis labels of the Cr frequency spectrogram
+in the GannetLoad output figure</li>
+<li>Better reordering of <code>MRS_struct.out</code> subfields created
+in <code>GannetFit.m</code></li>
 </ul></li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level3">
-<h3>Bug fixes</h3>
+<div id="bug-fixes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Frequency and phase offset estimates are now tracked correctly and saved when running any of the spectral registration-based alignment methods</li>
-<li>Removed old debugging conditional statement in <code>TWIXDeIdentify.m</code></li>
-<li>Explicitly specify color of water frequency trace in GannetLoad output figure as there appears to be a bug since MATLAB R2019b when using hold to overlay plots</li>
+<li>Frequency and phase offset estimates are now tracked correctly and
+saved when running any of the spectral registration-based alignment
+methods</li>
+<li>Removed old debugging conditional statement in
+<code>TWIXDeIdentify.m</code></li>
+<li>Explicitly specify color of water frequency trace in GannetLoad
+output figure as there appears to be a bug since MATLAB R2019b when
+using hold to overlay plots</li>
 <li>Added EtOH signal parameters to <code>GannetQuantify.m</code></li>
-<li>In <code>SiemensTwixRead.m</code>, if no water reference is provided, use the most common point that is the max in the magnitude signal across all FIDs instead of just using the first point</li>
+<li>In <code>SiemensTwixRead.m</code>, if no water reference is
+provided, use the most common point that is the max in the magnitude
+signal across all FIDs instead of just using the first point</li>
 <li>Fixed an orientation problem in <code>GannetMask_GE.m</code></li>
-<li>Removed unnecessary complex conjugate transpose during FFT of water data in <code>GannetLoad.m</code></li>
-<li>Turned off warnings about legacy number generator in <code>RobustSpectralRegistration.m</code> (for when rng and randn are run in <code>SignalFilter.m</code>) if they are already turned on</li>
+<li>Removed unnecessary complex conjugate transpose during FFT of water
+data in <code>GannetLoad.m</code></li>
+<li>Turned off warnings about legacy number generator in
+<code>RobustSpectralRegistration.m</code> (for when rng and randn are
+run in <code>SignalFilter.m</code>) if they are already turned on</li>
 </ul>
 <p><br></p>
 </div>
 </div>
-<div id="section-1" class="section level2">
-<h2>3.1.5</h2>
+<div id="section-1" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.5<a href="#section-1" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2020-03-02</span></p>
-<div id="new-features-1" class="section level3">
-<h3>New features</h3>
+<div id="new-features-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">New features<a href="#new-features-1"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Smarter checking of incorrect settings in <code>GannetPreInitialise.m</code> by <code>CheckTargets.m</code></li>
-<li>Major changes to <code>GannetFitPhantom.m</code> to bring it more in line with <code>GannetFit.m</code></li>
-<li>Added support for CMRR MEGA-sLASER sequence in <code>SiemensTwixRead.m</code></li>
-<li>In <code>SubSpectralAlign.m</code>, if very strong water suppression was used, use Cho instead of residual water to align subspectra of GABA-, Lac-, and EtOH-edited datasets</li>
+<li>Smarter checking of incorrect settings in
+<code>GannetPreInitialise.m</code> by <code>CheckTargets.m</code></li>
+<li>Major changes to <code>GannetFitPhantom.m</code> to bring it more in
+line with <code>GannetFit.m</code></li>
+<li>Added support for CMRR MEGA-sLASER sequence in
+<code>SiemensTwixRead.m</code></li>
+<li>In <code>SubSpectralAlign.m</code>, if very strong water suppression
+was used, use Cho instead of residual water to align subspectra of
+GABA-, Lac-, and EtOH-edited datasets</li>
 </ul>
 </div>
-<div id="minor-changes-1" class="section level3">
-<h3>Minor changes</h3>
+<div id="minor-changes-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes-1"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Noise estimation in <code>CalcNoise.m</code>, <code>Robust_Spectral_Registration.m</code>, and <code>SignalFilter.m</code> is now performed between 8 and 10 ppm to account for datasets that have shorter spectral widths</li>
+<li>Noise estimation in <code>CalcNoise.m</code>,
+<code>Robust_Spectral_Registration.m</code>, and
+<code>SignalFilter.m</code> is now performed between 8 and 10 ppm to
+account for datasets that have shorter spectral widths</li>
 <li>Cleaned up code in <code>GannetFit.m</code></li>
 <li>Quantification of Lac now explicitly defined as Lac+MM</li>
 <li>Improved functionality of <code>PaperPlot.m</code></li>
-<li>In <code>SiemensTwixRead.m</code>, when a water reference is present, coil sensitivity and phase is based on the point index that is at the top of the echo, rather than simply fixing it to the first point</li>
+<li>In <code>SiemensTwixRead.m</code>, when a water reference is
+present, coil sensitivity and phase is based on the point index that is
+at the top of the echo, rather than simply fixing it to the first
+point</li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level3">
-<h3>Bug fixes</h3>
+<div id="bug-fixes-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-1"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Minor bug fixes in CoRegStandAlone functions</li>
-<li>Corrected use of random number generation in <code>SignalFilter.m</code> when performing noise replacement to ensure the same results are reproduced each time it is run on a dataset</li>
+<li>Corrected use of random number generation in
+<code>SignalFilter.m</code> when performing noise replacement to ensure
+the same results are reproduced each time it is run on a dataset</li>
 </ul>
 <p><br></p>
 </div>
 </div>
-<div id="section-2" class="section level2">
-<h2>3.1.4</h2>
+<div id="section-2" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.4<a href="#section-2" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2019-10-03</span></p>
-<div id="bug-fix" class="section level3">
-<h3>Bug fix</h3>
+<div id="bug-fix" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fix<a href="#bug-fix" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Fixed error in the calculation of <code>AvgDeltaF0</code> for MEGA-PRESS data</li>
+<li>Fixed error in the calculation of <code>AvgDeltaF0</code> for
+MEGA-PRESS data</li>
 </ul>
 <p><br></p>
 </div>
 </div>
-<div id="section-3" class="section level2">
-<h2>3.1.3</h2>
+<div id="section-3" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.3<a href="#section-3" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2019-08-06</span></p>
-<div id="new-features-2" class="section level3">
-<h3>New features</h3>
+<div id="new-features-2" class="section level3 hasAnchor">
+<h3 class="hasAnchor">New features<a href="#new-features-2"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li>Major improvements to <code>Robust_Spectral_Registration.m</code></li>
+<li>Major improvements to
+<code>Robust_Spectral_Registration.m</code></li>
 <li>Wavelet toolbox no longer required</li>
 <li>Raw data is now phase-corrected prior to alignment</li>
-<li><code>GannetLoad.m</code> and <code>GannetFit.m</code> no longer crash if an error occurs during a batch analysis</li>
-<li>An error report is printed after the final dataset is loaded/fitted so users can check which datasets failed</li>
+<li><code>GannetLoad.m</code> and <code>GannetFit.m</code> no longer
+crash if an error occurs during a batch analysis</li>
+<li>An error report is printed after the final dataset is loaded/fitted
+so users can check which datasets failed</li>
 <li>Added support for GE revision header 20.007</li>
 </ul>
 </div>
-<div id="minor-change" class="section level3">
-<h3>Minor change</h3>
+<div id="minor-change" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor change<a href="#minor-change"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
-<li><code>Water_Positive</code> flag in <code>GannetPreInitialise.m</code> removed</li>
+<li><code>Water_Positive</code> flag in
+<code>GannetPreInitialise.m</code> removed</li>
 </ul>
 </div>
 </div>

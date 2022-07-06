@@ -13,7 +13,7 @@
 
 <title>Gannet</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -29,9 +29,13 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -43,6 +47,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -167,6 +172,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -305,6 +313,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -314,12 +391,22 @@ $(document).ready(function () {
 <div class="container-fluid main-container">
 
 
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
 
 
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -336,7 +423,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -360,7 +447,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -410,7 +497,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Gannet</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: June 30, 2022</h4>
 
 </div>
 
@@ -439,16 +526,26 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+<style>
+body .main-container {
+  max-width: 1200px;
+}
+</style>
 <p><br></p>
 <p><img src="images/logo.png" alt="Gannet logo" id="myImg2"/></p>
 <div class="release">
 <h3>
-<p>Current stable release:  <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.2.0</a></p>
+<p>Current stable release:
+<a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.2.1</a></p>
 </h3>
 </div>
-<div id="overview" class="section level2">
-<h2>Overview</h2>
-<p>Gannet is a free, open-source MATLAB-based software toolkit for analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS) data. Its largely automated functions cover all the essential steps of modern MRS analysis:</p>
+<div id="overview" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Overview<a href="#overview" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>Gannet is a free, open-source MATLAB-based software toolkit for
+analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS)
+data. Its largely automated functions cover all the essential steps of
+modern MRS analysis:</p>
 <ul>
 <li>Loading raw data</li>
 <li>Substantial preprocessing</li>
@@ -456,45 +553,87 @@ function topFunction() {
 <li>Voxel co-registration with structural MR images</li>
 <li>Concentration estimation based on tissue composition</li>
 </ul>
-<p>Several existing software packages for MRS data analysis require substantial user input or offer a wide selection of processing options. In contrast, the philosophy behind Gannet is to provide users with a complete automated pipeline without the need for significant user input.</p>
-<p>Additionally, as open-source software, advanced users have the ability to modify the underlying routines for ad hoc purposes.</p>
-<p>Gannet is continually being updated and has an active support base. Visit our <a href="https://www.gabamrs.com/" target="_blank">blog</a> for the latest news on Gannet and our developments in edited MRS methodology.</p>
+<p>Several existing software packages for MRS data analysis require
+substantial user input or offer a wide selection of processing options.
+In contrast, the philosophy behind Gannet is to provide users with a
+complete automated pipeline without the need for significant user
+input.</p>
+<p>Additionally, as open-source software, advanced users have the
+ability to modify the underlying routines for ad hoc purposes.</p>
+<p>Gannet is continually being updated and has an active support base.
+Visit our <a href="https://www.gabamrs.com/" target="_blank">blog</a>
+for the latest news on Gannet and our developments in edited MRS
+methodology.</p>
 </div>
-<div id="installation" class="section level2">
-<h2>Installation</h2>
-<div id="prerequisites" class="section level3">
-<h3>Prerequisites</h3>
-<p>Gannet runs in <a href="https://www.mathworks.com/products/matlab.html" target="_blank">MATLAB</a>. For best performance, we recommend using the latest release if possible. Additionally, Gannet requires that the following MATLAB toolboxes are installed:</p>
+<div id="installation" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Installation<a href="#installation"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prerequisites" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Prerequisites<a href="#prerequisites"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Gannet runs in
+<a href="https://www.mathworks.com/products/matlab.html" target="_blank">MATLAB</a>.
+For best performance, we recommend using the latest release if possible.
+Additionally, Gannet requires that the following MATLAB toolboxes are
+installed:</p>
 <ul>
 <li>Image Processing</li>
 <li>Optimization</li>
 <li>Signal Processing</li>
 <li>Statistics and Machine Learning</li>
 </ul>
-<p>You can check which toolboxes you have installed by typing <code>ver</code> in the MATLAB command window. To install any missing toolboxes, please follow these <a href="https://www.mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab" target="_blank">instructions</a>.</p>
-<p>To run the voxel co-registration and structural image segmentation modules, <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> must be installed.</p>
+<p>You can check which toolboxes you have installed by typing
+<code>ver</code> in the MATLAB command window. To install any missing
+toolboxes, please follow these
+<a href="https://www.mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab" target="_blank">instructions</a>.</p>
+<p>To run the voxel co-registration and structural image segmentation
+modules,
+<a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a>
+must be installed.</p>
 </div>
-<div id="download" class="section level3">
-<h3>Download</h3>
-<p>The simplest way to install Gannet is to download the zipped <a href="https://github.com/markmikkelsen/Gannet/archive/refs/heads/main.zip">main folder</a> from the <a href="https://github.com/markmikkelsen/Gannet" target="_blank">repository</a> on GitHub, unzip it, and move the <em>Gannet-main</em> folder into your MATLAB directory.</p>
-<p>Alternatively, git-savvy users can clone the Gannet repository into a directory of their choice:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/markmikkelsen/Gannet.git</span></code></pre></div>
+<div id="download" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Download<a href="#download" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<p>The simplest way to install Gannet is to download the zipped <a
+href="https://github.com/markmikkelsen/Gannet/archive/refs/heads/main.zip">main
+folder</a> from the
+<a href="https://github.com/markmikkelsen/Gannet" target="_blank">repository</a>
+on GitHub, unzip it, and move the <em>Gannet-main</em> folder into your
+MATLAB folder (or anywhere of your choice).</p>
+<p>Alternatively, git-savvy users can clone the Gannet repository into a
+folder of their choice:</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/markmikkelsen/Gannet.git</span></code></pre></div>
 </div>
-<div id="setup" class="section level3">
-<h3>Setup</h3>
-<p>Open the <em>Set Path</em> dialog box from the MATLAB menu (or run the command <code>pathtool</code> in the Command Window), click <em>Add with Subfolders</em>, find the <em>Gannet-main</em> folder and then select it. When done, press <em>Save</em> to permanently save the Gannet folder to MATLAB’s default search path.</p>
-<p>SPM12 can be installed in the same manner after it has been downloaded from the SPM website.</p>
+<div id="setup" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Setup<a href="#setup" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<p>Open the <em>Set Path</em> dialog box from the MATLAB menu (or run
+the command <code>pathtool</code> in the Command Window), click <em>Add
+with Subfolders</em>, find the downloaded Gannet folder and then select
+it. When done, press <em>Save</em> to permanently save the Gannet folder
+to MATLAB’s default search path.</p>
+<p>SPM12 can be installed in the same manner after it has been
+downloaded from the SPM website.</p>
 <div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i>   It is highly recommended that you only add the main SPM12 folder (<em>spm12</em>) to your search path instead of including all the subfolders. This prevents potential function conflicts.</p>
+<p><i class="fa fa-info-circle" style="color: white"></i> It is highly
+recommended that you only add the main SPM12 folder (<em>spm12</em>) to
+your search path instead of including all the subfolders. This prevents
+function conflicts.</p>
 </div>
 </div>
 </div>
-<div id="compatibility" class="section level2">
-<h2>Compatibility</h2>
-<p>Gannet is currently being developed in MATLAB R2021b in macOS 11.6 Big Sur. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.</p>
+<div id="compatibility" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Compatibility<a href="#compatibility"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Gannet is currently being developed in MATLAB R2021b in macOS 11.6
+Big Sur. While reasonable effort is made to ensure legacy and cross-OS
+compatibility, an error-free user experience is not guaranteed.</p>
 </div>
-<div id="supported-file-formats" class="section level2">
-<h2>Supported file formats</h2>
+<div id="supported-file-formats" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Supported file formats<a
+href="#supported-file-formats" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <p>At present, the following MRS data file formats are supported:</p>
 <ul>
 <li>DICOM (.dcm)</li>
@@ -506,23 +645,42 @@ function topFunction() {
 <li>Siemens .rda</li>
 <li>Siemens TWIX (.dat)</li>
 </ul>
-<p>For creating and co-registering voxel masks, structural images need to be in NIfTI format (DICOM files can also be used if processing GE P-files).</p>
+<p>For creating and co-registering voxel masks, structural images need
+to be in NIfTI format (DICOM files can also be used if processing GE
+P-files).</p>
 <div class="warning">
-<p><i class="fa fa-exclamation-circle" style="color: white"></i>   Philips users: Do not use structural images exported using the <em>fsl-nifti</em> option as this creates problems with co-registration in Gannet.</p>
+<p><i class="fa fa-exclamation-circle" style="color: white"></i> Philips
+users: Do not use structural images exported using the
+<em>fsl-nifti</em> option as this creates problems with co-registration
+in Gannet.</p>
 </div>
 </div>
-<div id="getting-help" class="section level2">
-<h2>Getting help</h2>
-<p>If you encounter any problems, please first check the Documentation or <a href="https://markmikkelsen.github.io/Gannet-docs/faq.html">FAQ</a> for a solution.</p>
-<p>Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on the <a href="https://mrshub.org/" target="_blank">MRSHub</a>.</p>
-<p>The support team can also be directly reached using our blog’s <a href="https://www.gabamrs.com/contact" target="_blank">contact form</a>. We will do our best to work with you to solve your issue.</p>
+<div id="getting-help" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Getting help<a href="#getting-help"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>If you encounter any problems, please first check the Documentation
+or
+<a href="https://markmikkelsen.github.io/Gannet-docs/faq.html">FAQ</a>
+for a solution.</p>
+<p>Otherwise, you can post your query on the
+<a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet
+forum</a> on the
+<a href="https://mrshub.org/" target="_blank">MRSHub</a>.</p>
+<p>The support team can also be directly reached using our blog’s
+<a href="https://www.gabamrs.com/contact" target="_blank">contact
+form</a>. We will do our best to work with you to solve your issue.</p>
 </div>
-<div id="versioning" class="section level2">
-<h2>Versioning</h2>
-<p><a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style ‘x.x.x’. Versioning is also conducted on a module-specific basis using the style ‘YYMMDD’. That is, each Gannet module has its own release version.</p>
+<div id="versioning" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Versioning<a href="#versioning"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><a href="https://semver.org/" target="_blank">Semantic versioning</a>
+is used when updates are made to Gannet using the style ‘x.x.x’.
+Versioning is also conducted on a module-specific basis using the style
+‘YYMMDD’. That is, each Gannet module has its own release version.</p>
 </div>
-<div id="developers" class="section level2">
-<h2>Developers</h2>
+<div id="developers" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Developers<a href="#developers"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>Richard Edden (Johns Hopkins University)</li>
 <li>Mark Mikkelsen (Weill Cornell Medicine)</li>
@@ -533,43 +691,77 @@ function topFunction() {
 <li>Nicolaas Puts (King’s College London)</li>
 </ul>
 </div>
-<div id="license-and-citing-gannet" class="section level2">
-<h2>License and citing Gannet</h2>
-<p>This software is licensed under the open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD 3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:</p>
+<div id="license-and-citing-gannet" class="section level2 hasAnchor">
+<h2 class="hasAnchor">License and citing Gannet<a
+href="#license-and-citing-gannet" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>This software is licensed under an open-source
+<a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD
+3-Clause License</a>. Should you disseminate material that made use of
+Gannet, please cite the following publications, as appropriate:</p>
 <p><strong>For all work using Gannet:</strong></p>
 <ul>
-<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> <em>Journal of Magnetic Resonance Imaging</em>. 2014;40(6):1445–1452</li>
+<li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ.
+<a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A
+batch-processing tool for the quantitative analysis of
+gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> <em>Journal
+of Magnetic Resonance Imaging</em>. 2014;40(6):1445–1452</li>
 </ul>
-<p><strong>If you perform frequency-and-phase correction (FPC) using:</strong></p>
+<p><strong>If you perform frequency-and-phase correction (FPC)
+using:</strong></p>
 <p>Robust spectral registration (<code>RobustSpecReg</code>):</p>
 <ul>
-<li>Mikkelsen M, Tapper S, Near J, Mostofsky SH, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting frequency and phase offsets in MRS data using robust spectral registration.</a> <em>NMR in Biomedicine</em>. 2020;33(10):e4368</li>
+<li>Mikkelsen M, Tapper S, Near J, Mostofsky SH, Puts NAJ, Edden RAE.
+<a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting
+frequency and phase offsets in MRS data using robust spectral
+registration.</a> <em>NMR in Biomedicine</em>. 2020;33(10):e4368</li>
 </ul>
 <p>multi-step FPC (<code>SpecRegHERMES</code>):</p>
 <ul>
-<li>Mikkelsen M, Saleh MG, Near J, et al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency and phase correction for multiplexed edited MRS of GABA and glutathione.</a> <em>Magnetic Resonance in Medicine</em>. 2018;80(1):21-28</li>
+<li>Mikkelsen M, Saleh MG, Near J, et
+al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency
+and phase correction for multiplexed edited MRS of GABA and
+glutathione.</a> <em>Magnetic Resonance in Medicine</em>.
+2018;80(1):21-28</li>
 </ul>
 <p>or spectral registration (<code>SpecReg</code>):</p>
 <ul>
-<li>Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency and phase drift correction of magnetic resonance spectroscopy data by spectral registration in the time domain.</a> <em>Magnetic Resonance in Medicine</em>. 2015;73(1):44-50</li>
+<li>Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P.
+<a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency
+and phase drift correction of magnetic resonance spectroscopy data by
+spectral registration in the time domain.</a> <em>Magnetic Resonance in
+Medicine</em>. 2015;73(1):44-50</li>
 </ul>
 <p><strong>If you perform tissue segmentation:</strong></p>
 <ul>
-<li>Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> <em>NeuroImage</em>. 2005;26(3):839–851</li>
+<li>Ashburner J, Friston KJ.
+<a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified
+segmentation.</a> <em>NeuroImage</em>. 2005;26(3):839–851</li>
 </ul>
-<p><strong>If you report water-referenced measurements tissue-corrected using:</strong></p>
+<p><strong>If you report water-referenced measurements tissue-corrected
+using:</strong></p>
 <p>The Harris et al. method:</p>
 <ul>
-<li>Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> <em>Journal of Magnetic Resonance Imaging</em>. 2015;42(5):1431–1440</li>
+<li>Harris AD, Puts NAJ, Edden RAE.
+<a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue
+correction for GABA-edited MRS: Considerations of voxel composition,
+tissue segmentation, and tissue relaxations.</a> <em>Journal of Magnetic
+Resonance Imaging</em>. 2015;42(5):1431–1440</li>
 </ul>
 <p>or the Gasparovic et al. method:</p>
 <ul>
-<li>Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> <em>Magnetic Resonance in Medicine</em>. 2006;55(6):1219–1226</li>
+<li>Gasparovic C, Song T, Devier D, et
+al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of
+tissue water as a concentration reference for proton spectroscopic
+imaging.</a> <em>Magnetic Resonance in Medicine</em>.
+2006;55(6):1219–1226</li>
 </ul>
 </div>
-<div id="acknowledgments" class="section level2">
-<h2>Acknowledgments</h2>
-<p>The development and dissemination of Gannet has been supported by the following NIH grants:</p>
+<div id="acknowledgments" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Acknowledgments<a href="#acknowledgments"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>The development and dissemination of Gannet has been supported by the
+following NIH grants:</p>
 <ul>
 <li>R01 EB016089</li>
 <li>R01 EB023963</li>
@@ -580,7 +772,8 @@ function topFunction() {
 <li>R01 MH096263</li>
 <li>K99 EB028828</li>
 </ul>
-<p>We wish to thank the following individuals for their direct or indirect contributions:</p>
+<p>We wish to thank the following individuals for their direct or
+indirect contributions:</p>
 <ul>
 <li>Yair Altman (Undocumented Matlab)</li>
 <li>Peter Barker (Johns Hopkins University)</li>
@@ -603,6 +796,8 @@ function topFunction() {
 </p>
 
 
+</div>
+</div>
 
 </div>
 
@@ -635,6 +830,35 @@ $(document).ready(function () {
 
 <!-- code folding -->
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

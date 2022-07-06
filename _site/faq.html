@@ -13,7 +13,7 @@
 
 <title>FAQ</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,8 +33,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -46,6 +47,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 
@@ -76,6 +78,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -307,7 +312,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -324,7 +329,7 @@ div.tocify {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -348,7 +353,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -398,7 +403,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">FAQ</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: June 30, 2022</h4>
 
 </div>
 
@@ -433,35 +438,72 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<div id="general" class="section level3">
-<h3>General</h3>
-<div id="can-gannet-process-gsh-edited-data" class="section level4">
-<h4><strong>Can Gannet process GSH-edited data?</strong></h4>
-<p>Yes, Gannet can process GABA-, GSH-, and Lac-edited MEGA-PRESS data as well as HERMES data. Simply set the appropriate <code>target</code> option(s) in <code>GannetPreInitialise.m</code>.</p>
+<div id="general" class="section level3 hasAnchor">
+<h3 class="hasAnchor">General<a href="#general" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<div id="can-gannet-process-gsh-edited-data"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Can Gannet process GSH-edited
+data?</strong><a href="#can-gannet-process-gsh-edited-data"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Yes, Gannet can process GABA-, GSH-, and Lac-edited MEGA-PRESS data
+as well as HERMES data. Simply set the appropriate <code>target</code>
+option(s) in <code>GannetPreInitialise.m</code>.</p>
 </div>
-<div id="can-gannet-process-phantom-data" class="section level4">
-<h4><strong>Can Gannet process phantom data?</strong></h4>
-<p>Yes. Make sure to set <code>phantom</code> to <code>1</code> under ‘Flags’ in <code>GannetPreInitialise.m</code>. If you want to fit your data, run <code>GannetFitPhantom(MRS_struct);</code> instead of <code>GannetFit(MRS_struct);</code>.</p>
+<div id="can-gannet-process-phantom-data"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Can Gannet process phantom
+data?</strong><a href="#can-gannet-process-phantom-data"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Yes. Make sure to set <code>phantom</code> to <code>1</code> under
+‘Flags’ in <code>GannetPreInitialise.m</code>. If you want to fit your
+data, run <code>GannetFitPhantom(MRS_struct);</code> instead of
+<code>GannetFit(MRS_struct);</code>.</p>
 </div>
 </div>
-<div id="output" class="section level3">
-<h3>Output</h3>
-<div id="why-is-my-spectrum-upside-down-after-i-run-gannetload" class="section level4">
-<h4><strong>Why is my spectrum upside down after I run GannetLoad?</strong></h4>
+<div id="output" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Output<a href="#output" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<div id="why-is-my-spectrum-upside-down-after-i-run-gannetload"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Why is my spectrum upside down after I run
+GannetLoad?</strong><a
+href="#why-is-my-spectrum-upside-down-after-i-run-gannetload"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p><strong>Example:</strong></p>
 <p><img src="images/faq/upside-down-spectrum.png" width="35%" style="display: block; margin: auto auto auto 0;" /></p>
-<p>The <code>ONOFForder</code> parameter set in <code>GannetPreInitialise.m</code> is incorrect for your data. Change the setting to either <code>'onfirst'</code> or <code>'offfirst'</code>, depending on what it is currently set as.</p>
+<p>The <code>ONOFForder</code> parameter set in
+<code>GannetPreInitialise.m</code> is incorrect for your data. Change
+the setting to either <code>'onfirst'</code> or <code>'offfirst'</code>,
+depending on what it is currently set as.</p>
 </div>
 </div>
-<div id="errors" class="section level3">
-<h3>Errors</h3>
-<div id="why-am-i-getting-this-error-subscripted-assignment-dimension-mismatch" class="section level4">
-<h4><strong>Why am I getting this error:</strong> <span style="color: red;"><code>Subscripted assignment dimension mismatch</code></span><strong>?</strong></h4>
-<p>This is one of the errors that may appear during batch processing if acquisition parameters are not consistent across datasets.</p>
+<div id="errors" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Errors<a href="#errors" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<div
+id="why-am-i-getting-this-error-subscripted-assignment-dimension-mismatch"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Why am I getting this error:</strong>
+<span
+style="color: red;"><code>Subscripted assignment dimension mismatch</code></span><strong>?</strong><a
+href="#why-am-i-getting-this-error-subscripted-assignment-dimension-mismatch"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>This is one of the errors that may appear during batch processing if
+acquisition parameters are not consistent across datasets.</p>
 </div>
-<div id="why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-" class="section level4">
-<h4><strong>Why am I getting this error:</strong> <span style="color: red;"><code>Unable to perform assignment because the size of the left side is 1-by-#### and the size of the right side is 1-by-###</code></span><strong>?</strong></h4>
-<p>You are batch-processing multiple datasets that contain different numbers of averages. Divide the files into separate batches so that each batch contains only datasets acquired with the same number of averages.</p>
+<div
+id="why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Why am I getting this error:</strong>
+<span
+style="color: red;"><code>Unable to perform assignment because the size of the left side is 1-by-#### and the size of the right side is 1-by-###</code></span><strong>?</strong><a
+href="#why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>You are batch-processing multiple datasets that contain different
+numbers of averages. Divide the files into separate batches so that each
+batch contains only datasets acquired with the same number of
+averages.</p>
 </div>
 </div>
 

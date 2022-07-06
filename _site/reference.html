@@ -13,7 +13,7 @@
 
 <title>Reference</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,8 +33,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -46,6 +47,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -192,6 +194,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -423,7 +428,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -440,7 +445,7 @@ div.tocify {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -464,7 +469,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -514,7 +519,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Reference</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: June 30, 2022</h4>
 
 </div>
 
@@ -550,10 +555,14 @@ function topFunction() {
 </script>
 <p><br></p>
 <div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i>   The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.</p>
+<p><i class="fa fa-info-circle" style="color: white"></i>   The
+variables listed on this page are applicable to release 3.1.5 and are
+not necessarily correct for earlier versions of Gannet.</p>
 </div>
-<div id="pre-initialise-gannet" class="section level2">
-<h2>Pre-initialise Gannet</h2>
+<div id="pre-initialise-gannet" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Pre-initialise Gannet<a
+href="#pre-initialise-gannet" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <hr />
 <p><strong>Parent function</strong></p>
 <p><code>GannetPreInitialise.m</code></p>
@@ -572,15 +581,24 @@ function topFunction() {
 <tbody>
 <tr class="odd">
 <td align="left"><code>target</code></td>
-<td align="left">Sets the metabolite of interest that was edited in the MRS experiment; if HERMES was used, multiple metabolites should be selected</td>
+<td align="left">Sets the metabolite of interest that was edited in the
+MRS experiment; if HERMES was used, multiple metabolites should be
+selected</td>
 </tr>
 <tr class="even">
 <td align="left"><code>ONOFForder</code></td>
-<td align="left">Order of the ON/OFF editing scans in the MEGA-PRESS acquisitions determines (amongst other things in Gannet) how the subspectra are subtracted to derive the difference spectra; typically, Philips acquisitions are <code>'offfirst'</code> and GE and Siemens acquisitions are <code>'onfirst'</code> (but this is not always true so you should always check your acquisition parameters)</td>
+<td align="left">Order of the ON/OFF editing scans in the MEGA-PRESS
+acquisitions determines (amongst other things in Gannet) how the
+subspectra are subtracted to derive the difference spectra; typically,
+Philips acquisitions are <code>'offfirst'</code> and GE and Siemens
+acquisitions are <code>'onfirst'</code> (but this is not always true so
+you should always check your acquisition parameters)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>seqorig</code></td>
-<td align="left">Specific to Philips data; specifies whether the data were acquired using the patch developed at Johns Hopkins University or the Philips product sequence</td>
+<td align="left">Specific to Philips data; specifies whether the data
+were acquired using the patch developed at Johns Hopkins University or
+the Philips product sequence</td>
 </tr>
 </tbody>
 </table>
@@ -598,31 +616,40 @@ function topFunction() {
 <tbody>
 <tr class="odd">
 <td align="left"><code>LB</code></td>
-<td align="left">Sets the amount of exponential line-broadening to apply to the data (in Hz)</td>
+<td align="left">Sets the amount of exponential line-broadening to apply
+to the data (in Hz)</td>
 </tr>
 <tr class="even">
 <td align="left"><code>water_phase_correction</code></td>
-<td align="left">Whether to perform an eddy-current correction<span class="citation"><sup><a href="#ref-Klose1990" role="doc-biblioref">1</a></sup></span> on the water data</td>
+<td align="left">Whether to perform an eddy-current correction<span
+class="citation"><sup><a href="#ref-Klose1990"
+role="doc-biblioref">1</a></sup></span> on the water data</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>data_phase_correction</code></td>
-<td align="left">Whether to perform an eddy-current correction on the metabolite data</td>
+<td align="left">Whether to perform an eddy-current correction on the
+metabolite data</td>
 </tr>
 <tr class="even">
 <td align="left"><code>water_removal</code></td>
-<td align="left">Whether to remove the residual water signal from the difference spectra using an HSVD filter<span class="citation"><sup><a href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></sup></span></td>
+<td align="left">Whether to remove the residual water signal from the
+difference spectra using an HSVD filter<span class="citation"><sup><a
+href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>AlignTo</code></td>
-<td align="left">Which method to use for shot-to-shot frequency-and-phase correction</td>
+<td align="left">Which method to use for shot-to-shot
+frequency-and-phase correction</td>
 </tr>
 <tr class="even">
 <td align="left"><code>Vox</code></td>
-<td align="left">Only applies to PRIAM data; the desired naming of the output structure fields</td>
+<td align="left">Only applies to PRIAM data; the desired naming of the
+output structure fields</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>FitResidWater</code></td>
-<td align="left">Whether to model the residual water signal in the difference spectrum; used to calculate the water suppression factor</td>
+<td align="left">Whether to model the residual water signal in the
+difference spectrum; used to calculate the water suppression factor</td>
 </tr>
 </tbody>
 </table>
@@ -640,70 +667,87 @@ function topFunction() {
 <tbody>
 <tr class="odd">
 <td align="left"><code>HERMES</code></td>
-<td align="left">Set to <code>1</code> if the data were acquired using HERMES</td>
+<td align="left">Set to <code>1</code> if the data were acquired using
+HERMES</td>
 </tr>
 <tr class="even">
 <td align="left"><code>HERCULES</code></td>
-<td align="left">Set to <code>1</code> if the data were acquired using HERCULES (<code>HERMES</code> must also be set to <code>1</code>)</td>
+<td align="left">Set to <code>1</code> if the data were acquired using
+HERCULES (<code>HERMES</code> must also be set to <code>1</code>)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>PRIAM</code></td>
-<td align="left">Set to <code>1</code> if the data were acquired using PRIAM</td>
+<td align="left">Set to <code>1</code> if the data were acquired using
+PRIAM</td>
 </tr>
 <tr class="even">
 <td align="left"><code>phantom</code></td>
-<td align="left">Set to <code>1</code> if the data were acquired in a phantom</td>
+<td align="left">Set to <code>1</code> if the data were acquired in a
+phantom</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>mat</code></td>
-<td align="left">Set to <code>1</code> to save the output structure as a MAT-file</td>
+<td align="left">Set to <code>1</code> to save the output structure as a
+MAT-file</td>
 </tr>
 <tr class="even">
 <td align="left"><code>sdat</code></td>
-<td align="left">Set to <code>1</code> to export the difference spectra as a .sdat file (only for Philips .sdat MEGA-PRESS datasets)</td>
+<td align="left">Set to <code>1</code> to export the difference spectra
+as a .sdat file (only for Philips .sdat MEGA-PRESS datasets)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>csv</code></td>
-<td align="left">Set to <code>1</code> to export a .csv file containing useful data for analysis (applies to <code>GannetFit.m</code>, <code>GannetSegment.m</code> and <code>GannetQuantify.m</code>)</td>
+<td align="left">Set to <code>1</code> to export a .csv file containing
+useful data for analysis (applies to <code>GannetFit.m</code>,
+<code>GannetSegment.m</code> and <code>GannetQuantify.m</code>)</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="loading-and-preprocessing-data" class="section level2">
-<h2>Loading and preprocessing data</h2>
+<div id="loading-and-preprocessing-data"
+class="section level2 hasAnchor">
+<h2 class="hasAnchor">Loading and preprocessing data<a
+href="#loading-and-preprocessing-data" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <hr />
 <p><strong>Parent function</strong></p>
 <p><code>GannetLoad.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
 <p><img src="images/reference/GannetLoad-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
-<div id="signal-fitting" class="section level2">
-<h2>Signal fitting</h2>
+<div id="signal-fitting" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Signal fitting<a href="#signal-fitting"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <hr />
 <p><strong>Parent function</strong></p>
 <p><code>GannetFit.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
 <p><br></p>
 <p>Output:</p>
 <p><img src="images/reference/GannetFit-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
-<div id="voxel-co-registration" class="section level2">
-<h2>Voxel co-registration</h2>
+<div id="voxel-co-registration" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Voxel co-registration<a
+href="#voxel-co-registration" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <hr />
 <p><strong>Parent function</strong></p>
 <p><code>GannetCoRegister.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p><br></p>
@@ -711,14 +755,16 @@ function topFunction() {
 <p><img src="images/reference/GannetCoRegister-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
-<div id="tissue-segmentation" class="section level2">
-<h2>Tissue segmentation</h2>
+<div id="tissue-segmentation" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Tissue segmentation<a href="#tissue-segmentation"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <hr />
 <p><strong>Parent function</strong></p>
 <p><code>GannetSegment.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
@@ -727,14 +773,16 @@ function topFunction() {
 <p><img src="images/reference/GannetSegment-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
 <p><br></p>
 </div>
-<div id="quantification" class="section level2">
-<h2>Quantification</h2>
+<div id="quantification" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Quantification<a href="#quantification"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <hr />
 <p><strong>Parent function</strong></p>
 <p><code>GannetQuantify.m</code></p>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<div class="sourceCode" id="cb5"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
@@ -749,14 +797,24 @@ function topFunction() {
 <!--   <div id="caption"></div> -->
 <!-- </div> -->
 <!-- <script src="js/img-modal.js"></script> -->
-<div id="references" class="section level3 unnumbered">
-<h3 class="unnumbered">References</h3>
+<div id="references" class="section level3 unnumbered hasAnchor">
+<h3 class="unnumbered hasAnchor">References<a href="#references"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-Klose1990" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Klose U. <span class="nocase">In vivo proton spectroscopy in presence of eddy currents</span>. <em>Magnetic Resonance in Medicine</em>. 1990;14(1):26-30. doi:<a href="https://doi.org/10.1002/mrm.1910140104">10.1002/mrm.1910140104</a></div>
+<div class="csl-left-margin">1. </div><div
+class="csl-right-inline">Klose U. <span class="nocase">In vivo proton
+spectroscopy in presence of eddy currents</span>. <em>Magnetic Resonance
+in Medicine</em>. 1990;14(1):26-30. doi:<a
+href="https://doi.org/10.1002/mrm.1910140104">10.1002/mrm.1910140104</a></div>
 </div>
 <div id="ref-Barkhuijsen1987" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Barkhuijsen H, Beer R de, Ormondt D van. <span class="nocase">Improved algorithm for noniterative time-domain model fitting to exponentially damped magnetic resonance signals</span>. <em>Journal of Magnetic Resonance</em>. 1987;73(3):553-557. doi:<a href="https://doi.org/10.1016/0022-2364(87)90023-0">10.1016/0022-2364(87)90023-0</a></div>
+<div class="csl-left-margin">2. </div><div
+class="csl-right-inline">Barkhuijsen H, Beer R de, Ormondt D van. <span
+class="nocase">Improved algorithm for noniterative time-domain model
+fitting to exponentially damped magnetic resonance signals</span>.
+<em>Journal of Magnetic Resonance</em>. 1987;73(3):553-557. doi:<a
+href="https://doi.org/10.1016/0022-2364(87)90023-0">10.1016/0022-2364(87)90023-0</a></div>
 </div>
 </div>
 </div>

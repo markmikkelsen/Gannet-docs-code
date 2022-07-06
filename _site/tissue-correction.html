@@ -13,7 +13,7 @@
 
 <title>Tissue correction</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -30,8 +30,9 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -43,6 +44,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 
@@ -95,6 +97,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -247,7 +252,7 @@ $(document).ready(function () {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -264,7 +269,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -288,7 +293,7 @@ $(document).ready(function () {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -338,7 +343,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Tissue correction</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: June 30, 2022</h4>
 
 </div>
 
@@ -368,12 +373,25 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p>Gannet quantifies metabolite levels in a number of different ways at various points in the pipeline depending on what reference signals are present and if structural image data are available. It is important to understand what the underlying formulas are for interpretation and reporting.</p>
-<div id="gannetfit" class="section level2">
-<h2>GannetFit</h2>
-<p><code>MRS_struct.out.vox1.(metab).ConcCr</code>, <code>MRS_struct.out.vox1.(metab).ConcCho</code>, and <code>MRS_struct.out.vox1.(metab).ConcNAA</code> are simple signal integral ratios of the metabolite of interest and the metabolite reference signals Cr, Cho, and NAA, respectively:</p>
+<p>Gannet quantifies metabolite levels in a number of different ways at
+various points in the pipeline depending on what reference signals are
+present and if structural image data are available. It is important to
+understand what the underlying formulas are for interpretation and
+reporting.</p>
+<div id="gannetfit" class="section level2 hasAnchor">
+<h2 class="hasAnchor">GannetFit<a href="#gannetfit"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>MRS_struct.out.vox1.(metab).ConcCr</code>,
+<code>MRS_struct.out.vox1.(metab).ConcCho</code>, and
+<code>MRS_struct.out.vox1.(metab).ConcNAA</code> are simple signal
+integral ratios of the metabolite of interest and the metabolite
+reference signals Cr, Cho, and NAA, respectively:</p>
 <p><span class="math display">\[C = \frac{I_{M}}{I_{ref}}\]</span></p>
-<p>If a water reference is provided, <code>MRS_struct.out.vox1.(metab).ConcIU</code> is also calculated. It is defined as the signal integral ratio of the metabolite of interest and water reference scaled by a number of global signal scaling factors:</p>
+<p>If a water reference is provided,
+<code>MRS_struct.out.vox1.(metab).ConcIU</code> is also calculated. It
+is defined as the signal integral ratio of the metabolite of interest
+and water reference scaled by a number of global signal scaling
+factors:</p>
 <p><span class="math display">\[C_{corr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
@@ -400,7 +418,8 @@ W_{vis}\cdot
 <tbody>
 <tr class="odd">
 <td align="left"><span class="math inline">\(C_{corr}\)</span></td>
-<td align="left">Estimated metabolite concentration in institutional units</td>
+<td align="left">Estimated metabolite concentration in institutional
+units</td>
 <td align="left">-</td>
 </tr>
 <tr class="even">
@@ -415,18 +434,22 @@ W_{vis}\cdot
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(H_{M}\)</span></td>
-<td align="left">Number of <sup>1</sup>H protons that give rise to the metabolite signal</td>
+<td align="left">Number of <sup>1</sup>H protons that give rise to the
+metabolite signal</td>
 <td align="left">Metabolite dependent</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(H_{W}\)</span></td>
-<td align="left">Number of <sup>1</sup>H protons that give rise to the water signal</td>
+<td align="left">Number of <sup>1</sup>H protons that give rise to the
+water signal</td>
 <td align="left">2</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(MM\)</span></td>
-<td align="left">Correction factor for the contribution of the co-edited macromolecule signal in the metabolite signal</td>
-<td align="left">0.45 for GABA editing and 1 for all other edited metabolites</td>
+<td align="left">Correction factor for the contribution of the co-edited
+macromolecule signal in the metabolite signal</td>
+<td align="left">0.45 for GABA editing and 1 for all other edited
+metabolites</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\kappa\)</span></td>
@@ -440,8 +463,10 @@ W_{vis}\cdot
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(W_{vis}\)</span></td>
-<td align="left">Average relative visibility (density) of water in GM and WM</td>
-<td align="left">0.65<span class="citation"><sup><a href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
+<td align="left">Average relative visibility (density) of water in GM
+and WM</td>
+<td align="left">0.65<span class="citation"><sup><a
+href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(TE_{W}\)</span></td>
@@ -465,29 +490,36 @@ W_{vis}\cdot
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{2W}\)</span></td>
-<td align="left">Average transverse relaxation time of water in GM and WM</td>
-<td align="left">1.100 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
+<td align="left">Average transverse relaxation time of water in GM and
+WM</td>
+<td align="left">1.100 s<span class="citation"><sup><a
+href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(T_{2W}\)</span></td>
-<td align="left">Average longitudinal relaxation time of water in GM and WM</td>
-<td align="left">0.095 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
+<td align="left">Average longitudinal relaxation time of water in GM and
+WM</td>
+<td align="left">0.095 s<span class="citation"><sup><a
+href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{2M}\)</span></td>
 <td align="left">Transverse relaxation time of metabolite</td>
-<td align="left">Metabolite dependent; see <code>GannetFit.m</code> and <code>GannetQuantify.m</code> for default values</td>
+<td align="left">Metabolite dependent; see <code>GannetFit.m</code> and
+<code>GannetQuantify.m</code> for default values</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(T_{1M}\)</span></td>
 <td align="left">Longitudinal relaxation time of metabolite</td>
-<td align="left">Metabolite dependent; see <code>GannetFit.m</code> and <code>GannetQuantify.m</code> for default values</td>
+<td align="left">Metabolite dependent; see <code>GannetFit.m</code> and
+<code>GannetQuantify.m</code> for default values</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="gannetsegment" class="section level2">
-<h2>GannetSegment</h2>
+<div id="gannetsegment" class="section level2 hasAnchor">
+<h2 class="hasAnchor">GannetSegment<a href="#gannetsegment"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_CSFcorr</code>:</p>
 <p><span class="math display">\[C_{CSFcorr} =
 \frac{I_{M}}{I_{W}}\cdot
@@ -499,10 +531,12 @@ W_{vis}\cdot
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
 \frac{1}{1-f_{CSF}}
 \]</span></p>
-<p>where <span class="math inline">\(f_{CSF}\)</span> is the volume fraction of CSF in the MRS voxel.</p>
+<p>where <span class="math inline">\(f_{CSF}\)</span> is the volume
+fraction of CSF in the MRS voxel.</p>
 </div>
-<div id="gannetquantify" class="section level2">
-<h2>GannetQuantify</h2>
+<div id="gannetquantify" class="section level2 hasAnchor">
+<h2 class="hasAnchor">GannetQuantify<a href="#gannetquantify"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_TissCorr</code>:</p>
 <p><span class="math display">\[C_{TissCorr} =
 \frac{I_{M}}{I_{W}}\cdot
@@ -533,18 +567,26 @@ C_{W}\cdot
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\beta_i\)</span></td>
-<td align="left">Relative visibility (density) of water in GM, WM and CSF</td>
-<td align="left">0.78, 0.65 and 0.97<span class="citation"><sup><a href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
+<td align="left">Relative visibility (density) of water in GM, WM and
+CSF</td>
+<td align="left">0.78, 0.65 and 0.97<span class="citation"><sup><a
+href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(T_{2W,i}\)</span></td>
-<td align="left">Transverse relaxation time of water in GM, WM and CSF</td>
-<td align="left">0.110, 0.0792 and 0.503 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a>,<a href="#ref-Piechnik2009" role="doc-biblioref">3</a></sup></span></td>
+<td align="left">Transverse relaxation time of water in GM, WM and
+CSF</td>
+<td align="left">0.110, 0.0792 and 0.503 s<span class="citation"><sup><a
+href="#ref-Wansapura1999" role="doc-biblioref">2</a>,<a
+href="#ref-Piechnik2009" role="doc-biblioref">3</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{1W,i}\)</span></td>
-<td align="left">Longitudinal relaxation time of water in GM, WM and CSF</td>
-<td align="left">1.331, 0.832 and 3.817 s<span class="citation"><sup><a href="#ref-Wansapura1999" role="doc-biblioref">2</a>,<a href="#ref-Lu2005" role="doc-biblioref">4</a></sup></span></td>
+<td align="left">Longitudinal relaxation time of water in GM, WM and
+CSF</td>
+<td align="left">1.331, 0.832 and 3.817 s<span class="citation"><sup><a
+href="#ref-Wansapura1999" role="doc-biblioref">2</a>,<a
+href="#ref-Lu2005" role="doc-biblioref">4</a></sup></span></td>
 </tr>
 </tbody>
 </table>
@@ -565,20 +607,41 @@ C_{W}\cdot
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
 \frac{\mu_{GM}+\alpha{\mu_{WM}}}{(f_{GM}+\alpha{f_{WM}})(\mu_{GM}+{\mu_{WM}})}\]</span></p>
 <p>where:</p>
-<div id="references" class="section level3 unnumbered">
-<h3 class="unnumbered">References</h3>
+<div id="references" class="section level3 unnumbered hasAnchor">
+<h3 class="unnumbered hasAnchor">References<a href="#references"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="refs" class="references csl-bib-body">
 <div id="ref-Ernst1993" class="csl-entry">
-<div class="csl-left-margin">1. </div><div class="csl-right-inline">Ernst T, Kreis R, Ross BD. <span class="nocase">Absolute quantitation of water and metabolites in the human brain. I. Compartments and water</span>. <em>Journal of Magnetic Resonance, Series B</em>. 1993;102(1):1-8. doi:<a href="https://doi.org/10.1006/jmrb.1993.1055">10.1006/jmrb.1993.1055</a></div>
+<div class="csl-left-margin">1. </div><div
+class="csl-right-inline">Ernst T, Kreis R, Ross BD. <span
+class="nocase">Absolute quantitation of water and metabolites in the
+human brain. I. Compartments and water</span>. <em>Journal of Magnetic
+Resonance, Series B</em>. 1993;102(1):1-8. doi:<a
+href="https://doi.org/10.1006/jmrb.1993.1055">10.1006/jmrb.1993.1055</a></div>
 </div>
 <div id="ref-Wansapura1999" class="csl-entry">
-<div class="csl-left-margin">2. </div><div class="csl-right-inline">Wansapura JP, Holland SK, Dunn RS, Ball WS. <span class="nocase">NMR relaxation times in the human brain at 3.0 Tesla</span>. <em>Journal of Magnetic Resonance Imaging</em>. 1999;9(4):531-538. doi:<a href="https://doi.org/10.1002/(SICI)1522-2586(199904)9:4&lt;531::AID-JMRI4&gt;3.0.CO;2-L">10.1002/(SICI)1522-2586(199904)9:4&lt;531::AID-JMRI4&gt;3.0.CO;2-L</a></div>
+<div class="csl-left-margin">2. </div><div
+class="csl-right-inline">Wansapura JP, Holland SK, Dunn RS, Ball WS.
+<span class="nocase">NMR relaxation times in the human brain at 3.0
+Tesla</span>. <em>Journal of Magnetic Resonance Imaging</em>.
+1999;9(4):531-538. doi:<a
+href="https://doi.org/10.1002/(SICI)1522-2586(199904)9:4&lt;531::AID-JMRI4&gt;3.0.CO;2-L">10.1002/(SICI)1522-2586(199904)9:4&lt;531::AID-JMRI4&gt;3.0.CO;2-L</a></div>
 </div>
 <div id="ref-Piechnik2009" class="csl-entry">
-<div class="csl-left-margin">3. </div><div class="csl-right-inline">Piechnik SK, Evans J, Bary LH, Wise RG, Jezzard P. <span class="nocase">Functional changes in CSF volume estimated using measurement of water T2 relaxation</span>. <em>Magnetic Resonance in Medicine</em>. 2009;61(3):579-586. doi:<a href="https://doi.org/10.1002/mrm.21897">10.1002/mrm.21897</a></div>
+<div class="csl-left-margin">3. </div><div
+class="csl-right-inline">Piechnik SK, Evans J, Bary LH, Wise RG, Jezzard
+P. <span class="nocase">Functional changes in CSF volume estimated using
+measurement of water T2 relaxation</span>. <em>Magnetic Resonance in
+Medicine</em>. 2009;61(3):579-586. doi:<a
+href="https://doi.org/10.1002/mrm.21897">10.1002/mrm.21897</a></div>
 </div>
 <div id="ref-Lu2005" class="csl-entry">
-<div class="csl-left-margin">4. </div><div class="csl-right-inline">Lu H, Nagae-Poetscher LM, Golay X, Lin D, Pomper M, Zijl PCM van. <span class="nocase">Routine clinical brain MRI sequences for use at 3.0 Tesla</span>. <em>Journal of Magnetic Resonance Imaging</em>. 2005;22(1):13-22. doi:<a href="https://doi.org/10.1002/jmri.20356">10.1002/jmri.20356</a></div>
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Lu
+H, Nagae-Poetscher LM, Golay X, Lin D, Pomper M, Zijl PCM van. <span
+class="nocase">Routine clinical brain MRI sequences for use at 3.0
+Tesla</span>. <em>Journal of Magnetic Resonance Imaging</em>.
+2005;22(1):13-22. doi:<a
+href="https://doi.org/10.1002/jmri.20356">10.1002/jmri.20356</a></div>
 </div>
 </div>
 </div>

@@ -13,7 +13,7 @@
 
 <title>Additional tools</title>
 
-<script src="site_libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,8 +33,9 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
-<link href="site_libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="site_libs/anchor-sections-1.0.1/anchor-sections.js"></script>
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
 
@@ -46,6 +47,7 @@
   div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
   ul.task-list{list-style: none;}
     </style>
+
 
 
 <style type="text/css">
@@ -170,6 +172,9 @@ button.code-folding-btn:focus {
 }
 summary {
   display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
 }
 pre code {
   padding: 0;
@@ -401,7 +406,7 @@ div.tocify {
 <div class="navbar navbar-default  navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
@@ -418,7 +423,7 @@ div.tocify {
   </a>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Documentation
      
     <span class="caret"></span>
@@ -442,7 +447,7 @@ div.tocify {
   </ul>
 </li>
 <li class="dropdown">
-  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
     Examples
      
     <span class="caret"></span>
@@ -492,7 +497,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Additional tools</h1>
-<h4 class="date">Last updated: January 19, 2022</h4>
+<h4 class="date">Last updated: June 30, 2022</h4>
 
 </div>
 
@@ -527,15 +532,29 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p>In addition to the five core modules, Gannet comes with a few additional tools that you may find useful.</p>
-<div id="paperplot" class="section level2">
-<h2>PaperPlot</h2>
-<p><code>PaperPlot.m</code> will plot the difference spectra saved in the Gannet output structure. The corresponding model fits optionally can also be plotted. Users can choose to plot a single spectrum, a select number of spectra, or all spectra. Multiple spectra will be overlaid in the same figure. If data were acquired with HERMES, then each Hadamard-combined difference spectrum will be plotted in a separate subplot.</p>
-<p>Type <code>help PaperPlot</code> in the MATLAB command window for usage instructions.</p>
-<p>To export plots at publication quality, consider using <code>PaperPlot.m</code> with Yair Altman’s excellent <a href="https://github.com/altmany/export_fig/" target="_blank">export_fig</a> MATLAB toolbox.</p>
-<div id="example-usage" class="section level3">
-<h3>Example usage</h3>
-<div class="sourceCode" id="cb1"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">metab</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span></span>
+<p>In addition to the five core modules, Gannet comes with a few
+additional tools that you may find useful.</p>
+<div id="paperplot" class="section level2 hasAnchor">
+<h2 class="hasAnchor">PaperPlot<a href="#paperplot"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>PaperPlot.m</code> will plot the difference spectra saved in
+the Gannet output structure. The corresponding model fits optionally can
+also be plotted. Users can choose to plot a single spectrum, a select
+number of spectra, or all spectra. Multiple spectra will be overlaid in
+the same figure. If data were acquired with HERMES, then each
+Hadamard-combined difference spectrum will be plotted in a separate
+subplot.</p>
+<p>Type <code>help PaperPlot</code> in the MATLAB command window for
+usage instructions.</p>
+<p>To export plots at publication quality, consider using
+<code>PaperPlot.m</code> with Yair Altman’s excellent
+<a href="https://github.com/altmany/export_fig/" target="_blank">export_fig</a>
+MATLAB toolbox.</p>
+<div id="example-usage" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Example usage<a href="#example-usage"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">metab</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S02_GABA_68_act.sdat&#39;</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
 <span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">water</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
@@ -547,37 +566,84 @@ function topFunction() {
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span>)<span class="op">;</span> <span class="co">% Use default settings</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-1.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span>)<span class="op">;</span> <span class="co">% Overlay fit models</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span>)<span class="op">;</span> <span class="co">% Overlay fit models</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-2.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="ss">&#39;freqLim&#39;</span><span class="op">,</span> [<span class="fl">2</span> <span class="fl">4.25</span>])<span class="op">;</span> <span class="co">% Overlay fit models and</span></span>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="ss">&#39;freqLim&#39;</span><span class="op">,</span> [<span class="fl">2</span> <span class="fl">4.25</span>])<span class="op">;</span> <span class="co">% Overlay fit models and</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                                                        <span class="co">% set ppm limits to 2-4.25</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-3.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
 </div>
-<div id="de-identification" class="section level2">
-<h2>De-identification</h2>
-<p>MRI examinations in clinical environments routinely store sensitive protected health information (PHI) in the exported data files. It is of vital importance to protect participants’ privacy. To comply with privacy legislation, you need to ensure that the data you handle, process, and share is appropriately and thoroughly de-identified, i.e., stripped of all PHI that allows the data to be linked to an individual. This is particularly true if you intend to share data, e.g., with collaborators.</p>
-<p>Gannet includes several functions to remove PHI from the most commonly used file formats. Currently, we offer functions to remove PHI from GE P-files (.7), Siemens TWIX (.dat), Philips (.sdat), and generic DICOM (.dcm) files. We plan to add support for other formats in the future. Please <a href="https://www.gabamrs.com/contact" target="_blank">contact us</a> if you urgently require this support.</p>
+<div id="de-identification" class="section level2 hasAnchor">
+<h2 class="hasAnchor">De-identification<a href="#de-identification"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>MRI examinations in clinical environments routinely store sensitive
+protected health information (PHI) in the exported data files. It is of
+vital importance to protect participants’ privacy. To comply with
+privacy legislation, you need to ensure that the data you handle,
+process, and share is appropriately and thoroughly de-identified, i.e.,
+stripped of all PHI that allows the data to be linked to an individual.
+This is particularly true if you intend to share data, e.g., with
+collaborators.</p>
+<p>Gannet includes several functions to remove PHI from the most
+commonly used file formats. Currently, we offer functions to remove PHI
+from GE P-files (.7), Siemens TWIX (.dat), Philips (.sdat), and generic
+DICOM (.dcm) files. We plan to add support for other formats in the
+future. Please
+<a href="https://www.gabamrs.com/contact" target="_blank">contact us</a>
+if you urgently require this support.</p>
 <p>Please note the following:</p>
 <ul>
-<li>Gannet does not remove PHI from the filenames themselves; this is solely your responsibility.</li>
-<li>In addition to any PHI associated with the NIfTI file itself, the structural image needs to be defaced. Please either use a skull-stripping tool (as, for example, implemented in FSL) or a defacing tool (e.g., <a href="https://github.com/poldracklab/pydeface/" target="_blank">pydeface</a>).</li>
+<li>Gannet does not remove PHI from the filenames themselves; this is
+solely your responsibility.</li>
+<li>In addition to any PHI associated with the NIfTI file itself, the
+structural image needs to be defaced. Please either use a
+skull-stripping tool (as, for example, implemented in FSL) or a defacing
+tool (e.g.,
+<a href="https://github.com/poldracklab/pydeface/" target="_blank">pydeface</a>).</li>
 </ul>
-<div id="how-to-de-identify-your-files" class="section level3">
-<h3>How to de-identify your files</h3>
-<p>The Gannet de-identification functions create de-identified copies of the original data. The original files are not overwritten.</p>
-<div id="ge-p-files-siemens-twix-and-philips-sdat" class="section level4">
-<h4><u>GE P-files, Siemens TWIX, and Philips SDAT</u></h4>
-<p>For GE P-files (.7), Siemens TWIX (.dat), and Philips (.sdat) files, the Gannet functions <code>GEDeIdentify.m</code>, <code>TWIXDeIdentify.m</code>, and <code>PhilipsDeIdentify.m</code> create de-identified copies of the respective files, appended with ’_noID’. All three functions can either be run by themselves (without any input arguments) to de-identify all relevant files within the current folder or fed with a cell array of filenames that you want to de-identify.</p>
+<div id="how-to-de-identify-your-files"
+class="section level3 hasAnchor">
+<h3 class="hasAnchor">How to de-identify your files<a
+href="#how-to-de-identify-your-files" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<p>The Gannet de-identification functions create de-identified copies of
+the original data. The original files are not overwritten.</p>
+<div id="ge-p-files-siemens-twix-and-philips-sdat"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><u>GE P-files, Siemens TWIX, and Philips
+SDAT</u><a href="#ge-p-files-siemens-twix-and-philips-sdat"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For GE P-files (.7), Siemens TWIX (.dat), and Philips (.sdat) files,
+the Gannet functions <code>GEDeIdentify.m</code>,
+<code>TWIXDeIdentify.m</code>, and <code>PhilipsDeIdentify.m</code>
+create de-identified copies of the respective files, appended with
+’_noID’. All three functions can either be run by themselves (without
+any input arguments) to de-identify all relevant files within the
+current folder or fed with a cell array of filenames that you want to
+de-identify.</p>
 </div>
-<div id="dicom" class="section level4">
-<h4><u>DICOM</u></h4>
-<p>Generic DICOM data usually feature many separate .dcm files for each acquisition. <code>DICOMDeIdentify.m</code> requires a top-level directory containing subdirectories for each subject (e.g. ‘S01’, ‘S02’, ‘S03’, etc.) that contain all DICOM files for the respective subjects. Running <code>DICOMDeIdentify.m</code> from the top-level directory will create a separate folder containing the de-identified files for each subject, appended with ’_anon’.</p>
+<div id="dicom" class="section level4 hasAnchor">
+<h4 class="hasAnchor"><u>DICOM</u><a href="#dicom"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Generic DICOM data usually feature many separate .dcm files for each
+acquisition. <code>DICOMDeIdentify.m</code> requires a top-level
+directory containing subdirectories for each subject (e.g. ‘S01’, ‘S02’,
+‘S03’, etc.) that contain all DICOM files for the respective subjects.
+Running <code>DICOMDeIdentify.m</code> from the top-level directory will
+create a separate folder containing the de-identified files for each
+subject, appended with ’_anon’.</p>
 </div>
 </div>
-<div id="list-of-de-identified-information" class="section level3">
-<h3>List of de-identified information</h3>
-<p>The Gannet de-identification functions currently remove the following PHI (if present), as required by the United States HIPAA (Health Insurance Portability and Accountability Act) legislation:</p>
+<div id="list-of-de-identified-information"
+class="section level3 hasAnchor">
+<h3 class="hasAnchor">List of de-identified information<a
+href="#list-of-de-identified-information" class="anchor-section"
+aria-label="Anchor link to header"></a></h3>
+<p>The Gannet de-identification functions currently remove the following
+PHI (if present), as required by the United States HIPAA (Health
+Insurance Portability and Accountability Act) legislation:</p>
 <ul>
 <li>Subject names</li>
 <li>Subject ID numbers</li>
@@ -588,19 +654,45 @@ function topFunction() {
 <li>Institutional names and addresses</li>
 <li>Device identifiers and serial numbers</li>
 </ul>
-<p>Should the regulations in your country or your institution require additional information to be removed from the files, please <a href="https://www.gabamrs.com/contact" target="_blank">contact us</a>.</p>
+<p>Should the regulations in your country or your institution require
+additional information to be removed from the files, please
+<a href="https://www.gabamrs.com/contact" target="_blank">contact
+us</a>.</p>
 <div class="danger">
-<p><i class="fa fa-exclamation-triangle" style="color: white"></i>   There is <u>no way</u> to retrieve PHI from a de-identified file! Make sure that you either retain a copy of the original file or that you keep a separate record that uniquely links all necessary subject information to the de-identified file.</p>
+<p><i class="fa fa-exclamation-triangle" style="color: white"></i>  
+There is <u>no way</u> to retrieve PHI from a de-identified file! Make
+sure that you either retain a copy of the original file or that you keep
+a separate record that uniquely links all necessary subject information
+to the de-identified file.</p>
 </div>
 </div>
 </div>
-<div id="coregstandalone" class="section level2">
-<h2>CoRegStandAlone</h2>
-<p>By popular demand, we have programmed a standalone version of the voxel co-registration and segmentation routines for use with any single-voxel MRS dataset, including non-edited data <code>CoRegStandAlone.m</code> contains stripped-to-the-bone modifications of <code>GannetLoad.m</code>, <code>GannetCoRegister.m</code>, and <code>GannetSegment.m</code>. It doesn’t bother loading the MRS data at all, aside from extracting the geometrical information about voxel dimensions, positions, and rotations.</p>
-<p><code>CoRegStandAlone.m</code> supports the same input formats as the main Gannet modules Upon being called, it produces CoRegister and Segment outputs for each provided dataset. However, the Segment output does not contain any quantitative information except for the tissue composition (voxel tissue fractions of GM, WM, and CSF).</p>
-<p>The syntax is similar to the <code>GannetLoad.m</code> syntax, where the first cell array contains the MRS filenames and the second cell array contains the respective NIfTI filenames:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">CoRegStandAlone</span>({<span class="ss">&#39;data1.dat&#39;</span><span class="op">,</span> <span class="ss">&#39;data2.dat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;structural1.nii&#39;</span><span class="op">,</span> <span class="ss">&#39;structural2.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
-<p>Please note that the number of NIfTI files needs to match the number of MRS data files, i.e., if you want to register <em>n</em> voxels to the same structural image, you’ll need to repeat the name of the NIfTI file <em>n</em> times.</p>
+<div id="coregstandalone" class="section level2 hasAnchor">
+<h2 class="hasAnchor">CoRegStandAlone<a href="#coregstandalone"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>By popular demand, we have programmed a standalone version of the
+voxel co-registration and segmentation routines for use with any
+single-voxel MRS dataset, including non-edited data
+<code>CoRegStandAlone.m</code> contains stripped-to-the-bone
+modifications of <code>GannetLoad.m</code>,
+<code>GannetCoRegister.m</code>, and <code>GannetSegment.m</code>. It
+doesn’t bother loading the MRS data at all, aside from extracting the
+geometrical information about voxel dimensions, positions, and
+rotations.</p>
+<p><code>CoRegStandAlone.m</code> supports the same input formats as the
+main Gannet modules Upon being called, it produces CoRegister and
+Segment outputs for each provided dataset. However, the Segment output
+does not contain any quantitative information except for the tissue
+composition (voxel tissue fractions of GM, WM, and CSF).</p>
+<p>The syntax is similar to the <code>GannetLoad.m</code> syntax, where
+the first cell array contains the MRS filenames and the second cell
+array contains the respective NIfTI filenames:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">CoRegStandAlone</span>({<span class="ss">&#39;data1.dat&#39;</span><span class="op">,</span> <span class="ss">&#39;data2.dat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;structural1.nii&#39;</span><span class="op">,</span> <span class="ss">&#39;structural2.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+<p>Please note that the number of NIfTI files needs to match the number
+of MRS data files, i.e., if you want to register <em>n</em> voxels to
+the same structural image, you’ll need to repeat the name of the NIfTI
+file <em>n</em> times.</p>
 </div>
 
 <!DOCTYPE html>
