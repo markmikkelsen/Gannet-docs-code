@@ -403,7 +403,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">FAQ</h1>
-<h4 class="date">Last updated: June 30, 2022</h4>
+<h4 class="date">Last updated: July 08, 2022</h4>
 
 </div>
 
@@ -446,64 +446,39 @@ class="section level4 hasAnchor">
 <h4 class="hasAnchor"><strong>Can Gannet process GSH-edited
 data?</strong><a href="#can-gannet-process-gsh-edited-data"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Yes, Gannet can process GABA-, GSH-, and Lac-edited MEGA-PRESS data
-as well as HERMES data. Simply set the appropriate <code>target</code>
-option(s) in <code>GannetPreInitialise.m</code>.</p>
+<p>Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS
+data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited
+HERMES and HERCULES data. (Gannet does not support the fitting of
+HERCULES data.) Simply set the appropriate <code>target</code> option(s)
+in <code>GannetPreInitialise.m</code>.</p>
 </div>
 <div id="can-gannet-process-phantom-data"
 class="section level4 hasAnchor">
 <h4 class="hasAnchor"><strong>Can Gannet process phantom
 data?</strong><a href="#can-gannet-process-phantom-data"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Yes. Make sure to set <code>phantom</code> to <code>1</code> under
-‘Flags’ in <code>GannetPreInitialise.m</code>. If you want to fit your
-data, run <code>GannetFitPhantom(MRS_struct);</code> instead of
-<code>GannetFit(MRS_struct);</code>.</p>
+<p>Yes, of the edited data described above. Make sure to set
+<code>phantom</code> to <code>1</code> under ‘Flags’ in
+<code>GannetPreInitialise.m</code>. If you want to fit your data, run
+<code>GannetFitPhantom(MRS_struct);</code> instead of
+<code>GannetFit(MRS_struct);</code>. (Fitting of HERCULES phantom data
+is not supported.)</p>
 </div>
 </div>
 <div id="output" class="section level3 hasAnchor">
 <h3 class="hasAnchor">Output<a href="#output" class="anchor-section"
 aria-label="Anchor link to header"></a></h3>
-<div id="why-is-my-spectrum-upside-down-after-i-run-gannetload"
-class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>Why is my spectrum upside down after I run
-GannetLoad?</strong><a
-href="#why-is-my-spectrum-upside-down-after-i-run-gannetload"
+<div id="blank" class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>[BLANK]</strong><a href="#blank"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><strong>Example:</strong></p>
-<p><img src="images/faq/upside-down-spectrum.png" width="35%" style="display: block; margin: auto auto auto 0;" /></p>
-<p>The <code>ONOFForder</code> parameter set in
-<code>GannetPreInitialise.m</code> is incorrect for your data. Change
-the setting to either <code>'onfirst'</code> or <code>'offfirst'</code>,
-depending on what it is currently set as.</p>
 </div>
 </div>
 <div id="errors" class="section level3 hasAnchor">
 <h3 class="hasAnchor">Errors<a href="#errors" class="anchor-section"
 aria-label="Anchor link to header"></a></h3>
-<div
-id="why-am-i-getting-this-error-subscripted-assignment-dimension-mismatch"
-class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>Why am I getting this error:</strong>
-<span
-style="color: red;"><code>Subscripted assignment dimension mismatch</code></span><strong>?</strong><a
-href="#why-am-i-getting-this-error-subscripted-assignment-dimension-mismatch"
+<div id="blank-1" class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>[BLANK]</strong><a href="#blank-1"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>This is one of the errors that may appear during batch processing if
-acquisition parameters are not consistent across datasets.</p>
-</div>
-<div
-id="why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-"
-class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>Why am I getting this error:</strong>
-<span
-style="color: red;"><code>Unable to perform assignment because the size of the left side is 1-by-#### and the size of the right side is 1-by-###</code></span><strong>?</strong><a
-href="#why-am-i-getting-this-error-unable-to-perform-assignment-because-the-size-of-the-left-side-is-1-by--and-the-size-of-the-right-side-is-1-by-"
-class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>You are batch-processing multiple datasets that contain different
-numbers of averages. Divide the files into separate batches so that each
-batch contains only datasets acquired with the same number of
-averages.</p>
 </div>
 </div>
 
