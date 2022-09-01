@@ -132,7 +132,7 @@ The support team can also be directly reached using our blog's <a href="https://
 
 ## License and citing Gannet
 
-This software is licensed under an open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD 3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:
+This software is licensed under an open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD-3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:
 
 **For all work using Gannet:**
 
@@ -151,6 +151,10 @@ multi-step FPC (`SpecRegHERMES`):
 or spectral registration (`SpecReg`):
 
 -   Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency and phase drift correction of magnetic resonance spectroscopy data by spectral registration in the time domain.</a> *Magnetic Resonance in Medicine*. 2015;73(1):44-50
+
+**If you perform voxel co-registration:**
+
+-   Please acknowledge the use of SPM12. You may also link/cite the <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12 website</a>.
 
 **If you perform tissue segmentation:**
 
@@ -172,12 +176,12 @@ The development and dissemination of Gannet has been supported by the following 
 
 -   R01 EB016089
 -   R01 EB023963
+-   K99 EB028828
 -   P41 EB015909
 -   R01 MH106564
 -   R21 NS077300
 -   R21 MH098228
 -   R01 MH096263
--   K99 EB028828
 
 We wish to thank the following individuals for their direct or indirect contributions:
 
