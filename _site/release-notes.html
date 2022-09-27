@@ -13,7 +13,7 @@
 
 <title>Release notes</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -138,11 +138,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -403,7 +407,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Release notes</h1>
-<h4 class="date">Last updated: July 19, 2022</h4>
+<h4 class="date">Last updated: September 23, 2022</h4>
 
 </div>
 
@@ -439,7 +443,36 @@ comprehensive list of changes, see the commits logged on the
 <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a>
 on GitHub.</p>
 <div id="section" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.2.0<a href="#section" class="anchor-section"
+<h2 class="hasAnchor">3.2.1<a href="#section" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p><span style="color: grey;">2022-06-07</span></p>
+<div id="minor-changes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li><code>PhaseCorrection.m</code> now deals better with spectra that
+have a non-zero baseline</li>
+<li>SPM12 now outputs forward deformation field (needed for normalizing
+voxel masks to MNI space)</li>
+<li>Updated <code>export_fig</code> to v3.27</li>
+<li><code>CoRegStandAlone.m</code> now exports a CSV file</li>
+<li>Various cosmetic changes</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Fixed sub-spectra alignment for GE HERCULES data</li>
+<li>Fixed bug in <code>CoRegStandAlone.m</code></li>
+<li>Fixed bug in <code>read_dcm_header.m</code> (thanks to Meredith
+Reid)</li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="section-1" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.2.0<a href="#section-1" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2021-07-30</span></p>
 <div id="new-features" class="section level3 hasAnchor">
@@ -531,8 +564,8 @@ further tweaking)</li>
 need to specify the order of editing pulses</li>
 </ul>
 </div>
-<div id="minor-changes" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Minor changes<a href="#minor-changes"
+<div id="minor-changes-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes-1"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Datasets with differing number of averages can now be
@@ -613,8 +646,8 @@ in <code>GannetFit.m</code></li>
 </ul></li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes"
+<div id="bug-fixes-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-1"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Frequency and phase offset estimates are now tracked correctly and
@@ -639,8 +672,8 @@ run in <code>SignalFilter.m</code>) if they are already turned on</li>
 <p><br></p>
 </div>
 </div>
-<div id="section-1" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.1.5<a href="#section-1" class="anchor-section"
+<div id="section-2" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.5<a href="#section-2" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2020-03-02</span></p>
 <div id="new-features-1" class="section level3 hasAnchor">
@@ -658,8 +691,8 @@ was used, use Cho instead of residual water to align subspectra of
 GABA-, Lac-, and EtOH-edited datasets</li>
 </ul>
 </div>
-<div id="minor-changes-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Minor changes<a href="#minor-changes-1"
+<div id="minor-changes-2" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes-2"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Noise estimation in <code>CalcNoise.m</code>,
@@ -675,8 +708,8 @@ at the top of the echo, rather than simply fixing it to the first
 point</li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-1"
+<div id="bug-fixes-2" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-2"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Minor bug fixes in CoRegStandAlone functions</li>
@@ -687,8 +720,8 @@ the same results are reproduced each time it is run on a dataset</li>
 <p><br></p>
 </div>
 </div>
-<div id="section-2" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.1.4<a href="#section-2" class="anchor-section"
+<div id="section-3" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.4<a href="#section-3" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2019-10-03</span></p>
 <div id="bug-fix" class="section level3 hasAnchor">
@@ -701,8 +734,8 @@ MEGA-PRESS data</li>
 <p><br></p>
 </div>
 </div>
-<div id="section-3" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.1.3<a href="#section-3" class="anchor-section"
+<div id="section-4" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.3<a href="#section-4" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2019-08-06</span></p>
 <div id="new-features-2" class="section level3 hasAnchor">

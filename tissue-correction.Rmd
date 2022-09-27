@@ -98,7 +98,7 @@ where:
 
 `MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr`:
 
-$$C_{corr} =
+$$C_{AlphaCorr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
 \frac{MM}{\kappa}\cdot
@@ -106,9 +106,11 @@ $$C_{corr} =
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
 \frac{1}{f_{GM}+\alpha{f_{WM}}}$$
 
+<br>
+
 `MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr_GrpNorm`:
 
-$$C_{corr} =
+$$C_{AlphaCorrNorm} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
 \frac{MM}{\kappa}\cdot

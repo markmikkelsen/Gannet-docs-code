@@ -12,12 +12,13 @@ csl: american-medical-association.csl
 link-citations: yes
 ---
 
+```{=html}
 <style>
 body .main-container {
   max-width: 1200px;
 }
 </style>
-
+```
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -27,47 +28,49 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-<div class="info">
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp;&nbsp; The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.
-</div>
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>   The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.
+:::
 
 ## Pre-initialise Gannet
-***
+
+------------------------------------------------------------------------
 
 **Parent function**
 
-`GannetPreInitialise.m` 
+`GannetPreInitialise.m`
 
 <br>
 
-| <u>Acquisition parameters</u> | <u>Description</u> |
-| :- | :----- |
-| `target` | Sets the metabolite of interest that was edited in the MRS experiment; if HERMES was used, multiple metabolites should be selected |
-| `ONOFForder` | Order of the ON/OFF editing scans in the MEGA-PRESS acquisitions determines (amongst other things in Gannet) how the subspectra are subtracted to derive the difference spectra; typically, Philips acquisitions are `'offfirst'` and GE and Siemens acquisitions are `'onfirst'` (but this is not always true so you should always check your acquisition parameters) |
-| `seqorig` | Specific to Philips data; specifies whether the data were acquired using the patch developed at Johns Hopkins University or the Philips product sequence |
+| <u>Acquisition parameters</u> | <u>Description</u>                                                                                                                                                                                                                                                                                                                                                     |
+|:------------------|:----------------------------------------------------|
+| `target`                      | Sets the metabolite of interest that was edited in the MRS experiment; if HERMES was used, multiple metabolites should be selected                                                                                                                                                                                                                                     |
+| `ONOFForder`                  | Order of the ON/OFF editing scans in the MEGA-PRESS acquisitions determines (amongst other things in Gannet) how the subspectra are subtracted to derive the difference spectra; typically, Philips acquisitions are `'offfirst'` and GE and Siemens acquisitions are `'onfirst'` (but this is not always true so you should always check your acquisition parameters) |
+| `seqorig`                     | Specific to Philips data; specifies whether the data were acquired using the patch developed at Johns Hopkins University or the Philips product sequence                                                                                                                                                                                                               |
 
-| <u>Analysis parameters</u> | <u>Description</u> |
-| :- | :--------- |
-| `LB` | Sets the amount of exponential line-broadening to apply to the data (in Hz) |
-| `water_phase_correction` | Whether to perform an eddy-current correction [@Klose1990] on the water data |
-| `data_phase_correction` | Whether to perform an eddy-current correction on the metabolite data |
-| `water_removal` | Whether to remove the residual water signal from the difference spectra using an HSVD filter [@Barkhuijsen1987] |
-| `AlignTo` | Which method to use for shot-to-shot frequency-and-phase correction |
-| `Vox` | Only applies to PRIAM data; the desired naming of the output structure fields |
-| `FitResidWater` | Whether to model the residual water signal in the difference spectrum; used to calculate the water suppression factor |
+| <u>Analysis parameters</u> | <u>Description</u>                                                                                                    |
+|:---------------|:-------------------------------------------------------|
+| `LB`                       | Sets the amount of exponential line-broadening to apply to the data (in Hz)                                           |
+| `water_phase_correction`   | Whether to perform an eddy-current correction [@Klose1990] on the water data                                          |
+| `data_phase_correction`    | Whether to perform an eddy-current correction on the metabolite data                                                  |
+| `water_removal`            | Whether to remove the residual water signal from the difference spectra using an HSVD filter [@Barkhuijsen1987]       |
+| `AlignTo`                  | Which method to use for shot-to-shot frequency-and-phase correction                                                   |
+| `Vox`                      | Only applies to PRIAM data; the desired naming of the output structure fields                                         |
+| `FitResidWater`            | Whether to model the residual water signal in the difference spectrum; used to calculate the water suppression factor |
 
-**Flags** | **Description**
-| :- | :--------- |
-| `HERMES` | Set to `1` if the data were acquired using HERMES |
-| `HERCULES` | Set to `1` if the data were acquired using HERCULES (`HERMES` must also be set to `1`) |
-| `PRIAM` | Set to `1` if the data were acquired using PRIAM |
-| `phantom` | Set to `1` if the data were acquired in a phantom |
-| `mat` | Set to `1` to save the output structure as a MAT-file |
-| `sdat` | Set to `1` to export the difference spectra as a .sdat file (only for Philips .sdat MEGA-PRESS datasets) |
-| `csv` | Set to `1` to export a .csv file containing useful data for analysis (applies to `GannetFit.m`, `GannetSegment.m` and `GannetQuantify.m`) |
+| **Flags**  | **Description**                                                                                                                           |
+|:---------------|:-------------------------------------------------------|
+| `HERMES`   | Set to `1` if the data were acquired using HERMES                                                                                         |
+| `HERCULES` | Set to `1` if the data were acquired using HERCULES (`HERMES` must also be set to `1`)                                                    |
+| `PRIAM`    | Set to `1` if the data were acquired using PRIAM                                                                                          |
+| `phantom`  | Set to `1` if the data were acquired in a phantom                                                                                         |
+| `mat`      | Set to `1` to save the output structure as a MAT-file                                                                                     |
+| `sdat`     | Set to `1` to export the difference spectra as a .sdat file (only for Philips .sdat MEGA-PRESS datasets)                                  |
+| `csv`      | Set to `1` to export a .csv file containing useful data for analysis (applies to `GannetFit.m`, `GannetSegment.m` and `GannetQuantify.m`) |
 
 ## Loading and preprocessing data
-***
+
+------------------------------------------------------------------------
 
 **Parent function**
 
@@ -92,7 +95,8 @@ knitr::include_graphics('images/reference/GannetLoad-example.png')
 <br>
 
 ## Signal fitting
-***
+
+------------------------------------------------------------------------
 
 **Parent function**
 
@@ -118,7 +122,8 @@ knitr::include_graphics('images/reference/GannetFit-example.png')
 <br>
 
 ## Voxel co-registration
-***
+
+------------------------------------------------------------------------
 
 **Parent function**
 
@@ -145,7 +150,8 @@ knitr::include_graphics('images/reference/GannetCoRegister-example.png')
 <br>
 
 ## Tissue segmentation
-***
+
+------------------------------------------------------------------------
 
 **Parent function**
 
@@ -173,7 +179,8 @@ knitr::include_graphics('images/reference/GannetSegment-example.png')
 <br>
 
 ## Quantification
-***
+
+------------------------------------------------------------------------
 
 **Parent function**
 
@@ -200,13 +207,17 @@ knitr::include_graphics('images/reference/GannetQuantify-example.png')
 ```
 
 <!-- Code for the modals -->
+
 <!-- <div id="myModal" class="modal"> -->
+
 <!--   <span class="close">&times;</span> -->
+
 <!--   <img class="modal-content" id="img01"> -->
+
 <!--   <div id="caption"></div> -->
+
 <!-- </div> -->
+
 <!-- <script src="js/img-modal.js"></script> -->
 
 ### References
-
-

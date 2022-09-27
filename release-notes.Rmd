@@ -20,6 +20,23 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in between releases. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a> on GitHub.
 
+## 3.2.1
+<span style="color: grey;">2022-06-07</span>
+
+### Minor changes
+- `PhaseCorrection.m` now deals better with spectra that have a non-zero baseline
+- SPM12 now outputs forward deformation field (needed for normalizing voxel masks to MNI space)
+- Updated `export_fig` to v3.27
+- `CoRegStandAlone.m` now exports a CSV file
+- Various cosmetic changes
+
+### Bug fixes
+- Fixed sub-spectra alignment for GE HERCULES data
+- Fixed bug in `CoRegStandAlone.m`
+- Fixed bug in `read_dcm_header.m` (thanks to Meredith Reid)
+
+<br>
+
 ## 3.2.0
 <span style="color: grey;">2021-07-30</span>
 

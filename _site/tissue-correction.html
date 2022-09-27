@@ -13,7 +13,7 @@
 
 <title>Tissue correction</title>
 
-<script src="site_libs/header-attrs-2.14/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.16/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -157,11 +157,15 @@ $(document).ready(function () {
     href = "index.html";
   var menuAnchor = $('a[href="' + href + '"]');
 
-  // mark it active
-  menuAnchor.tab('show');
-
-  // if it's got a parent navbar menu mark it active as well
-  menuAnchor.closest('li.dropdown').addClass('active');
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
 
   // Navbar adjustments
   var navHeight = $(".navbar").first().height() + 15;
@@ -343,7 +347,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Tissue correction</h1>
-<h4 class="date">Last updated: July 19, 2022</h4>
+<h4 class="date">Last updated: September 23, 2022</h4>
 
 </div>
 
@@ -591,15 +595,16 @@ href="#ref-Lu2005" role="doc-biblioref">4</a></sup></span></td>
 </tbody>
 </table>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr</code>:</p>
-<p><span class="math display">\[C_{corr} =
+<p><span class="math display">\[C_{AlphaCorr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
 \frac{MM}{\kappa}\cdot
 \left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
 {\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
 \frac{1}{f_{GM}+\alpha{f_{WM}}}\]</span></p>
+<p><br></p>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr_GrpNorm</code>:</p>
-<p><span class="math display">\[C_{corr} =
+<p><span class="math display">\[C_{AlphaCorrNorm} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
 \frac{MM}{\kappa}\cdot

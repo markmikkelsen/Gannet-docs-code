@@ -1,12 +1,7 @@
 ---
 title: "Gannet"
 date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
-output:
-  html_document:
-    toc: TRUE
-    toc_depth: 2
-    toc_float:
-      collapsed: FALSE
+output: html_document
 ---
 
 ```{r setup, include = FALSE}
@@ -16,22 +11,19 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, child = "js/back-to-top.js"}
 ```
 
+```{html, include = FALSE}
 <style>
 body .main-container {
   max-width: 1200px;
 }
 </style>
-
+```
 <br>
 
 <img src="images/logo.png" alt="Gannet logo" id="myImg2"/>
 
 ::: release
-<h3>
-
-Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.2.1</a>
-
-</h3>
+<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.2.1</a></h3>
 :::
 
 ## Overview
@@ -87,7 +79,7 @@ SPM12 can be installed in the same manner after it has been downloaded from the 
 
 ## Compatibility
 
-Gannet is currently being developed in MATLAB R2021b in macOS 11.6 Big Sur. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
+Gannet is currently being developed in MATLAB R2022a in macOS 12.6 Monterey. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
 
 ## Supported file formats
 
