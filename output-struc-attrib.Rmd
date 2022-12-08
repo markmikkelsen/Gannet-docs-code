@@ -25,7 +25,7 @@ body .main-container {
 <br>
 
 <div class="info">
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp;&nbsp; The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for earlier versions of Gannet.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp;&nbsp; The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for other versions of Gannet.
 </div>
 
 ## `MRS_struct`

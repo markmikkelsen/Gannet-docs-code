@@ -23,7 +23,7 @@ body .main-container {
 <img src="images/logo.png" alt="Gannet logo" id="myImg2"/>
 
 ::: release
-<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.2.1</a></h3>
+<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.3.0</a></h3>
 :::
 
 ## Overview
@@ -79,7 +79,7 @@ SPM12 can be installed in the same manner after it has been downloaded from the 
 
 ## Compatibility
 
-Gannet is currently being developed in MATLAB R2022b in macOS 12.6 Monterey. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
+Gannet is currently being developed in MATLAB R2022b in macOS 13.0 Ventura. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
 
 ## Supported file formats
 
