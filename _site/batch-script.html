@@ -13,7 +13,7 @@
 
 <title>Batch processing script</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -30,6 +30,8 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -150,6 +152,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </script>
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -311,6 +318,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -390,7 +400,10 @@ $(document).ready(function () {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -404,7 +417,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -416,10 +429,17 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Batch processing script</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
@@ -450,39 +470,40 @@ function topFunction() {
 </script>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images</span></span>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Remember to check GannetPreInitialise.m has the appropriate settings for your data</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">data_dir</span> <span class="op">=</span> <span class="ss">&#39;/Users/username/Documents/my_project/data&#39;</span><span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">&#39;/Users/username/Documents/my_project/data&#39;</span><span class="op">;</span></span>
 <span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="va">metab</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S02_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">metab</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">data_dir</span><span class="op">,</span> <span class="va">metab</span>)<span class="op">;</span> <span class="co">% It is good practice to include the full path of files</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>metab <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>metab <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> metab)<span class="op">;</span> <span class="co">% It is good practice to include the full path of files</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">water</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="va">water</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">data_dir</span><span class="op">,</span> <span class="va">water</span>)<span class="op">;</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>water <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>water <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> water)<span class="op">;</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="va">anat</span> <span class="op">=</span> {<span class="ss">&#39;S01_T1_anat.nii&#39;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="ss">&#39;S02_T1_anat.nii&#39;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="ss">&#39;S03_T1_anat.nii&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a><span class="va">anat</span> <span class="op">=</span> <span class="va">fullfile</span>(<span class="va">data_dir</span><span class="op">,</span> <span class="va">anat</span>)<span class="op">;</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>anat <span class="op">=</span> {<span class="st">&#39;S01_T1_anat.nii&#39;</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;S02_T1_anat.nii&#39;</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;S03_T1_anat.nii&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>anat <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> anat)<span class="op">;</span></span>
 <span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetLoad</span>(<span class="va">metab</span><span class="op">,</span> <span class="va">water</span>)<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS</span>)<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS</span><span class="op">,</span> <span class="va">anat</span>)<span class="op">;</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS</span>)<span class="op">;</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetQuantify</span>(<span class="va">MRS</span>)<span class="op">;</span></span></code></pre></div>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetLoad(metab<span class="op">,</span> water)<span class="op">;</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetFit(MRS)<span class="op">;</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetCoRegister(MRS<span class="op">,</span> anat)<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetSegment(MRS)<span class="op">;</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetQuantify(MRS)<span class="op">;</span></span></code></pre></div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmF0Y2ggcHJvY2Vzc2luZyBzY3JpcHQiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgo8YnI+CgpgYGB7b2N0YXZlLCBldmFsID0gRkFMU0V9CiUgRXhhbXBsZSBiYXRjaCBzY3JpcHQgZm9yIFBoaWxpcHMgTUVHQS1QUkVTUyBkYXRhIHdpdGggYWNjb21wYW55aW5nIHdhdGVyIHJlZmVyZW5jZXMgYW5kIHN0cnVjdHVyYWwgaW1hZ2VzCiUgUmVtZW1iZXIgdG8gY2hlY2sgR2FubmV0UHJlSW5pdGlhbGlzZS5tIGhhcyB0aGUgYXBwcm9wcmlhdGUgc2V0dGluZ3MgZm9yIHlvdXIgZGF0YQoKZGF0YV9kaXIgPSAnL1VzZXJzL3VzZXJuYW1lL0RvY3VtZW50cy9teV9wcm9qZWN0L2RhdGEnOwoKbWV0YWIgPSB7J1MwMV9HQUJBXzY4X2FjdC5zZGF0JwogICAgICAgICAnUzAyX0dBQkFfNjhfYWN0LnNkYXQnCiAgICAgICAgICdTMDNfR0FCQV82OF9hY3Quc2RhdCd9OwptZXRhYiA9IGZ1bGxmaWxlKGRhdGFfZGlyLCBtZXRhYik7ICUgSXQgaXMgZ29vZCBwcmFjdGljZSB0byBpbmNsdWRlIHRoZSBmdWxsIHBhdGggb2YgZmlsZXMKICAgICAgICAgCndhdGVyID0geydTMDFfR0FCQV82OF9yZWYuc2RhdCcKICAgICAgICAgJ1MwMl9HQUJBXzY4X3JlZi5zZGF0JwogICAgICAgICAnUzAzX0dBQkFfNjhfcmVmLnNkYXQnfTsKd2F0ZXIgPSBmdWxsZmlsZShkYXRhX2Rpciwgd2F0ZXIpOwoKYW5hdCA9IHsnUzAxX1QxX2FuYXQubmlpJwogICAgICAgICdTMDJfVDFfYW5hdC5uaWknCiAgICAgICAgJ1MwM19UMV9hbmF0Lm5paSd9OwphbmF0ID0gZnVsbGZpbGUoZGF0YV9kaXIsIGFuYXQpOwoKTVJTID0gR2FubmV0TG9hZChtZXRhYiwgd2F0ZXIpOwpNUlMgPSBHYW5uZXRGaXQoTVJTKTsKTVJTID0gR2FubmV0Q29SZWdpc3RlcihNUlMsIGFuYXQpOwpNUlMgPSBHYW5uZXRTZWdtZW50KE1SUyk7Ck1SUyA9IEdhbm5ldFF1YW50aWZ5KE1SUyk7CmBgYAo=</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -517,6 +538,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("batch-script.Rmd");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

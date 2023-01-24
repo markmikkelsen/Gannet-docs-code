@@ -13,7 +13,7 @@
 
 <title>Loading data</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,6 +33,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -52,6 +54,11 @@
 
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -213,6 +220,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -371,7 +381,10 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -385,7 +398,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -397,10 +410,17 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Loading data</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
@@ -436,13 +456,14 @@ function topFunction() {
 </script>
 <p><br></p>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9hZGluZyBkYXRhIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKPHN0eWxlPgpib2R5IC5tYWluLWNvbnRhaW5lciB7CiAgbWF4LXdpZHRoOiAxMjAwcHg7Cn0KPC9zdHlsZT4KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSAianMvYmFjay10by10b3AuanMifQpgYGAKCjxicj4KCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -479,6 +500,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("loading-data.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

@@ -13,7 +13,7 @@
 
 <title>FAQ</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,6 +33,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -50,8 +52,114 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #c4a000; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #000000; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #000000; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #000000; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -213,6 +321,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -371,7 +482,10 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -385,7 +499,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -397,19 +511,21 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">FAQ</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -435,9 +551,20 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<div id="general" class="section level3 hasAnchor">
-<h3 class="hasAnchor">General<a href="#general" class="anchor-section"
-aria-label="Anchor link to header"></a></h3>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i>  When
+encountering an error or bug in Gannet, it is highly recommended first
+ensuring the latest
+<a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>stable
+release</u></a> is being used. It may be that your issue has already
+been addressed. Alternatively, consider using the
+<a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development
+version</u></a> as bug fixes/changes are continually being uploaded to
+this branch.</p>
+</div>
+<div id="general" class="section level2 hasAnchor">
+<h2 class="hasAnchor">General<a href="#general" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <div id="can-gannet-process-gsh-edited-data"
 class="section level4 hasAnchor">
 <h4 class="hasAnchor"><strong>Can Gannet process GSH-edited
@@ -446,8 +573,8 @@ class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS
 data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited
 HERMES and HERCULES data. (Gannet does not support the fitting of
-HERCULES data.) Simply set the appropriate <code>target</code> option(s)
-in <code>GannetPreInitialise.m</code>.</p>
+HERCULES data, however.) Simply set the appropriate <code>target</code>
+option(s) in <code>GannetPreInitialise.m</code>.</p>
 </div>
 <div id="can-gannet-process-phantom-data"
 class="section level4 hasAnchor">
@@ -461,31 +588,110 @@ class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <code>GannetFit(MRS_struct);</code>. (Fitting of HERCULES phantom data
 is not supported.)</p>
 </div>
-</div>
-<div id="output" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Output<a href="#output" class="anchor-section"
-aria-label="Anchor link to header"></a></h3>
-<div id="blank" class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>[BLANK]</strong><a href="#blank"
+<div id="can-gannet-process-hermeshercules-data"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Can Gannet process HERMES/HERCULES
+data?</strong><a href="#can-gannet-process-hermeshercules-data"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Gannet load HERMES and HERCULES data, but only HERMES data can be
+modeled in <code>GannetFit.m</code>. Signal fitting and metabolite
+quantification of HERCULES data can be performed using
+<a href="https://github.com/schorschinho/osprey" target="_blank">Osprey.</a>.</p>
 </div>
-</div>
-<div id="errors" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Errors<a href="#errors" class="anchor-section"
-aria-label="Anchor link to header"></a></h3>
-<div id="blank-1" class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>[BLANK]</strong><a href="#blank-1"
+<div id="can-gannet-process-non-edited-data"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Can Gannet process non-edited
+data?</strong><a href="#can-gannet-process-non-edited-data"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Gannet is designed to process edited single-voxel data. However, its
+data loading routines may be able to load non-edited single-voxel data.
+In addition, the standalone tool <a
+href="https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone"><code>CoRegStandAlone.m</code></a>
+can be used with non-edited data for voxel co-registration and tissue
+segmentation.</p>
+</div>
+<div id="can-gannet-process-mrsi-data" class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Can Gannet process MRSI data?</strong><a
+href="#can-gannet-process-mrsi-data" class="anchor-section"
+aria-label="Anchor link to header"></a></h4>
+<p>No, Gannet is designed to process edited single-voxel data.</p>
+</div>
+</div>
+<div id="output" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Output<a href="#output" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<div id="why-is-my-spectrum-upside-down"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Why is my spectrum upside down?</strong><a
+href="#why-is-my-spectrum-upside-down" class="anchor-section"
+aria-label="Anchor link to header"></a></h4>
+<p><img id="myImg" src="images/faq/upside-down-spectrum.png" alt="A screenshot example of upside-down MRS spectra"></p>
+<p>Gannet has a routine that automatically phases spectra so that they
+are not upside-down or otherwise out of phase. However, this routine can
+fail. It is best to contact the developers for assistance to resolve the
+problem. However, a simple, albeit imperfect, solution is to add the
+following line of code to <code>GannetLoad.m</code> after the function
+<code>PhaseCorrection.m</code> is run for global zero-order phase
+correction (around line 400):</p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>MRS_struct.fids.data <span class="op">=</span> <span class="op">-</span>MRS_struct.fids.data<span class="op">;</span></span></code></pre></div>
+</div>
+</div>
+<div id="errors" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Errors<a href="#errors" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<div id="you-have-issues-with-spm-mex-files-on-64-bit-macos"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>You have issues with SPM MEX files on
+64-bit macOS</strong><a
+href="#you-have-issues-with-spm-mex-files-on-64-bit-macos"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Specifically:</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;*.mexmaci64&quot;</span> cannot be opened because the developer cannot be verified. macOS cannot verify that this app is free from malware</span></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Code</span> signature not valid for use in process using Library Validation: library load disallowed by system policy<span class="er">)</span></span></code></pre></div>
+<p>Please visit the
+<a href="https://en.wikibooks.org/wiki/SPM/Installation_on_64bit_Mac_OS_(Intel)#macOS_Catalina,_Big_Sur,_Monterey,_Ventura" target="_blank">SPM
+Wikibooks page</a> for troubleshooting.</p>
+</div>
+<div id="matlab-says-my-structural-image-does-not-exist."
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>MATLAB says my structural image does not
+exist.</strong><a
+href="#matlab-says-my-structural-image-does-not-exist."
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>For example:</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>Error using spm_vol<span class="op">&gt;</span>spm_vol_hdr (<span class="fu">line</span> <span class="fl">80</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>File “image1.nii” does <span class="fu">not</span> exist.</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>Error in spm_vol (<span class="fu">line</span> <span class="fl">61</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="op">**</span> v <span class="op">=</span> spm_vol_hdr(<span class="fu">deblank</span>(P(<span class="fu">i</span><span class="op">,:</span>)))<span class="op">;**</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>Error in GannetMask_SiemensTWIX (<span class="fu">line</span> <span class="fl">110</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>V <span class="op">=</span> spm_vol(nii_file)<span class="op">;</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>Error in GannetCoRegister (<span class="fu">line</span> <span class="fl">74</span>)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="op">**</span> MRS_struct <span class="op">=</span> GannetMask_SiemensTWIX(fname<span class="op">,</span> nii_name{ii}<span class="op">,</span> MRS_struct<span class="op">,</span> ii<span class="op">,</span> vox<span class="op">,</span> kk)<span class="op">;**</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>Error in gannetcode (<span class="fu">line</span> <span class="fl">19</span>)</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="op">**</span> MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span>{‘image1.nii’})<span class="op">;**</span></span></code></pre></div>
+<p>A possible fix for this is to input filenames using their full path.
+So, instead of <code>{'image1.nii'}</code>, input
+<code>{'/Users/username/Documents/my_project/data/image1.nii'}</code>.</p>
 </div>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRkFRIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKPGJyPgoKOjo6IGluZm8KPGkgY2xhc3M9ImZhIGZhLWluZm8tY2lyY2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+Jm5ic3A7IFdoZW4gZW5jb3VudGVyaW5nIGFuIGVycm9yIG9yIGJ1ZyBpbiBHYW5uZXQsIGl0IGlzIGhpZ2hseSByZWNvbW1lbmRlZCBmaXJzdCBlbnN1cmluZyB0aGUgbGF0ZXN0IDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9tYXJrbWlra2Vsc2VuL0dhbm5ldCIgdGFyZ2V0PSJfYmxhbmsiIHN0eWxlPSJjb2xvcjp3aGl0ZSI+PHU+c3RhYmxlIHJlbGVhc2U8L3U+PC9hPiBpcyBiZWluZyB1c2VkLiBJdCBtYXkgYmUgdGhhdCB5b3VyIGlzc3VlIGhhcyBhbHJlYWR5IGJlZW4gYWRkcmVzc2VkLiBBbHRlcm5hdGl2ZWx5LCBjb25zaWRlciB1c2luZyB0aGUgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0L3RyZWUvZGV2IiB0YXJnZXQ9Il9ibGFuayIgc3R5bGU9ImNvbG9yOndoaXRlIj48dT5kZXZlbG9wbWVudCB2ZXJzaW9uPC91PjwvYT4gYXMgYnVnIGZpeGVzL2NoYW5nZXMgYXJlIGNvbnRpbnVhbGx5IGJlaW5nIHVwbG9hZGVkIHRvIHRoaXMgYnJhbmNoLgo6OjoKCiMjIEdlbmVyYWwKCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3MgR1NILWVkaXRlZCBkYXRhPyoqCgpZZXMsIEdhbm5ldCBjYW4gcHJvY2VzcyBHQUJBLSwgR1NILSwgTGFjLSwgYW5kIEV0T0gtZWRpdGVkIE1FR0EtUFJFU1MgZGF0YSwgYXMgd2VsbCBhcyBHQUJBLS9HU0gtLCBMYWMtL0dTSC0sIGFuZCBFdE9ILS9HQUJBLS9HU0gtZWRpdGVkIEhFUk1FUyBhbmQgSEVSQ1VMRVMgZGF0YS4gKEdhbm5ldCBkb2VzIG5vdCBzdXBwb3J0IHRoZSBmaXR0aW5nIG9mIEhFUkNVTEVTIGRhdGEsIGhvd2V2ZXIuKSBTaW1wbHkgc2V0IHRoZSBhcHByb3ByaWF0ZSBgdGFyZ2V0YCBvcHRpb24ocykgaW4gYEdhbm5ldFByZUluaXRpYWxpc2UubWAuCgojIyMjICoqQ2FuIEdhbm5ldCBwcm9jZXNzIHBoYW50b20gZGF0YT8qKgoKWWVzLCBvZiB0aGUgZWRpdGVkIGRhdGEgZGVzY3JpYmVkIGFib3ZlLiBNYWtlIHN1cmUgdG8gc2V0IGBwaGFudG9tYCB0byBgMWAgdW5kZXIgJ0ZsYWdzJyBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYC4gSWYgeW91IHdhbnQgdG8gZml0IHlvdXIgZGF0YSwgcnVuIGBHYW5uZXRGaXRQaGFudG9tKE1SU19zdHJ1Y3QpO2AgaW5zdGVhZCBvZiBgR2FubmV0Rml0KE1SU19zdHJ1Y3QpO2AuIChGaXR0aW5nIG9mIEhFUkNVTEVTIHBoYW50b20gZGF0YSBpcyBub3Qgc3VwcG9ydGVkLikKCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3MgSEVSTUVTL0hFUkNVTEVTIGRhdGE/KioKCkdhbm5ldCBsb2FkIEhFUk1FUyBhbmQgSEVSQ1VMRVMgZGF0YSwgYnV0IG9ubHkgSEVSTUVTIGRhdGEgY2FuIGJlIG1vZGVsZWQgaW4gYEdhbm5ldEZpdC5tYC4gU2lnbmFsIGZpdHRpbmcgYW5kIG1ldGFib2xpdGUgcXVhbnRpZmljYXRpb24gb2YgSEVSQ1VMRVMgZGF0YSBjYW4gYmUgcGVyZm9ybWVkIHVzaW5nIDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9zY2hvcnNjaGluaG8vb3NwcmV5IiB0YXJnZXQ9Il9ibGFuayI+T3NwcmV5LjwvYT4uCgojIyMjICoqQ2FuIEdhbm5ldCBwcm9jZXNzIG5vbi1lZGl0ZWQgZGF0YT8qKgoKR2FubmV0IGlzIGRlc2lnbmVkIHRvIHByb2Nlc3MgZWRpdGVkIHNpbmdsZS12b3hlbCBkYXRhLiBIb3dldmVyLCBpdHMgZGF0YSBsb2FkaW5nIHJvdXRpbmVzIG1heSBiZSBhYmxlIHRvIGxvYWQgbm9uLWVkaXRlZCBzaW5nbGUtdm94ZWwgZGF0YS4gSW4gYWRkaXRpb24sIHRoZSBzdGFuZGFsb25lIHRvb2wgW2BDb1JlZ1N0YW5kQWxvbmUubWBdKGh0dHBzOi8vbWFya21pa2tlbHNlbi5naXRodWIuaW8vR2FubmV0LWRvY3MvYWRkaXRpb25hbC10b29scy5odG1sI2NvcmVnc3RhbmRhbG9uZSkgY2FuIGJlIHVzZWQgd2l0aCBub24tZWRpdGVkIGRhdGEgZm9yIHZveGVsIGNvLXJlZ2lzdHJhdGlvbiBhbmQgdGlzc3VlIHNlZ21lbnRhdGlvbi4KCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3MgTVJTSSBkYXRhPyoqCgpObywgR2FubmV0IGlzIGRlc2lnbmVkIHRvIHByb2Nlc3MgZWRpdGVkIHNpbmdsZS12b3hlbCBkYXRhLgoKIyMgT3V0cHV0CgojIyMjICoqV2h5IGlzIG15IHNwZWN0cnVtIHVwc2lkZSBkb3duPyoqCgo8aW1nIGlkPSJteUltZyIgc3JjPSJpbWFnZXMvZmFxL3Vwc2lkZS1kb3duLXNwZWN0cnVtLnBuZyIgYWx0PSJBIHNjcmVlbnNob3QgZXhhbXBsZSBvZiB1cHNpZGUtZG93biBNUlMgc3BlY3RyYSI+CgpHYW5uZXQgaGFzIGEgcm91dGluZSB0aGF0IGF1dG9tYXRpY2FsbHkgcGhhc2VzIHNwZWN0cmEgc28gdGhhdCB0aGV5IGFyZSBub3QgdXBzaWRlLWRvd24gb3Igb3RoZXJ3aXNlIG91dCBvZiBwaGFzZS4gSG93ZXZlciwgdGhpcyByb3V0aW5lIGNhbiBmYWlsLiBJdCBpcyBiZXN0IHRvIGNvbnRhY3QgdGhlIGRldmVsb3BlcnMgZm9yIGFzc2lzdGFuY2UgdG8gcmVzb2x2ZSB0aGUgcHJvYmxlbS4gSG93ZXZlciwgYSBzaW1wbGUsIGFsYmVpdCBpbXBlcmZlY3QsIHNvbHV0aW9uIGlzIHRvIGFkZCB0aGUgZm9sbG93aW5nIGxpbmUgb2YgY29kZSB0byBgR2FubmV0TG9hZC5tYCBhZnRlciB0aGUgZnVuY3Rpb24gYFBoYXNlQ29ycmVjdGlvbi5tYCBpcyBydW4gZm9yIGdsb2JhbCB6ZXJvLW9yZGVyIHBoYXNlIGNvcnJlY3Rpb24gKGFyb3VuZCBsaW5lIDQwMCk6CgpgYGB7b2N0YXZlLCBldmFsID0gRkFMU0V9Ck1SU19zdHJ1Y3QuZmlkcy5kYXRhID0gLU1SU19zdHJ1Y3QuZmlkcy5kYXRhOwpgYGAKCiMjIEVycm9ycwoKIyMjIyAqKllvdSBoYXZlIGlzc3VlcyB3aXRoIFNQTSBNRVggZmlsZXMgb24gNjQtYml0IG1hY09TKioKClNwZWNpZmljYWxseToKCmBgYHtiYXNoLCBldmFsID0gRkFMU0V9CiIqLm1leG1hY2k2NCIgY2Fubm90IGJlIG9wZW5lZCBiZWNhdXNlIHRoZSBkZXZlbG9wZXIgY2Fubm90IGJlIHZlcmlmaWVkLiBtYWNPUyBjYW5ub3QgdmVyaWZ5IHRoYXQgdGhpcyBhcHAgaXMgZnJlZSBmcm9tIG1hbHdhcmUKYGBgCgpvcgoKYGBge2Jhc2gsIGV2YWwgPSBGQUxTRX0KQ29kZSBzaWduYXR1cmUgbm90IHZhbGlkIGZvciB1c2UgaW4gcHJvY2VzcyB1c2luZyBMaWJyYXJ5IFZhbGlkYXRpb246IGxpYnJhcnkgbG9hZCBkaXNhbGxvd2VkIGJ5IHN5c3RlbSBwb2xpY3kpCmBgYAoKUGxlYXNlIHZpc2l0IHRoZSA8YSBocmVmPSJodHRwczovL2VuLndpa2lib29rcy5vcmcvd2lraS9TUE0vSW5zdGFsbGF0aW9uX29uXzY0Yml0X01hY19PU18oSW50ZWwpI21hY09TX0NhdGFsaW5hLF9CaWdfU3VyLF9Nb250ZXJleSxfVmVudHVyYSIgdGFyZ2V0PSJfYmxhbmsiPlNQTSBXaWtpYm9va3MgcGFnZTwvYT4gZm9yIHRyb3VibGVzaG9vdGluZy4KCiMjIyMgKipNQVRMQUIgc2F5cyBteSBzdHJ1Y3R1cmFsIGltYWdlIGRvZXMgbm90IGV4aXN0LioqCgpGb3IgZXhhbXBsZToKCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KRXJyb3IgdXNpbmcgc3BtX3ZvbD5zcG1fdm9sX2hkciAobGluZSA4MCkKRmlsZSDigJxpbWFnZTEubmlp4oCdIGRvZXMgbm90IGV4aXN0LgoKRXJyb3IgaW4gc3BtX3ZvbCAobGluZSA2MSkKKiogdiA9IHNwbV92b2xfaGRyKGRlYmxhbmsoUChpLDopKSk7KioKCkVycm9yIGluIEdhbm5ldE1hc2tfU2llbWVuc1RXSVggKGxpbmUgMTEwKQpWID0gc3BtX3ZvbChuaWlfZmlsZSk7CgpFcnJvciBpbiBHYW5uZXRDb1JlZ2lzdGVyIChsaW5lIDc0KQoqKiBNUlNfc3RydWN0ID0gR2FubmV0TWFza19TaWVtZW5zVFdJWChmbmFtZSwgbmlpX25hbWV7aWl9LCBNUlNfc3RydWN0LCBpaSwgdm94LCBrayk7KioKCkVycm9yIGluIGdhbm5ldGNvZGUgKGxpbmUgMTkpCioqIE1SU19zdHJ1Y3QgPSBHYW5uZXRDb1JlZ2lzdGVyKE1SU19zdHJ1Y3Qse+KAmGltYWdlMS5uaWnigJl9KTsqKgpgYGAKCkEgcG9zc2libGUgZml4IGZvciB0aGlzIGlzIHRvIGlucHV0IGZpbGVuYW1lcyB1c2luZyB0aGVpciBmdWxsIHBhdGguIFNvLCBpbnN0ZWFkIG9mIGB7J2ltYWdlMS5uaWknfWAsIGlucHV0IGB7Jy9Vc2Vycy91c2VybmFtZS9Eb2N1bWVudHMvbXlfcHJvamVjdC9kYXRhL2ltYWdlMS5uaWknfWAuCgoKCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -522,6 +728,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("faq.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {
@@ -536,7 +747,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2,h3",
+      selectors: "h1,h2",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

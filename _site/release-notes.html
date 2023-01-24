@@ -13,7 +13,7 @@
 
 <title>Release notes</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,6 +33,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -52,6 +54,11 @@
 
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -213,6 +220,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -371,7 +381,10 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -385,7 +398,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -397,10 +410,17 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Release notes</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
@@ -436,11 +456,81 @@ comprehensive list of changes, see the commits logged on the
 <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a>
 on GitHub.</p>
 <div id="section" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.2.1<a href="#section" class="anchor-section"
+<h2 class="hasAnchor">3.3.0<a href="#section" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
-<p><span style="color: grey;">2022-06-07</span></p>
+<p><span style="color: grey;">2022-10-22</span></p>
+<div id="new-features" class="section level3 hasAnchor">
+<h3 class="hasAnchor">New features<a href="#new-features"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Added functionality to read NIfTI-MRS files
+(<a href="https://onlinelibrary.wiley.com/doi/10.1002/mrm.29418" target="_blank">Clarke
+et al., MRM, 2022</a>) (<code>NIfTIMRSRead.m</code>); includes
+additional new function <code>GannetMask_NIfTI.m</code> for voxel
+co-registration</li>
+<li>Added support for Utah Siemens MEGA-PRESS sequence (DICOM
+files)</li>
+<li>Added support for CMRR PRESS data (DICOM files)</li>
+<li>Added support for Siemens XA30 sequence as provided by JHU</li>
+<li>Changed <code>README</code> to <code>README.md</code>, which now
+includes badges</li>
+</ul>
+</div>
+<div id="major-changes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Major changes<a href="#major-changes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Coil combination of GE, NIfTI-MRS, and Siemens TWIX files is now
+performed using generalized least squares
+(<a href="https://onlinelibrary.wiley.com/doi/10.1002/jmri.23941" target="_blank">An
+et al., JMRI, 2013</a>); this approach has been shown to result in
+optimal SNR and reduce spectral artifacts</li>
+<li>The Gannet logo has been reverted to the original image of a
+gannet</li>
+</ul>
+</div>
 <div id="minor-changes" class="section level3 hasAnchor">
 <h3 class="hasAnchor">Minor changes<a href="#minor-changes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Added functionality for GE data in
+<code>AlignSubSpectra_PreAlignRef.m</code></li>
+<li>An error is presented if not enough inputs are given for any of the
+Gannet modules</li>
+<li>CoRegStandAlone outputs can be hidden if
+<code>MRS_struct.p.hide</code> is set to <code>1</code> in
+<code>CoRegStandAlone.m</code> (default is <code>0</code>)</li>
+<li>If the user has no internet connection, <code>VersionCheck.m</code>
+and <code>UpdateGannet.m</code> will not run</li>
+<li>Updated dicm2nii to latest version (version 2022.09.15)</li>
+<li>Updated mapVBVD functions to latest version
+(<a href="https://github.com/pehses/mapVBVD" target="_blank">https://github.com/pehses/mapVBVD</a>)</li>
+<li>Turned off warnings of iteration limits in
+<code>SpectralRegistrationHERMES.m</code> and
+<code>GannetFit.m</code></li>
+<li>Many cosmetic changes in the code</li>
+</ul>
+</div>
+<div id="bug-fixes" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes"
+class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<ul>
+<li>Fixed bug in error reporting in <code>GannetFit.m</code></li>
+<li>CoRegStandAlone routines now parse version numbers from the main
+modules properly</li>
+<li>Variable <code>filesExist</code> in <code>GannetSegment.m</code> may
+not populate; it is now pre-initialized as a precaution</li>
+<li>Bug fix in <code>GannetMask_SiemensRDA.m</code></li>
+<li>Bug fixes for reading DICOM files</li>
+</ul>
+</div>
+</div>
+<div id="section-1" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.2.1<a href="#section-1" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p><span style="color: grey;">2022-06-07</span></p>
+<div id="minor-changes-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes-1"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li><code>PhaseCorrection.m</code> now deals better with spectra that
@@ -452,8 +542,8 @@ voxel masks to MNI space)</li>
 <li>Various cosmetic changes</li>
 </ul>
 </div>
-<div id="bug-fixes" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes"
+<div id="bug-fixes-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-1"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Fixed sub-spectra alignment for GE HERCULES data</li>
@@ -464,12 +554,12 @@ Reid)</li>
 <p><br></p>
 </div>
 </div>
-<div id="section-1" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.2.0<a href="#section-1" class="anchor-section"
+<div id="section-2" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.2.0<a href="#section-2" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2021-07-30</span></p>
-<div id="new-features" class="section level3 hasAnchor">
-<h3 class="hasAnchor">New features<a href="#new-features"
+<div id="new-features-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">New features<a href="#new-features-1"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Added <code>GannetVersion.m</code>, <code>VersionCheck.m</code>, and
@@ -486,8 +576,8 @@ signal averaging in <code>GannetPreInitialise.m</code> (outlier scans
 are removed when using conventional averaging, as before)</li>
 <li>Added a new (optional) method for robust, weighted signal averaging:
 weighted averaging by criterion function minimization (WACFM) using the
-generalized Cauchy distribution as the cost function; see doi:
-<a href="https://dx.doi.org/10.1016/j.bbe.2015.06.002" target="_blank">10.1016/j.bbe.2015.06.002</a>
+generalized Cauchy distribution as the cost function; see
+doi:<a href="https://dx.doi.org/10.1016/j.bbe.2015.06.002" target="_blank">10.1016/j.bbe.2015.06.002</a>
 for more details; additionally, instead of weighting difference pairs,
 the subspectra of each editing subexperiment are weighted to generate
 weighted subspectra, which are then subtracted; see
@@ -534,8 +624,8 @@ subjects</li>
 displaying (useful when processing a large batch of files)</li>
 </ul>
 </div>
-<div id="major-changes" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Major changes<a href="#major-changes"
+<div id="major-changes-1" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Major changes<a href="#major-changes-1"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>The outdated manual PDF has been removed; up-to-date software
@@ -557,8 +647,8 @@ further tweaking)</li>
 need to specify the order of editing pulses</li>
 </ul>
 </div>
-<div id="minor-changes-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Minor changes<a href="#minor-changes-1"
+<div id="minor-changes-2" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes-2"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Datasets with differing number of averages can now be
@@ -639,8 +729,8 @@ in <code>GannetFit.m</code></li>
 </ul></li>
 </ul>
 </div>
-<div id="bug-fixes-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-1"
+<div id="bug-fixes-2" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-2"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Frequency and phase offset estimates are now tracked correctly and
@@ -665,12 +755,12 @@ run in <code>SignalFilter.m</code>) if they are already turned on</li>
 <p><br></p>
 </div>
 </div>
-<div id="section-2" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.1.5<a href="#section-2" class="anchor-section"
+<div id="section-3" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.5<a href="#section-3" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2020-03-02</span></p>
-<div id="new-features-1" class="section level3 hasAnchor">
-<h3 class="hasAnchor">New features<a href="#new-features-1"
+<div id="new-features-2" class="section level3 hasAnchor">
+<h3 class="hasAnchor">New features<a href="#new-features-2"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Smarter checking of incorrect settings in
@@ -684,8 +774,8 @@ was used, use Cho instead of residual water to align subspectra of
 GABA-, Lac-, and EtOH-edited datasets</li>
 </ul>
 </div>
-<div id="minor-changes-2" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Minor changes<a href="#minor-changes-2"
+<div id="minor-changes-3" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Minor changes<a href="#minor-changes-3"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Noise estimation in <code>CalcNoise.m</code>,
@@ -701,8 +791,8 @@ at the top of the echo, rather than simply fixing it to the first
 point</li>
 </ul>
 </div>
-<div id="bug-fixes-2" class="section level3 hasAnchor">
-<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-2"
+<div id="bug-fixes-3" class="section level3 hasAnchor">
+<h3 class="hasAnchor">Bug fixes<a href="#bug-fixes-3"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Minor bug fixes in CoRegStandAlone functions</li>
@@ -713,8 +803,8 @@ the same results are reproduced each time it is run on a dataset</li>
 <p><br></p>
 </div>
 </div>
-<div id="section-3" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.1.4<a href="#section-3" class="anchor-section"
+<div id="section-4" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.4<a href="#section-4" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2019-10-03</span></p>
 <div id="bug-fix" class="section level3 hasAnchor">
@@ -727,12 +817,12 @@ MEGA-PRESS data</li>
 <p><br></p>
 </div>
 </div>
-<div id="section-4" class="section level2 hasAnchor">
-<h2 class="hasAnchor">3.1.3<a href="#section-4" class="anchor-section"
+<div id="section-5" class="section level2 hasAnchor">
+<h2 class="hasAnchor">3.1.3<a href="#section-5" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p><span style="color: grey;">2019-08-06</span></p>
-<div id="new-features-2" class="section level3 hasAnchor">
-<h3 class="hasAnchor">New features<a href="#new-features-2"
+<div id="new-features-3" class="section level3 hasAnchor">
+<h3 class="hasAnchor">New features<a href="#new-features-3"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <ul>
 <li>Major improvements to
@@ -756,13 +846,14 @@ class="anchor-section" aria-label="Anchor link to header"></a></h3>
 </div>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUmVsZWFzZSBub3RlcyIKZGF0ZTogIkxhc3QgdXBkYXRlZDogYHIgZm9ybWF0KFN5cy50aW1lKCksICclQiAlZCwgJVknKWAiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgdG9jOiBUUlVFCiAgICB0b2NfZGVwdGg6IDIKICAgIHRvY19mbG9hdDoKICAgICAgY29sbGFwc2VkOiBGQUxTRQotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSAianMvYmFjay10by10b3AuanMifQpgYGAKCjxicj4KClRoaXMgcGFnZSBsb2dzIHRoZSBzdGFibGUgcmVsZWFzZXMgb2YgR2FubmV0LiBIb3dldmVyLCBtaW5vciBlZGl0cyBhbmQgYnVnIGZpeGVzIGFyZSBhbHNvIG1hZGUgaW4gYmV0d2VlbiByZWxlYXNlcy4gRm9yIGEgbW9yZSBjb21wcmVoZW5zaXZlIGxpc3Qgb2YgY2hhbmdlcywgc2VlIHRoZSBjb21taXRzIGxvZ2dlZCBvbiB0aGUgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0L2NvbW1pdHMvbWFpbiIgdGFyZ2V0PSJfYmxhbmsiPnJlcG9zaXRvcnk8L2E+IG9uIEdpdEh1Yi4KCiMjIDMuMy4wCjxzcGFuIHN0eWxlPSJjb2xvcjogZ3JleTsiPjIwMjItMTAtMjI8L3NwYW4+CgojIyMgTmV3IGZlYXR1cmVzCi0gQWRkZWQgZnVuY3Rpb25hbGl0eSB0byByZWFkIE5JZlRJLU1SUyBmaWxlcyAoPGEgaHJlZj0iaHR0cHM6Ly9vbmxpbmVsaWJyYXJ5LndpbGV5LmNvbS9kb2kvMTAuMTAwMi9tcm0uMjk0MTgiIHRhcmdldD0iX2JsYW5rIj5DbGFya2UgZXQgYWwuLCBNUk0sIDIwMjI8L2E+KSAoYE5JZlRJTVJTUmVhZC5tYCk7IGluY2x1ZGVzIGFkZGl0aW9uYWwgbmV3IGZ1bmN0aW9uIGBHYW5uZXRNYXNrX05JZlRJLm1gIGZvciB2b3hlbCBjby1yZWdpc3RyYXRpb24KLSBBZGRlZCBzdXBwb3J0IGZvciBVdGFoIFNpZW1lbnMgTUVHQS1QUkVTUyBzZXF1ZW5jZSAoRElDT00gZmlsZXMpCi0gQWRkZWQgc3VwcG9ydCBmb3IgQ01SUiBQUkVTUyBkYXRhIChESUNPTSBmaWxlcykKLSBBZGRlZCBzdXBwb3J0IGZvciBTaWVtZW5zIFhBMzAgc2VxdWVuY2UgYXMgcHJvdmlkZWQgYnkgSkhVCi0gQ2hhbmdlZCBgUkVBRE1FYCB0byBgUkVBRE1FLm1kYCwgd2hpY2ggbm93IGluY2x1ZGVzIGJhZGdlcwoKIyMjIE1ham9yIGNoYW5nZXMKLSBDb2lsIGNvbWJpbmF0aW9uIG9mIEdFLCBOSWZUSS1NUlMsIGFuZCBTaWVtZW5zIFRXSVggZmlsZXMgaXMgbm93IHBlcmZvcm1lZCB1c2luZyBnZW5lcmFsaXplZCBsZWFzdCBzcXVhcmVzICg8YSBocmVmPSJodHRwczovL29ubGluZWxpYnJhcnkud2lsZXkuY29tL2RvaS8xMC4xMDAyL2ptcmkuMjM5NDEiIHRhcmdldD0iX2JsYW5rIj5BbiBldCBhbC4sIEpNUkksIDIwMTM8L2E+KTsgdGhpcyBhcHByb2FjaCBoYXMgYmVlbiBzaG93biB0byByZXN1bHQgaW4gb3B0aW1hbCBTTlIgYW5kIHJlZHVjZSBzcGVjdHJhbCBhcnRpZmFjdHMKLSBUaGUgR2FubmV0IGxvZ28gaGFzIGJlZW4gcmV2ZXJ0ZWQgdG8gdGhlIG9yaWdpbmFsIGltYWdlIG9mIGEgZ2FubmV0CgojIyMgTWlub3IgY2hhbmdlcwotIEFkZGVkIGZ1bmN0aW9uYWxpdHkgZm9yIEdFIGRhdGEgaW4gYEFsaWduU3ViU3BlY3RyYV9QcmVBbGlnblJlZi5tYAotIEFuIGVycm9yIGlzIHByZXNlbnRlZCBpZiBub3QgZW5vdWdoIGlucHV0cyBhcmUgZ2l2ZW4gZm9yIGFueSBvZiB0aGUgR2FubmV0IG1vZHVsZXMKLSBDb1JlZ1N0YW5kQWxvbmUgb3V0cHV0cyBjYW4gYmUgaGlkZGVuIGlmIGBNUlNfc3RydWN0LnAuaGlkZWAgaXMgc2V0IHRvIGAxYCBpbiBgQ29SZWdTdGFuZEFsb25lLm1gIChkZWZhdWx0IGlzIGAwYCkKLSBJZiB0aGUgdXNlciBoYXMgbm8gaW50ZXJuZXQgY29ubmVjdGlvbiwgYFZlcnNpb25DaGVjay5tYCBhbmQgYFVwZGF0ZUdhbm5ldC5tYCB3aWxsIG5vdCBydW4KLSBVcGRhdGVkIGRpY20ybmlpIHRvIGxhdGVzdCB2ZXJzaW9uICh2ZXJzaW9uIDIwMjIuMDkuMTUpCi0gVXBkYXRlZCBtYXBWQlZEIGZ1bmN0aW9ucyB0byBsYXRlc3QgdmVyc2lvbiAoPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL3BlaHNlcy9tYXBWQlZEIiB0YXJnZXQ9Il9ibGFuayI+aHR0cHM6Ly9naXRodWIuY29tL3BlaHNlcy9tYXBWQlZEPC9hPikKLSBUdXJuZWQgb2ZmIHdhcm5pbmdzIG9mIGl0ZXJhdGlvbiBsaW1pdHMgaW4gYFNwZWN0cmFsUmVnaXN0cmF0aW9uSEVSTUVTLm1gIGFuZCBgR2FubmV0Rml0Lm1gCi0gTWFueSBjb3NtZXRpYyBjaGFuZ2VzIGluIHRoZSBjb2RlCgojIyMgQnVnIGZpeGVzCi0gRml4ZWQgYnVnIGluIGVycm9yIHJlcG9ydGluZyBpbiBgR2FubmV0Rml0Lm1gCi0gQ29SZWdTdGFuZEFsb25lIHJvdXRpbmVzIG5vdyBwYXJzZSB2ZXJzaW9uIG51bWJlcnMgZnJvbSB0aGUgbWFpbiBtb2R1bGVzIHByb3Blcmx5Ci0gVmFyaWFibGUgYGZpbGVzRXhpc3RgIGluIGBHYW5uZXRTZWdtZW50Lm1gIG1heSBub3QgcG9wdWxhdGU7IGl0IGlzIG5vdyBwcmUtaW5pdGlhbGl6ZWQgYXMgYSBwcmVjYXV0aW9uCi0gQnVnIGZpeCBpbiBgR2FubmV0TWFza19TaWVtZW5zUkRBLm1gCi0gQnVnIGZpeGVzIGZvciByZWFkaW5nIERJQ09NIGZpbGVzCgojIyAzLjIuMQo8c3BhbiBzdHlsZT0iY29sb3I6IGdyZXk7Ij4yMDIyLTA2LTA3PC9zcGFuPgoKIyMjIE1pbm9yIGNoYW5nZXMKLSBgUGhhc2VDb3JyZWN0aW9uLm1gIG5vdyBkZWFscyBiZXR0ZXIgd2l0aCBzcGVjdHJhIHRoYXQgaGF2ZSBhIG5vbi16ZXJvIGJhc2VsaW5lCi0gU1BNMTIgbm93IG91dHB1dHMgZm9yd2FyZCBkZWZvcm1hdGlvbiBmaWVsZCAobmVlZGVkIGZvciBub3JtYWxpemluZyB2b3hlbCBtYXNrcyB0byBNTkkgc3BhY2UpCi0gVXBkYXRlZCBgZXhwb3J0X2ZpZ2AgdG8gdjMuMjcKLSBgQ29SZWdTdGFuZEFsb25lLm1gIG5vdyBleHBvcnRzIGEgQ1NWIGZpbGUKLSBWYXJpb3VzIGNvc21ldGljIGNoYW5nZXMKCiMjIyBCdWcgZml4ZXMKLSBGaXhlZCBzdWItc3BlY3RyYSBhbGlnbm1lbnQgZm9yIEdFIEhFUkNVTEVTIGRhdGEKLSBGaXhlZCBidWcgaW4gYENvUmVnU3RhbmRBbG9uZS5tYAotIEZpeGVkIGJ1ZyBpbiBgcmVhZF9kY21faGVhZGVyLm1gICh0aGFua3MgdG8gTWVyZWRpdGggUmVpZCkKCjxicj4KCiMjIDMuMi4wCjxzcGFuIHN0eWxlPSJjb2xvcjogZ3JleTsiPjIwMjEtMDctMzA8L3NwYW4+CgojIyMgTmV3IGZlYXR1cmVzCgotIEFkZGVkIGBHYW5uZXRWZXJzaW9uLm1gLCBgVmVyc2lvbkNoZWNrLm1gLCBhbmQgYFVwZGF0ZUdhbm5ldC5tYDsgdGhlc2UgbmV3IGZ1bmN0aW9ucyBsZXQgdXNlcnMga25vdyB0aGUgdmVyc2lvbiBvZiBHYW5uZXQgdGhleSBoYXZlLCBpZiBhIG5ld2VyIHJlbGVhc2Ugb2YgR2FubmV0IGlzIGF2YWlsYWJsZSwgYW5kIHdpbGwgYWxsb3cgdGhlbSB0byBhdXRvbWF0aWNhbGx5IHVwZGF0ZSBpZiB3YW50ZWQKLSBBZGRlZCBgVG9vbGJveENoZWNrLm1gIHRvIGNoZWNrIGZvciBtaXNzaW5nIE1BVExBQiB0b29sYm94ZXMgbmVlZGVkIHRvIHJ1biBHYW5uZXQKLSBFcnJvciBkaWFsb2cgYm94ZXMgYXJlIGRpc3BsYXllZCBhdCB0aGUgZW5kIG9mIHRoZSBhbmFseXNpcyBwaXBlbGluZSBpZiBhbiBlcnJvciBvY2N1cnJlZCAoZHVyaW5nIGEgYmF0Y2ggYW5hbHlzaXMsIEdhbm5ldCB3aWxsIHNraXAgdG8gdGhlIG5leHQgZGF0YXNldCBhbmQgY29udGludWUgcnVubmluZykKLSBVc2VycyBjYW4gbm93IGNob29zZSB0byB1c2Ugd2VpZ2h0ZWQgKHRoZSBkZWZhdWx0KSBvciBjb252ZW50aW9uYWwgc2lnbmFsIGF2ZXJhZ2luZyBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYCAob3V0bGllciBzY2FucyBhcmUgcmVtb3ZlZCB3aGVuIHVzaW5nIGNvbnZlbnRpb25hbCBhdmVyYWdpbmcsIGFzIGJlZm9yZSkKLSBBZGRlZCBhIG5ldyAob3B0aW9uYWwpIG1ldGhvZCBmb3Igcm9idXN0LCB3ZWlnaHRlZCBzaWduYWwgYXZlcmFnaW5nOiB3ZWlnaHRlZCBhdmVyYWdpbmcgYnkgY3JpdGVyaW9uIGZ1bmN0aW9uIG1pbmltaXphdGlvbiAoV0FDRk0pIHVzaW5nIHRoZSBnZW5lcmFsaXplZCBDYXVjaHkgZGlzdHJpYnV0aW9uIGFzIHRoZSBjb3N0IGZ1bmN0aW9uOyBzZWUgZG9pOjxhIGhyZWY9Imh0dHBzOi8vZHguZG9pLm9yZy8xMC4xMDE2L2ouYmJlLjIwMTUuMDYuMDAyIiB0YXJnZXQ9Il9ibGFuayI+MTAuMTAxNi9qLmJiZS4yMDE1LjA2LjAwMjwvYT4gZm9yIG1vcmUgZGV0YWlsczsgYWRkaXRpb25hbGx5LCBpbnN0ZWFkIG9mIHdlaWdodGluZyBkaWZmZXJlbmNlIHBhaXJzLCB0aGUgc3Vic3BlY3RyYSBvZiBlYWNoIGVkaXRpbmcgc3ViZXhwZXJpbWVudCBhcmUgd2VpZ2h0ZWQgdG8gZ2VuZXJhdGUgd2VpZ2h0ZWQgc3Vic3BlY3RyYSwgd2hpY2ggYXJlIHRoZW4gc3VidHJhY3RlZDsgc2VlIGBTaWduYWxBdmVyYWdpbmcubWAKLSBZYWlyIEFsdG1hbidzIDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9hbHRtYW55L2V4cG9ydF9maWciIHRhcmdldD0iX2JsYW5rIj5leHBvcnRfZmlnIHRvb2xib3g8L2E+IGlzIGluY2x1ZGVkIGFzIGFuIG9wdGlvbmFsIHRvb2xib3ggdGhhdCwgaWYgYWRkZWQgdG8gTUFUTEFCJ3Mgc2VhcmNoIHBhdGgsIEdhbm5ldCB3aWxsIHVzZSB0byBhcHBlbmQgYWxsIG91dHB1dCBQREZzIGZyb20gZWFjaCBtb2R1bGUgaW50byBhIHNpbmdsZSBQREYgKGEgZmxhZyBtdXN0IGJlIHNldCBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYCB0byBkbyB0aGlzKTsgdGhpcyBpcyB2ZXJ5IHVzZWZ1bCBmb3IgZWFzeSBRQSBvZiBsb3RzIG9mIGRhdGE7IG5vdGUgdGhhdCA8YSBocmVmPSJodHRwczovL3d3dy5naG9zdHNjcmlwdC5jb20vIiB0YXJnZXQ9Il9ibGFuayI+R2hvc3RzY3JpcHQ8L2E+IG5lZWRzIHRvIGJlIGluc3RhbGxlZCBmb3IgdGhlIGFwcGVuZGluZyBvZiBQREZzIHRvIHdvcmsgKE5COiBtYWNPUyB1c2VycyBzaG91bGQgdXNlIHRoaXMgPGEgaHJlZj0iaHR0cHM6Ly9wYWdlcy51b3JlZ29uLmVkdS9rb2NoLyIgdGFyZ2V0PSJfYmxhbmsiPnZlcnNpb248L2E+IG9yIHVzZSA8YSBocmVmPSJodHRwczovL2Zvcm11bGFlLmJyZXcuc2gvZm9ybXVsYS9naG9zdHNjcmlwdCIgdGFyZ2V0PSJfYmxhbmsiPkhvbWVicmV3PC9hPiB0byBpbnN0YWxsIEdob3N0c2NyaXB0KQotIEltcGxlbWVudGVkIHVzZSBvZiBoeXBlcmxpbmtzIGluIGluZm8gYW5kIGVycm9yIG1lc3NhZ2VzIHByaW50ZWQgaW4gdGhlIGNvbW1hbmQgd2luZG93IHNvIHRoYXQgdXNlcnMgY2FuOiAoMSkgZGlyZWN0bHkgcnVuIGEgY2VydGFpbiBmdW5jdGlvbiAoc3VjaCBhcyBgVXBkYXRlR2FubmV0Lm1gIHdoZW4gYFZlcnNpb25DaGVjay5tYCBpbmZvcm1zIHRoZSB1c2VyIGEgbmV3IHJlbGVhc2UgaXMgYXZhaWxhYmxlKTsgKDIpIGdvIHN0cmFpZ2h0IHRvIHRoZSBsaW5lIG9mIGNvZGUgd2hlcmUgYW4gZW5jb3VudGVyZWQgZXJyb3IgY2FuIGJlIGZpeGVkIChzdWNoIGFzIGVycm9ycyBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYCk7IG9yICgzKSBnbyB0byBhIHdlYnNpdGUgYnkgY2xpY2tpbmcgb24gdGhlIHByaW50ZWQgVVJMIChzdWNoIGFzIHRvIGRvd25sb2FkIFNQTTEyKTsgdGhlIHJlbGV2YW50IGNvZGUgaGFzIGJlZW4gYm9ycm93ZWQgZnJvbSBleHBvcnRfZmlnCi0gQWRkZWQgYW4gb3B0aW9uIGluIGBHYW5uZXRQcmVJbml0aWFsaXNlLm1gIHRoYXQgYWxsb3dzIHVzZXJzLCB3aGVuIHVzaW5nIHJvYnVzdCBzcGVjdHJhbCByZWdpc3RyYXRpb24sIHRvIHVzZSB0aGUgYXZlcmFnZWQgcHJlLWFsaWduZWQgc3Vic3BlY3RyYSBhcyByZWZlcmVuY2VzIGZvciBhbGlnbmluZyB0aGUgYXZlcmFnZWQgcG9zdC1hbGlnbmVkIHN1YnNwZWN0cmEgKHRoaXMgbWF5IGJlIGhlbHBmdWwgd2hlbiByb2J1c3Qgc3BlY3RyYWwgcmVnaXN0cmF0aW9uIG1ha2VzIHRoZSBhbGlnbm1lbnQgb2YgYWxyZWFkeSBnb29kLXF1YWxpdHkgcHJlLWFsaWduZWQgc3BlY3RyYSB3b3JzZSkKLSBgUGFwZXJQbG90Lm1gIG5vdyBhbGxvd3MgdXNlcnMgdG8gcGxvdCBhbiBleGVtcGxhcnkgdm94ZWwgbWFzayBjby1yZWdpc3RlcmVkIHRvIHRoZSByZXNwZWN0aXZlIHN0cnVjdHVyYWwgaW1hZ2UKLSBBZGRlZCBgR2FubmV0TWFza19HRV9uaWkubWA7IEdFIHVzZXJzIGNhbiBub3cgdXNlIE5JZlRJIGltYWdlcyBpbnN0ZWFkIG9mIERJQ09NcyB0byBjby1yZWdpc3RlciB0aGVpciBNUlMgdm94ZWxzIHRvIHN0cnVjdHVyYWwgaW1hZ2VzCi0gQWRkZWQgdGhlIGFiaWxpdHkgdG8gdHJpbSBkYXRhc2V0cwotIEV4dGVuZGVkIHRoZSBhYmlsaXR5IHRvIGNvbmNhdGVuYXRlIGZpbGVzLCBpbmNsdWRpbmcgb3ZlciBtdWx0aXBsZSBzdWJqZWN0cwotIEFkZGVkIGEgZmxhZyBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYCAoYE1SU19zdHJ1Y3QucC5oaWRlYCkgdG8gcHJldmVudCBvdXRwdXQgZmlndXJlcyBmcm9tIGRpc3BsYXlpbmcgKHVzZWZ1bCB3aGVuIHByb2Nlc3NpbmcgYSBsYXJnZSBiYXRjaCBvZiBmaWxlcykKCiMjIyBNYWpvciBjaGFuZ2VzCgotIFRoZSBvdXRkYXRlZCBtYW51YWwgUERGIGhhcyBiZWVuIHJlbW92ZWQ7IHVwLXRvLWRhdGUgc29mdHdhcmUgZG9jdW1lbnRhdGlvbiB3aWxsIG5vdyBiZSBmb3VuZCBvbmxpbmU6IGh0dHBzOi8vbWFya21pa2tlbHNlbi5naXRodWIuaW8vR2FubmV0LWRvY3MvaW5kZXguaHRtbAotIEdhbm5ldCBpcyBub3cgbGljZW5zZWQgdW5kZXIgdGhlIEJTRCAzLUNsYXVzZSBMaWNlbnNlCi0gQWxwaGEgdGlzc3VlIGNvcnJlY3Rpb24gaXMgbm93IHBlcmZvcm1lZCBvbiBhIGJ5LW1ldGFib2xpdGUgYmFzaXMgcmF0aGVyIHRoYW4gZml4aW5nIHRoZSBpbnRyaW5zaWMgV006R00gY29uY2VudHJhdGlvbiB0byAxOjIgKGFscGhhKSBmb3IgYWxsIG1ldGFib2xpdGVzIChhc3N1bWluZyBmb3Igbm93IHRoZSByYXRpbyBpcyAxOjIgZm9yIEdBQkEgYW5kIEdseCBhbmQgMToxIGZvciBHU0gsIEV0T0ggYW5kIExhYyk7IHRoZSBhbHBoYSB0aGF0IGlzIGFzc3VtZWQgaXMgZGlzcGxheWVkIGluIHRoZSBHYW5uZXRRdWFudGlmeSBvdXRwdXQgZmlndXJlCi0gUmVtb3ZlZCBgTVJTX3N0cnVjdC5wLk9OX09GRl9vcmRlcmAgZnJvbSBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYDsgdGhlIG9yZGVyIG9mIGVkaXRpbmcgcHVsc2VzIGlzIG5vdyBkZXRlcm1pbmVkIGF1dG9tYXRpY2FsbHk7IHRoZSByZWxldmFudCBjb2RlIGhhcyBiZWVuIGJvcnJvd2VkIGZyb20gT3NwcmV5ICh0aGlzIGhhcyBvbmx5IGJlZW4gdGVzdGVkIHRvIGEgbGltaXRlZCBleHRlbnQgc28gbWF5IHJlcXVpcmUgZnVydGhlciB0d2Vha2luZykKLSBUaGUgZXhjZXB0aW9uIHRvIHRoaXMgY2hhbmdlIGlzIHBoYW50b20gZGF0YSwgd2hlcmUgdXNlcnMgd2lsbCBzdGlsbCBuZWVkIHRvIHNwZWNpZnkgdGhlIG9yZGVyIG9mIGVkaXRpbmcgcHVsc2VzCgojIyMgTWlub3IgY2hhbmdlcwoKLSBEYXRhc2V0cyB3aXRoIGRpZmZlcmluZyBudW1iZXIgb2YgYXZlcmFnZXMgY2FuIG5vdyBiZSBiYXRjaC1wcm9jZXNzZWQgdG9nZXRoZXIKLSBUdXJuZWQgb2ZmIHRoZSBwcm9ncmVzcyBiYXIgZGlzcGxheWVkIHdoZW4gbG9hZGluZyBTaWVtZW5zIFRXSVggZGF0YSB0byByZWR1Y2UgbG9hZGluZyB0aW1lCi0gUmVuYW1lZCBzb21lIGZpbGVzIGZvciB0aGUgc2FrZSBvZiBjbGFyaXR5IGFuZCBzdHlsZTsgcmVtb3ZlZCBvYnNvbGV0ZSBgR2FubmV0TWFzay5tYAotIFNpZ25hbCBhdmVyYWdpbmcgYW5kIHN1YnRyYWN0aW9uIGFyZSBub3cgZG9uZSBpbiB0aGUgbmV3IGZ1bmN0aW9uIGBTaWduYWxBdmVyYWdpbmcubWAKLSBWYXJpb3VzIGltcHJvdmVtZW50cyB0byBgUm9idXN0U3BlY3RyYWxSZWdpc3RyYXRpb24ubWAgKGZvcm1lcmx5IGBSb2J1c3RfU3BlY3RyYWxfUmVnaXN0cmF0aW9uLm1gKSBmb3IgYmV0dGVyIGhhbmRsaW5nIG9mIGRhdGEgYWNxdWlyZWQgdXNpbmcgdmVyeSBzdHJvbmcgd2F0ZXIgc3VwcHJlc3Npb24KLSBUaGUgYXNzdW1lZCBjb25jZW50cmF0aW9uIG9mIHB1cmUgd2F0ZXIgaW4gYEdhbm5ldEZpdC5tYCBhbmQgYEdhbm5ldEZpdFBoYW50b20ubWAgKFB1cmVXYXRlckNvbmMpIGhhcyBiZWVuIGNoYW5nZWQgZnJvbSA1NSB0byA1NS41MSBtb2wva2c7IHRoaXMgcHV0cyBpdCBpbiBsaW5lIHdpdGggdGhlIHNhbWUgY29uc3RhbnQgdXNlZCBpbiBgR2FubmV0UXVhbnRpZnkubWAKLSBBZGRlZCBlZGl0cyBmcm9tIFJhbHBoIE5vZXNrZSAoR0UgQmVybGluKSB0byBgR0VSZWFkLm1gIGZvciBiZXR0ZXIgaGFuZGxpbmcgb2YgZGF0YSB3aGVuIG5lY2hvZXMgPT0gMTsgYWxzbyBjaGFuZ2VkIHRoZSBzY2FsaW5nIGZhY3RvciBpZiBuZWNob2VzID4gMSAoaG9wZWZ1bGx5IHRoaXMgbWFrZXMgd2F0ZXItcmVmZXJlbmNlZCBtZWFzdXJlbWVudHMgY29uc2lzdGVudCBhY3Jvc3MgYWxsIGRhdGEgZW5jb2RpbmcgZmxhdm9ycykKLSBJbiBgR0VSZWFkLm1gIGFuZCBgUGhpbGlwc1JlYWRfZGF0YS5tYCwgaW5zdGVhZCBvZiB1c2luZyB0aGUgZmlyc3QgcG9pbnQgaW4gdGhlIEZJRCBmb3Igc2lnbmFsIHdlaWdodGluZywgdGhlIG1vc3QgY29tbW9uIHBvaW50IHRoYXQgaXMgdGhlIG1heCBpbiB0aGUgbWFnbml0dWRlIHNpZ25hbCBhY3Jvc3MgYWxsIEZJRHMgaXMgbm93IHVzZWQKLSBTb21lIGNoYW5nZXMgdG8gYFNpZW1lbnNESUNPTVJlYWQubWAgYW5kIGBESUNPTVJlYWQubWAgZm9yIHNtYXJ0ZXIgaGFuZGxpbmcgb2YgZGF0YSBmaWxlczogZm9yIGVhY2ggZGF0YXNldCwgbWV0YWJvbGl0ZSBhbmQgd2F0ZXIgZGF0YSBmaWxlcyBzaG91bGQgYmUgc3RvcmVkIGluIHNlcGFyYXRlIGZvbGRlcnMKLSBJbXByb3ZlZCBgRXhwb3J0VG9DU1YubWA7IGEgc2luZ2xlIC5jc3YgZmlsZSBpcyBub3cgZXhwb3J0ZWQgZm9yIEhFUk1FUyBkYXRhc2V0czsgdXNlZnVsIHZhcmlhYmxlcyBzdWNoIGFzIHNpZ25hbCBhcmVhcyBhbmQgQ3IgZml0IHF1YWxpdHkgbWV0cmljcyBhcmUgbm93IGFsc28gZXhwb3J0ZWQKLSBSZXdyb3RlIGBEaXNjZXJuRGF0YVR5cGUubWAgKGZvcm1lcmx5IGBHYW5uZXREaXNjZXJuRGF0YXR5cGUubWApCi0gTWlub3IgY2hhbmdlcyBhbmQgaW1wcm92ZW1lbnRzIHRvIGBQYXBlclBsb3QubWAKLSBNaW5vciBjaGFuZ2VzIHRvIGBDb1JlZ1N0YW5kQWxvbmUubWAgZnVuY3Rpb25zCi0gTWlub3IgY2hhbmdlcyB0byBgU2lnbmFsRmlsdGVyLm1gCi0gU2ltcGxpZmllZCBgRWRkeUN1cnJlbnRDb3JyZWN0aW9uLm1gIChmb3JtZXJseSBgcGhhc2VfY29ycmVjdGlvbl9maWRzLm1gKQotIFNldCB1cCBTUE0xMiBmb3IgYmF0Y2ggdGlzc3VlIHNlZ21lbnRhdGlvbiBvbmx5IHdoZW4gdGlzc3VlIHNlZ21lbnRhdGlvbiBoYXMgbm90IGFscmVhZHkgYmVlbiBydW4gYW5kIGRvIGl0IG9ubHkgb25jZSBpbiBhIGJhdGNoCi0gQWxsRnJhbWVzRlQgKGZvciB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCkgaXMgbm93IGFsc28gc2F2ZWQgaW4gYE1SU19zdHJ1Y3Quc3BlY2AKLSBXaGVuIHNhdmluZyB0aGUgYE1SU19zdHJ1Y3RgIHN0cnVjdHVyZSwgdGhlIC5tYXQgZmlsZSBpcyBub3cgc2F2ZWQgdXNpbmcgdmVyc2lvbiA3LjMgKGZvciB0aGUgcmFyZSBjYXNlIHdoZW4gdGhlIHN0cnVjdHVyZSBpcyA+PSAyIEdCIG9uIDY0LWJpdCBjb21wdXRlcnMpCi0gUmVtb3ZlZCBgTVJTX3N0cnVjdC5wLnNkYXRgIGZyb20gYEdhbm5ldFByZUluaXRpYWxpc2UubWAgYW5kIHRoZSBjb3JyZXNwb25kaW5nIGNvZGUgZnJvbSBgR2FubmV0TG9hZC5tYCAodGhpcyBmZWF0dXJlIHdhcyBuZXZlciByZWFsbHkgdXNlZCBieSB1c2VycyBhZmFpaykKLSBJbXByb3ZlZCBnbG9iYWwgemVyby1vcmRlciBwaGFzaW5nIGluIGBTcGVjdHJhbFJlZ2lzdHJhdGlvbkhFUk1FUy5tYAotIE1hbnkgY29zbWV0aWMvYWVzdGhldGljIGNoYW5nZXMKICAtIFRoZSBtb2R1bGUgb3V0cHV0IGZpZ3VyZXMgbm93IHNob3cgaW5mb3JtYXRpb24gdXNlZnVsIGZvciByZXBvcnRpbmcgYWNxdWlzaXRpb24gcGFyYW1ldGVycyBhbmQgcmVzdWx0cyAoaW4gbGluZSB3aXRoIHRoZSA8YSBocmVmPSJodHRwczovL29ubGluZWxpYnJhcnkud2lsZXkuY29tL2RvaS8xMC4xMDAyL25ibS40NDg0IiB0YXJnZXQ9Il9ibGFuayI+TVJTaW5NUlM8L2E+IGNoZWNrbGlzdCkKICAtIENvLXJlZ2lzdGVyZWQvc2VnbWVudGVkIHZveGVsIG1hc2tzIGRpc3BsYXllZCBpbiBHYW5uZXRDb1JlZ2lzdGVyLCBHYW5uZXRTZWdtZW50LCBhbmQgR2FubmV0UXVhbnRpZnkgb3V0cHV0IGZpZ3VyZXMgYXJlIG5vdyBzaG93biBpbiB5ZWxsb3cgcmF0aGVyIHRoYW4gZ3JheXNjYWxlCiAgLSBTbWFydGVyIHN0YWNraW5nIG9mIEhFUk1FUyBkaWZmZXJlbmNlIHNwZWN0cmEgaW4gYFBsb3RQcmVQb3N0QWxpZ24ubWAgYW5kIGBQbG90UHJlUG9zdEFsaWduMi5tYCAoZm9ybWVybHkgYEdhbm5ldFBsb3RQcmVQb3N0QWxpZ24ubWAgYW5kIGBHYW5uZXRQbG90UHJlUG9zdEFsaWduMi5tYCkKICAtIFRoZSBHYW5uZXQgZG9jdW1lbnRhdGlvbiB3ZWJzaXRlIFVSTCBpcyBwcmludGVkIGF0IHRoZSBib3R0b20gb2YgZXZlcnkgb3V0cHV0IGZpZ3VyZQogIC0gUmVtb3ZlZCBpcnJlbGV2YW50IG1lc3NhZ2VzIGZyb20gYmVpbmcgcHJpbnRlZCBpbiB0aGUgY29tbWFuZCB3aW5kb3cgZHVyaW5nIHRoZSBhbmFseXNpcyBwaXBlbGluZSwgcmVwbGFjaW5nIHRoZW0gd2l0aCBtb3JlIHVzZWZ1bCBtZXNzYWdlcwogIC0gTWlub3IgcmVhcnJhbmdpbmcgb2YgcmVzdWx0cyB0ZXh0IGluIEdhbm5ldFNlZ21lbnQgYW5kIEdhbm5ldFF1YW50aWZ5IG91dHB1dCBmaWd1cmVzCiAgLSBTbGlnaHQgY2hhbmdlIHRvIHRoZSB5LWF4aXMgbGFiZWxzIG9mIHRoZSBDciBmcmVxdWVuY3kgc3BlY3Ryb2dyYW0gaW4gdGhlIEdhbm5ldExvYWQgb3V0cHV0IGZpZ3VyZQogIC0gQmV0dGVyIHJlb3JkZXJpbmcgb2YgYE1SU19zdHJ1Y3Qub3V0YCBzdWJmaWVsZHMgY3JlYXRlZCBpbiBgR2FubmV0Rml0Lm1gCgojIyMgQnVnIGZpeGVzCgotIEZyZXF1ZW5jeSBhbmQgcGhhc2Ugb2Zmc2V0IGVzdGltYXRlcyBhcmUgbm93IHRyYWNrZWQgY29ycmVjdGx5IGFuZCBzYXZlZCB3aGVuIHJ1bm5pbmcgYW55IG9mIHRoZSBzcGVjdHJhbCByZWdpc3RyYXRpb24tYmFzZWQgYWxpZ25tZW50IG1ldGhvZHMKLSBSZW1vdmVkIG9sZCBkZWJ1Z2dpbmcgY29uZGl0aW9uYWwgc3RhdGVtZW50IGluIGBUV0lYRGVJZGVudGlmeS5tYAotIEV4cGxpY2l0bHkgc3BlY2lmeSBjb2xvciBvZiB3YXRlciBmcmVxdWVuY3kgdHJhY2UgaW4gR2FubmV0TG9hZCBvdXRwdXQgZmlndXJlIGFzIHRoZXJlIGFwcGVhcnMgdG8gYmUgYSBidWcgc2luY2UgTUFUTEFCIFIyMDE5YiB3aGVuIHVzaW5nIGhvbGQgdG8gb3ZlcmxheSBwbG90cwotIEFkZGVkIEV0T0ggc2lnbmFsIHBhcmFtZXRlcnMgdG8gYEdhbm5ldFF1YW50aWZ5Lm1gCi0gSW4gYFNpZW1lbnNUd2l4UmVhZC5tYCwgaWYgbm8gd2F0ZXIgcmVmZXJlbmNlIGlzIHByb3ZpZGVkLCB1c2UgdGhlIG1vc3QgY29tbW9uIHBvaW50IHRoYXQgaXMgdGhlIG1heCBpbiB0aGUgbWFnbml0dWRlIHNpZ25hbCBhY3Jvc3MgYWxsIEZJRHMgaW5zdGVhZCBvZiBqdXN0IHVzaW5nIHRoZSBmaXJzdCBwb2ludAotIEZpeGVkIGFuIG9yaWVudGF0aW9uIHByb2JsZW0gaW4gYEdhbm5ldE1hc2tfR0UubWAKLSBSZW1vdmVkIHVubmVjZXNzYXJ5IGNvbXBsZXggY29uanVnYXRlIHRyYW5zcG9zZSBkdXJpbmcgRkZUIG9mIHdhdGVyIGRhdGEgaW4gYEdhbm5ldExvYWQubWAKLSBUdXJuZWQgb2ZmIHdhcm5pbmdzIGFib3V0IGxlZ2FjeSBudW1iZXIgZ2VuZXJhdG9yIGluIGBSb2J1c3RTcGVjdHJhbFJlZ2lzdHJhdGlvbi5tYCAoZm9yIHdoZW4gcm5nIGFuZCByYW5kbiBhcmUgcnVuIGluIGBTaWduYWxGaWx0ZXIubWApIGlmIHRoZXkgYXJlIGFscmVhZHkgdHVybmVkIG9uCgo8YnI+CgojIyAzLjEuNQo8c3BhbiBzdHlsZT0iY29sb3I6IGdyZXk7Ij4yMDIwLTAzLTAyPC9zcGFuPgoKIyMjIE5ldyBmZWF0dXJlcwoKLSBTbWFydGVyIGNoZWNraW5nIG9mIGluY29ycmVjdCBzZXR0aW5ncyBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYCBieSBgQ2hlY2tUYXJnZXRzLm1gCi0gTWFqb3IgY2hhbmdlcyB0byBgR2FubmV0Rml0UGhhbnRvbS5tYCB0byBicmluZyBpdCBtb3JlIGluIGxpbmUgd2l0aCBgR2FubmV0Rml0Lm1gCi0gQWRkZWQgc3VwcG9ydCBmb3IgQ01SUiBNRUdBLXNMQVNFUiBzZXF1ZW5jZSBpbiBgU2llbWVuc1R3aXhSZWFkLm1gCi0gSW4gYFN1YlNwZWN0cmFsQWxpZ24ubWAsIGlmIHZlcnkgc3Ryb25nIHdhdGVyIHN1cHByZXNzaW9uIHdhcyB1c2VkLCB1c2UgQ2hvIGluc3RlYWQgb2YgcmVzaWR1YWwgd2F0ZXIgdG8gYWxpZ24gc3Vic3BlY3RyYSBvZiBHQUJBLSwgTGFjLSwgYW5kIEV0T0gtZWRpdGVkIGRhdGFzZXRzCgojIyMgTWlub3IgY2hhbmdlcwoKLSBOb2lzZSBlc3RpbWF0aW9uIGluIGBDYWxjTm9pc2UubWAsIGBSb2J1c3RfU3BlY3RyYWxfUmVnaXN0cmF0aW9uLm1gLCBhbmQgYFNpZ25hbEZpbHRlci5tYCBpcyBub3cgcGVyZm9ybWVkIGJldHdlZW4gOCBhbmQgMTAgcHBtIHRvIGFjY291bnQgZm9yIGRhdGFzZXRzIHRoYXQgaGF2ZSBzaG9ydGVyIHNwZWN0cmFsIHdpZHRocwotIENsZWFuZWQgdXAgY29kZSBpbiBgR2FubmV0Rml0Lm1gCi0gUXVhbnRpZmljYXRpb24gb2YgTGFjIG5vdyBleHBsaWNpdGx5IGRlZmluZWQgYXMgTGFjK01NCi0gSW1wcm92ZWQgZnVuY3Rpb25hbGl0eSBvZiBgUGFwZXJQbG90Lm1gCi0gSW4gYFNpZW1lbnNUd2l4UmVhZC5tYCwgd2hlbiBhIHdhdGVyIHJlZmVyZW5jZSBpcyBwcmVzZW50LCBjb2lsIHNlbnNpdGl2aXR5IGFuZCBwaGFzZSBpcyBiYXNlZCBvbiB0aGUgcG9pbnQgaW5kZXggdGhhdCBpcyBhdCB0aGUgdG9wIG9mIHRoZSBlY2hvLCByYXRoZXIgdGhhbiBzaW1wbHkgZml4aW5nIGl0IHRvIHRoZSBmaXJzdCBwb2ludAoKIyMjIEJ1ZyBmaXhlcwoKLSBNaW5vciBidWcgZml4ZXMgaW4gQ29SZWdTdGFuZEFsb25lIGZ1bmN0aW9ucwotIENvcnJlY3RlZCB1c2Ugb2YgcmFuZG9tIG51bWJlciBnZW5lcmF0aW9uIGluIGBTaWduYWxGaWx0ZXIubWAgd2hlbiBwZXJmb3JtaW5nIG5vaXNlIHJlcGxhY2VtZW50IHRvIGVuc3VyZSB0aGUgc2FtZSByZXN1bHRzIGFyZSByZXByb2R1Y2VkIGVhY2ggdGltZSBpdCBpcyBydW4gb24gYSBkYXRhc2V0Cgo8YnI+CgojIyAzLjEuNAo8c3BhbiBzdHlsZT0iY29sb3I6IGdyZXk7Ij4yMDE5LTEwLTAzPC9zcGFuPgoKIyMjIEJ1ZyBmaXgKCi0gRml4ZWQgZXJyb3IgaW4gdGhlIGNhbGN1bGF0aW9uIG9mIGBBdmdEZWx0YUYwYCBmb3IgTUVHQS1QUkVTUyBkYXRhCgo8YnI+CgojIyAzLjEuMwo8c3BhbiBzdHlsZT0iY29sb3I6IGdyZXk7Ij4yMDE5LTA4LTA2PC9zcGFuPgoKIyMjIE5ldyBmZWF0dXJlcwoKLSBNYWpvciBpbXByb3ZlbWVudHMgdG8gYFJvYnVzdF9TcGVjdHJhbF9SZWdpc3RyYXRpb24ubWAKLSBXYXZlbGV0IHRvb2xib3ggbm8gbG9uZ2VyIHJlcXVpcmVkCi0gUmF3IGRhdGEgaXMgbm93IHBoYXNlLWNvcnJlY3RlZCBwcmlvciB0byBhbGlnbm1lbnQKLSBgR2FubmV0TG9hZC5tYCBhbmQgYEdhbm5ldEZpdC5tYCBubyBsb25nZXIgY3Jhc2ggaWYgYW4gZXJyb3Igb2NjdXJzIGR1cmluZyBhIGJhdGNoIGFuYWx5c2lzCi0gQW4gZXJyb3IgcmVwb3J0IGlzIHByaW50ZWQgYWZ0ZXIgdGhlIGZpbmFsIGRhdGFzZXQgaXMgbG9hZGVkL2ZpdHRlZCBzbyB1c2VycyBjYW4gY2hlY2sgd2hpY2ggZGF0YXNldHMgZmFpbGVkCi0gQWRkZWQgc3VwcG9ydCBmb3IgR0UgcmV2aXNpb24gaGVhZGVyIDIwLjAwNwoKIyMjIE1pbm9yIGNoYW5nZQoKLSBgV2F0ZXJfUG9zaXRpdmVgIGZsYWcgaW4gYEdhbm5ldFByZUluaXRpYWxpc2UubWAgcmVtb3ZlZAoKCgoKCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -799,6 +890,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("release-notes.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

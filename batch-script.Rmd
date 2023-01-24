@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-```{matlab, eval = FALSE}
+```{octave, eval = FALSE}
 % Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images
 % Remember to check GannetPreInitialise.m has the appropriate settings for your data
 

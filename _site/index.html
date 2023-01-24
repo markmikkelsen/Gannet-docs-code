@@ -13,7 +13,7 @@
 
 <title>Gannet</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -30,6 +30,8 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -150,6 +152,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </script>
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -311,6 +318,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -390,7 +400,10 @@ $(document).ready(function () {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -404,7 +417,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -416,10 +429,17 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Gannet</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
@@ -449,7 +469,7 @@ function topFunction() {
 }
 </script>
 <p><br></p>
-<p><img src="images/logo.png" alt="Gannet logo" id="myImg2"/></p>
+<p><img id="myImg" src="images/logo.png" alt="The Gannet logo"/></p>
 <div class="release">
 <h3>
 Current stable release:
@@ -460,9 +480,9 @@ Current stable release:
 <h2 class="hasAnchor">Overview<a href="#overview" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <p>Gannet is a free, open-source MATLAB-based software toolkit for
-analyzing edited <sup>1</sup>H magnetic resonance spectroscopy (MRS)
-data. Its largely automated functions cover all the essential steps of
-modern MRS analysis:</p>
+analyzing edited single-voxel <sup>1</sup>H magnetic resonance
+spectroscopy (MRS) data. Its largely automated functions cover all the
+essential steps of modern MRS analysis:</p>
 <ul>
 <li>Loading raw data</li>
 <li>Substantial preprocessing</li>
@@ -478,8 +498,8 @@ input.</p>
 <p>Additionally, as open-source software, advanced users have the
 ability to modify the underlying routines for ad hoc purposes.</p>
 <p>Gannet is continually being updated and has an active support base.
-Visit our <a href="https://www.gabamrs.com/" target="_blank">blog</a>
-for the latest news on Gannet and our developments in edited MRS
+Visit our <a href="https://gabamrs.com/" target="_blank">blog</a> for
+the latest news on Gannet and our developments in edited MRS
 methodology.</p>
 </div>
 <div id="installation" class="section level2 hasAnchor">
@@ -489,7 +509,7 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <h3 class="hasAnchor">Prerequisites<a href="#prerequisites"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Gannet runs in
-<a href="https://www.mathworks.com/products/matlab.html" target="_blank">MATLAB</a>.
+<a href="https://mathworks.com/products/matlab.html" target="_blank">MATLAB</a>.
 For best performance, we recommend using the latest release if possible.
 Additionally, Gannet requires that the following MATLAB toolboxes are
 installed:</p>
@@ -502,7 +522,7 @@ installed:</p>
 <p>You can check which toolboxes you have installed by typing
 <code>ver</code> in the MATLAB command window. To install any missing
 toolboxes, please follow these
-<a href="https://www.mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab" target="_blank">instructions</a>.</p>
+<a href="https://mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab" target="_blank">instructions</a>.</p>
 <p>To run the voxel co-registration and structural image segmentation
 modules,
 <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a>
@@ -513,12 +533,12 @@ must be installed.</p>
 aria-label="Anchor link to header"></a></h3>
 <p>The simplest way to install Gannet is to download the zipped <a
 href="https://github.com/markmikkelsen/Gannet/archive/refs/heads/main.zip">main
-folder</a> from the
+directory</a> from the
 <a href="https://github.com/markmikkelsen/Gannet" target="_blank">repository</a>
-on GitHub, unzip it, and move the <em>Gannet-main</em> folder into your
-MATLAB folder (or anywhere of your choice).</p>
+on GitHub, unzip it, and move the <code>Gannet-main/</code> directory
+into your MATLAB directory (or anywhere of your choice).</p>
 <p>Alternatively, git-savvy users can clone the Gannet repository into a
-folder of their choice:</p>
+directory of their choice:</p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">git</span> clone https://github.com/markmikkelsen/Gannet.git</span></code></pre></div>
 </div>
@@ -527,23 +547,23 @@ class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="
 aria-label="Anchor link to header"></a></h3>
 <p>Open the <em>Set Path</em> dialog box from the MATLAB menu (or run
 the command <code>pathtool</code> in the Command Window), click <em>Add
-with Subfolders</em>, find the downloaded Gannet folder and then select
-it. When done, press <em>Save</em> to permanently save the Gannet folder
-to MATLAB’s default search path.</p>
+with Subfolders…</em>, find the downloaded Gannet directory and then
+select it. When done, press <em>Save</em> to permanently save the Gannet
+directory to MATLAB’s default search path.</p>
 <p>SPM12 can be installed in the same manner after it has been
 downloaded from the SPM website.</p>
 <div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i> It is highly
-recommended that you only add the main SPM12 folder (<em>spm12</em>) to
-your search path instead of including all the subfolders. This prevents
-function conflicts.</p>
+<p><i class="fa fa-info-circle" style="color: white"></i>  It is highly
+recommended that you only add the main SPM12 directory
+(<code>spm12/</code>) to your search path instead of including all the
+subdirectories. This prevents function conflicts.</p>
 </div>
 </div>
 </div>
 <div id="compatibility" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Compatibility<a href="#compatibility"
 class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>Gannet is currently being developed in MATLAB R2022b in macOS 13.0
+<p>Gannet is currently being developed in MATLAB R2022b in macOS 13.1
 Ventura. While reasonable effort is made to ensure legacy and cross-OS
 compatibility, an error-free user experience is not guaranteed.</p>
 </div>
@@ -555,6 +575,7 @@ aria-label="Anchor link to header"></a></h2>
 <ul>
 <li>DICOM (.dcm)</li>
 <li>GE P-file (.7)</li>
+<li>NIfTI-MRS (.nii[.gz])</li>
 <li>Philips .data/.list</li>
 <li>Philips .raw</li>
 <li>Philips .sdat/.spar</li>
@@ -566,8 +587,8 @@ aria-label="Anchor link to header"></a></h2>
 to be in NIfTI format (DICOM files can also be used if processing GE
 P-files).</p>
 <div class="warning">
-<p><i class="fa fa-exclamation-circle" style="color: white"></i> Philips
-users: Do not use structural images exported using the
+<p><i class="fa fa-exclamation-circle" style="color: white"></i> 
+Philips users: Do not use structural images exported using the
 <em>fsl-nifti</em> option as this creates problems with co-registration
 in Gannet.</p>
 </div>
@@ -584,8 +605,8 @@ for a solution.</p>
 forum</a> on the
 <a href="https://mrshub.org/" target="_blank">MRSHub</a>.</p>
 <p>The support team can also be directly reached using our blog’s
-<a href="https://www.gabamrs.com/contact" target="_blank">contact
-form</a>. We will do our best to work with you to solve your issue.</p>
+<a href="https://gabamrs.com/contact" target="_blank">contact form</a>.
+We will do our best to work with you to solve your issue.</p>
 </div>
 <div id="versioning" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Versioning<a href="#versioning"
@@ -616,7 +637,6 @@ aria-label="Anchor link to header"></a></h2>
 <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD-3-Clause
 License</a>. Should you disseminate material that made use of Gannet,
 please cite the following publications, as appropriate:</p>
-<p><strong>For all work using Gannet:</strong></p>
 <ul>
 <li>Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ.
 <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A
@@ -661,8 +681,8 @@ website</a>.</li>
 <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified
 segmentation.</a> <em>NeuroImage</em>. 2005;26(3):839–851</li>
 </ul>
-<p><strong>If you report water-referenced measurements tissue-corrected
-using:</strong></p>
+<p><strong>If you report water-referenced, tissue-corrected metabolite
+measurements using:</strong></p>
 <p>The Harris et al. method:</p>
 <ul>
 <li>Harris AD, Puts NAJ, Edden RAE.
@@ -709,13 +729,14 @@ indirect contributions:</p>
 </ul>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiR2FubmV0IgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OiBodG1sX2RvY3VtZW50Ci0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKPGJyPgoKPGltZyBpZD0ibXlJbWciIHNyYz0iaW1hZ2VzL2xvZ28ucG5nIiBhbHQ9IlRoZSBHYW5uZXQgbG9nbyIvPgoKOjo6IHJlbGVhc2UKPGgzPkN1cnJlbnQgc3RhYmxlIHJlbGVhc2U6IDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9tYXJrbWlra2Vsc2VuL0dhbm5ldCIgdGFyZ2V0PSJfYmxhbmsiIGNsYXNzPSJiYWRnZSBiYWRnZS1zZWNvbmRhcnkiPjMuMy4wPC9hPjwvaDM+Cjo6OgoKIyMgT3ZlcnZpZXcKCkdhbm5ldCBpcyBhIGZyZWUsIG9wZW4tc291cmNlIE1BVExBQi1iYXNlZCBzb2Z0d2FyZSB0b29sa2l0IGZvciBhbmFseXppbmcgZWRpdGVkIHNpbmdsZS12b3hlbCBeMV5IIG1hZ25ldGljIHJlc29uYW5jZSBzcGVjdHJvc2NvcHkgKE1SUykgZGF0YS4gSXRzIGxhcmdlbHkgYXV0b21hdGVkIGZ1bmN0aW9ucyBjb3ZlciBhbGwgdGhlIGVzc2VudGlhbCBzdGVwcyBvZiBtb2Rlcm4gTVJTIGFuYWx5c2lzOgoKLSBMb2FkaW5nIHJhdyBkYXRhCi0gU3Vic3RhbnRpYWwgcHJlcHJvY2Vzc2luZwotIFNpZ25hbCBtb2RlbGluZwotIFZveGVsIGNvLXJlZ2lzdHJhdGlvbiB3aXRoIHN0cnVjdHVyYWwgTVIgaW1hZ2VzCi0gQ29uY2VudHJhdGlvbiBlc3RpbWF0aW9uIGJhc2VkIG9uIHRpc3N1ZSBjb21wb3NpdGlvbgoKU2V2ZXJhbCBleGlzdGluZyBzb2Z0d2FyZSBwYWNrYWdlcyBmb3IgTVJTIGRhdGEgYW5hbHlzaXMgcmVxdWlyZSBzdWJzdGFudGlhbCB1c2VyIGlucHV0IG9yIG9mZmVyIGEgd2lkZSBzZWxlY3Rpb24gb2YgcHJvY2Vzc2luZyBvcHRpb25zLiBJbiBjb250cmFzdCwgdGhlIHBoaWxvc29waHkgYmVoaW5kIEdhbm5ldCBpcyB0byBwcm92aWRlIHVzZXJzIHdpdGggYSBjb21wbGV0ZSBhdXRvbWF0ZWQgcGlwZWxpbmUgd2l0aG91dCB0aGUgbmVlZCBmb3Igc2lnbmlmaWNhbnQgdXNlciBpbnB1dC4KCkFkZGl0aW9uYWxseSwgYXMgb3Blbi1zb3VyY2Ugc29mdHdhcmUsIGFkdmFuY2VkIHVzZXJzIGhhdmUgdGhlIGFiaWxpdHkgdG8gbW9kaWZ5IHRoZSB1bmRlcmx5aW5nIHJvdXRpbmVzIGZvciBhZCBob2MgcHVycG9zZXMuCgpHYW5uZXQgaXMgY29udGludWFsbHkgYmVpbmcgdXBkYXRlZCBhbmQgaGFzIGFuIGFjdGl2ZSBzdXBwb3J0IGJhc2UuIFZpc2l0IG91ciA8YSBocmVmPSJodHRwczovL2dhYmFtcnMuY29tLyIgdGFyZ2V0PSJfYmxhbmsiPmJsb2c8L2E+IGZvciB0aGUgbGF0ZXN0IG5ld3Mgb24gR2FubmV0IGFuZCBvdXIgZGV2ZWxvcG1lbnRzIGluIGVkaXRlZCBNUlMgbWV0aG9kb2xvZ3kuCgojIyBJbnN0YWxsYXRpb24KCiMjIyBQcmVyZXF1aXNpdGVzCgpHYW5uZXQgcnVucyBpbiA8YSBocmVmPSJodHRwczovL21hdGh3b3Jrcy5jb20vcHJvZHVjdHMvbWF0bGFiLmh0bWwiIHRhcmdldD0iX2JsYW5rIj5NQVRMQUI8L2E+LiBGb3IgYmVzdCBwZXJmb3JtYW5jZSwgd2UgcmVjb21tZW5kIHVzaW5nIHRoZSBsYXRlc3QgcmVsZWFzZSBpZiBwb3NzaWJsZS4gQWRkaXRpb25hbGx5LCBHYW5uZXQgcmVxdWlyZXMgdGhhdCB0aGUgZm9sbG93aW5nIE1BVExBQiB0b29sYm94ZXMgYXJlIGluc3RhbGxlZDoKCi0gSW1hZ2UgUHJvY2Vzc2luZwotIE9wdGltaXphdGlvbgotIFNpZ25hbCBQcm9jZXNzaW5nCi0gU3RhdGlzdGljcyBhbmQgTWFjaGluZSBMZWFybmluZwoKWW91IGNhbiBjaGVjayB3aGljaCB0b29sYm94ZXMgeW91IGhhdmUgaW5zdGFsbGVkIGJ5IHR5cGluZyBgdmVyYCBpbiB0aGUgTUFUTEFCIGNvbW1hbmQgd2luZG93LiBUbyBpbnN0YWxsIGFueSBtaXNzaW5nIHRvb2xib3hlcywgcGxlYXNlIGZvbGxvdyB0aGVzZSA8YSBocmVmPSJodHRwczovL21hdGh3b3Jrcy5jb20vbWF0bGFiY2VudHJhbC9hbnN3ZXJzLzEwMTg4NS1ob3ctZG8taS1pbnN0YWxsLWFkZGl0aW9uYWwtdG9vbGJveGVzLWludG8tYW4tZXhpc3RpbmctaW5zdGFsbGF0aW9uLW9mLW1hdGxhYiIgdGFyZ2V0PSJfYmxhbmsiPmluc3RydWN0aW9uczwvYT4uCgpUbyBydW4gdGhlIHZveGVsIGNvLXJlZ2lzdHJhdGlvbiBhbmQgc3RydWN0dXJhbCBpbWFnZSBzZWdtZW50YXRpb24gbW9kdWxlcywgPGEgaHJlZj0iaHR0cHM6Ly93d3cuZmlsLmlvbi51Y2wuYWMudWsvc3BtL3NvZnR3YXJlL3NwbTEyLyIgdGFyZ2V0PSJfYmxhbmsiPlNQTTEyPC9hPiBtdXN0IGJlIGluc3RhbGxlZC4KCiMjIyBEb3dubG9hZAoKVGhlIHNpbXBsZXN0IHdheSB0byBpbnN0YWxsIEdhbm5ldCBpcyB0byBkb3dubG9hZCB0aGUgemlwcGVkIFttYWluIGRpcmVjdG9yeV0oaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0L2FyY2hpdmUvcmVmcy9oZWFkcy9tYWluLnppcCkgZnJvbSB0aGUgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0IiB0YXJnZXQ9Il9ibGFuayI+cmVwb3NpdG9yeTwvYT4gb24gR2l0SHViLCB1bnppcCBpdCwgYW5kIG1vdmUgdGhlIGBHYW5uZXQtbWFpbi9gIGRpcmVjdG9yeSBpbnRvIHlvdXIgTUFUTEFCIGRpcmVjdG9yeSAob3IgYW55d2hlcmUgb2YgeW91ciBjaG9pY2UpLgoKQWx0ZXJuYXRpdmVseSwgZ2l0LXNhdnZ5IHVzZXJzIGNhbiBjbG9uZSB0aGUgR2FubmV0IHJlcG9zaXRvcnkgaW50byBhIGRpcmVjdG9yeSBvZiB0aGVpciBjaG9pY2U6CgpgYGB7YmFzaCwgZXZhbCA9IEZBTFNFfQpnaXQgY2xvbmUgaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0LmdpdApgYGAKCiMjIyBTZXR1cAoKT3BlbiB0aGUgKlNldCBQYXRoKiBkaWFsb2cgYm94IGZyb20gdGhlIE1BVExBQiBtZW51IChvciBydW4gdGhlIGNvbW1hbmQgYHBhdGh0b29sYCBpbiB0aGUgQ29tbWFuZCBXaW5kb3cpLCBjbGljayAqQWRkIHdpdGggU3ViZm9sZGVycy4uLiosIGZpbmQgdGhlIGRvd25sb2FkZWQgR2FubmV0IGRpcmVjdG9yeSBhbmQgdGhlbiBzZWxlY3QgaXQuIFdoZW4gZG9uZSwgcHJlc3MgKlNhdmUqIHRvIHBlcm1hbmVudGx5IHNhdmUgdGhlIEdhbm5ldCBkaXJlY3RvcnkgdG8gTUFUTEFCJ3MgZGVmYXVsdCBzZWFyY2ggcGF0aC4KClNQTTEyIGNhbiBiZSBpbnN0YWxsZWQgaW4gdGhlIHNhbWUgbWFubmVyIGFmdGVyIGl0IGhhcyBiZWVuIGRvd25sb2FkZWQgZnJvbSB0aGUgU1BNIHdlYnNpdGUuCgo6OjogaW5mbwo8aSBjbGFzcz0iZmEgZmEtaW5mby1jaXJjbGUiIHN0eWxlPSJjb2xvcjogd2hpdGUiPjwvaT4mbmJzcDsgSXQgaXMgaGlnaGx5IHJlY29tbWVuZGVkIHRoYXQgeW91IG9ubHkgYWRkIHRoZSBtYWluIFNQTTEyIGRpcmVjdG9yeSAoYHNwbTEyL2ApIHRvIHlvdXIgc2VhcmNoIHBhdGggaW5zdGVhZCBvZiBpbmNsdWRpbmcgYWxsIHRoZSBzdWJkaXJlY3Rvcmllcy4gVGhpcyBwcmV2ZW50cyBmdW5jdGlvbiBjb25mbGljdHMuCjo6OgoKIyMgQ29tcGF0aWJpbGl0eQoKR2FubmV0IGlzIGN1cnJlbnRseSBiZWluZyBkZXZlbG9wZWQgaW4gTUFUTEFCIFIyMDIyYiBpbiBtYWNPUyAxMy4xIFZlbnR1cmEuIFdoaWxlIHJlYXNvbmFibGUgZWZmb3J0IGlzIG1hZGUgdG8gZW5zdXJlIGxlZ2FjeSBhbmQgY3Jvc3MtT1MgY29tcGF0aWJpbGl0eSwgYW4gZXJyb3ItZnJlZSB1c2VyIGV4cGVyaWVuY2UgaXMgbm90IGd1YXJhbnRlZWQuCgojIyBTdXBwb3J0ZWQgZmlsZSBmb3JtYXRzCgpBdCBwcmVzZW50LCB0aGUgZm9sbG93aW5nIE1SUyBkYXRhIGZpbGUgZm9ybWF0cyBhcmUgc3VwcG9ydGVkOgoKLSBESUNPTSAoLmRjbSkKLSBHRSBQLWZpbGUgKC43KQotIE5JZlRJLU1SUyAoLm5paVsuZ3pdKSAKLSBQaGlsaXBzIC5kYXRhLy5saXN0Ci0gUGhpbGlwcyAucmF3Ci0gUGhpbGlwcyAuc2RhdC8uc3BhcgotIFNpZW1lbnMgRElDT00gKC5pbWEpCi0gU2llbWVucyAucmRhCi0gU2llbWVucyBUV0lYICguZGF0KQoKRm9yIGNyZWF0aW5nIGFuZCBjby1yZWdpc3RlcmluZyB2b3hlbCBtYXNrcywgc3RydWN0dXJhbCBpbWFnZXMgbmVlZCB0byBiZSBpbiBOSWZUSSBmb3JtYXQgKERJQ09NIGZpbGVzIGNhbiBhbHNvIGJlIHVzZWQgaWYgcHJvY2Vzc2luZyBHRSBQLWZpbGVzKS4KCjo6OiB3YXJuaW5nCjxpIGNsYXNzPSJmYSBmYS1leGNsYW1hdGlvbi1jaXJjbGUiIHN0eWxlPSJjb2xvcjogd2hpdGUiPjwvaT4mbmJzcDsgUGhpbGlwcyB1c2VyczogRG8gbm90IHVzZSBzdHJ1Y3R1cmFsIGltYWdlcyBleHBvcnRlZCB1c2luZyB0aGUgKmZzbC1uaWZ0aSogb3B0aW9uIGFzIHRoaXMgY3JlYXRlcyBwcm9ibGVtcyB3aXRoIGNvLXJlZ2lzdHJhdGlvbiBpbiBHYW5uZXQuCjo6OgoKIyMgR2V0dGluZyBoZWxwCgpJZiB5b3UgZW5jb3VudGVyIGFueSBwcm9ibGVtcywgcGxlYXNlIGZpcnN0IGNoZWNrIHRoZSBEb2N1bWVudGF0aW9uIG9yIDxhIGhyZWY9Imh0dHBzOi8vbWFya21pa2tlbHNlbi5naXRodWIuaW8vR2FubmV0LWRvY3MvZmFxLmh0bWwiPkZBUTwvYT4gZm9yIGEgc29sdXRpb24uCgpPdGhlcndpc2UsIHlvdSBjYW4gcG9zdCB5b3VyIHF1ZXJ5IG9uIHRoZSA8YSBocmVmPSJodHRwczovL2ZvcnVtLm1yc2h1Yi5vcmcvYy9tcnMtc29mdHdhcmUvZ2FubmV0LzkiIHRhcmdldD0iX2JsYW5rIj5HYW5uZXQgZm9ydW08L2E+IG9uIHRoZSA8YSBocmVmPSJodHRwczovL21yc2h1Yi5vcmcvIiB0YXJnZXQ9Il9ibGFuayI+TVJTSHViPC9hPi4KClRoZSBzdXBwb3J0IHRlYW0gY2FuIGFsc28gYmUgZGlyZWN0bHkgcmVhY2hlZCB1c2luZyBvdXIgYmxvZydzIDxhIGhyZWY9Imh0dHBzOi8vZ2FiYW1ycy5jb20vY29udGFjdCIgdGFyZ2V0PSJfYmxhbmsiPmNvbnRhY3QgZm9ybTwvYT4uIFdlIHdpbGwgZG8gb3VyIGJlc3QgdG8gd29yayB3aXRoIHlvdSB0byBzb2x2ZSB5b3VyIGlzc3VlLgoKIyMgVmVyc2lvbmluZwoKPGEgaHJlZj0iaHR0cHM6Ly9zZW12ZXIub3JnLyIgdGFyZ2V0PSJfYmxhbmsiPlNlbWFudGljIHZlcnNpb25pbmc8L2E+IGlzIHVzZWQgd2hlbiB1cGRhdGVzIGFyZSBtYWRlIHRvIEdhbm5ldCB1c2luZyB0aGUgc3R5bGUgJ3gueC54Jy4gVmVyc2lvbmluZyBpcyBhbHNvIGNvbmR1Y3RlZCBvbiBhIG1vZHVsZS1zcGVjaWZpYyBiYXNpcyB1c2luZyB0aGUgc3R5bGUgJ1lZTU1ERCcuIFRoYXQgaXMsIGVhY2ggR2FubmV0IG1vZHVsZSBoYXMgaXRzIG93biByZWxlYXNlIHZlcnNpb24uCgojIyBEZXZlbG9wZXJzCgotIFJpY2hhcmQgRWRkZW4gKEpvaG5zIEhvcGtpbnMgVW5pdmVyc2l0eSkKLSBNYXJrIE1pa2tlbHNlbiAoV2VpbGwgQ29ybmVsbCBNZWRpY2luZSkKLSBHZW9yZyBPZWx0enNjaG5lciAoSm9obnMgSG9wa2lucyBVbml2ZXJzaXR5KQotIE11aGFtbWFkIFNhbGVoIChVbml2ZXJzaXR5IG9mIE1hcnlsYW5kKQotIEMuIEpvaG4gRXZhbnMgKENhcmRpZmYgVW5pdmVyc2l0eSkKLSBBc2hsZXkgSGFycmlzIChVbml2ZXJzaXR5IG9mIENhbGdhcnkpCi0gTmljb2xhYXMgUHV0cyAoS2luZydzIENvbGxlZ2UgTG9uZG9uKQoKIyMgTGljZW5zZSBhbmQgY2l0aW5nIEdhbm5ldAoKVGhpcyBzb2Z0d2FyZSBpcyBsaWNlbnNlZCB1bmRlciBhbiBvcGVuLXNvdXJjZSA8YSBocmVmPSJodHRwczovL21hcmttaWtrZWxzZW4uZ2l0aHViLmlvL0dhbm5ldC1kb2NzL2dhbm5ldC1saWNlbnNlLmh0bWwiPkJTRC0zLUNsYXVzZSBMaWNlbnNlPC9hPi4gU2hvdWxkIHlvdSBkaXNzZW1pbmF0ZSBtYXRlcmlhbCB0aGF0IG1hZGUgdXNlIG9mIEdhbm5ldCwgcGxlYXNlIGNpdGUgdGhlIGZvbGxvd2luZyBwdWJsaWNhdGlvbnMsIGFzIGFwcHJvcHJpYXRlOgoKLSBFZGRlbiBSQUUsIFB1dHMgTkFKLCBIYXJyaXMgQUQsIEJhcmtlciBQQiwgRXZhbnMgQ0ouIDxhIGhyZWY9Imh0dHBzOi8vZG9pLm9yZy8xMC4xMDAyL2ptcmkuMjQ0NzgiIHRhcmdldD0iX2JsYW5rIj5HYW5uZXQ6IEEgYmF0Y2gtcHJvY2Vzc2luZyB0b29sIGZvciB0aGUgcXVhbnRpdGF0aXZlIGFuYWx5c2lzIG9mIGdhbW1hLWFtaW5vYnV0eXJpYyBhY2lkLWVkaXRlZCBNUiBzcGVjdHJvc2NvcHkgc3BlY3RyYS48L2E+ICpKb3VybmFsIG9mIE1hZ25ldGljIFJlc29uYW5jZSBJbWFnaW5nKi4gMjAxNDs0MCg2KToxNDQ1LS0xNDUyCgoqKklmIHlvdSBwZXJmb3JtIGZyZXF1ZW5jeS1hbmQtcGhhc2UgY29ycmVjdGlvbiAoRlBDKSB1c2luZzoqKgoKUm9idXN0IHNwZWN0cmFsIHJlZ2lzdHJhdGlvbiAoYFJvYnVzdFNwZWNSZWdgKToKCi0gTWlra2Vsc2VuIE0sIFRhcHBlciBTLCBOZWFyIEosIE1vc3RvZnNreSBTSCwgUHV0cyBOQUosIEVkZGVuIFJBRS4gPGEgaHJlZj0iaHR0cHM6Ly9kb2kub3JnLzEwLjEwMDIvbmJtLjQzNjgiIHRhcmdldD0iX2JsYW5rIj5Db3JyZWN0aW5nIGZyZXF1ZW5jeSBhbmQgcGhhc2Ugb2Zmc2V0cyBpbiBNUlMgZGF0YSB1c2luZyByb2J1c3Qgc3BlY3RyYWwgcmVnaXN0cmF0aW9uLjwvYT4gKk5NUiBpbiBCaW9tZWRpY2luZSouIDIwMjA7MzMoMTApOmU0MzY4CgptdWx0aS1zdGVwIEZQQyAoYFNwZWNSZWdIRVJNRVNgKToKCi0gTWlra2Vsc2VuIE0sIFNhbGVoIE1HLCBOZWFyIEosIGV0IGFsLiA8YSBocmVmPSJodHRwczovL2RvaS5vcmcvMTAuMTAwMi9tcm0uMjcwMjciIHRhcmdldD0iX2JsYW5rIj5GcmVxdWVuY3kgYW5kIHBoYXNlIGNvcnJlY3Rpb24gZm9yIG11bHRpcGxleGVkIGVkaXRlZCBNUlMgb2YgR0FCQSBhbmQgZ2x1dGF0aGlvbmUuPC9hPiAqTWFnbmV0aWMgUmVzb25hbmNlIGluIE1lZGljaW5lKi4gMjAxODs4MCgxKToyMS0yOAoKb3Igc3BlY3RyYWwgcmVnaXN0cmF0aW9uIChgU3BlY1JlZ2ApOgoKLSBOZWFyIEosIEVkZGVuIFIsIEV2YW5zIENKLCBQYXF1aW4gUiwgSGFycmlzIEEsIEplenphcmQgUC4gPGEgaHJlZj0iaHR0cHM6Ly9kb2kub3JnLzEwLjEwMDIvbXJtLjI1MDk0IiB0YXJnZXQ9Il9ibGFuayI+RnJlcXVlbmN5IGFuZCBwaGFzZSBkcmlmdCBjb3JyZWN0aW9uIG9mIG1hZ25ldGljIHJlc29uYW5jZSBzcGVjdHJvc2NvcHkgZGF0YSBieSBzcGVjdHJhbCByZWdpc3RyYXRpb24gaW4gdGhlIHRpbWUgZG9tYWluLjwvYT4gKk1hZ25ldGljIFJlc29uYW5jZSBpbiBNZWRpY2luZSouIDIwMTU7NzMoMSk6NDQtNTAKCioqSWYgeW91IHBlcmZvcm0gdm94ZWwgY28tcmVnaXN0cmF0aW9uOioqCgotIFBsZWFzZSBhY2tub3dsZWRnZSB0aGUgdXNlIG9mIFNQTTEyLiBZb3UgbWF5IGFsc28gbGluay9jaXRlIHRoZSA8YSBocmVmPSJodHRwczovL3d3dy5maWwuaW9uLnVjbC5hYy51ay9zcG0vc29mdHdhcmUvc3BtMTIvIiB0YXJnZXQ9Il9ibGFuayI+U1BNMTIgd2Vic2l0ZTwvYT4uCgoqKklmIHlvdSBwZXJmb3JtIHRpc3N1ZSBzZWdtZW50YXRpb246KioKCi0gQXNoYnVybmVyIEosIEZyaXN0b24gS0ouIDxhIGhyZWY9Imh0dHBzOi8vZG9pLm9yZy8xMC4xMDE2L2oubmV1cm9pbWFnZS4yMDA1LjAyLjAxOCIgdGFyZ2V0PSJfYmxhbmsiPlVuaWZpZWQgc2VnbWVudGF0aW9uLjwvYT4gKk5ldXJvSW1hZ2UqLiAyMDA1OzI2KDMpOjgzOS0tODUxCgoqKklmIHlvdSByZXBvcnQgd2F0ZXItcmVmZXJlbmNlZCwgdGlzc3VlLWNvcnJlY3RlZCBtZXRhYm9saXRlIG1lYXN1cmVtZW50cyB1c2luZzoqKgoKVGhlIEhhcnJpcyBldCBhbC4gbWV0aG9kOgoKLSBIYXJyaXMgQUQsIFB1dHMgTkFKLCBFZGRlbiBSQUUuIDxhIGhyZWY9Imh0dHBzOi8vZG9pLm9yZy8xMC4xMDAyL2ptcmkuMjQ5MDMiIHRhcmdldD0iX2JsYW5rIj5UaXNzdWUgY29ycmVjdGlvbiBmb3IgR0FCQS1lZGl0ZWQgTVJTOiBDb25zaWRlcmF0aW9ucyBvZiB2b3hlbCBjb21wb3NpdGlvbiwgdGlzc3VlIHNlZ21lbnRhdGlvbiwgYW5kIHRpc3N1ZSByZWxheGF0aW9ucy48L2E+ICpKb3VybmFsIG9mIE1hZ25ldGljIFJlc29uYW5jZSBJbWFnaW5nKi4gMjAxNTs0Mig1KToxNDMxLS0xNDQwCgpvciB0aGUgR2FzcGFyb3ZpYyBldCBhbC4gbWV0aG9kOgoKLSBHYXNwYXJvdmljIEMsIFNvbmcgVCwgRGV2aWVyIEQsIGV0IGFsLiA8YSBocmVmPSJodHRwczovL2RvaS5vcmcvMTAuMTAwMi9tcm0uMjA5MDEiIHRhcmdldD0iX2JsYW5rIj5Vc2Ugb2YgdGlzc3VlIHdhdGVyIGFzIGEgY29uY2VudHJhdGlvbiByZWZlcmVuY2UgZm9yIHByb3RvbiBzcGVjdHJvc2NvcGljIGltYWdpbmcuPC9hPiAqTWFnbmV0aWMgUmVzb25hbmNlIGluIE1lZGljaW5lKi4gMjAwNjs1NSg2KToxMjE5LS0xMjI2CgojIyBBY2tub3dsZWRnbWVudHMKClRoZSBkZXZlbG9wbWVudCBhbmQgZGlzc2VtaW5hdGlvbiBvZiBHYW5uZXQgaGFzIGJlZW4gc3VwcG9ydGVkIGJ5IHRoZSBmb2xsb3dpbmcgTklIIGdyYW50czoKCi0gUjAxIEVCMDE2MDg5Ci0gUjAxIEVCMDIzOTYzCi0gSzk5IEVCMDI4ODI4Ci0gUDQxIEVCMDE1OTA5Ci0gUjAxIE1IMTA2NTY0Ci0gUjIxIE5TMDc3MzAwCi0gUjIxIE1IMDk4MjI4Ci0gUjAxIE1IMDk2MjYzCgpXZSB3aXNoIHRvIHRoYW5rIHRoZSBmb2xsb3dpbmcgaW5kaXZpZHVhbHMgZm9yIHRoZWlyIGRpcmVjdCBvciBpbmRpcmVjdCBjb250cmlidXRpb25zOgoKLSBZYWlyIEFsdG1hbiAoVW5kb2N1bWVudGVkIE1hdGxhYikKLSBQZXRlciBCYXJrZXIgKEpvaG5zIEhvcGtpbnMgVW5pdmVyc2l0eSkKLSBBbGV4IENyYXZlbiAoVW5pdmVyc2l0eSBvZiBCZXJnZW4pCi0gUGhpbGlwcCBFaHNlcyAoTWF4IFBsYW5jayBJbnN0aXR1dGUgZm9yIEJpb2xvZ2ljYWwgQ3liZXJuZXRpY3MpCi0gUm9iaW4gZGUgR3JhYWYgKFlhbGUgU2Nob29sIG9mIE1lZGljaW5lKQotIFJhbHBoIE5vZXNrZSAoR0UgSGVhbHRoY2FyZSkKLSBKYW1pZSBOZWFyIChNY0dpbGwgVW5pdmVyc2l0eSkKLSBXb3V0ZXIgUG90dGVycyAoVU1DIEFtc3RlcmRhbSkKCgoK</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -750,6 +771,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("index.Rmd");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

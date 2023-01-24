@@ -13,7 +13,7 @@
 
 <title>Tissue correction</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -30,6 +30,8 @@
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -49,6 +51,11 @@
 
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 <style type="text/css">
 /* for pandoc --citeproc since 2.11 */
@@ -232,6 +239,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -311,7 +321,10 @@ $(document).ready(function () {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -325,7 +338,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -337,10 +350,17 @@ $(document).ready(function () {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Tissue correction</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
@@ -645,13 +665,14 @@ href="https://doi.org/10.1002/jmri.20356">10.1002/jmri.20356</a></div>
 </div>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiVGlzc3VlIGNvcnJlY3Rpb24iCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYgpjc2w6IGFtZXJpY2FuLW1lZGljYWwtYXNzb2NpYXRpb24uY3NsCmxpbmstY2l0YXRpb25zOiB5ZXMKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgo8YnI+CgpHYW5uZXQgcXVhbnRpZmllcyBtZXRhYm9saXRlIGxldmVscyBpbiBhIG51bWJlciBvZiBkaWZmZXJlbnQgd2F5cyBhdCB2YXJpb3VzIHBvaW50cyBpbiB0aGUgcGlwZWxpbmUgZGVwZW5kaW5nIG9uIHdoYXQgcmVmZXJlbmNlIHNpZ25hbHMgYXJlIHByZXNlbnQgYW5kIGlmIHN0cnVjdHVyYWwgaW1hZ2UgZGF0YSBhcmUgYXZhaWxhYmxlLiBJdCBpcyBpbXBvcnRhbnQgdG8gdW5kZXJzdGFuZCB3aGF0IHRoZSB1bmRlcmx5aW5nIGZvcm11bGFzIGFyZSBmb3IgaW50ZXJwcmV0YXRpb24gYW5kIHJlcG9ydGluZy4KCiMjIEdhbm5ldEZpdAoKYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jQ3JgLCBgTVJTX3N0cnVjdC5vdXQudm94MS4obWV0YWIpLkNvbmNDaG9gLCBhbmQgYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jTkFBYCBhcmUgc2ltcGxlIHNpZ25hbCBpbnRlZ3JhbCByYXRpb3Mgb2YgdGhlIG1ldGFib2xpdGUgb2YgaW50ZXJlc3QgYW5kIHRoZSBtZXRhYm9saXRlIHJlZmVyZW5jZSBzaWduYWxzIENyLCBDaG8sIGFuZCBOQUEsIHJlc3BlY3RpdmVseToKCiQkQyA9IFxmcmFje0lfe019fXtJX3tyZWZ9fSQkCgpJZiBhIHdhdGVyIHJlZmVyZW5jZSBpcyBwcm92aWRlZCwgYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jSVVgIGlzIGFsc28gY2FsY3VsYXRlZC4gSXQgaXMgZGVmaW5lZCBhcyB0aGUgc2lnbmFsIGludGVncmFsIHJhdGlvIG9mIHRoZSBtZXRhYm9saXRlIG9mIGludGVyZXN0IGFuZCB3YXRlciByZWZlcmVuY2Ugc2NhbGVkIGJ5IGEgbnVtYmVyIG9mIGdsb2JhbCBzaWduYWwgc2NhbGluZyBmYWN0b3JzOgoKJCRDX3tjb3JyfSA9ClxmcmFje0lfe019fXtJX3tXfX1cY2RvdApcZnJhY3tIX3tXfX17SF97TX19XGNkb3QKXGZyYWN7TU19e1xrYXBwYX1cY2RvdApDX3tXfVxjZG90Cldfe3Zpc31cY2RvdApcbGVmdFx7XGZyYWN7XGV4cFxsZWZ0KC1cZnJhY3tURV97V319e1RfezJXfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tXfX17VF97MVd9fVxyaWdodClccmlnaHRdfQp7XGV4cFxsZWZ0KC1cZnJhY3tURV97TX19e1RfezJNfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tNfX17VF97MU19fVxyaWdodClccmlnaHRdfVxyaWdodFx9CiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8IDx1PkRlZmF1bHQgdmFsdWU8L3U+IHwKfCA6LSB8IDotLS0tLS0tLSB8IDotLS0tLS0gfAp8ICRDX3tjb3JyfSQgfCBFc3RpbWF0ZWQgbWV0YWJvbGl0ZSBjb25jZW50cmF0aW9uIGluIGluc3RpdHV0aW9uYWwgdW5pdHMgfCAtIHwKfCAkSV97TX0kIHwgTWV0YWJvbGl0ZSBzaWduYWwgaW50ZWdyYWwgfCAtIHwKfCAkSV97V30kIHwgV2F0ZXIgc2lnbmFsIGludGVncmFsIHwgLSB8CnwgJEhfe019JCB8IE51bWJlciBvZiBeMV5IIHByb3RvbnMgdGhhdCBnaXZlIHJpc2UgdG8gdGhlIG1ldGFib2xpdGUgc2lnbmFsIHwgTWV0YWJvbGl0ZSBkZXBlbmRlbnQgfAp8ICRIX3tXfSQgfCBOdW1iZXIgb2YgXjFeSCBwcm90b25zIHRoYXQgZ2l2ZSByaXNlIHRvIHRoZSB3YXRlciBzaWduYWwgfCAyIHwKfCAkTU0kIHwgQ29ycmVjdGlvbiBmYWN0b3IgZm9yIHRoZSBjb250cmlidXRpb24gb2YgdGhlIGNvLWVkaXRlZCBtYWNyb21vbGVjdWxlIHNpZ25hbCBpbiB0aGUgbWV0YWJvbGl0ZSBzaWduYWwgfCAwLjQ1IGZvciBHQUJBIGVkaXRpbmcgYW5kIDEgZm9yIGFsbCBvdGhlciBlZGl0ZWQgbWV0YWJvbGl0ZXMgfAp8ICRca2FwcGEkIHwgRWRpdGluZyBlZmZpY2llbmN5IHwgQWNxdWlzaXRpb24gZGVwZW5kZW50OyAwLjUgZm9yIEdBQkEgZWRpdGluZyB8CnwgJENfe1d9JCB8IE1vbGFsIGNvbmNlbnRyYXRpb24gb2YgcHVyZSB3YXRlciB8IDU1LjUxIG1vbC9rZyB8CnwgJFdfe3Zpc30kIHwgQXZlcmFnZSByZWxhdGl2ZSB2aXNpYmlsaXR5IChkZW5zaXR5KSBvZiB3YXRlciBpbiBHTSBhbmQgV00gfCAwLjY1IFtARXJuc3QxOTkzXSB8CnwgJFRFX3tXfSQgfCBFY2hvIHRpbWUgb2YgdGhlIHdhdGVyIHJlZmVyZW5jZSBhY3F1aXNpdGlvbiB8IEFjcXVpc2l0aW9uIGRlcGVuZGVudCB8CnwgJFRSX3tXfSQgfCBSZXBldGl0aW9uIHRpbWUgb2YgdGhlIHdhdGVyIHJlZmVyZW5jZSBhY3F1aXNpdGlvbiB8IEFjcXVpc2l0aW9uIGRlcGVuZGVudCB8CnwgJFRFX3tNfSQgfCBFY2hvIHRpbWUgb2YgdGhlIG1ldGFib2xpdGUgYWNxdWlzaXRpb24gfCBBY3F1aXNpdGlvbiBkZXBlbmRlbnQgfAp8ICRUUl97TX0kIHwgUmVwZXRpdGlvbiB0aW1lIG9mIHRoZSBtZXRhYm9saXRlIGFjcXVpc2l0aW9uIHwgQWNxdWlzaXRpb24gZGVwZW5kZW50IHwKfCAkVF97Mld9JCB8IEF2ZXJhZ2UgdHJhbnN2ZXJzZSByZWxheGF0aW9uIHRpbWUgb2Ygd2F0ZXIgaW4gR00gYW5kIFdNIHwgMS4xMDAgcyBbQFdhbnNhcHVyYTE5OTldIHwKfCAkVF97Mld9JCB8IEF2ZXJhZ2UgbG9uZ2l0dWRpbmFsIHJlbGF4YXRpb24gdGltZSBvZiB3YXRlciBpbiBHTSBhbmQgV00gfCAwLjA5NSBzIFtAV2Fuc2FwdXJhMTk5OV0gfAp8ICRUX3syTX0kIHwgVHJhbnN2ZXJzZSByZWxheGF0aW9uIHRpbWUgb2YgbWV0YWJvbGl0ZSB8IE1ldGFib2xpdGUgZGVwZW5kZW50OyBzZWUgYEdhbm5ldEZpdC5tYCBhbmQgYEdhbm5ldFF1YW50aWZ5Lm1gIGZvciBkZWZhdWx0IHZhbHVlcyB8CnwgJFRfezFNfSQgfCBMb25naXR1ZGluYWwgcmVsYXhhdGlvbiB0aW1lIG9mIG1ldGFib2xpdGUgfCBNZXRhYm9saXRlIGRlcGVuZGVudDsgc2VlIGBHYW5uZXRGaXQubWAgYW5kIGBHYW5uZXRRdWFudGlmeS5tYCBmb3IgZGVmYXVsdCB2YWx1ZXMgfAoKIyMgR2FubmV0U2VnbWVudAoKYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jSVVfQ1NGY29ycmA6CgokJENfe0NTRmNvcnJ9ID0KXGZyYWN7SV97TX19e0lfe1d9fVxjZG90ClxmcmFje0hfe1d9fXtIX3tNfX1cY2RvdApcZnJhY3tNTX17XGthcHBhfVxjZG90CkNfe1d9XGNkb3QKV197dmlzfVxjZG90ClxsZWZ0XHtcZnJhY3tcZXhwXGxlZnQoLVxmcmFje1RFX3tXfX17VF97Mld9fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe1d9fXtUX3sxV319XHJpZ2h0KVxyaWdodF19CntcZXhwXGxlZnQoLVxmcmFje1RFX3tNfX17VF97Mk19fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe019fXtUX3sxTX19XHJpZ2h0KVxyaWdodF19XHJpZ2h0XH1cY2RvdApcZnJhY3sxfXsxLWZfe0NTRn19CiQkCgp3aGVyZSAkZl97Q1NGfSQgaXMgdGhlIHZvbHVtZSBmcmFjdGlvbiBvZiBDU0YgaW4gdGhlIE1SUyB2b3hlbC4KCiMjIEdhbm5ldFF1YW50aWZ5CgpgTVJTX3N0cnVjdC5vdXQudm94MS4obWV0YWIpLkNvbmNJVV9UaXNzQ29ycmA6CgokJENfe1Rpc3NDb3JyfSA9ClxmcmFje0lfe019fXtJX3tXfX1cY2RvdApcZnJhY3tIX3tXfX17SF97TX19XGNkb3QKXGZyYWN7TU19e1xrYXBwYX1cY2RvdApDX3tXfVxjZG90ClxsZWZ0XHtcZnJhY3tcc3VtX3tpfV57R00sV00sQ1NGfWZfe2l9XGJldGFfe2l9XGV4cFxsZWZ0KC1cZnJhY3tURV97V319e1RfezJXLGl9fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe1d9fXtUX3sxVyxpfX1ccmlnaHQpXHJpZ2h0XX0KeygxLWZfe0NTRn0pXGV4cFxsZWZ0KC1cZnJhY3tURV97TX19e1RfezJNfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tNfX17VF97MU19fVxyaWdodClccmlnaHRdfVxyaWdodFx9JCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwgPHU+RGVmYXVsdCB2YWx1ZTwvdT4gfAp8IDotIHwgOi0tLS0tLS0tIHwgOi0tLS0tLSB8CnwgJGZfe2l9JCB8IFZvbHVtZSBmcmFjdGlvbiBvZiBHTSwgV00gb3IgQ1NGIGluIHRoZSBNUlMgdm94ZWwgfCBEYXRhIGRlcGVuZGVudCB8CnwgJFxiZXRhX2kkIHwgUmVsYXRpdmUgdmlzaWJpbGl0eSAoZGVuc2l0eSkgb2Ygd2F0ZXIgaW4gR00sIFdNIGFuZCBDU0YgfCAwLjc4LCAwLjY1IGFuZCAwLjk3IFtARXJuc3QxOTkzXSB8CnwgJFRfezJXLGl9JCB8IFRyYW5zdmVyc2UgcmVsYXhhdGlvbiB0aW1lIG9mIHdhdGVyIGluIEdNLCBXTSBhbmQgQ1NGIHwgMC4xMTAsIDAuMDc5MiBhbmQgMC41MDMgcyBbQFdhbnNhcHVyYTE5OTk7IEBQaWVjaG5pazIwMDldIHwKfCAkVF97MVcsaX0kIHwgTG9uZ2l0dWRpbmFsIHJlbGF4YXRpb24gdGltZSBvZiB3YXRlciBpbiBHTSwgV00gYW5kIENTRiB8IDEuMzMxLCAwLjgzMiBhbmQgMy44MTcgcyBbQFdhbnNhcHVyYTE5OTk7IEBMdTIwMDVdIHwKCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVX0FscGhhVGlzc0NvcnJgOgoKJCRDX3tBbHBoYUNvcnJ9ID0KXGZyYWN7SV97TX19e0lfe1d9fVxjZG90ClxmcmFje0hfe1d9fXtIX3tNfX1cY2RvdApcZnJhY3tNTX17XGthcHBhfVxjZG90ClxsZWZ0XHtcZnJhY3tcc3VtX3tpfV57R00sV00sQ1NGfWZfe2l9Q197VyxpfVxleHBcbGVmdCgtXGZyYWN7VEVfe1d9fXtUX3syVyxpfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tXfX17VF97MVcsaX19XHJpZ2h0KVxyaWdodF19CntcZXhwXGxlZnQoLVxmcmFje1RFX3tNfX17VF97Mk19fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe019fXtUX3sxTX19XHJpZ2h0KVxyaWdodF19XHJpZ2h0XH1cY2RvdApcZnJhY3sxfXtmX3tHTX0rXGFscGhhe2Zfe1dNfX19JCQKCjxicj4KCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVX0FscGhhVGlzc0NvcnJfR3JwTm9ybWA6CgokJENfe0FscGhhQ29yck5vcm19ID0KXGZyYWN7SV97TX19e0lfe1d9fVxjZG90ClxmcmFje0hfe1d9fXtIX3tNfX1cY2RvdApcZnJhY3tNTX17XGthcHBhfVxjZG90ClxsZWZ0XHtcZnJhY3tcc3VtX3tpfV57R00sV00sQ1NGfWZfe2l9Q197VyxpfVxleHBcbGVmdCgtXGZyYWN7VEVfe1d9fXtUX3syVyxpfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tXfX17VF97MVcsaX19XHJpZ2h0KVxyaWdodF19CntcZXhwXGxlZnQoLVxmcmFje1RFX3tNfX17VF97Mk19fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe019fXtUX3sxTX19XHJpZ2h0KVxyaWdodF19XHJpZ2h0XH1cY2RvdApcZnJhY3tcbXVfe0dNfStcYWxwaGF7XG11X3tXTX19fXsoZl97R019K1xhbHBoYXtmX3tXTX19KShcbXVfe0dNfSt7XG11X3tXTX19KX0kJAoKd2hlcmU6CgoKCiMjIyBSZWZlcmVuY2VzCgoKCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -686,6 +707,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("tissue-correction.Rmd");
+});
+</script>
 
 
 <!-- dynamically load mathjax for compatibility with self-contained -->

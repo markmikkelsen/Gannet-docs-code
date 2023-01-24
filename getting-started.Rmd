@@ -16,15 +16,9 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, child = "js/back-to-top.js"}
 ```
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
-
 <br>
 
-Gannet simplifies the preprocessing and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of MATLAB and the five Gannet modules (listed below).
+Gannet simplifies the preprocessing, signal fitting, and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of MATLAB and the five Gannet modules (listed below).
 
 If this is your first time using Gannet, you will likely want to read through the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html) as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.
 
@@ -36,82 +30,80 @@ The linear workflow of Gannet is made up of five modules. For proper functionali
 | :- | :--------- |
 | **GannetLoad** | Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the timecourse of the experiment. |
 | **GannetFit** | Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality. |
-| **GannetCoRegister** | Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image in three orthogonal slices. |
+| **GannetCoRegister** | Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image on three orthogonal slices. |
 | **GannetSegment** | Calls SPM to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the MRS voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates. |
-| **GannetQuantify** | Uses the segmentation information to perform partial volume tissue correction and produces a figure displaying several quantitative metabolite measures. |
+| **GannetQuantify** | Uses the segmentation information to perform partial volume tissue correction and produces a figure displaying several tissue-corrected metabolite measurements. |
 
 Familiarize yourself with the five basic Gannet commands, as described below. The number of commands is deliberately kept to a minimum, as is the number of possible input arguments to these commands. Incorrect syntax is a common source of user error, so make sure that you understand the argument structure of each function you intend to use.
 
-## Usage
+## Basic usage
 
 ### GannetPreInitialise
 
 The first step in using Gannet is to set up the `GannetPreInitialise.m` function. While the toolkit has many built-in routines for automatically recognizing data formats, sequences, and acquisition parameters from data file headers; some settings may need to be set by the user before to run Gannet properly. All modifiable options and flags are collected in the file `GannetPreInitialise.m`.
 
-<div class="info">
-<i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp;&nbsp; Any time you run Gannet, make sure to check that the settings in `GannetPreInitialise.m` are correct. Many errors can be avoided by following this simple step.
-</div>
+::: info
+<i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; Any time you run Gannet, make sure to check that the settings in `GannetPreInitialise.m` are correct. Many errors can be avoided by following this simple step.
+:::
 
 The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html) for detailed explanations of the options and flags in `GannetPreInitialise.m`.
 
-<br>
-
-<img id="myImg" src="images/screenshots/GannetPreInitialise.png" alt="GannetPreInitialise.m">
-
-<!-- <div id="myModal" class="modal"> -->
-<!--   <span class="close">&times;</span> -->
-<!--   <img class="modal-content" id="img01"> -->
-<!--   <div id="caption"></div> -->
-<!-- </div> -->
-<!-- <script src="js/img-modal.js"></script> -->
-
-<br>
+<img src="images/getting-started/GannetPreInitialise-example.png" alt="A screenshot example of GannetPreInitialise.m">
 
 ### Running Gannet
 
 Depending on the format of your data, and if you have water reference data and/or structural images, the commands for running Gannet to load and fit your data follow a specific syntax.
 
-#### **GE data (.7 files)**
+For all modules, an output argument containing a structure should always be included, for example `MRS_struct`. Input arguments for `GannetLoad.m` are usually given as cell arrays. The remaining modules require input of the output structure from `GannetLoad.m`. The exception is `GannetCoRegister.m`, which additionally requires a cell array of structural images.
 
-Data from GE scanners are exported as a P-file, with the extension .7. Standard GE acquisitions automatically acquire a water reference, which is stored within the P-file. To run such data, use the following commands:
+Some examples for different data file formats:
 
-```{matlab, eval = FALSE}
+#### **GE data (\*.7 files)**
+
+Data from GE scanners are exported as a P-file, with the extension \*.7. Standard GE acquisitions automatically acquire a water reference, which is stored within the P-file. To run such data, use the following commands:
+
+```{octave, eval = FALSE}
 MRS_struct = GannetLoad({'sub-01.7'});
 MRS_struct = GannetFit(MRS_struct);
 ```
 
-#### **Philips .sdat/.spar data**
+#### **Philips data (\*.sdat/\*.spar files)**
 
-Data from Philips scanners are most commonly exported as a pair of .sdat/.spar files, where the .sdat file contains the data and the .spar contains the acquisition parameters. A water reference usually is also acquired and exported as a separate pair of files. The two are distinguished by the suffices _act_ and _ref_. To run such data, use the following commands:
+Data from Philips scanners are most commonly exported as a pair of \*.sdat/\*.spar files, where the \*.sdat file contains the data and the \*.spar contains the acquisition parameters. A water reference usually is also acquired and exported as a separate pair of files. The two are distinguished by the suffices `_act` and `_ref`. To run such data, use the following commands:
 
-```{matlab, eval = FALSE}
+```{octave, eval = FALSE}
 MRS_struct = GannetLoad({'sub-01_act.sdat'}, {'sub-01_ref.sdat'});
+MRS_struct = GannetFit(MRS_struct);
+```
+
+#### **Siemens data (\*.dat files)**
+
+It is highly recommended that users export data in the TWIX format for Siemens data. This is a raw format that saves the MRS signal for each transient from each RF coil element separately. To run such data, use the following commands:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetLoad({'sub-01.dat'}, {'sub-01_water.dat'});
 MRS_struct = GannetFit(MRS_struct);
 ```
 
 ## Batch processing
 
-One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. In order to load a set of data, simply add more filenames to the respective cell arrays that are passed to `GannetLoad.m`, as shown below for Siemens TWIX data:
+One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. To load and fit multiple files, simply add more filenames to the respective cell arrays that are passed to `GannetLoad.m`, as shown below for Philips data:
 
-```{matlab, eval = FALSE}
-MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat'}, {'sub-01_ref.sdat', 'sub-01_ref.sdat'});
+```{octave, eval = FALSE}
+MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'}, ...
+                        {'sub-01_ref.sdat', 'sub-02_ref.sdat', 'sub-03_ref.sdat'});
+MRS_struct = GannetFit(MRS_struct);
 ```
 
-Note that the respective water-unsuppressed data files `S01_GABA_68_ref.sdat`, `S02_GABA_68_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `S01_GABA_68_act.sdat`, `S02_GABA_68_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a separate script as a clear way of defining the input cell arrays. We have provided an [example script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own analyses.
+Note that the respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays. We have provided an [example batch processing script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own purposes.
 
 ## Output
 
-As shown in the syntax above, Gannet saves all relevant data and results in the structure `MRS_struct` at all steps in the analysis pipeline. After creating the initial output from `GannetLoad.m`, `MRS_struct` is used as both the output and input arguments for the other Gannet modules. (You need not use `MRS_struct`; you can use something more descriptive and relevant to your purposes if you wish.)
+As shown in the syntax above, Gannet saves all relevant data and results in a structure (e.g., `MRS_struct`) at all steps in the analysis pipeline. After creating the initial output from `GannetLoad.m`, `MRS_struct` is used as both the output and input arguments for the other Gannet modules. (You need not use `MRS_struct`; you can use something more descriptive and relevant to your purposes if you wish.)
 
-The output structure contains several fields and subfields, which grow in number as your proceed through the Gannet analysis pipeline See the list of [output structure attributes](https://markmikkelsen.github.io/Gannet-docs/output-struc-attrib.html) for a complete description.
+The output structure contains several fields and subfields, which grow in number as your proceed through the Gannet analysis pipeline. See the list of [output structure attributes](https://markmikkelsen.github.io/Gannet-docs/output-struc-attrib.html) for a complete description.
 
-You can also output a CSV file containing useful values from the output structure for further analysis. This functionality is set in `GannetPreInitialise.m`.
-
-<br>
-
-<!-- <div style="text-align: right"> -->
-<!--   <a class="fa fa-arrow-circle-right fa-2x" style="color: #2F3E4F" href="https://markmikkelsen.github.io/Gannet-docs/reference.html"></a> -->
-<!-- </div> -->
+You can also output a CSV file containing useful values from the output structure for further analysis in a statistical program of your choice. This functionality is set in `GannetPreInitialise.m`.
 
 
 

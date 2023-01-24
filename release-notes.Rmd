@@ -20,6 +20,37 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in between releases. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a> on GitHub.
 
+## 3.3.0
+<span style="color: grey;">2022-10-22</span>
+
+### New features
+- Added functionality to read NIfTI-MRS files (<a href="https://onlinelibrary.wiley.com/doi/10.1002/mrm.29418" target="_blank">Clarke et al., MRM, 2022</a>) (`NIfTIMRSRead.m`); includes additional new function `GannetMask_NIfTI.m` for voxel co-registration
+- Added support for Utah Siemens MEGA-PRESS sequence (DICOM files)
+- Added support for CMRR PRESS data (DICOM files)
+- Added support for Siemens XA30 sequence as provided by JHU
+- Changed `README` to `README.md`, which now includes badges
+
+### Major changes
+- Coil combination of GE, NIfTI-MRS, and Siemens TWIX files is now performed using generalized least squares (<a href="https://onlinelibrary.wiley.com/doi/10.1002/jmri.23941" target="_blank">An et al., JMRI, 2013</a>); this approach has been shown to result in optimal SNR and reduce spectral artifacts
+- The Gannet logo has been reverted to the original image of a gannet
+
+### Minor changes
+- Added functionality for GE data in `AlignSubSpectra_PreAlignRef.m`
+- An error is presented if not enough inputs are given for any of the Gannet modules
+- CoRegStandAlone outputs can be hidden if `MRS_struct.p.hide` is set to `1` in `CoRegStandAlone.m` (default is `0`)
+- If the user has no internet connection, `VersionCheck.m` and `UpdateGannet.m` will not run
+- Updated dicm2nii to latest version (version 2022.09.15)
+- Updated mapVBVD functions to latest version (<a href="https://github.com/pehses/mapVBVD" target="_blank">https://github.com/pehses/mapVBVD</a>)
+- Turned off warnings of iteration limits in `SpectralRegistrationHERMES.m` and `GannetFit.m`
+- Many cosmetic changes in the code
+
+### Bug fixes
+- Fixed bug in error reporting in `GannetFit.m`
+- CoRegStandAlone routines now parse version numbers from the main modules properly
+- Variable `filesExist` in `GannetSegment.m` may not populate; it is now pre-initialized as a precaution
+- Bug fix in `GannetMask_SiemensRDA.m`
+- Bug fixes for reading DICOM files
+
 ## 3.2.1
 <span style="color: grey;">2022-06-07</span>
 
@@ -46,7 +77,7 @@ This page logs the stable releases of Gannet. However, minor edits and bug fixes
 - Added `ToolboxCheck.m` to check for missing MATLAB toolboxes needed to run Gannet
 - Error dialog boxes are displayed at the end of the analysis pipeline if an error occurred (during a batch analysis, Gannet will skip to the next dataset and continue running)
 - Users can now choose to use weighted (the default) or conventional signal averaging in `GannetPreInitialise.m` (outlier scans are removed when using conventional averaging, as before)
-- Added a new (optional) method for robust, weighted signal averaging: weighted averaging by criterion function minimization (WACFM) using the generalized Cauchy distribution as the cost function; see doi: <a href="https://dx.doi.org/10.1016/j.bbe.2015.06.002" target="_blank">10.1016/j.bbe.2015.06.002</a> for more details; additionally, instead of weighting difference pairs, the subspectra of each editing subexperiment are weighted to generate weighted subspectra, which are then subtracted; see `SignalAveraging.m`
+- Added a new (optional) method for robust, weighted signal averaging: weighted averaging by criterion function minimization (WACFM) using the generalized Cauchy distribution as the cost function; see doi:<a href="https://dx.doi.org/10.1016/j.bbe.2015.06.002" target="_blank">10.1016/j.bbe.2015.06.002</a> for more details; additionally, instead of weighting difference pairs, the subspectra of each editing subexperiment are weighted to generate weighted subspectra, which are then subtracted; see `SignalAveraging.m`
 - Yair Altman's <a href="https://github.com/altmany/export_fig" target="_blank">export_fig toolbox</a> is included as an optional toolbox that, if added to MATLAB's search path, Gannet will use to append all output PDFs from each module into a single PDF (a flag must be set in `GannetPreInitialise.m` to do this); this is very useful for easy QA of lots of data; note that <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> needs to be installed for the appending of PDFs to work (NB: macOS users should use this <a href="https://pages.uoregon.edu/koch/" target="_blank">version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript)
 - Implemented use of hyperlinks in info and error messages printed in the command window so that users can: (1) directly run a certain function (such as `UpdateGannet.m` when `VersionCheck.m` informs the user a new release is available); (2) go straight to the line of code where an encountered error can be fixed (such as errors in `GannetPreInitialise.m`); or (3) go to a website by clicking on the printed URL (such as to download SPM12); the relevant code has been borrowed from export_fig
 - Added an option in `GannetPreInitialise.m` that allows users, when using robust spectral registration, to use the averaged pre-aligned subspectra as references for aligning the averaged post-aligned subspectra (this may be helpful when robust spectral registration makes the alignment of already good-quality pre-aligned spectra worse)

@@ -4,16 +4,10 @@ date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
 output:
   html_document:
     toc: TRUE
-    toc_depth: 3
+    toc_depth: 2
     toc_float:
       collapsed: FALSE
 ---
-
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
 
 ```{r setup, include = FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -24,28 +18,84 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-### General
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, it is highly recommended first ensuring the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>stable release</u></a> is being used. It may be that your issue has already been addressed. Alternatively, consider using the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development version</u></a> as bug fixes/changes are continually being uploaded to this branch.
+:::
+
+## General
 
 #### **Can Gannet process GSH-edited data?**
 
-Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited HERMES and HERCULES data. (Gannet does not support the fitting of HERCULES data.) Simply set the appropriate `target` option(s) in `GannetPreInitialise.m`.
+Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited HERMES and HERCULES data. (Gannet does not support the fitting of HERCULES data, however.) Simply set the appropriate `target` option(s) in `GannetPreInitialise.m`.
 
 #### **Can Gannet process phantom data?**
 
 Yes, of the edited data described above. Make sure to set `phantom` to `1` under 'Flags' in `GannetPreInitialise.m`. If you want to fit your data, run `GannetFitPhantom(MRS_struct);` instead of `GannetFit(MRS_struct);`. (Fitting of HERCULES phantom data is not supported.)
 
+#### **Can Gannet process HERMES/HERCULES data?**
 
-### Output
+Gannet load HERMES and HERCULES data, but only HERMES data can be modeled in `GannetFit.m`. Signal fitting and metabolite quantification of HERCULES data can be performed using <a href="https://github.com/schorschinho/osprey" target="_blank">Osprey.</a>.
 
-#### **[BLANK]**
+#### **Can Gannet process non-edited data?**
 
+Gannet is designed to process edited single-voxel data. However, its data loading routines may be able to load non-edited single-voxel data. In addition, the standalone tool [`CoRegStandAlone.m`](https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone) can be used with non-edited data for voxel co-registration and tissue segmentation.
 
-### Errors
+#### **Can Gannet process MRSI data?**
 
-#### **[BLANK]**
+No, Gannet is designed to process edited single-voxel data.
 
+## Output
 
+#### **Why is my spectrum upside down?**
 
+<img id="myImg" src="images/faq/upside-down-spectrum.png" alt="A screenshot example of upside-down MRS spectra">
+
+Gannet has a routine that automatically phases spectra so that they are not upside-down or otherwise out of phase. However, this routine can fail. It is best to contact the developers for assistance to resolve the problem. However, a simple, albeit imperfect, solution is to add the following line of code to `GannetLoad.m` after the function `PhaseCorrection.m` is run for global zero-order phase correction (around line 400):
+
+```{octave, eval = FALSE}
+MRS_struct.fids.data = -MRS_struct.fids.data;
+```
+
+## Errors
+
+#### **You have issues with SPM MEX files on 64-bit macOS**
+
+Specifically:
+
+```{bash, eval = FALSE}
+"*.mexmaci64" cannot be opened because the developer cannot be verified. macOS cannot verify that this app is free from malware
+```
+
+or
+
+```{bash, eval = FALSE}
+Code signature not valid for use in process using Library Validation: library load disallowed by system policy)
+```
+
+Please visit the <a href="https://en.wikibooks.org/wiki/SPM/Installation_on_64bit_Mac_OS_(Intel)#macOS_Catalina,_Big_Sur,_Monterey,_Ventura" target="_blank">SPM Wikibooks page</a> for troubleshooting.
+
+#### **MATLAB says my structural image does not exist.**
+
+For example:
+
+```{octave, eval = FALSE}
+Error using spm_vol>spm_vol_hdr (line 80)
+File “image1.nii” does not exist.
+
+Error in spm_vol (line 61)
+** v = spm_vol_hdr(deblank(P(i,:)));**
+
+Error in GannetMask_SiemensTWIX (line 110)
+V = spm_vol(nii_file);
+
+Error in GannetCoRegister (line 74)
+** MRS_struct = GannetMask_SiemensTWIX(fname, nii_name{ii}, MRS_struct, ii, vox, kk);**
+
+Error in gannetcode (line 19)
+** MRS_struct = GannetCoRegister(MRS_struct,{‘image1.nii’});**
+```
+
+A possible fix for this is to input filenames using their full path. So, instead of `{'image1.nii'}`, input `{'/Users/username/Documents/my_project/data/image1.nii'}`.
 
 
 

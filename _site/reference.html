@@ -13,7 +13,7 @@
 
 <title>Reference</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,6 +33,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -153,6 +155,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </script>
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 <style type="text/css">
 /* for pandoc --citeproc since 2.11 */
@@ -336,6 +343,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -494,7 +504,10 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -508,7 +521,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -520,19 +533,21 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Reference</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -559,13 +574,13 @@ function topFunction() {
 </script>
 <p><br></p>
 <div class="info">
-<p><i class="fa fa-info-circle" style="color: white"></i>   The
-variables listed on this page are applicable to release 3.1.5 and are
-not necessarily correct for other versions of Gannet.</p>
+<p><i class="fa fa-info-circle" style="color: white"></i>  The variables
+listed on this page are applicable to release 3.3.0 and are not
+necessarily correct for other versions of Gannet.</p>
 </div>
-<div id="pre-initialise-gannet" class="section level2 hasAnchor">
-<h2 class="hasAnchor">Pre-initialise Gannet<a
-href="#pre-initialise-gannet" class="anchor-section"
+<div id="pre-initialize-gannet" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Pre-initialize Gannet<a
+href="#pre-initialize-gannet" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
 <hr />
 <p><strong>Parent function</strong></p>
@@ -586,30 +601,20 @@ aria-label="Anchor link to header"></a></h2>
 <tr class="odd">
 <td align="left"><code>target</code></td>
 <td align="left">Sets the metabolite of interest that was edited in the
-MRS experiment; if HERMES was used, multiple metabolites should be
-selected</td>
+MRS experiment; if HERMES or HERCULES was used, multiple metabolites
+should be selected</td>
 </tr>
 <tr class="even">
-<td align="left"><code>ONOFForder</code></td>
-<td align="left">Order of the ON/OFF editing scans in the MEGA-PRESS
-acquisitions determines (amongst other things in Gannet) how the
-subspectra are subtracted to derive the difference spectra; typically,
-Philips acquisitions are <code>'offfirst'</code> and GE and Siemens
-acquisitions are <code>'onfirst'</code> (but this is not always true so
-you should always check your acquisition parameters)</td>
-</tr>
-<tr class="odd">
 <td align="left"><code>seqorig</code></td>
-<td align="left">Specific to Philips data; specifies whether the data
-were acquired using the patch developed at Johns Hopkins University or
-the Philips product sequence</td>
+<td align="left">Origin of Philips MEGA-PRESS or GE HERMES
+sequences</td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="22%" />
-<col width="77%" />
+<col width="26%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -624,13 +629,13 @@ the Philips product sequence</td>
 to the data (in Hz)</td>
 </tr>
 <tr class="even">
-<td align="left"><code>water_phase_correction</code></td>
+<td align="left"><code>water_ECC</code></td>
 <td align="left">Whether to perform an eddy-current correction<span
 class="citation"><sup><a href="#ref-Klose1990"
 role="doc-biblioref">1</a></sup></span> on the water data</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>data_phase_correction</code></td>
+<td align="left"><code>metab_ECC</code></td>
 <td align="left">Whether to perform an eddy-current correction on the
 metabolite data</td>
 </tr>
@@ -641,31 +646,48 @@ difference spectra using an HSVD filter<span class="citation"><sup><a
 href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></sup></span></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>AlignTo</code></td>
+<td align="left"><code>alignment</code></td>
 <td align="left">Which method to use for shot-to-shot
-frequency-and-phase correction</td>
+frequency-and-phase correction<span class="citation"><sup><a
+href="#ref-Evans2013" role="doc-biblioref">3</a>–<a
+href="#ref-Mikkelsen2020" role="doc-biblioref">6</a></sup></span></td>
 </tr>
 <tr class="even">
-<td align="left"><code>Vox</code></td>
+<td align="left"><code>use_prealign_ref</code></td>
+<td align="left">In some cases, using <code>RobustSpecReg</code> to
+align HERMES/HERCULES data can result in worse alignment compared to the
+pre-aligned data; setting this parameter to 1 will make
+<code>RobustSpecReg</code> use the averaged pre-aligned subspectra as
+references to align the averaged post-aligned subspectra, which may
+improve the final alignment; this has not be tested extensively</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vox</code></td>
 <td align="left">Only applies to PRIAM data; the desired naming of the
 output structure fields</td>
 </tr>
-<tr class="odd">
-<td align="left"><code>FitResidWater</code></td>
+<tr class="even">
+<td align="left"><code>fit_resid_water</code></td>
 <td align="left">Whether to model the residual water signal in the
-difference spectrum; used to calculate the water suppression factor</td>
+difference spectrum; used to calculate a water suppression factor</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>weighted_averaging</code></td>
+<td align="left">Whether to average the data using weighted averaging;
+the default approach use is mean-squared error, but other approaches can
+be set in <code>SignalAveraging.m</code></td>
 </tr>
 </tbody>
 </table>
 <table>
 <colgroup>
-<col width="22%" />
-<col width="77%" />
+<col width="26%" />
+<col width="73%" />
 </colgroup>
 <thead>
 <tr class="header">
-<th align="left"><strong>Flags</strong></th>
-<th align="left"><strong>Description</strong></th>
+<th align="left"><u>Flags</u></th>
+<th align="left"><u>Description</u></th>
 </tr>
 </thead>
 <tbody>
@@ -690,14 +712,14 @@ PRIAM</td>
 phantom</td>
 </tr>
 <tr class="odd">
+<td align="left"><code>join</code></td>
+<td align="left">Set to <code>1</code> to join multiple files (this can
+be batched across subjects)</td>
+</tr>
+<tr class="even">
 <td align="left"><code>mat</code></td>
 <td align="left">Set to <code>1</code> to save the output structure as a
 MAT-file</td>
-</tr>
-<tr class="even">
-<td align="left"><code>sdat</code></td>
-<td align="left">Set to <code>1</code> to export the difference spectra
-as a .sdat file (only for Philips .sdat MEGA-PRESS datasets)</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>csv</code></td>
@@ -705,8 +727,21 @@ as a .sdat file (only for Philips .sdat MEGA-PRESS datasets)</td>
 useful data for analysis (applies to <code>GannetFit.m</code>,
 <code>GannetSegment.m</code> and <code>GannetQuantify.m</code>)</td>
 </tr>
+<tr class="even">
+<td align="left"><code>append</code></td>
+<td align="left">Set to <code>1</code> to append PDF outputs into one
+PDF (separately for each module) (requires <code>export_fig</code> in
+the Gannet directory to be added to the search path and Ghostscript to
+be installed)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>hide</code></td>
+<td align="left">Set to <code>1</code> to not display output
+figures</td>
+</tr>
 </tbody>
 </table>
+<p><br></p>
 </div>
 <div id="loading-and-preprocessing-data"
 class="section level2 hasAnchor">
@@ -719,11 +754,9 @@ aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
-<p><br></p>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
-<p><img src="images/reference/GannetLoad-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
-<p><br></p>
+<p><img src="images/reference/GannetLoad-example.png" alt="A screenshot example of GannetLoad output"></p>
 </div>
 <div id="signal-fitting" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Signal fitting<a href="#signal-fitting"
@@ -734,12 +767,10 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
-<p><br></p>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
-<p><img src="images/reference/GannetFit-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
-<p><br></p>
+<p><img src="images/reference/GannetFit-example.png" alt="A screenshot example of GannetFit output"></p>
 </div>
 <div id="voxel-co-registration" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Voxel co-registration<a
@@ -751,13 +782,11 @@ aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
-<p><br></p>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
-<p><img src="images/reference/GannetCoRegister-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
-<p><br></p>
+<p><img src="images/reference/GannetCoRegister-example.png" alt="A screenshot example of GannetCoRegister output"></p>
 </div>
 <div id="tissue-segmentation" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Tissue segmentation<a href="#tissue-segmentation"
@@ -768,14 +797,12 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
-<p><br></p>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
-<p><img src="images/reference/GannetSegment-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
-<p><br></p>
+<p><img src="images/reference/GannetSegment-example.png" alt="A screenshot example of GannetSegment output"></p>
 </div>
 <div id="quantification" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Quantification<a href="#quantification"
@@ -786,21 +813,13 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetLoad</span>({<span class="ss">&#39;S01_GABA_act.sdat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;S01_GABA_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetCoRegister</span>(<span class="va">MRS_struct</span><span class="op">,</span> {<span class="ss">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetSegment</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">GannetQuantify</span>(<span class="va">MRS_struct</span>)<span class="op">;</span></span></code></pre></div>
-<p><br></p>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetQuantify(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
-<p><img src="images/reference/GannetQuantify-example.png" width="100%" style="display: block; margin: auto auto auto 0;" /></p>
-<!-- Code for the modals -->
-<!-- <div id="myModal" class="modal"> -->
-<!--   <span class="close">&times;</span> -->
-<!--   <img class="modal-content" id="img01"> -->
-<!--   <div id="caption"></div> -->
-<!-- </div> -->
-<!-- <script src="js/img-modal.js"></script> -->
+<p><img src="images/reference/GannetQuantify-example.png" alt="A screenshot example of GannetQuantify output"></p>
 <div id="references" class="section level3 unnumbered hasAnchor">
 <h3 class="unnumbered hasAnchor">References<a href="#references"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
@@ -820,17 +839,51 @@ fitting to exponentially damped magnetic resonance signals</span>.
 <em>Journal of Magnetic Resonance</em>. 1987;73(3):553-557. doi:<a
 href="https://doi.org/10.1016/0022-2364(87)90023-0">10.1016/0022-2364(87)90023-0</a></div>
 </div>
+<div id="ref-Evans2013" class="csl-entry">
+<div class="csl-left-margin">3. </div><div
+class="csl-right-inline">Evans CJ, Puts NAJ, Robson SE, et al. <span
+class="nocase">Subtraction artifacts and frequency (Mis-)alignment in
+J-difference GABA editing</span>. <em>Journal of Magnetic Resonance
+Imaging</em>. 2013;38(4):970-975. doi:<a
+href="https://doi.org/10.1002/jmri.23923">10.1002/jmri.23923</a></div>
+</div>
+<div id="ref-Near2015" class="csl-entry">
+<div class="csl-left-margin">4. </div><div class="csl-right-inline">Near
+J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <span
+class="nocase">Frequency and phase drift correction of magnetic
+resonance spectroscopy data by spectral registration in the time
+domain</span>. <em>Magnetic Resonance in Medicine</em>.
+2015;73(1):44-50. doi:<a
+href="https://doi.org/10.1002/mrm.25094">10.1002/mrm.25094</a></div>
+</div>
+<div id="ref-Mikkelsen2018" class="csl-entry">
+<div class="csl-left-margin">5. </div><div
+class="csl-right-inline">Mikkelsen M, Saleh MG, Near J, et al. <span
+class="nocase">Frequency and phase correction for multiplexed edited MRS
+of GABA and glutathione</span>. <em>Magnetic Resonance in Medicine</em>.
+2018;80(1):21-28. doi:<a
+href="https://doi.org/10.1002/mrm.27027">10.1002/mrm.27027</a></div>
+</div>
+<div id="ref-Mikkelsen2020" class="csl-entry">
+<div class="csl-left-margin">6. </div><div
+class="csl-right-inline">Mikkelsen M, Tapper S, Near J, Mostofsky SH,
+Puts NAJ, Edden RAE. <span class="nocase">Correcting frequency and phase
+offsets in MRS data using robust spectral registration</span>. <em>NMR
+in Biomedicine</em>. 2020;33(10):e4368. doi:<a
+href="https://doi.org/10.1002/nbm.4368">10.1002/nbm.4368</a></div>
+</div>
 </div>
 </div>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUmVmZXJlbmNlIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCmJpYmxpb2dyYXBoeTogcmVmZXJlbmNlcy5iaWIKY3NsOiBhbWVyaWNhbi1tZWRpY2FsLWFzc29jaWF0aW9uLmNzbApsaW5rLWNpdGF0aW9uczogeWVzCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKPGJyPgoKOjo6IGluZm8KPGkgY2xhc3M9ImZhIGZhLWluZm8tY2lyY2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+Jm5ic3A7IFRoZSB2YXJpYWJsZXMgbGlzdGVkIG9uIHRoaXMgcGFnZSBhcmUgYXBwbGljYWJsZSB0byByZWxlYXNlIDMuMy4wIGFuZCBhcmUgbm90IG5lY2Vzc2FyaWx5IGNvcnJlY3QgZm9yIG90aGVyIHZlcnNpb25zIG9mIEdhbm5ldC4KOjo6CgojIyBQcmUtaW5pdGlhbGl6ZSBHYW5uZXQKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKKipQYXJlbnQgZnVuY3Rpb24qKgoKYEdhbm5ldFByZUluaXRpYWxpc2UubWAKCjxicj4KCnwgPHU+QWNxdWlzaXRpb24gcGFyYW1ldGVyczwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBgdGFyZ2V0YCB8IFNldHMgdGhlIG1ldGFib2xpdGUgb2YgaW50ZXJlc3QgdGhhdCB3YXMgZWRpdGVkIGluIHRoZSBNUlMgZXhwZXJpbWVudDsgaWYgSEVSTUVTIG9yIEhFUkNVTEVTIHdhcyB1c2VkLCBtdWx0aXBsZSBtZXRhYm9saXRlcyBzaG91bGQgYmUgc2VsZWN0ZWQgfAp8IGBzZXFvcmlnYCB8IE9yaWdpbiBvZiBQaGlsaXBzIE1FR0EtUFJFU1Mgb3IgR0UgSEVSTUVTIHNlcXVlbmNlcyB8Cgp8IDx1PkFuYWx5c2lzIHBhcmFtZXRlcnM8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfDotLS0tLS0tLS0tLS0tLS0tLS18Oi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgYExCYCB8IFNldHMgdGhlIGFtb3VudCBvZiBleHBvbmVudGlhbCBsaW5lLWJyb2FkZW5pbmcgdG8gYXBwbHkgdG8gdGhlIGRhdGEgKGluIEh6KSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CnwgYHdhdGVyX0VDQ2AgfCBXaGV0aGVyIHRvIHBlcmZvcm0gYW4gZWRkeS1jdXJyZW50IGNvcnJlY3Rpb24gW0BLbG9zZTE5OTBdIG9uIHRoZSB3YXRlciBkYXRhICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAp8IGBtZXRhYl9FQ0NgIHwgV2hldGhlciB0byBwZXJmb3JtIGFuIGVkZHktY3VycmVudCBjb3JyZWN0aW9uIG9uIHRoZSBtZXRhYm9saXRlIGRhdGEgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBgd2F0ZXJfcmVtb3ZhbGAgfCBXaGV0aGVyIHRvIHJlbW92ZSB0aGUgcmVzaWR1YWwgd2F0ZXIgc2lnbmFsIGZyb20gdGhlIGRpZmZlcmVuY2Ugc3BlY3RyYSB1c2luZyBhbiBIU1ZEIGZpbHRlciBbQEJhcmtodWlqc2VuMTk4N10gICAgICAgfAp8IGBhbGlnbm1lbnRgIHwgV2hpY2ggbWV0aG9kIHRvIHVzZSBmb3Igc2hvdC10by1zaG90IGZyZXF1ZW5jeS1hbmQtcGhhc2UgY29ycmVjdGlvbiBbQEV2YW5zMjAxMzsgQE5lYXIyMDE1OyBATWlra2Vsc2VuMjAxODsgQE1pa2tlbHNlbjIwMjBdIHwKfCBgdXNlX3ByZWFsaWduX3JlZmAgfCBJbiBzb21lIGNhc2VzLCB1c2luZyBgUm9idXN0U3BlY1JlZ2AgdG8gYWxpZ24gSEVSTUVTL0hFUkNVTEVTIGRhdGEgY2FuIHJlc3VsdCBpbiB3b3JzZSBhbGlnbm1lbnQgY29tcGFyZWQgdG8gdGhlIHByZS1hbGlnbmVkIGRhdGE7IHNldHRpbmcgdGhpcyBwYXJhbWV0ZXIgdG8gMSB3aWxsIG1ha2UgYFJvYnVzdFNwZWNSZWdgIHVzZSB0aGUgYXZlcmFnZWQgcHJlLWFsaWduZWQgc3Vic3BlY3RyYSBhcyByZWZlcmVuY2VzIHRvIGFsaWduIHRoZSBhdmVyYWdlZCBwb3N0LWFsaWduZWQgc3Vic3BlY3RyYSwgd2hpY2ggbWF5IGltcHJvdmUgdGhlIGZpbmFsIGFsaWdubWVudDsgdGhpcyBoYXMgbm90IGJlIHRlc3RlZCBleHRlbnNpdmVseSB8CnwgYHZveGAgfCBPbmx5IGFwcGxpZXMgdG8gUFJJQU0gZGF0YTsgdGhlIGRlc2lyZWQgbmFtaW5nIG9mIHRoZSBvdXRwdXQgc3RydWN0dXJlIGZpZWxkcyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAp8IGBmaXRfcmVzaWRfd2F0ZXJgIHwgV2hldGhlciB0byBtb2RlbCB0aGUgcmVzaWR1YWwgd2F0ZXIgc2lnbmFsIGluIHRoZSBkaWZmZXJlbmNlIHNwZWN0cnVtOyB1c2VkIHRvIGNhbGN1bGF0ZSBhIHdhdGVyIHN1cHByZXNzaW9uIGZhY3RvciB8CnwgYHdlaWdodGVkX2F2ZXJhZ2luZ2AgfCBXaGV0aGVyIHRvIGF2ZXJhZ2UgdGhlIGRhdGEgdXNpbmcgd2VpZ2h0ZWQgYXZlcmFnaW5nOyB0aGUgZGVmYXVsdCBhcHByb2FjaCB1c2UgaXMgbWVhbi1zcXVhcmVkIGVycm9yLCBidXQgb3RoZXIgYXBwcm9hY2hlcyBjYW4gYmUgc2V0IGluIGBTaWduYWxBdmVyYWdpbmcubWAgfAoKfCA8dT5GbGFnczwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBgSEVSTUVTYCAgIHwgU2V0IHRvIGAxYCBpZiB0aGUgZGF0YSB3ZXJlIGFjcXVpcmVkIHVzaW5nIEhFUk1FUyAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAp8IGBIRVJDVUxFU2AgfCBTZXQgdG8gYDFgIGlmIHRoZSBkYXRhIHdlcmUgYWNxdWlyZWQgdXNpbmcgSEVSQ1VMRVMgKGBIRVJNRVNgIG11c3QgYWxzbyBiZSBzZXQgdG8gYDFgKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CnwgYFBSSUFNYCAgICB8IFNldCB0byBgMWAgaWYgdGhlIGRhdGEgd2VyZSBhY3F1aXJlZCB1c2luZyBQUklBTSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBgcGhhbnRvbWAgIHwgU2V0IHRvIGAxYCBpZiB0aGUgZGF0YSB3ZXJlIGFjcXVpcmVkIGluIGEgcGhhbnRvbSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgfAp8IGBqb2luYCAgICAgfCBTZXQgdG8gYDFgIHRvIGpvaW4gbXVsdGlwbGUgZmlsZXMgKHRoaXMgY2FuIGJlIGJhdGNoZWQgYWNyb3NzIHN1YmplY3RzKSAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICB8CnwgYG1hdGAgICAgICB8IFNldCB0byBgMWAgdG8gc2F2ZSB0aGUgb3V0cHV0IHN0cnVjdHVyZSBhcyBhIE1BVC1maWxlICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgIHwKfCBgY3N2YCAgICAgIHwgU2V0IHRvIGAxYCB0byBleHBvcnQgYSAuY3N2IGZpbGUgY29udGFpbmluZyB1c2VmdWwgZGF0YSBmb3IgYW5hbHlzaXMgKGFwcGxpZXMgdG8gYEdhbm5ldEZpdC5tYCwgYEdhbm5ldFNlZ21lbnQubWAgYW5kIGBHYW5uZXRRdWFudGlmeS5tYCkgfAp8IGBhcHBlbmRgICAgfCBTZXQgdG8gYDFgIHRvIGFwcGVuZCBQREYgb3V0cHV0cyBpbnRvIG9uZSBQREYgKHNlcGFyYXRlbHkgZm9yIGVhY2ggbW9kdWxlKSAocmVxdWlyZXMgYGV4cG9ydF9maWdgIGluIHRoZSBHYW5uZXQgZGlyZWN0b3J5IHRvIGJlIGFkZGVkIHRvIHRoZSBzZWFyY2ggcGF0aCBhbmQgR2hvc3RzY3JpcHQgdG8gYmUgaW5zdGFsbGVkKSB8CnwgYGhpZGVgICAgICB8IFNldCB0byBgMWAgdG8gbm90IGRpc3BsYXkgb3V0cHV0IGZpZ3VyZXMgfAoKPGJyPgoKIyMgTG9hZGluZyBhbmQgcHJlcHJvY2Vzc2luZyBkYXRhCgotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0KCioqUGFyZW50IGZ1bmN0aW9uKioKCmBHYW5uZXRMb2FkLm1gCgo8YnI+CgoqKkV4YW1wbGUgdXNhZ2U6KioKCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KTVJTX3N0cnVjdCA9IEdhbm5ldExvYWQoeydTMDFfR0FCQV82OF9hY3Quc2RhdCd9LCB7J1MwMV9HQUJBXzY4X3JlZi5zZGF0J30pOwpgYGAKCk91dHB1dDoKCjxpbWcgc3JjPSJpbWFnZXMvcmVmZXJlbmNlL0dhbm5ldExvYWQtZXhhbXBsZS5wbmciIGFsdD0iQSBzY3JlZW5zaG90IGV4YW1wbGUgb2YgR2FubmV0TG9hZCBvdXRwdXQiPgoKIyMgU2lnbmFsIGZpdHRpbmcKCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKKipQYXJlbnQgZnVuY3Rpb24qKgoKYEdhbm5ldEZpdC5tYAoKPGJyPgoKKipFeGFtcGxlIHVzYWdlOioqCgpgYGB7b2N0YXZlLCBldmFsID0gRkFMU0V9Ck1SU19zdHJ1Y3QgPSBHYW5uZXRMb2FkKHsnUzAxX0dBQkFfNjhfYWN0LnNkYXQnfSwgeydTMDFfR0FCQV82OF9yZWYuc2RhdCd9KTsKTVJTX3N0cnVjdCA9IEdhbm5ldEZpdChNUlNfc3RydWN0KTsKYGBgCgpPdXRwdXQ6Cgo8aW1nIHNyYz0iaW1hZ2VzL3JlZmVyZW5jZS9HYW5uZXRGaXQtZXhhbXBsZS5wbmciIGFsdD0iQSBzY3JlZW5zaG90IGV4YW1wbGUgb2YgR2FubmV0Rml0IG91dHB1dCI+CgojIyBWb3hlbCBjby1yZWdpc3RyYXRpb24KCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKKipQYXJlbnQgZnVuY3Rpb24qKgoKYEdhbm5ldENvUmVnaXN0ZXIubWAKCjxicj4KCioqRXhhbXBsZSB1c2FnZToqKgoKYGBge29jdGF2ZSwgZXZhbCA9IEZBTFNFfQpNUlNfc3RydWN0ID0gR2FubmV0TG9hZCh7J1MwMV9HQUJBXzY4X2FjdC5zZGF0J30sIHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnfSk7Ck1SU19zdHJ1Y3QgPSBHYW5uZXRGaXQoTVJTX3N0cnVjdCk7Ck1SU19zdHJ1Y3QgPSBHYW5uZXRDb1JlZ2lzdGVyKE1SU19zdHJ1Y3QsIHsnUzAxX3N0cnVjLm5paSd9KTsKYGBgCgpPdXRwdXQ6Cgo8aW1nIHNyYz0iaW1hZ2VzL3JlZmVyZW5jZS9HYW5uZXRDb1JlZ2lzdGVyLWV4YW1wbGUucG5nIiBhbHQ9IkEgc2NyZWVuc2hvdCBleGFtcGxlIG9mIEdhbm5ldENvUmVnaXN0ZXIgb3V0cHV0Ij4KCiMjIFRpc3N1ZSBzZWdtZW50YXRpb24KCi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLQoKKipQYXJlbnQgZnVuY3Rpb24qKgoKYEdhbm5ldFNlZ21lbnQubWAKCjxicj4KCioqRXhhbXBsZSB1c2FnZToqKgoKYGBge29jdGF2ZSwgZXZhbCA9IEZBTFNFfQpNUlNfc3RydWN0ID0gR2FubmV0TG9hZCh7J1MwMV9HQUJBXzY4X2FjdC5zZGF0J30sIHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnfSk7Ck1SU19zdHJ1Y3QgPSBHYW5uZXRGaXQoTVJTX3N0cnVjdCk7Ck1SU19zdHJ1Y3QgPSBHYW5uZXRDb1JlZ2lzdGVyKE1SU19zdHJ1Y3QsIHsnUzAxX3N0cnVjLm5paSd9KTsKTVJTX3N0cnVjdCA9IEdhbm5ldFNlZ21lbnQoTVJTX3N0cnVjdCk7CmBgYAoKT3V0cHV0OgoKPGltZyBzcmM9ImltYWdlcy9yZWZlcmVuY2UvR2FubmV0U2VnbWVudC1leGFtcGxlLnBuZyIgYWx0PSJBIHNjcmVlbnNob3QgZXhhbXBsZSBvZiBHYW5uZXRTZWdtZW50IG91dHB1dCI+CgojIyBRdWFudGlmaWNhdGlvbgoKLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tCgoqKlBhcmVudCBmdW5jdGlvbioqCgpgR2FubmV0UXVhbnRpZnkubWAKCjxicj4KCioqRXhhbXBsZSB1c2FnZToqKgoKYGBge29jdGF2ZSwgZXZhbCA9IEZBTFNFfQpNUlNfc3RydWN0ID0gR2FubmV0TG9hZCh7J1MwMV9HQUJBXzY4X2FjdC5zZGF0J30sIHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnfSk7Ck1SU19zdHJ1Y3QgPSBHYW5uZXRGaXQoTVJTX3N0cnVjdCk7Ck1SU19zdHJ1Y3QgPSBHYW5uZXRDb1JlZ2lzdGVyKE1SU19zdHJ1Y3QsIHsnUzAxX3N0cnVjLm5paSd9KTsKTVJTX3N0cnVjdCA9IEdhbm5ldFNlZ21lbnQoTVJTX3N0cnVjdCk7Ck1SU19zdHJ1Y3QgPSBHYW5uZXRRdWFudGlmeShNUlNfc3RydWN0KTsKYGBgCgpPdXRwdXQ6Cgo8aW1nIHNyYz0iaW1hZ2VzL3JlZmVyZW5jZS9HYW5uZXRRdWFudGlmeS1leGFtcGxlLnBuZyIgYWx0PSJBIHNjcmVlbnNob3QgZXhhbXBsZSBvZiBHYW5uZXRRdWFudGlmeSBvdXRwdXQiPgoKIyMjIFJlZmVyZW5jZXMKCgoK</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -867,6 +920,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("reference.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {

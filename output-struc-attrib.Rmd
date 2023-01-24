@@ -16,19 +16,13 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, child = "js/back-to-top.js"}
 ```
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
-
 <br>
 
-<div class="info">
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp;&nbsp; The variables listed on this page are applicable to release 3.1.5 and are not necessarily correct for other versions of Gannet.
-</div>
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The fields listed on this page are applicable to release 3.3.0 and are not necessarily correct for other versions of Gannet.
+:::
 
-## `MRS_struct`
+## MRS_struct
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
@@ -37,7 +31,7 @@ body .main-container {
 | `metabfile` | String array containing the inputted metabolite data filenames |
 | `waterfile` | String array containing the inputted water reference data filenames |
 
-## `MRS_struct.p`
+## MRS_struct.p
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
@@ -80,7 +74,7 @@ body .main-container {
 `SpecResNominal` | Nominal spectral resolution of the processed data |
 `Tacq` | Acquisition time |
 
-## `MRS_struct.fids`
+## MRS_struct.fids
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |

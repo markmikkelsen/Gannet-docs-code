@@ -13,7 +13,7 @@
 
 <title>Additional tools</title>
 
-<script src="site_libs/header-attrs-2.18/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -33,6 +33,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<script src="site_libs/navigation-1.1/sourceembed.js"></script>
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
 <link href="site_libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
@@ -153,6 +155,11 @@ code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warni
 </script>
 
 
+<style type="text/css">
+#rmd-source-code {
+  display: none;
+}
+</style>
 
 
 <link rel="stylesheet" href="styles.css" type="text/css" />
@@ -314,6 +321,9 @@ $(document).ready(function () {
 </style>
 
 <!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
 
 
 
@@ -472,7 +482,10 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/">Blog</a>
+  <a href="https://gabamrs.com/">Blog</a>
+</li>
+<li>
+  <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -486,7 +499,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://www.gabamrs.com/contact">
+  <a href="https://gabamrs.com/contact">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -498,19 +511,21 @@ div.tocify {
 
 <div id="header">
 
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-download-source" href="#">Download Rmd</a></li>
+</ul>
+</div>
+
 
 
 <h1 class="title toc-ignore">Additional tools</h1>
-<h4 class="date">Last updated: December 08, 2022</h4>
+<h4 class="date">Last updated: January 24, 2023</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -544,8 +559,9 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>PaperPlot.m</code> will plot the difference spectra saved in
 the Gannet output structure. The corresponding model fits optionally can
 also be plotted. Users can choose to plot a single spectrum, a select
-number of spectra, or all spectra. Multiple spectra will be overlaid in
-the same figure. If data were acquired with HERMES, then each
+number of spectra, all spectra, or an average of all spectra with or
+without the standard deviation. Multiple spectra will be overlaid in the
+same figure. If data were acquired with HERMES, then each
 Hadamard-combined difference spectrum will be plotted in a separate
 subplot.</p>
 <p>Type <code>help PaperPlot</code> in the MATLAB command window for
@@ -553,28 +569,28 @@ usage instructions.</p>
 <p>To export plots at publication quality, consider using
 <code>PaperPlot.m</code> with Yair Altman’s excellent
 <a href="https://github.com/altmany/export_fig/" target="_blank">export_fig</a>
-MATLAB toolbox.</p>
+MATLAB toolbox. This toolbox is bundled with Gannet.</p>
 <div id="example-usage" class="section level3 hasAnchor">
 <h3 class="hasAnchor">Example usage<a href="#example-usage"
 class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="va">metab</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S02_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="va">water</span> <span class="op">=</span> {<span class="ss">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="ss">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>metab <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_act.sdat&#39;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>water <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetLoad</span>(<span class="va">metab</span><span class="op">,</span> <span class="va">water</span>)<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="va">MRS</span> <span class="op">=</span> <span class="va">GannetFit</span>(<span class="va">MRS</span>)<span class="op">;</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetLoad(metab<span class="op">,</span> water)<span class="op">;</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetFit(MRS)<span class="op">;</span></span>
 <span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span>)<span class="op">;</span> <span class="co">% Use default settings</span></span></code></pre></div>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>PaperPlot(MRS)<span class="op">;</span> <span class="co">% Use default settings</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-1.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span>)<span class="op">;</span> <span class="co">% Overlay fit models</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>PaperPlot(MRS<span class="op">,</span> <span class="st">&#39;plotModel&#39;</span><span class="op">,</span> <span class="fu">true</span>)<span class="op">;</span> <span class="co">% Overlay fit models</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-2.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="va">PaperPlot</span>(<span class="va">MRS</span><span class="op">,</span> <span class="ss">&#39;plotModel&#39;</span><span class="op">,</span> <span class="va">true</span><span class="op">,</span> <span class="ss">&#39;freqLim&#39;</span><span class="op">,</span> [<span class="fl">2</span> <span class="fl">4.25</span>])<span class="op">;</span> <span class="co">% Overlay fit models and</span></span>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>PaperPlot(MRS<span class="op">,</span> <span class="st">&#39;plotModel&#39;</span><span class="op">,</span> <span class="fu">true</span><span class="op">,</span> <span class="st">&#39;freqLim&#39;</span><span class="op">,</span> [<span class="fl">2</span> <span class="fl">4.25</span>])<span class="op">;</span> <span class="co">% Overlay fit models and</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                                                        <span class="co">% set ppm limits to 2-4.25</span></span></code></pre></div>
 <p><img src="images/additional-tools/paperplot-3.png" width="75%" style="display: block; margin: auto auto auto 0;" /></p>
 </div>
@@ -582,31 +598,45 @@ class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb3-1"><a hr
 <div id="de-identification" class="section level2 hasAnchor">
 <h2 class="hasAnchor">De-identification<a href="#de-identification"
 class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>MRI examinations in clinical environments routinely store sensitive
-protected health information (PHI) in the exported data files. It is of
-vital importance to protect participants’ privacy. To comply with
-privacy legislation, you need to ensure that the data you handle,
-process, and share is appropriately and thoroughly de-identified, i.e.,
-stripped of all PHI that allows the data to be linked to an individual.
-This is particularly true if you intend to share data, e.g., with
-collaborators.</p>
-<p>Gannet includes several functions to remove PHI from the most
-commonly used file formats. Currently, we offer functions to remove PHI
-from GE P-files (.7), Siemens TWIX (.dat), Philips (.sdat), and generic
-DICOM (.dcm) files. We plan to add support for other formats in the
-future. Please
-<a href="https://www.gabamrs.com/contact" target="_blank">contact us</a>
-if you urgently require this support.</p>
+<p>MRI examinations involving human volunteers routinely store sensitive
+protected health information (PHI) and personally identifiable
+information (PII) in the exported data files. It is of vital importance
+to protect volunteers’ privacy. To comply with privacy legislation, you
+need to ensure that the data you handle, process, and share is
+appropriately and thoroughly de-identified, i.e., stripped of all
+PHI/PII that allows the data to be linked to an individual. This is
+particularly critical if you intend to share data outside your
+institution.</p>
+<p>Gannet includes several functions to remove PHI/PII from the most
+commonly used file formats. Currently, we offer functions to remove
+PHI/PII from GE P-files (*.7), Siemens TWIX (*.dat), Philips
+(*.sdat/*.spar), and generic DICOM (*.dcm) files. We plan to add support
+for other formats in the future. Please
+<a href="https://gabamrs.com/contact" target="_blank">contact us</a> if
+you require a de-identification tool for a different format.</p>
 <p>Please note the following:</p>
+<div class="warning">
+<i class="fa fa-exclamation-circle" style="color: white"></i><br>
 <ul>
-<li>Gannet does not remove PHI from the filenames themselves; this is
-solely your responsibility.</li>
-<li>In addition to any PHI associated with the NIfTI file itself, the
+<li>
+Gannet does not remove PHI/PII from filenames; this is solely your
+responsibility.
+</li>
+<li>
+In addition to any PHI/PII associated with the NIfTI file itself, the
 structural image needs to be defaced. Please either use a
-skull-stripping tool (as, for example, implemented in FSL) or a defacing
+skull-stripping tool (such as the one implemented in FSL) or a defacing
 tool (e.g.,
-<a href="https://github.com/poldracklab/pydeface/" target="_blank">pydeface</a>).</li>
+<a href="https://github.com/poldracklab/pydeface/" target="_blank">pydeface</a>).
+</li>
+<li>
+Per our
+<a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html" target="_blank">software
+license</a>, the Gannet developers are not liable for any failure of our
+de-identification routines to remove PHI/PII from your data.
+</li>
 </ul>
+</div>
 <div id="how-to-de-identify-your-files"
 class="section level3 hasAnchor">
 <h3 class="hasAnchor">How to de-identify your files<a
@@ -619,93 +649,92 @@ class="section level4 hasAnchor">
 <h4 class="hasAnchor"><u>GE P-files, Siemens TWIX, and Philips
 SDAT</u><a href="#ge-p-files-siemens-twix-and-philips-sdat"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>For GE P-files (.7), Siemens TWIX (.dat), and Philips (.sdat) files,
-the Gannet functions <code>GEDeIdentify.m</code>,
+<p>For GE P-files (*.7), Siemens TWIX (*.dat), and Philips
+(*.sdat/*.spar) files, the Gannet functions <code>GEDeIdentify.m</code>,
 <code>TWIXDeIdentify.m</code>, and <code>PhilipsDeIdentify.m</code>
 create de-identified copies of the respective files, appended with
-’_noID’. All three functions can either be run by themselves (without
-any input arguments) to de-identify all relevant files within the
-current folder or fed with a cell array of filenames that you want to
-de-identify.</p>
+<code>_noID</code>. All three functions can either be run by themselves
+(without any input arguments) to de-identify all relevant files within
+the current directory or given a cell array of filenames that you want
+to de-identify.</p>
 </div>
 <div id="dicom" class="section level4 hasAnchor">
 <h4 class="hasAnchor"><u>DICOM</u><a href="#dicom"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Generic DICOM data usually feature many separate .dcm files for each
+<p>Generic DICOM data usually feature many separate *.dcm files for each
 acquisition. <code>DICOMDeIdentify.m</code> requires a top-level
-directory containing subdirectories for each subject (e.g. ‘S01’, ‘S02’,
-‘S03’, etc.) that contain all DICOM files for the respective subjects.
-Running <code>DICOMDeIdentify.m</code> from the top-level directory will
-create a separate folder containing the de-identified files for each
-subject, appended with ’_anon’.</p>
+directory containing subdirectories for each subject
+(e.g. <code>S01/</code>, <code>S02/</code>, <code>S03/</code>, etc.)
+that contain all DICOM files for the respective subjects. Running
+<code>DICOMDeIdentify.m</code> from the top-level directory will create
+a separate directory containing the de-identified files for each
+subject, appended with <code>_anon</code>.</p>
 </div>
 </div>
-<div id="list-of-de-identified-information"
-class="section level3 hasAnchor">
-<h3 class="hasAnchor">List of de-identified information<a
-href="#list-of-de-identified-information" class="anchor-section"
+<div id="list-of-phi-identifiers" class="section level3 hasAnchor">
+<h3 class="hasAnchor">List of PHI identifiers<a
+href="#list-of-phi-identifiers" class="anchor-section"
 aria-label="Anchor link to header"></a></h3>
-<p>The Gannet de-identification functions currently remove the following
-PHI (if present), as required by the United States HIPAA (Health
-Insurance Portability and Accountability Act) legislation:</p>
+<p>The Gannet de-identification functions currently remove PHI/PII
+identifiers defined by the
+<a href="https://www.hhs.gov/hipaa/for-professionals/privacy/special-topics/de-identification/index.html" target="_blank">United
+States Health Insurance Portability and Accountability Act (HIPAA)
+Privacy Rule</a>. These include, but are not limited to:</p>
 <ul>
-<li>Subject names</li>
-<li>Subject ID numbers</li>
-<li>Birth dates</li>
-<li>Sex</li>
-<li>Height and weight</li>
-<li>Study ID numbers and study dates</li>
-<li>Institutional names and addresses</li>
+<li>Names</li>
+<li>Addresses</li>
+<li>Dates, including birth date and examination date</li>
+<li>Medical record numbers</li>
 <li>Device identifiers and serial numbers</li>
 </ul>
 <p>Should the regulations in your country or your institution require
 additional information to be removed from the files, please
-<a href="https://www.gabamrs.com/contact" target="_blank">contact
+<a href="https://gabamrs.com/contact" target="_blank">contact
 us</a>.</p>
 <div class="danger">
-<p><i class="fa fa-exclamation-triangle" style="color: white"></i>  
-There is <u>no way</u> to retrieve PHI from a de-identified file! Make
-sure that you either retain a copy of the original file or that you keep
-a separate record that uniquely links all necessary subject information
-to the de-identified file.</p>
+<p><i class="fa fa-exclamation-triangle" style="color: white"></i> 
+There is <u>no way</u> to retrieve PHI/PII from a de-identified file!
+Make sure that you either retain a copy of the original file or that you
+keep a separate record that uniquely links all necessary subject
+information to the de-identified file.</p>
 </div>
 </div>
 </div>
 <div id="coregstandalone" class="section level2 hasAnchor">
 <h2 class="hasAnchor">CoRegStandAlone<a href="#coregstandalone"
 class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>By popular demand, we have programmed a standalone version of the
-voxel co-registration and segmentation routines for use with any
-single-voxel MRS dataset, including non-edited data
-<code>CoRegStandAlone.m</code> contains stripped-to-the-bone
-modifications of <code>GannetLoad.m</code>,
-<code>GannetCoRegister.m</code>, and <code>GannetSegment.m</code>. It
-doesn’t bother loading the MRS data at all, aside from extracting the
-geometrical information about voxel dimensions, positions, and
+<p>Gannet has a standalone routine for voxel co-registration and
+segmentation that can be utilized with any single-voxel MRS dataset,
+including non-edited data. <code>CoRegStandAlone.m</code> contains
+simplified versions of <code>GannetLoad.m</code>,
+<code>GannetCoRegister.m</code>, and <code>GannetSegment.m</code> to
+parse geometrical information about voxel dimensions, positions, and
 rotations.</p>
 <p><code>CoRegStandAlone.m</code> supports the same input formats as the
-main Gannet modules Upon being called, it produces CoRegister and
-Segment outputs for each provided dataset. However, the Segment output
-does not contain any quantitative information except for the tissue
-composition (voxel tissue fractions of GM, WM, and CSF).</p>
-<p>The syntax is similar to the <code>GannetLoad.m</code> syntax, where
-the first cell array contains the MRS filenames and the second cell
-array contains the respective NIfTI filenames:</p>
+main Gannet modules. Upon being called, it produces GannetCoRegister and
+GannetSegment outputs for each provided dataset. However, the
+GannetSegment output does not contain any quantitative information,
+except for tissue composition (voxel tissue fractions of GM, WM, and
+CSF).</p>
+<p>The syntax is similar to <code>GannetLoad.m</code> syntax, where the
+first cell array contains the MRS filenames and the second cell array
+contains the respective NIfTI filenames:</p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode matlab"><code class="sourceCode matlab"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="va">MRS_struct</span> <span class="op">=</span> <span class="va">CoRegStandAlone</span>({<span class="ss">&#39;data1.dat&#39;</span><span class="op">,</span> <span class="ss">&#39;data2.dat&#39;</span>}<span class="op">,</span> {<span class="ss">&#39;structural1.nii&#39;</span><span class="op">,</span> <span class="ss">&#39;structural2.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> CoRegStandAlone({<span class="st">&#39;data1.dat&#39;</span><span class="op">,</span> <span class="st">&#39;data2.dat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;structural1.nii&#39;</span><span class="op">,</span> <span class="st">&#39;structural2.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p>Please note that the number of NIfTI files needs to match the number
-of MRS data files, i.e., if you want to register <em>n</em> voxels to
-the same structural image, you’ll need to repeat the name of the NIfTI
-file <em>n</em> times.</p>
+of MRS data files; i.e., if you want to register <em>N</em> voxels to
+the same structural image, you’ll need to replicate the name of the
+NIfTI file <em>N</em> times.</p>
 </div>
 
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQWRkaXRpb25hbCB0b29scyIKZGF0ZTogIkxhc3QgdXBkYXRlZDogYHIgZm9ybWF0KFN5cy50aW1lKCksICclQiAlZCwgJVknKWAiCm91dHB1dDoKICBodG1sX2RvY3VtZW50OgogICAgdG9jOiBUUlVFCiAgICB0b2NfZGVwdGg6IDMKICAgIHRvY19mbG9hdDoKICAgICAgY29sbGFwc2VkOiBGQUxTRQotLS0KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSAianMvYmFjay10by10b3AuanMifQpgYGAKCjxicj4KCkluIGFkZGl0aW9uIHRvIHRoZSBmaXZlIGNvcmUgbW9kdWxlcywgR2FubmV0IGNvbWVzIHdpdGggYSBmZXcgYWRkaXRpb25hbCB0b29scyB0aGF0IHlvdSBtYXkgZmluZCB1c2VmdWwuCgojIyBQYXBlclBsb3QKCmBQYXBlclBsb3QubWAgd2lsbCBwbG90IHRoZSBkaWZmZXJlbmNlIHNwZWN0cmEgc2F2ZWQgaW4gdGhlIEdhbm5ldCBvdXRwdXQgc3RydWN0dXJlLiBUaGUgY29ycmVzcG9uZGluZyBtb2RlbCBmaXRzIG9wdGlvbmFsbHkgY2FuIGFsc28gYmUgcGxvdHRlZC4gVXNlcnMgY2FuIGNob29zZSB0byBwbG90IGEgc2luZ2xlIHNwZWN0cnVtLCBhIHNlbGVjdCBudW1iZXIgb2Ygc3BlY3RyYSwgYWxsIHNwZWN0cmEsIG9yIGFuIGF2ZXJhZ2Ugb2YgYWxsIHNwZWN0cmEgd2l0aCBvciB3aXRob3V0IHRoZSBzdGFuZGFyZCBkZXZpYXRpb24uIE11bHRpcGxlIHNwZWN0cmEgd2lsbCBiZSBvdmVybGFpZCBpbiB0aGUgc2FtZSBmaWd1cmUuIElmIGRhdGEgd2VyZSBhY3F1aXJlZCB3aXRoIEhFUk1FUywgdGhlbiBlYWNoIEhhZGFtYXJkLWNvbWJpbmVkIGRpZmZlcmVuY2Ugc3BlY3RydW0gd2lsbCBiZSBwbG90dGVkIGluIGEgc2VwYXJhdGUgc3VicGxvdC4KClR5cGUgYGhlbHAgUGFwZXJQbG90YCBpbiB0aGUgTUFUTEFCIGNvbW1hbmQgd2luZG93IGZvciB1c2FnZSBpbnN0cnVjdGlvbnMuCgpUbyBleHBvcnQgcGxvdHMgYXQgcHVibGljYXRpb24gcXVhbGl0eSwgY29uc2lkZXIgdXNpbmcgYFBhcGVyUGxvdC5tYCB3aXRoIFlhaXIgQWx0bWFuJ3MgZXhjZWxsZW50IDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9hbHRtYW55L2V4cG9ydF9maWcvIiB0YXJnZXQ9Il9ibGFuayI+ZXhwb3J0X2ZpZzwvYT4gTUFUTEFCIHRvb2xib3guIFRoaXMgdG9vbGJveCBpcyBidW5kbGVkIHdpdGggR2FubmV0LgoKIyMjIEV4YW1wbGUgdXNhZ2UKCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KbWV0YWIgPSB7J1MwMV9HQUJBXzY4X2FjdC5zZGF0JwogICAgICAgICAnUzAyX0dBQkFfNjhfYWN0LnNkYXQnCiAgICAgICAgICdTMDNfR0FCQV82OF9hY3Quc2RhdCd9Owp3YXRlciA9IHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnCiAgICAgICAgICdTMDJfR0FCQV82OF9yZWYuc2RhdCcKICAgICAgICAgJ1MwM19HQUJBXzY4X3JlZi5zZGF0J307CgpNUlMgPSBHYW5uZXRMb2FkKG1ldGFiLCB3YXRlcik7Ck1SUyA9IEdhbm5ldEZpdChNUlMpOwoKUGFwZXJQbG90KE1SUyk7ICUgVXNlIGRlZmF1bHQgc2V0dGluZ3MKYGBgCgpgYGB7ciBlY2hvID0gRkFMU0UsIG91dC53aWR0aCA9ICc3NSUnLCBmaWcuYWxpZ24gPSAnbGVmdCd9CmtuaXRyOjppbmNsdWRlX2dyYXBoaWNzKCdpbWFnZXMvYWRkaXRpb25hbC10b29scy9wYXBlcnBsb3QtMS5wbmcnKQpgYGAKCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KUGFwZXJQbG90KE1SUywgJ3Bsb3RNb2RlbCcsIHRydWUpOyAlIE92ZXJsYXkgZml0IG1vZGVscwpgYGAKCmBgYHtyIGVjaG8gPSBGQUxTRSwgb3V0LndpZHRoID0gJzc1JScsIGZpZy5hbGlnbiA9ICdsZWZ0J30Ka25pdHI6OmluY2x1ZGVfZ3JhcGhpY3MoJ2ltYWdlcy9hZGRpdGlvbmFsLXRvb2xzL3BhcGVycGxvdC0yLnBuZycpCmBgYAoKYGBge29jdGF2ZSwgZXZhbCA9IEZBTFNFfQpQYXBlclBsb3QoTVJTLCAncGxvdE1vZGVsJywgdHJ1ZSwgJ2ZyZXFMaW0nLCBbMiA0LjI1XSk7ICUgT3ZlcmxheSBmaXQgbW9kZWxzIGFuZAogICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICAgICUgc2V0IHBwbSBsaW1pdHMgdG8gMi00LjI1CmBgYAoKYGBge3IgZWNobyA9IEZBTFNFLCBvdXQud2lkdGggPSAnNzUlJywgZmlnLmFsaWduID0gJ2xlZnQnfQprbml0cjo6aW5jbHVkZV9ncmFwaGljcygnaW1hZ2VzL2FkZGl0aW9uYWwtdG9vbHMvcGFwZXJwbG90LTMucG5nJykKYGBgCgojIyBEZS1pZGVudGlmaWNhdGlvbgoKTVJJIGV4YW1pbmF0aW9ucyBpbnZvbHZpbmcgaHVtYW4gdm9sdW50ZWVycyByb3V0aW5lbHkgc3RvcmUgc2Vuc2l0aXZlIHByb3RlY3RlZCBoZWFsdGggaW5mb3JtYXRpb24gKFBISSkgYW5kIHBlcnNvbmFsbHkgaWRlbnRpZmlhYmxlIGluZm9ybWF0aW9uIChQSUkpIGluIHRoZSBleHBvcnRlZCBkYXRhIGZpbGVzLiBJdCBpcyBvZiB2aXRhbCBpbXBvcnRhbmNlIHRvIHByb3RlY3Qgdm9sdW50ZWVyc+KAmSBwcml2YWN5LiBUbyBjb21wbHkgd2l0aCBwcml2YWN5IGxlZ2lzbGF0aW9uLCB5b3UgbmVlZCB0byBlbnN1cmUgdGhhdCB0aGUgZGF0YSB5b3UgaGFuZGxlLCBwcm9jZXNzLCBhbmQgc2hhcmUgaXMgYXBwcm9wcmlhdGVseSBhbmQgdGhvcm91Z2hseSBkZS1pZGVudGlmaWVkLCBpLmUuLCBzdHJpcHBlZCBvZiBhbGwgUEhJL1BJSSB0aGF0IGFsbG93cyB0aGUgZGF0YSB0byBiZSBsaW5rZWQgdG8gYW4gaW5kaXZpZHVhbC4gVGhpcyBpcyBwYXJ0aWN1bGFybHkgY3JpdGljYWwgaWYgeW91IGludGVuZCB0byBzaGFyZSBkYXRhIG91dHNpZGUgeW91ciBpbnN0aXR1dGlvbi4KCkdhbm5ldCBpbmNsdWRlcyBzZXZlcmFsIGZ1bmN0aW9ucyB0byByZW1vdmUgUEhJL1BJSSBmcm9tIHRoZSBtb3N0IGNvbW1vbmx5IHVzZWQgZmlsZSBmb3JtYXRzLiBDdXJyZW50bHksIHdlIG9mZmVyIGZ1bmN0aW9ucyB0byByZW1vdmUgUEhJL1BJSSBmcm9tIEdFIFAtZmlsZXMgKFwqLjcpLCBTaWVtZW5zIFRXSVggKFwqLmRhdCksIFBoaWxpcHMgKFwqLnNkYXQvXCouc3BhciksIGFuZCBnZW5lcmljIERJQ09NIChcKi5kY20pIGZpbGVzLiBXZSBwbGFuIHRvIGFkZCBzdXBwb3J0IGZvciBvdGhlciBmb3JtYXRzIGluIHRoZSBmdXR1cmUuIFBsZWFzZSA8YSBocmVmPSJodHRwczovL2dhYmFtcnMuY29tL2NvbnRhY3QiIHRhcmdldD0iX2JsYW5rIj5jb250YWN0IHVzPC9hPiBpZiB5b3UgcmVxdWlyZSBhIGRlLWlkZW50aWZpY2F0aW9uIHRvb2wgZm9yIGEgZGlmZmVyZW50IGZvcm1hdC4KClBsZWFzZSBub3RlIHRoZSBmb2xsb3dpbmc6Cgo6Ojogd2FybmluZwo8aSBjbGFzcz0iZmEgZmEtZXhjbGFtYXRpb24tY2lyY2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+PGJyPgo8dWw+CiAgPGxpPkdhbm5ldCBkb2VzIG5vdCByZW1vdmUgUEhJL1BJSSBmcm9tIGZpbGVuYW1lczsgdGhpcyBpcyBzb2xlbHkgeW91ciByZXNwb25zaWJpbGl0eS48L2xpPgogIDxsaT5JbiBhZGRpdGlvbiB0byBhbnkgUEhJL1BJSSBhc3NvY2lhdGVkIHdpdGggdGhlIE5JZlRJIGZpbGUgaXRzZWxmLCB0aGUgc3RydWN0dXJhbCBpbWFnZSBuZWVkcyB0byBiZSBkZWZhY2VkLiBQbGVhc2UgZWl0aGVyIHVzZSBhIHNrdWxsLXN0cmlwcGluZyB0b29sIChzdWNoIGFzIHRoZSBvbmUgaW1wbGVtZW50ZWQgaW4gRlNMKSBvciBhIGRlZmFjaW5nIHRvb2wgKGUuZy4sIDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9wb2xkcmFja2xhYi9weWRlZmFjZS8iIHRhcmdldD0iX2JsYW5rIj5weWRlZmFjZTwvYT4pLjwvbGk+CiAgPGxpPlBlciBvdXIgPGEgaHJlZj0iaHR0cHM6Ly9tYXJrbWlra2Vsc2VuLmdpdGh1Yi5pby9HYW5uZXQtZG9jcy9nYW5uZXQtbGljZW5zZS5odG1sIiB0YXJnZXQ9Il9ibGFuayI+c29mdHdhcmUgbGljZW5zZTwvYT4sIHRoZSBHYW5uZXQgZGV2ZWxvcGVycyBhcmUgbm90IGxpYWJsZSBmb3IgYW55IGZhaWx1cmUgb2Ygb3VyIGRlLWlkZW50aWZpY2F0aW9uIHJvdXRpbmVzIHRvIHJlbW92ZSBQSEkvUElJIGZyb20geW91ciBkYXRhLjwvbGk+CjwvdWw+Cjo6OgoKIyMjIEhvdyB0byBkZS1pZGVudGlmeSB5b3VyIGZpbGVzCgpUaGUgR2FubmV0IGRlLWlkZW50aWZpY2F0aW9uIGZ1bmN0aW9ucyBjcmVhdGUgZGUtaWRlbnRpZmllZCBjb3BpZXMgb2YgdGhlIG9yaWdpbmFsIGRhdGEuIFRoZSBvcmlnaW5hbCBmaWxlcyBhcmUgbm90IG92ZXJ3cml0dGVuLgoKIyMjIyA8dT5HRSBQLWZpbGVzLCBTaWVtZW5zIFRXSVgsIGFuZCBQaGlsaXBzIFNEQVQ8L3U+CgpGb3IgR0UgUC1maWxlcyAoXCouNyksIFNpZW1lbnMgVFdJWCAoXCouZGF0KSwgYW5kIFBoaWxpcHMgKFwqLnNkYXQvXCouc3BhcikgZmlsZXMsIHRoZSBHYW5uZXQgZnVuY3Rpb25zIGBHRURlSWRlbnRpZnkubWAsIGBUV0lYRGVJZGVudGlmeS5tYCwgYW5kIGBQaGlsaXBzRGVJZGVudGlmeS5tYCBjcmVhdGUgZGUtaWRlbnRpZmllZCBjb3BpZXMgb2YgdGhlIHJlc3BlY3RpdmUgZmlsZXMsIGFwcGVuZGVkIHdpdGggYF9ub0lEYC4gQWxsIHRocmVlIGZ1bmN0aW9ucyBjYW4gZWl0aGVyIGJlIHJ1biBieSB0aGVtc2VsdmVzICh3aXRob3V0IGFueSBpbnB1dCBhcmd1bWVudHMpIHRvIGRlLWlkZW50aWZ5IGFsbCByZWxldmFudCBmaWxlcyB3aXRoaW4gdGhlIGN1cnJlbnQgZGlyZWN0b3J5IG9yIGdpdmVuIGEgY2VsbCBhcnJheSBvZiBmaWxlbmFtZXMgdGhhdCB5b3Ugd2FudCB0byBkZS1pZGVudGlmeS4KCiMjIyMgPHU+RElDT008L3U+CgpHZW5lcmljIERJQ09NIGRhdGEgdXN1YWxseSBmZWF0dXJlIG1hbnkgc2VwYXJhdGUgXCouZGNtIGZpbGVzIGZvciBlYWNoIGFjcXVpc2l0aW9uLiBgRElDT01EZUlkZW50aWZ5Lm1gIHJlcXVpcmVzIGEgdG9wLWxldmVsIGRpcmVjdG9yeSBjb250YWluaW5nIHN1YmRpcmVjdG9yaWVzIGZvciBlYWNoIHN1YmplY3QgKGUuZy4gYFMwMS9gLCBgUzAyL2AsIGBTMDMvYCwgZXRjLikgdGhhdCBjb250YWluIGFsbCBESUNPTSBmaWxlcyBmb3IgdGhlIHJlc3BlY3RpdmUgc3ViamVjdHMuIFJ1bm5pbmcgYERJQ09NRGVJZGVudGlmeS5tYCBmcm9tIHRoZSB0b3AtbGV2ZWwgZGlyZWN0b3J5IHdpbGwgY3JlYXRlIGEgc2VwYXJhdGUgZGlyZWN0b3J5IGNvbnRhaW5pbmcgdGhlIGRlLWlkZW50aWZpZWQgZmlsZXMgZm9yIGVhY2ggc3ViamVjdCwgYXBwZW5kZWQgd2l0aCBgX2Fub25gLgoKIyMjIExpc3Qgb2YgUEhJIGlkZW50aWZpZXJzCgpUaGUgR2FubmV0IGRlLWlkZW50aWZpY2F0aW9uIGZ1bmN0aW9ucyBjdXJyZW50bHkgcmVtb3ZlIFBISS9QSUkgaWRlbnRpZmllcnMgZGVmaW5lZCBieSB0aGUgPGEgaHJlZj0iaHR0cHM6Ly93d3cuaGhzLmdvdi9oaXBhYS9mb3ItcHJvZmVzc2lvbmFscy9wcml2YWN5L3NwZWNpYWwtdG9waWNzL2RlLWlkZW50aWZpY2F0aW9uL2luZGV4Lmh0bWwiIHRhcmdldD0iX2JsYW5rIj5Vbml0ZWQgU3RhdGVzIEhlYWx0aCBJbnN1cmFuY2UgUG9ydGFiaWxpdHkgYW5kIEFjY291bnRhYmlsaXR5IEFjdCAoSElQQUEpIFByaXZhY3kgUnVsZTwvYT4uIFRoZXNlIGluY2x1ZGUsIGJ1dCBhcmUgbm90IGxpbWl0ZWQgdG86CgotIE5hbWVzCi0gQWRkcmVzc2VzCi0gRGF0ZXMsIGluY2x1ZGluZyBiaXJ0aCBkYXRlIGFuZCBleGFtaW5hdGlvbiBkYXRlCi0gTWVkaWNhbCByZWNvcmQgbnVtYmVycwotIERldmljZSBpZGVudGlmaWVycyBhbmQgc2VyaWFsIG51bWJlcnMKClNob3VsZCB0aGUgcmVndWxhdGlvbnMgaW4geW91ciBjb3VudHJ5IG9yIHlvdXIgaW5zdGl0dXRpb24gcmVxdWlyZSBhZGRpdGlvbmFsIGluZm9ybWF0aW9uIHRvIGJlIHJlbW92ZWQgZnJvbSB0aGUgZmlsZXMsIHBsZWFzZSA8YSBocmVmPSJodHRwczovL2dhYmFtcnMuY29tL2NvbnRhY3QiIHRhcmdldD0iX2JsYW5rIj5jb250YWN0IHVzPC9hPi4KCjo6OiBkYW5nZXIKPGkgY2xhc3M9ImZhIGZhLWV4Y2xhbWF0aW9uLXRyaWFuZ2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+Jm5ic3A7IFRoZXJlIGlzIDx1Pm5vIHdheTwvdT4gdG8gcmV0cmlldmUgUEhJL1BJSSBmcm9tIGEgZGUtaWRlbnRpZmllZCBmaWxlISBNYWtlIHN1cmUgdGhhdCB5b3UgZWl0aGVyIHJldGFpbiBhIGNvcHkgb2YgdGhlIG9yaWdpbmFsIGZpbGUgb3IgdGhhdCB5b3Uga2VlcCBhIHNlcGFyYXRlIHJlY29yZCB0aGF0IHVuaXF1ZWx5IGxpbmtzIGFsbCBuZWNlc3Nhcnkgc3ViamVjdCBpbmZvcm1hdGlvbiB0byB0aGUgZGUtaWRlbnRpZmllZCBmaWxlLgo6OjoKCiMjIENvUmVnU3RhbmRBbG9uZQoKR2FubmV0IGhhcyBhIHN0YW5kYWxvbmUgcm91dGluZSBmb3Igdm94ZWwgY28tcmVnaXN0cmF0aW9uIGFuZCBzZWdtZW50YXRpb24gdGhhdCBjYW4gYmUgdXRpbGl6ZWQgd2l0aCBhbnkgc2luZ2xlLXZveGVsIE1SUyBkYXRhc2V0LCBpbmNsdWRpbmcgbm9uLWVkaXRlZCBkYXRhLiBgQ29SZWdTdGFuZEFsb25lLm1gIGNvbnRhaW5zIHNpbXBsaWZpZWQgdmVyc2lvbnMgb2YgYEdhbm5ldExvYWQubWAsIGBHYW5uZXRDb1JlZ2lzdGVyLm1gLCBhbmQgYEdhbm5ldFNlZ21lbnQubWAgdG8gcGFyc2UgZ2VvbWV0cmljYWwgaW5mb3JtYXRpb24gYWJvdXQgdm94ZWwgZGltZW5zaW9ucywgcG9zaXRpb25zLCBhbmQgcm90YXRpb25zLgoKYENvUmVnU3RhbmRBbG9uZS5tYCBzdXBwb3J0cyB0aGUgc2FtZSBpbnB1dCBmb3JtYXRzIGFzIHRoZSBtYWluIEdhbm5ldCBtb2R1bGVzLiBVcG9uIGJlaW5nIGNhbGxlZCwgaXQgcHJvZHVjZXMgR2FubmV0Q29SZWdpc3RlciBhbmQgR2FubmV0U2VnbWVudCBvdXRwdXRzIGZvciBlYWNoIHByb3ZpZGVkIGRhdGFzZXQuIEhvd2V2ZXIsIHRoZSBHYW5uZXRTZWdtZW50IG91dHB1dCBkb2VzIG5vdCBjb250YWluIGFueSBxdWFudGl0YXRpdmUgaW5mb3JtYXRpb24sIGV4Y2VwdCBmb3IgdGlzc3VlIGNvbXBvc2l0aW9uICh2b3hlbCB0aXNzdWUgZnJhY3Rpb25zIG9mIEdNLCBXTSwgYW5kIENTRikuCgpUaGUgc3ludGF4IGlzIHNpbWlsYXIgdG8gYEdhbm5ldExvYWQubWAgc3ludGF4LCB3aGVyZSB0aGUgZmlyc3QgY2VsbCBhcnJheSBjb250YWlucyB0aGUgTVJTIGZpbGVuYW1lcyBhbmQgdGhlIHNlY29uZCBjZWxsIGFycmF5IGNvbnRhaW5zIHRoZSByZXNwZWN0aXZlIE5JZlRJIGZpbGVuYW1lczoKCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KTVJTX3N0cnVjdCA9IENvUmVnU3RhbmRBbG9uZSh7J2RhdGExLmRhdCcsICdkYXRhMi5kYXQnfSwgeydzdHJ1Y3R1cmFsMS5uaWknLCAnc3RydWN0dXJhbDIubmlpJ30pOwpgYGAKClBsZWFzZSBub3RlIHRoYXQgdGhlIG51bWJlciBvZiBOSWZUSSBmaWxlcyBuZWVkcyB0byBtYXRjaCB0aGUgbnVtYmVyIG9mIE1SUyBkYXRhIGZpbGVzOyBpLmUuLCBpZiB5b3Ugd2FudCB0byByZWdpc3RlciBfTl8gdm94ZWxzIHRvIHRoZSBzYW1lIHN0cnVjdHVyYWwgaW1hZ2UsIHlvdeKAmWxsIG5lZWQgdG8gcmVwbGljYXRlIHRoZSBuYW1lIG9mIHRoZSBOSWZUSSBmaWxlIF9OXyB0aW1lcy4KCgoK</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> and <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">This work by Mark Mikkelsen is licensed under CC BY 4.0 <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
 </p>
 
 
@@ -742,6 +771,11 @@ $(document).ready(function () {
 </script>
 
 <!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeSourceEmbed("additional-tools.Rmd");
+});
+</script>
 
 <script>
 $(document).ready(function ()  {
@@ -756,7 +790,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {
