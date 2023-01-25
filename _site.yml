@@ -27,8 +27,6 @@ navbar:
       href: faq.html
     - text: "Release notes"
       href: release-notes.html
-    - text: "Blog"
-      href: https://gabamrs.com/
     - text: "Forum"
       href: https://forum.mrshub.org/c/mrs-software/gannet/9
   right:
@@ -37,16 +35,18 @@ navbar:
     - icon: fa-github fa-lg
       href: https://github.com/markmikkelsen/Gannet
     - icon: fa-envelope fa-lg
-      href: https://gabamrs.com/contact
+      href: mailto:mam4041@med.cornell.edu?subject=[Gannet]%20
 output:
   html_document:
     anchor_sections: TRUE
     theme: lumen
     highlight: tango
-    include:
+    includes:
+      in_header: header.html
       after_body: footer.html
     css: styles.css
     code_download: TRUE
 
+    
     
     

@@ -47,6 +47,11 @@ body {
 .level4 {
   padding-top:10px;
 }
+
+code {
+  color: #000000;
+  background-color: rgba(0, 0, 0, 0.07);
+}
 /* ---------------- */
 
 
@@ -54,7 +59,6 @@ body {
 img {
   max-width: 100%;
   height: auto;
-  /* box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19); */
 }
 
 #myImg {
@@ -92,6 +96,11 @@ img {
   margin-top: 10px;
 }
 
+.info code {
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
 .warning {
   background-color: #FF851B;
   color: #FFFFFF;
@@ -99,6 +108,11 @@ img {
   padding: 10px 10px 5px 10px;
   margin-bottom: 10px;
   margin-top: 10px;
+}
+
+.warning code {
+  color: #FFFFFF;
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 .danger {
@@ -134,121 +148,6 @@ img {
   color: #4e5b61;
 }
 /* ------------------------------ */
-
-
-/* ----- Modal for images ----- */
-/* #myImg {
-  cursor: pointer;
-  transition: 0.3s;
-} */
-
-/* #myImg:hover {
-  opacity: 0.6;
-} */
-
-/* The modal (background) */
-.modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  max-width: 100%; /* For small screens */
-  max-height: 100%; /* For small screens */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
-}
-
-/* Modal content (image) */
-.modal-content {
-  margin: auto;
-  display: block;
-  width: 100%;
-  max-width: 800px;
-}
-
-/* Caption of modal image */
-#caption {
-  margin: auto;
-  display: block;
-  width: 100%;
-  max-width: 900px;
-  text-align: center;
-  color: #ccc;
-  padding: 10px 0;
-  height: 150px;
-}
-
-/* Add animation */
-.modal-content, #caption {  
-  animation-name: zoom;
-  animation-duration: 0.6s;
-}
-
-@keyframes zoom {
-  from {
-    transform: scale(0.1)
-  } 
-  to {
-    transform: scale(1)
-  }
-}
-
-/* The close button */
-.close {
-  position: absolute;
-  padding-top: 60px;
-  top: 15px;
-  right: 35px;
-  color: #f1f1f1;
-  font-size: 40px;
-  font-weight: bold;
-  transition: 0.3s;
-}
-
-.close:hover,
-.close:focus {
-  color: #bbb;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* 100% image width on smaller screens */
-@media only screen and (max-width: 700px) {
-  .modal-content {
-    width: 100%;
-  }
-}
-/* ----------------------------- */
-
-
-/* ----- Hide code chunk ----- */
-.showopt {
-  background-color: #158cba;
-  color: #FFFFFF; 
-  width: 100px;
-  height: 20px;
-  text-align: center;
-  vertical-align: middle;
-  float: left;
-  font-family: sans-serif;
-  border-radius: 8px;
-}
-
-.showopt:hover {
-  background-color: #abcbd9;
-  color: #4e5b61;
-}
-
-pre.plot {
-  background-color: white;
-}
-/* --------------------------- */
 
 
 

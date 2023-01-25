@@ -74,11 +74,11 @@ Gannet includes several functions to remove PHI/PII from the most commonly used 
 Please note the following:
 
 ::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i><br>
+<i class="fa fa-exclamation-circle" style="color: white"></i>
 <ul>
   <li>Gannet does not remove PHI/PII from filenames; this is solely your responsibility.</li>
-  <li>In addition to any PHI/PII associated with the NIfTI file itself, the structural image needs to be defaced. Please either use a skull-stripping tool (such as the one implemented in FSL) or a defacing tool (e.g., <a href="https://github.com/poldracklab/pydeface/" target="_blank">pydeface</a>).</li>
-  <li>Per our <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html" target="_blank">software license</a>, the Gannet developers are not liable for any failure of our de-identification routines to remove PHI/PII from your data.</li>
+  <li>In addition to any PHI/PII associated with the NIfTI file itself, the structural image needs to be defaced. Please either use a skull-stripping tool (such as the one implemented in FSL) or a defacing tool (e.g., <a href="https://github.com/poldracklab/pydeface" target="_blank" style="color:white"><u>pydeface</u></a>).</li>
+  <li>Per our <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html" target="_blank" style="color:white"><u>software license</u></a>, the Gannet developers are not liable for any failure of our de-identification routines to remove PHI/PII from your data.</li>
 </ul>
 :::
 
@@ -86,11 +86,11 @@ Please note the following:
 
 The Gannet de-identification functions create de-identified copies of the original data. The original files are not overwritten.
 
-#### <u>GE P-files, Siemens TWIX, and Philips SDAT</u>
+<u>GE P-files, Siemens TWIX, and Philips SDAT</u>
 
 For GE P-files (\*.7), Siemens TWIX (\*.dat), and Philips (\*.sdat/\*.spar) files, the Gannet functions `GEDeIdentify.m`, `TWIXDeIdentify.m`, and `PhilipsDeIdentify.m` create de-identified copies of the respective files, appended with `_noID`. All three functions can either be run by themselves (without any input arguments) to de-identify all relevant files within the current directory or given a cell array of filenames that you want to de-identify.
 
-#### <u>DICOM</u>
+<u>DICOM</u>
 
 Generic DICOM data usually feature many separate \*.dcm files for each acquisition. `DICOMDeIdentify.m` requires a top-level directory containing subdirectories for each subject (e.g. `S01/`, `S02/`, `S03/`, etc.) that contain all DICOM files for the respective subjects. Running `DICOMDeIdentify.m` from the top-level directory will create a separate directory containing the de-identified files for each subject, appended with `_anon`.
 

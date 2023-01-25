@@ -16,33 +16,40 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, child = "js/back-to-top.js"}
 ```
 
+```{css, echo = FALSE}
+/* This enables wrapping of code blocks */
+pre.sourceCode code {
+  white-space: pre-wrap;
+}
+```
+
 <br>
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, it is highly recommended first ensuring the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>stable release</u></a> is being used. It may be that your issue has already been addressed. Alternatively, consider using the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development version</u></a> as bug fixes/changes are continually being uploaded to this branch.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, please first check you are using the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>stable release</u></a>. It may be that your issue has already been addressed. Alternatively, consider using the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development version</u></a> as bug fixes/changes are continually being uploaded to this branch.
 :::
 
 ## General
 
-#### **Can Gannet process GSH-edited data?**
-
-Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited HERMES and HERCULES data. (Gannet does not support the fitting of HERCULES data, however.) Simply set the appropriate `target` option(s) in `GannetPreInitialise.m`.
-
-#### **Can Gannet process phantom data?**
-
-Yes, of the edited data described above. Make sure to set `phantom` to `1` under 'Flags' in `GannetPreInitialise.m`. If you want to fit your data, run `GannetFitPhantom(MRS_struct);` instead of `GannetFit(MRS_struct);`. (Fitting of HERCULES phantom data is not supported.)
-
-#### **Can Gannet process HERMES/HERCULES data?**
-
-Gannet load HERMES and HERCULES data, but only HERMES data can be modeled in `GannetFit.m`. Signal fitting and metabolite quantification of HERCULES data can be performed using <a href="https://github.com/schorschinho/osprey" target="_blank">Osprey.</a>.
-
 #### **Can Gannet process non-edited data?**
 
-Gannet is designed to process edited single-voxel data. However, its data loading routines may be able to load non-edited single-voxel data. In addition, the standalone tool [`CoRegStandAlone.m`](https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone) can be used with non-edited data for voxel co-registration and tissue segmentation.
+Gannet is designed to process edited single-voxel data only. However, the standalone tool [`CoRegStandAlone.m`](https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone) can be used with non-edited single-voxel data to co-register voxels to structural images and segment the images to obtain voxel tissue fractions.
 
 #### **Can Gannet process MRSI data?**
 
-No, Gannet is designed to process edited single-voxel data.
+No, Gannet is designed to process edited single-voxel data only.
+
+#### **Can Gannet process GSH-edited data?**
+
+Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited HERMES and HERCULES data. (Fitting of HERCULES phantom data is not supported, however.) Simply set the appropriate `target` option(s) in `GannetPreInitialise.m`.
+
+#### **Can Gannet process HERMES/HERCULES data?**
+
+`GannetLoad.m` can load and preprocess HERMES and HERCULES data, but only HERMES data can be modeled in `GannetFit.m`. HERCULES data can be fully processed and fitted using the <a href="https://github.com/schorschinho/osprey" target="_blank">Osprey</a> software package.
+
+#### **Can Gannet process phantom data?**
+
+Yes, Gannet can process and fit phantom edited data as described above. Make sure to set `phantom` to `1` under `Flags` in `GannetPreInitialise.m`. If you want to fit your data, run `GannetFitPhantom(MRS_struct);` instead of `GannetFit(MRS_struct);`. (Fitting of HERCULES phantom data is not supported.)
 
 ## Output
 
@@ -62,14 +69,14 @@ MRS_struct.fids.data = -MRS_struct.fids.data;
 
 Specifically:
 
-```{bash, eval = FALSE}
-"*.mexmaci64" cannot be opened because the developer cannot be verified. macOS cannot verify that this app is free from malware
+```{verbatim}
+"*.mexmaci64" cannot be opened because the developer cannot be verified. macOS cannot verify that this app is free from malware.
 ```
 
 or
 
-```{bash, eval = FALSE}
-Code signature not valid for use in process using Library Validation: library load disallowed by system policy)
+```{verbatim, eval = FALSE}
+Code signature not valid for use in process using Library Validation: library load disallowed by system policy.
 ```
 
 Please visit the <a href="https://en.wikibooks.org/wiki/SPM/Installation_on_64bit_Mac_OS_(Intel)#macOS_Catalina,_Big_Sur,_Monterey,_Ventura" target="_blank">SPM Wikibooks page</a> for troubleshooting.

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in between releases. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a> on GitHub.
+This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">development version</a>. For a more comprehensive list of changes, see the commits logged on the <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">repository</a> on GitHub.
 
 ## 3.3.0
 <span style="color: grey;">2022-10-22</span>

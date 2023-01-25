@@ -40,6 +40,8 @@
 <script src="site_libs/anchor-sections-1.1.0/anchor-sections.js"></script>
 <link href="site_libs/font-awesome-5.1.0/css/all.css" rel="stylesheet" />
 <link href="site_libs/font-awesome-5.1.0/css/v4-shims.css" rel="stylesheet" />
+<!DOCTYPE html>
+<link rel="shortcut icon" href="images/logo.png" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -482,9 +484,6 @@ div.tocify {
   <a href="release-notes.html">Release notes</a>
 </li>
 <li>
-  <a href="https://gabamrs.com/">Blog</a>
-</li>
-<li>
   <a href="https://forum.mrshub.org/c/mrs-software/gannet/9">Forum</a>
 </li>
       </ul>
@@ -499,7 +498,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="https://gabamrs.com/contact">
+  <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -521,7 +520,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">FAQ</h1>
-<h4 class="date">Last updated: January 24, 2023</h4>
+<h4 class="date">Last updated: January 25, 2023</h4>
 
 </div>
 
@@ -550,14 +549,20 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+<style type="text/css">
+/* This enables wrapping of code blocks */
+pre.sourceCode code {
+  white-space: pre-wrap;
+}
+</style>
 <p><br></p>
 <div class="info">
 <p><i class="fa fa-info-circle" style="color: white"></i>  When
-encountering an error or bug in Gannet, it is highly recommended first
-ensuring the latest
+encountering an error or bug in Gannet, please first check you are using
+the latest
 <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>stable
-release</u></a> is being used. It may be that your issue has already
-been addressed. Alternatively, consider using the
+release</u></a>. It may be that your issue has already been addressed.
+Alternatively, consider using the
 <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development
 version</u></a> as bug fixes/changes are continually being uploaded to
 this branch.</p>
@@ -565,6 +570,24 @@ this branch.</p>
 <div id="general" class="section level2 hasAnchor">
 <h2 class="hasAnchor">General<a href="#general" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
+<div id="can-gannet-process-non-edited-data"
+class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Can Gannet process non-edited
+data?</strong><a href="#can-gannet-process-non-edited-data"
+class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>Gannet is designed to process edited single-voxel data only. However,
+the standalone tool <a
+href="https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone"><code>CoRegStandAlone.m</code></a>
+can be used with non-edited single-voxel data to co-register voxels to
+structural images and segment the images to obtain voxel tissue
+fractions.</p>
+</div>
+<div id="can-gannet-process-mrsi-data" class="section level4 hasAnchor">
+<h4 class="hasAnchor"><strong>Can Gannet process MRSI data?</strong><a
+href="#can-gannet-process-mrsi-data" class="anchor-section"
+aria-label="Anchor link to header"></a></h4>
+<p>No, Gannet is designed to process edited single-voxel data only.</p>
+</div>
 <div id="can-gannet-process-gsh-edited-data"
 class="section level4 hasAnchor">
 <h4 class="hasAnchor"><strong>Can Gannet process GSH-edited
@@ -572,49 +595,32 @@ data?</strong><a href="#can-gannet-process-gsh-edited-data"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS
 data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited
-HERMES and HERCULES data. (Gannet does not support the fitting of
-HERCULES data, however.) Simply set the appropriate <code>target</code>
+HERMES and HERCULES data. (Fitting of HERCULES phantom data is not
+supported, however.) Simply set the appropriate <code>target</code>
 option(s) in <code>GannetPreInitialise.m</code>.</p>
-</div>
-<div id="can-gannet-process-phantom-data"
-class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>Can Gannet process phantom
-data?</strong><a href="#can-gannet-process-phantom-data"
-class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Yes, of the edited data described above. Make sure to set
-<code>phantom</code> to <code>1</code> under ‘Flags’ in
-<code>GannetPreInitialise.m</code>. If you want to fit your data, run
-<code>GannetFitPhantom(MRS_struct);</code> instead of
-<code>GannetFit(MRS_struct);</code>. (Fitting of HERCULES phantom data
-is not supported.)</p>
 </div>
 <div id="can-gannet-process-hermeshercules-data"
 class="section level4 hasAnchor">
 <h4 class="hasAnchor"><strong>Can Gannet process HERMES/HERCULES
 data?</strong><a href="#can-gannet-process-hermeshercules-data"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Gannet load HERMES and HERCULES data, but only HERMES data can be
-modeled in <code>GannetFit.m</code>. Signal fitting and metabolite
-quantification of HERCULES data can be performed using
-<a href="https://github.com/schorschinho/osprey" target="_blank">Osprey.</a>.</p>
+<p><code>GannetLoad.m</code> can load and preprocess HERMES and HERCULES
+data, but only HERMES data can be modeled in <code>GannetFit.m</code>.
+HERCULES data can be fully processed and fitted using the
+<a href="https://github.com/schorschinho/osprey" target="_blank">Osprey</a>
+software package.</p>
 </div>
-<div id="can-gannet-process-non-edited-data"
+<div id="can-gannet-process-phantom-data"
 class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>Can Gannet process non-edited
-data?</strong><a href="#can-gannet-process-non-edited-data"
+<h4 class="hasAnchor"><strong>Can Gannet process phantom
+data?</strong><a href="#can-gannet-process-phantom-data"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p>Gannet is designed to process edited single-voxel data. However, its
-data loading routines may be able to load non-edited single-voxel data.
-In addition, the standalone tool <a
-href="https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone"><code>CoRegStandAlone.m</code></a>
-can be used with non-edited data for voxel co-registration and tissue
-segmentation.</p>
-</div>
-<div id="can-gannet-process-mrsi-data" class="section level4 hasAnchor">
-<h4 class="hasAnchor"><strong>Can Gannet process MRSI data?</strong><a
-href="#can-gannet-process-mrsi-data" class="anchor-section"
-aria-label="Anchor link to header"></a></h4>
-<p>No, Gannet is designed to process edited single-voxel data.</p>
+<p>Yes, Gannet can process and fit phantom edited data as described
+above. Make sure to set <code>phantom</code> to <code>1</code> under
+<code>Flags</code> in <code>GannetPreInitialise.m</code>. If you want to
+fit your data, run <code>GannetFitPhantom(MRS_struct);</code> instead of
+<code>GannetFit(MRS_struct);</code>. (Fitting of HERCULES phantom data
+is not supported.)</p>
 </div>
 </div>
 <div id="output" class="section level2 hasAnchor">
@@ -648,10 +654,10 @@ href="#you-have-issues-with-spm-mex-files-on-64-bit-macos"
 class="anchor-section" aria-label="Anchor link to header"></a></h4>
 <p>Specifically:</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="st">&quot;*.mexmaci64&quot;</span> cannot be opened because the developer cannot be verified. macOS cannot verify that this app is free from malware</span></code></pre></div>
+class="sourceCode default"><code class="sourceCode default"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&quot;*.mexmaci64&quot; cannot be opened because the developer cannot be verified. macOS cannot verify that this app is free from malware.</span></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Code</span> signature not valid for use in process using Library Validation: library load disallowed by system policy<span class="er">)</span></span></code></pre></div>
+class="sourceCode default"><code class="sourceCode default"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>Code signature not valid for use in process using Library Validation: library load disallowed by system policy.</span></code></pre></div>
 <p>Please visit the
 <a href="https://en.wikibooks.org/wiki/SPM/Installation_on_64bit_Mac_OS_(Intel)#macOS_Catalina,_Big_Sur,_Monterey,_Ventura" target="_blank">SPM
 Wikibooks page</a> for troubleshooting.</p>
@@ -684,14 +690,19 @@ So, instead of <code>{'image1.nii'}</code>, input
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRkFRIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKPGJyPgoKOjo6IGluZm8KPGkgY2xhc3M9ImZhIGZhLWluZm8tY2lyY2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+Jm5ic3A7IFdoZW4gZW5jb3VudGVyaW5nIGFuIGVycm9yIG9yIGJ1ZyBpbiBHYW5uZXQsIGl0IGlzIGhpZ2hseSByZWNvbW1lbmRlZCBmaXJzdCBlbnN1cmluZyB0aGUgbGF0ZXN0IDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9tYXJrbWlra2Vsc2VuL0dhbm5ldCIgdGFyZ2V0PSJfYmxhbmsiIHN0eWxlPSJjb2xvcjp3aGl0ZSI+PHU+c3RhYmxlIHJlbGVhc2U8L3U+PC9hPiBpcyBiZWluZyB1c2VkLiBJdCBtYXkgYmUgdGhhdCB5b3VyIGlzc3VlIGhhcyBhbHJlYWR5IGJlZW4gYWRkcmVzc2VkLiBBbHRlcm5hdGl2ZWx5LCBjb25zaWRlciB1c2luZyB0aGUgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0L3RyZWUvZGV2IiB0YXJnZXQ9Il9ibGFuayIgc3R5bGU9ImNvbG9yOndoaXRlIj48dT5kZXZlbG9wbWVudCB2ZXJzaW9uPC91PjwvYT4gYXMgYnVnIGZpeGVzL2NoYW5nZXMgYXJlIGNvbnRpbnVhbGx5IGJlaW5nIHVwbG9hZGVkIHRvIHRoaXMgYnJhbmNoLgo6OjoKCiMjIEdlbmVyYWwKCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3MgR1NILWVkaXRlZCBkYXRhPyoqCgpZZXMsIEdhbm5ldCBjYW4gcHJvY2VzcyBHQUJBLSwgR1NILSwgTGFjLSwgYW5kIEV0T0gtZWRpdGVkIE1FR0EtUFJFU1MgZGF0YSwgYXMgd2VsbCBhcyBHQUJBLS9HU0gtLCBMYWMtL0dTSC0sIGFuZCBFdE9ILS9HQUJBLS9HU0gtZWRpdGVkIEhFUk1FUyBhbmQgSEVSQ1VMRVMgZGF0YS4gKEdhbm5ldCBkb2VzIG5vdCBzdXBwb3J0IHRoZSBmaXR0aW5nIG9mIEhFUkNVTEVTIGRhdGEsIGhvd2V2ZXIuKSBTaW1wbHkgc2V0IHRoZSBhcHByb3ByaWF0ZSBgdGFyZ2V0YCBvcHRpb24ocykgaW4gYEdhbm5ldFByZUluaXRpYWxpc2UubWAuCgojIyMjICoqQ2FuIEdhbm5ldCBwcm9jZXNzIHBoYW50b20gZGF0YT8qKgoKWWVzLCBvZiB0aGUgZWRpdGVkIGRhdGEgZGVzY3JpYmVkIGFib3ZlLiBNYWtlIHN1cmUgdG8gc2V0IGBwaGFudG9tYCB0byBgMWAgdW5kZXIgJ0ZsYWdzJyBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYC4gSWYgeW91IHdhbnQgdG8gZml0IHlvdXIgZGF0YSwgcnVuIGBHYW5uZXRGaXRQaGFudG9tKE1SU19zdHJ1Y3QpO2AgaW5zdGVhZCBvZiBgR2FubmV0Rml0KE1SU19zdHJ1Y3QpO2AuIChGaXR0aW5nIG9mIEhFUkNVTEVTIHBoYW50b20gZGF0YSBpcyBub3Qgc3VwcG9ydGVkLikKCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3MgSEVSTUVTL0hFUkNVTEVTIGRhdGE/KioKCkdhbm5ldCBsb2FkIEhFUk1FUyBhbmQgSEVSQ1VMRVMgZGF0YSwgYnV0IG9ubHkgSEVSTUVTIGRhdGEgY2FuIGJlIG1vZGVsZWQgaW4gYEdhbm5ldEZpdC5tYC4gU2lnbmFsIGZpdHRpbmcgYW5kIG1ldGFib2xpdGUgcXVhbnRpZmljYXRpb24gb2YgSEVSQ1VMRVMgZGF0YSBjYW4gYmUgcGVyZm9ybWVkIHVzaW5nIDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9zY2hvcnNjaGluaG8vb3NwcmV5IiB0YXJnZXQ9Il9ibGFuayI+T3NwcmV5LjwvYT4uCgojIyMjICoqQ2FuIEdhbm5ldCBwcm9jZXNzIG5vbi1lZGl0ZWQgZGF0YT8qKgoKR2FubmV0IGlzIGRlc2lnbmVkIHRvIHByb2Nlc3MgZWRpdGVkIHNpbmdsZS12b3hlbCBkYXRhLiBIb3dldmVyLCBpdHMgZGF0YSBsb2FkaW5nIHJvdXRpbmVzIG1heSBiZSBhYmxlIHRvIGxvYWQgbm9uLWVkaXRlZCBzaW5nbGUtdm94ZWwgZGF0YS4gSW4gYWRkaXRpb24sIHRoZSBzdGFuZGFsb25lIHRvb2wgW2BDb1JlZ1N0YW5kQWxvbmUubWBdKGh0dHBzOi8vbWFya21pa2tlbHNlbi5naXRodWIuaW8vR2FubmV0LWRvY3MvYWRkaXRpb25hbC10b29scy5odG1sI2NvcmVnc3RhbmRhbG9uZSkgY2FuIGJlIHVzZWQgd2l0aCBub24tZWRpdGVkIGRhdGEgZm9yIHZveGVsIGNvLXJlZ2lzdHJhdGlvbiBhbmQgdGlzc3VlIHNlZ21lbnRhdGlvbi4KCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3MgTVJTSSBkYXRhPyoqCgpObywgR2FubmV0IGlzIGRlc2lnbmVkIHRvIHByb2Nlc3MgZWRpdGVkIHNpbmdsZS12b3hlbCBkYXRhLgoKIyMgT3V0cHV0CgojIyMjICoqV2h5IGlzIG15IHNwZWN0cnVtIHVwc2lkZSBkb3duPyoqCgo8aW1nIGlkPSJteUltZyIgc3JjPSJpbWFnZXMvZmFxL3Vwc2lkZS1kb3duLXNwZWN0cnVtLnBuZyIgYWx0PSJBIHNjcmVlbnNob3QgZXhhbXBsZSBvZiB1cHNpZGUtZG93biBNUlMgc3BlY3RyYSI+CgpHYW5uZXQgaGFzIGEgcm91dGluZSB0aGF0IGF1dG9tYXRpY2FsbHkgcGhhc2VzIHNwZWN0cmEgc28gdGhhdCB0aGV5IGFyZSBub3QgdXBzaWRlLWRvd24gb3Igb3RoZXJ3aXNlIG91dCBvZiBwaGFzZS4gSG93ZXZlciwgdGhpcyByb3V0aW5lIGNhbiBmYWlsLiBJdCBpcyBiZXN0IHRvIGNvbnRhY3QgdGhlIGRldmVsb3BlcnMgZm9yIGFzc2lzdGFuY2UgdG8gcmVzb2x2ZSB0aGUgcHJvYmxlbS4gSG93ZXZlciwgYSBzaW1wbGUsIGFsYmVpdCBpbXBlcmZlY3QsIHNvbHV0aW9uIGlzIHRvIGFkZCB0aGUgZm9sbG93aW5nIGxpbmUgb2YgY29kZSB0byBgR2FubmV0TG9hZC5tYCBhZnRlciB0aGUgZnVuY3Rpb24gYFBoYXNlQ29ycmVjdGlvbi5tYCBpcyBydW4gZm9yIGdsb2JhbCB6ZXJvLW9yZGVyIHBoYXNlIGNvcnJlY3Rpb24gKGFyb3VuZCBsaW5lIDQwMCk6CgpgYGB7b2N0YXZlLCBldmFsID0gRkFMU0V9Ck1SU19zdHJ1Y3QuZmlkcy5kYXRhID0gLU1SU19zdHJ1Y3QuZmlkcy5kYXRhOwpgYGAKCiMjIEVycm9ycwoKIyMjIyAqKllvdSBoYXZlIGlzc3VlcyB3aXRoIFNQTSBNRVggZmlsZXMgb24gNjQtYml0IG1hY09TKioKClNwZWNpZmljYWxseToKCmBgYHtiYXNoLCBldmFsID0gRkFMU0V9CiIqLm1leG1hY2k2NCIgY2Fubm90IGJlIG9wZW5lZCBiZWNhdXNlIHRoZSBkZXZlbG9wZXIgY2Fubm90IGJlIHZlcmlmaWVkLiBtYWNPUyBjYW5ub3QgdmVyaWZ5IHRoYXQgdGhpcyBhcHAgaXMgZnJlZSBmcm9tIG1hbHdhcmUKYGBgCgpvcgoKYGBge2Jhc2gsIGV2YWwgPSBGQUxTRX0KQ29kZSBzaWduYXR1cmUgbm90IHZhbGlkIGZvciB1c2UgaW4gcHJvY2VzcyB1c2luZyBMaWJyYXJ5IFZhbGlkYXRpb246IGxpYnJhcnkgbG9hZCBkaXNhbGxvd2VkIGJ5IHN5c3RlbSBwb2xpY3kpCmBgYAoKUGxlYXNlIHZpc2l0IHRoZSA8YSBocmVmPSJodHRwczovL2VuLndpa2lib29rcy5vcmcvd2lraS9TUE0vSW5zdGFsbGF0aW9uX29uXzY0Yml0X01hY19PU18oSW50ZWwpI21hY09TX0NhdGFsaW5hLF9CaWdfU3VyLF9Nb250ZXJleSxfVmVudHVyYSIgdGFyZ2V0PSJfYmxhbmsiPlNQTSBXaWtpYm9va3MgcGFnZTwvYT4gZm9yIHRyb3VibGVzaG9vdGluZy4KCiMjIyMgKipNQVRMQUIgc2F5cyBteSBzdHJ1Y3R1cmFsIGltYWdlIGRvZXMgbm90IGV4aXN0LioqCgpGb3IgZXhhbXBsZToKCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KRXJyb3IgdXNpbmcgc3BtX3ZvbD5zcG1fdm9sX2hkciAobGluZSA4MCkKRmlsZSDigJxpbWFnZTEubmlp4oCdIGRvZXMgbm90IGV4aXN0LgoKRXJyb3IgaW4gc3BtX3ZvbCAobGluZSA2MSkKKiogdiA9IHNwbV92b2xfaGRyKGRlYmxhbmsoUChpLDopKSk7KioKCkVycm9yIGluIEdhbm5ldE1hc2tfU2llbWVuc1RXSVggKGxpbmUgMTEwKQpWID0gc3BtX3ZvbChuaWlfZmlsZSk7CgpFcnJvciBpbiBHYW5uZXRDb1JlZ2lzdGVyIChsaW5lIDc0KQoqKiBNUlNfc3RydWN0ID0gR2FubmV0TWFza19TaWVtZW5zVFdJWChmbmFtZSwgbmlpX25hbWV7aWl9LCBNUlNfc3RydWN0LCBpaSwgdm94LCBrayk7KioKCkVycm9yIGluIGdhbm5ldGNvZGUgKGxpbmUgMTkpCioqIE1SU19zdHJ1Y3QgPSBHYW5uZXRDb1JlZ2lzdGVyKE1SU19zdHJ1Y3Qse+KAmGltYWdlMS5uaWnigJl9KTsqKgpgYGAKCkEgcG9zc2libGUgZml4IGZvciB0aGlzIGlzIHRvIGlucHV0IGZpbGVuYW1lcyB1c2luZyB0aGVpciBmdWxsIHBhdGguIFNvLCBpbnN0ZWFkIG9mIGB7J2ltYWdlMS5uaWknfWAsIGlucHV0IGB7Jy9Vc2Vycy91c2VybmFtZS9Eb2N1bWVudHMvbXlfcHJvamVjdC9kYXRhL2ltYWdlMS5uaWknfWAuCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRkFRIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQovKiBUaGlzIGVuYWJsZXMgd3JhcHBpbmcgb2YgY29kZSBibG9ja3MgKi8KcHJlLnNvdXJjZUNvZGUgY29kZSB7CiAgd2hpdGUtc3BhY2U6IHByZS13cmFwOwp9CmBgYAoKPGJyPgoKOjo6IGluZm8KPGkgY2xhc3M9ImZhIGZhLWluZm8tY2lyY2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+Jm5ic3A7IFdoZW4gZW5jb3VudGVyaW5nIGFuIGVycm9yIG9yIGJ1ZyBpbiBHYW5uZXQsIHBsZWFzZSBmaXJzdCBjaGVjayB5b3UgYXJlIHVzaW5nIHRoZSBsYXRlc3QgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0IiB0YXJnZXQ9Il9ibGFuayIgc3R5bGU9ImNvbG9yOndoaXRlIj48dT5zdGFibGUgcmVsZWFzZTwvdT48L2E+LiBJdCBtYXkgYmUgdGhhdCB5b3VyIGlzc3VlIGhhcyBhbHJlYWR5IGJlZW4gYWRkcmVzc2VkLiBBbHRlcm5hdGl2ZWx5LCBjb25zaWRlciB1c2luZyB0aGUgPGEgaHJlZj0iaHR0cHM6Ly9naXRodWIuY29tL21hcmttaWtrZWxzZW4vR2FubmV0L3RyZWUvZGV2IiB0YXJnZXQ9Il9ibGFuayIgc3R5bGU9ImNvbG9yOndoaXRlIj48dT5kZXZlbG9wbWVudCB2ZXJzaW9uPC91PjwvYT4gYXMgYnVnIGZpeGVzL2NoYW5nZXMgYXJlIGNvbnRpbnVhbGx5IGJlaW5nIHVwbG9hZGVkIHRvIHRoaXMgYnJhbmNoLgo6OjoKCiMjIEdlbmVyYWwKCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3Mgbm9uLWVkaXRlZCBkYXRhPyoqCgpHYW5uZXQgaXMgZGVzaWduZWQgdG8gcHJvY2VzcyBlZGl0ZWQgc2luZ2xlLXZveGVsIGRhdGEgb25seS4gSG93ZXZlciwgdGhlIHN0YW5kYWxvbmUgdG9vbCBbYENvUmVnU3RhbmRBbG9uZS5tYF0oaHR0cHM6Ly9tYXJrbWlra2Vsc2VuLmdpdGh1Yi5pby9HYW5uZXQtZG9jcy9hZGRpdGlvbmFsLXRvb2xzLmh0bWwjY29yZWdzdGFuZGFsb25lKSBjYW4gYmUgdXNlZCB3aXRoIG5vbi1lZGl0ZWQgc2luZ2xlLXZveGVsIGRhdGEgdG8gY28tcmVnaXN0ZXIgdm94ZWxzIHRvIHN0cnVjdHVyYWwgaW1hZ2VzIGFuZCBzZWdtZW50IHRoZSBpbWFnZXMgdG8gb2J0YWluIHZveGVsIHRpc3N1ZSBmcmFjdGlvbnMuCgojIyMjICoqQ2FuIEdhbm5ldCBwcm9jZXNzIE1SU0kgZGF0YT8qKgoKTm8sIEdhbm5ldCBpcyBkZXNpZ25lZCB0byBwcm9jZXNzIGVkaXRlZCBzaW5nbGUtdm94ZWwgZGF0YSBvbmx5LgoKIyMjIyAqKkNhbiBHYW5uZXQgcHJvY2VzcyBHU0gtZWRpdGVkIGRhdGE/KioKClllcywgR2FubmV0IGNhbiBwcm9jZXNzIEdBQkEtLCBHU0gtLCBMYWMtLCBhbmQgRXRPSC1lZGl0ZWQgTUVHQS1QUkVTUyBkYXRhLCBhcyB3ZWxsIGFzIEdBQkEtL0dTSC0sIExhYy0vR1NILSwgYW5kIEV0T0gtL0dBQkEtL0dTSC1lZGl0ZWQgSEVSTUVTIGFuZCBIRVJDVUxFUyBkYXRhLiAoRml0dGluZyBvZiBIRVJDVUxFUyBwaGFudG9tIGRhdGEgaXMgbm90IHN1cHBvcnRlZCwgaG93ZXZlci4pIFNpbXBseSBzZXQgdGhlIGFwcHJvcHJpYXRlIGB0YXJnZXRgIG9wdGlvbihzKSBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYC4KCiMjIyMgKipDYW4gR2FubmV0IHByb2Nlc3MgSEVSTUVTL0hFUkNVTEVTIGRhdGE/KioKCmBHYW5uZXRMb2FkLm1gIGNhbiBsb2FkIGFuZCBwcmVwcm9jZXNzIEhFUk1FUyBhbmQgSEVSQ1VMRVMgZGF0YSwgYnV0IG9ubHkgSEVSTUVTIGRhdGEgY2FuIGJlIG1vZGVsZWQgaW4gYEdhbm5ldEZpdC5tYC4gSEVSQ1VMRVMgZGF0YSBjYW4gYmUgZnVsbHkgcHJvY2Vzc2VkIGFuZCBmaXR0ZWQgdXNpbmcgdGhlIDxhIGhyZWY9Imh0dHBzOi8vZ2l0aHViLmNvbS9zY2hvcnNjaGluaG8vb3NwcmV5IiB0YXJnZXQ9Il9ibGFuayI+T3NwcmV5PC9hPiBzb2Z0d2FyZSBwYWNrYWdlLgoKIyMjIyAqKkNhbiBHYW5uZXQgcHJvY2VzcyBwaGFudG9tIGRhdGE/KioKClllcywgR2FubmV0IGNhbiBwcm9jZXNzIGFuZCBmaXQgcGhhbnRvbSBlZGl0ZWQgZGF0YSBhcyBkZXNjcmliZWQgYWJvdmUuIE1ha2Ugc3VyZSB0byBzZXQgYHBoYW50b21gIHRvIGAxYCB1bmRlciBgRmxhZ3NgIGluIGBHYW5uZXRQcmVJbml0aWFsaXNlLm1gLiBJZiB5b3Ugd2FudCB0byBmaXQgeW91ciBkYXRhLCBydW4gYEdhbm5ldEZpdFBoYW50b20oTVJTX3N0cnVjdCk7YCBpbnN0ZWFkIG9mIGBHYW5uZXRGaXQoTVJTX3N0cnVjdCk7YC4gKEZpdHRpbmcgb2YgSEVSQ1VMRVMgcGhhbnRvbSBkYXRhIGlzIG5vdCBzdXBwb3J0ZWQuKQoKIyMgT3V0cHV0CgojIyMjICoqV2h5IGlzIG15IHNwZWN0cnVtIHVwc2lkZSBkb3duPyoqCgo8aW1nIGlkPSJteUltZyIgc3JjPSJpbWFnZXMvZmFxL3Vwc2lkZS1kb3duLXNwZWN0cnVtLnBuZyIgYWx0PSJBIHNjcmVlbnNob3QgZXhhbXBsZSBvZiB1cHNpZGUtZG93biBNUlMgc3BlY3RyYSI+CgpHYW5uZXQgaGFzIGEgcm91dGluZSB0aGF0IGF1dG9tYXRpY2FsbHkgcGhhc2VzIHNwZWN0cmEgc28gdGhhdCB0aGV5IGFyZSBub3QgdXBzaWRlLWRvd24gb3Igb3RoZXJ3aXNlIG91dCBvZiBwaGFzZS4gSG93ZXZlciwgdGhpcyByb3V0aW5lIGNhbiBmYWlsLiBJdCBpcyBiZXN0IHRvIGNvbnRhY3QgdGhlIGRldmVsb3BlcnMgZm9yIGFzc2lzdGFuY2UgdG8gcmVzb2x2ZSB0aGUgcHJvYmxlbS4gSG93ZXZlciwgYSBzaW1wbGUsIGFsYmVpdCBpbXBlcmZlY3QsIHNvbHV0aW9uIGlzIHRvIGFkZCB0aGUgZm9sbG93aW5nIGxpbmUgb2YgY29kZSB0byBgR2FubmV0TG9hZC5tYCBhZnRlciB0aGUgZnVuY3Rpb24gYFBoYXNlQ29ycmVjdGlvbi5tYCBpcyBydW4gZm9yIGdsb2JhbCB6ZXJvLW9yZGVyIHBoYXNlIGNvcnJlY3Rpb24gKGFyb3VuZCBsaW5lIDQwMCk6CgpgYGB7b2N0YXZlLCBldmFsID0gRkFMU0V9Ck1SU19zdHJ1Y3QuZmlkcy5kYXRhID0gLU1SU19zdHJ1Y3QuZmlkcy5kYXRhOwpgYGAKCiMjIEVycm9ycwoKIyMjIyAqKllvdSBoYXZlIGlzc3VlcyB3aXRoIFNQTSBNRVggZmlsZXMgb24gNjQtYml0IG1hY09TKioKClNwZWNpZmljYWxseToKCmBgYHt2ZXJiYXRpbX0KIioubWV4bWFjaTY0IiBjYW5ub3QgYmUgb3BlbmVkIGJlY2F1c2UgdGhlIGRldmVsb3BlciBjYW5ub3QgYmUgdmVyaWZpZWQuIG1hY09TIGNhbm5vdCB2ZXJpZnkgdGhhdCB0aGlzIGFwcCBpcyBmcmVlIGZyb20gbWFsd2FyZS4KYGBgCgpvcgoKYGBge3ZlcmJhdGltLCBldmFsID0gRkFMU0V9CkNvZGUgc2lnbmF0dXJlIG5vdCB2YWxpZCBmb3IgdXNlIGluIHByb2Nlc3MgdXNpbmcgTGlicmFyeSBWYWxpZGF0aW9uOiBsaWJyYXJ5IGxvYWQgZGlzYWxsb3dlZCBieSBzeXN0ZW0gcG9saWN5LgpgYGAKClBsZWFzZSB2aXNpdCB0aGUgPGEgaHJlZj0iaHR0cHM6Ly9lbi53aWtpYm9va3Mub3JnL3dpa2kvU1BNL0luc3RhbGxhdGlvbl9vbl82NGJpdF9NYWNfT1NfKEludGVsKSNtYWNPU19DYXRhbGluYSxfQmlnX1N1cixfTW9udGVyZXksX1ZlbnR1cmEiIHRhcmdldD0iX2JsYW5rIj5TUE0gV2lraWJvb2tzIHBhZ2U8L2E+IGZvciB0cm91Ymxlc2hvb3RpbmcuCgojIyMjICoqTUFUTEFCIHNheXMgbXkgc3RydWN0dXJhbCBpbWFnZSBkb2VzIG5vdCBleGlzdC4qKgoKRm9yIGV4YW1wbGU6CgpgYGB7b2N0YXZlLCBldmFsID0gRkFMU0V9CkVycm9yIHVzaW5nIHNwbV92b2w+c3BtX3ZvbF9oZHIgKGxpbmUgODApCkZpbGUg4oCcaW1hZ2UxLm5paeKAnSBkb2VzIG5vdCBleGlzdC4KCkVycm9yIGluIHNwbV92b2wgKGxpbmUgNjEpCioqIHYgPSBzcG1fdm9sX2hkcihkZWJsYW5rKFAoaSw6KSkpOyoqCgpFcnJvciBpbiBHYW5uZXRNYXNrX1NpZW1lbnNUV0lYIChsaW5lIDExMCkKViA9IHNwbV92b2wobmlpX2ZpbGUpOwoKRXJyb3IgaW4gR2FubmV0Q29SZWdpc3RlciAobGluZSA3NCkKKiogTVJTX3N0cnVjdCA9IEdhbm5ldE1hc2tfU2llbWVuc1RXSVgoZm5hbWUsIG5paV9uYW1le2lpfSwgTVJTX3N0cnVjdCwgaWksIHZveCwga2spOyoqCgpFcnJvciBpbiBnYW5uZXRjb2RlIChsaW5lIDE5KQoqKiBNUlNfc3RydWN0ID0gR2FubmV0Q29SZWdpc3RlcihNUlNfc3RydWN0LHvigJhpbWFnZTEubmlp4oCZfSk7KioKYGBgCgpBIHBvc3NpYmxlIGZpeCBmb3IgdGhpcyBpcyB0byBpbnB1dCBmaWxlbmFtZXMgdXNpbmcgdGhlaXIgZnVsbCBwYXRoLiBTbywgaW5zdGVhZCBvZiBgeydpbWFnZTEubmlpJ31gLCBpbnB1dCBgeycvVXNlcnMvdXNlcm5hbWUvRG9jdW1lbnRzL215X3Byb2plY3QvZGF0YS9pbWFnZTEubmlpJ31gLgoKCgo=</div>
 <!DOCTYPE html>
 <br>
 <hr>
-<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a href="https://rstudio.com/" target="_blank">RStudio</a>.
+<p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a
+    href="https://rstudio.com/" target="_blank">RStudio</a>.
   <br><br>
 </p>
-<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/by-xlarge.png"></a>
+<p style="text-align: right;">Copyright © 2020-2023, Mark Mikkelsen <a
+    href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc"
+      style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img
+      id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;"
+      src="images/license/by-xlarge.png"></a>
 </p>
 
 

@@ -85,6 +85,19 @@ MRS_struct = GannetLoad({'sub-01.dat'}, {'sub-01_water.dat'});
 MRS_struct = GannetFit(MRS_struct);
 ```
 
+#### **Siemens data (\*.rda files)**
+
+The Siemens RDA format for edited MRS data usually sums the edit-ON and edit-OFF transients and exports them as single files. A third file with the resulting difference spectrum may also be exported. This format is not recommended for use in Gannet as a number of important preprocessing steps cannot be run. However, to run such data, use the following commands:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetLoad(metab({'OFF.rda', 'ON.rda'});
+MRS_struct = GannetFit(MRS_struct);
+```
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Take note that the edit-OFF file must be input first.
+:::
+
 ## Batch processing
 
 One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. To load and fit multiple files, simply add more filenames to the respective cell arrays that are passed to `GannetLoad.m`, as shown below for Philips data:
