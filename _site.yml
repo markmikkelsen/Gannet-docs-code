@@ -13,6 +13,8 @@ navbar:
           href: reference.html
         - text: "Output structure attributes"
           href: output-struc-attrib.html
+        - text: "Signal modeling"
+          href: signal-modeling.html
         - text: "Tissue correction"
           href: tissue-correction.html
         - text: "Additional tools"

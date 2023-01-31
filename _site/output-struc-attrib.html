@@ -354,6 +354,9 @@ div.tocify {
       <a href="output-struc-attrib.html">Output structure attributes</a>
     </li>
     <li>
+      <a href="signal-modeling.html">Signal modeling</a>
+    </li>
+    <li>
       <a href="tissue-correction.html">Tissue correction</a>
     </li>
     <li>
@@ -419,7 +422,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Output structure attributes</h1>
-<h4 class="date">Last updated: January 25, 2023</h4>
+<h4 class="date">Last updated: January 31, 2023</h4>
 
 </div>
 
@@ -448,12 +451,22 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+<style type="text/css">
+.info {
+  margin-bottom: 20px;
+}
+</style>
 <p><br></p>
 <div class="info">
 <p><i class="fa fa-info-circle" style="color: white"></i>  The fields
 listed on this page are applicable to release 3.3.0 and are not
 necessarily correct for other versions of Gannet.</p>
 </div>
+<p>All the output from Gannet anaylses are saved in a structure (e.g.,
+<code>MRS_struct</code> or whatever name the user has chosen) that
+contains many fields and subfields. Listed below are lists of these
+fields and their descriptions. Note that not every possible field that
+Gannet can generate is shown for the sake of brevity.</p>
 <div id="mrs_struct" class="section level2 hasAnchor">
 <h2 class="hasAnchor">MRS_struct<a href="#mrs_struct"
 class="anchor-section" aria-label="Anchor link to header"></a></h2>
@@ -471,7 +484,8 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <tbody>
 <tr class="odd">
 <td align="left"><code>version</code></td>
-<td align="left">Release numbers of Gannet and the Gannet modules</td>
+<td align="left">A structure containing release numbers of Gannet and
+the Gannet modules</td>
 </tr>
 <tr class="even">
 <td align="left"><code>ii</code></td>
@@ -480,13 +494,13 @@ analysis, the number of files that were loaded</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>metabfile</code></td>
-<td align="left">String array containing the inputted metabolite data
+<td align="left">Cell array containing the inputted metabolite data
 filenames</td>
 </tr>
 <tr class="even">
 <td align="left"><code>waterfile</code></td>
-<td align="left">String array containing the inputted water reference
-data filenames</td>
+<td align="left">Cell array containing the inputted water reference data
+filenames</td>
 </tr>
 </tbody>
 </table>
@@ -705,8 +719,126 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </tbody>
 </table>
 </div>
+<div id="mrs_struct.spec" class="section level2 hasAnchor">
+<h2 class="hasAnchor">MRS_struct.spec<a href="#mrs_struct.spec"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Field</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data</code></td>
+<td align="left">Raw time-domain metabolite data (dimensions:
+<code>npoints</code> <span class="math inline">\(\times\)</span>
+<code>nrows</code>) of the last loaded dataset</td>
+</tr>
+<tr class="even">
+<td align="left"><code>data_water</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ON_OFF</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>data_align</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vox1</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="mrs_struct.out" class="section level2 hasAnchor">
+<h2 class="hasAnchor">MRS_struct.out<a href="#mrs_struct.out"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Field</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>data</code></td>
+<td align="left">Raw time-domain metabolite data (dimensions:
+<code>npoints</code> <span class="math inline">\(\times\)</span>
+<code>nrows</code>) of the last loaded dataset</td>
+</tr>
+<tr class="even">
+<td align="left"><code>data_water</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>ON_OFF</code></td>
+<td align="left"></td>
+</tr>
+<tr class="even">
+<td align="left"><code>data_align</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vox1</code></td>
+<td align="left"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="mrs_struct.mask" class="section level2 hasAnchor">
+<h2 class="hasAnchor">MRS_struct.mask<a href="#mrs_struct.mask"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Field</u></th>
+<th align="left"><u>Description</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><code>outfile</code></td>
+<td align="left">Cell array of the output filenames of the voxel
+masks</td>
+</tr>
+<tr class="even">
+<td align="left"><code>img</code></td>
+<td align="left">Cell array containing three-dimensional arrays
+representing the three orthogonal slices of the T1 images</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>T1image</code></td>
+<td align="left">Cell array of the input T1 image filenames</td>
+</tr>
+<tr class="even">
+<td align="left"><code>img_montage</code></td>
+<td align="left">Cell array containing three-dimensional arrays
+representing a montage of axial alices of the T1 images overlaid by the
+tissue-segmented voxel masks</td>
+</tr>
+</tbody>
+</table>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiT3V0cHV0IHN0cnVjdHVyZSBhdHRyaWJ1dGVzIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKPGJyPgoKOjo6IGluZm8KPGkgY2xhc3M9ImZhIGZhLWluZm8tY2lyY2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+Jm5ic3A7IFRoZSBmaWVsZHMgbGlzdGVkIG9uIHRoaXMgcGFnZSBhcmUgYXBwbGljYWJsZSB0byByZWxlYXNlIDMuMy4wIGFuZCBhcmUgbm90IG5lY2Vzc2FyaWx5IGNvcnJlY3QgZm9yIG90aGVyIHZlcnNpb25zIG9mIEdhbm5ldC4KOjo6CgojIyBNUlNfc3RydWN0Cgp8IDx1PkZpZWxkPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8CnwgOi0gfCA6LS0tLS0tLS0tIHwKfCBgdmVyc2lvbmAgfCBSZWxlYXNlIG51bWJlcnMgb2YgR2FubmV0IGFuZCB0aGUgR2FubmV0IG1vZHVsZXMgfAp8IGBpaWAgfCBEdXJpbmcgYW5hbHlzaXMsIHRoZSBjdXJyZW50IGZpbGUgYmVpbmcgbG9hZGVkOyBhZnRlciBhbmFseXNpcywgdGhlIG51bWJlciBvZiBmaWxlcyB0aGF0IHdlcmUgbG9hZGVkIHwKfCBgbWV0YWJmaWxlYCB8IFN0cmluZyBhcnJheSBjb250YWluaW5nIHRoZSBpbnB1dHRlZCBtZXRhYm9saXRlIGRhdGEgZmlsZW5hbWVzIHwKfCBgd2F0ZXJmaWxlYCB8IFN0cmluZyBhcnJheSBjb250YWluaW5nIHRoZSBpbnB1dHRlZCB3YXRlciByZWZlcmVuY2UgZGF0YSBmaWxlbmFtZXMgfAoKIyMgTVJTX3N0cnVjdC5wCgp8IDx1PkZpZWxkPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8CnwgOi0gfCA6LS0tLS0tLS0tIHwKYFJlZmVyZW5jZV9jb21wb3VuZGAgfCBDb25jZW50cmF0aW9ucyB3aWxsIGJlIGNhbGN1bGF0ZWQgcmVsYXRpdmUgdG8gdGhpczsgaWYgYSB3YXRlciByZWZlcmVuY2UgaXMgcHJvdmlkZWQsIGNvbmNlbnRyYXRpb25zIHdpbGwgYmUgY2FsY3VsYXRlZCByZWxhdGl2ZSB0byBib3RoIHdhdGVyIGFuZCBDciwgb3RoZXJ3aXNlIHRoZXkgd2lsbCBiZSBjYWxjdWxhdGVkIHJlbGF0aXZlIHRvIENyIHwKYHRhcmdldGAgfCAKYE9OT0ZGb3JkZXJgIHwgCmBzZXFvcmlnYCB8IApgTEJgIHwgCmB3YXRlcl9waGFzZV9jb3JyZWN0aW9uYCB8CmBkYXRhX3BoYXNlX2NvcnJlY3Rpb25gIHwKYHdhdGVyX3JlbW92YWxgIHwKYEFsaWduVG9gIHwKYFZveGAgfCAKYEZpdFJlc2lkV2F0ZXJgIHwKYEhFUk1FU2AgfApgSEVSQ1VMRVNgIHwgCmBQUklBTWAgfApgcGhhbnRvbWAgfApgbWF0YCB8CmBzZGF0YCB8CmBjc3ZgIHwKYHZlbmRvcmAgfCBTY2FubmVyIHZlbmRvciB8CmBzcGFyX3N0cmluZ2AgfApgbnVtc2NhbnNgIHwgVG90YWwgbnVtYmVyIG9mIHNjYW5zIGluIHRoZSBiYXRjaCB8CmBucG9pbnRzYCB8IE51bWJlciBvZiBkYXRhIHBvaW50cyB8CmBucm93c2AgfApgTmF2Z2AgfCBUb3RhbCBudW1iZXIgb2YgYXZlcmFnZXMgfApgVFJgIHwgUmVwZXRpdGlvbiB0aW1lIChtcykgfApgVEVgIHwgRWNobyB0aW1lIChtKSB8CmBMYXJtb3JGcmVxYCB8IExhcm1vciBmcmVxdWVuY3kgKGtIeikgfApgc3dgIHwgU3BlY3RyYWwgd2lkdGggKEh6KSB8CmB2b3hkaW1gIHwgVm94ZWwgZGltZW5zaW9ucyAobW0pIHwKYHZveG9mZmAgfCBWb3hlbCBwb3NpdGlvbiBvZmZzZXQgKG1tKSB8CmB2b3hhbmdgIHwgVm94ZWwgYW5ndWxhdGlvbiAoZGVnKSB8CmBOd2F0ZXJhdmdgIHwgVG90YWwgbnVtYmVyIG9mIHdhdGVyIGF2ZXJhZ2VzIHwKYFplcm9GaWxsVG9gIHwgUHJvY2Vzc2VkIHNwZWN0cmEgYXJlIHplcm8tZmlsbGVkIHRvIHRoaXMgbWFueSBkYXRhIHBvaW50cyB8CmB6ZmAgfCBaZXJvLWZpbGxpbmcgZmFjdG9yIHwKYGRmYCB8IApgU3BlY1Jlc2AgfCBTcGVjdHJhbCByZXNvbHV0aW9uIG9mIHRoZSByYXcgZGF0YSB8CmBTcGVjUmVzTm9taW5hbGAgfCBOb21pbmFsIHNwZWN0cmFsIHJlc29sdXRpb24gb2YgdGhlIHByb2Nlc3NlZCBkYXRhIHwKYFRhY3FgIHwgQWNxdWlzaXRpb24gdGltZSB8CgojIyBNUlNfc3RydWN0LmZpZHMKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBkYXRhYCB8IFJhdyB0aW1lLWRvbWFpbiBtZXRhYm9saXRlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3NgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYGRhdGFfd2F0ZXJgIHwKfCBgT05fT0ZGYCB8CnwgYGRhdGFfYWxpZ25gIHwKfCBgdm94MWAgfAoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiT3V0cHV0IHN0cnVjdHVyZSBhdHRyaWJ1dGVzIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQouaW5mbyB7CiAgbWFyZ2luLWJvdHRvbTogMjBweDsKfQpgYGAKCjxicj4KCjo6OiBpbmZvCjxpIGNsYXNzPSJmYSBmYS1pbmZvLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPiZuYnNwOyBUaGUgZmllbGRzIGxpc3RlZCBvbiB0aGlzIHBhZ2UgYXJlIGFwcGxpY2FibGUgdG8gcmVsZWFzZSAzLjMuMCBhbmQgYXJlIG5vdCBuZWNlc3NhcmlseSBjb3JyZWN0IGZvciBvdGhlciB2ZXJzaW9ucyBvZiBHYW5uZXQuCjo6OgoKQWxsIHRoZSBvdXRwdXQgZnJvbSBHYW5uZXQgYW5heWxzZXMgYXJlIHNhdmVkIGluIGEgc3RydWN0dXJlIChlLmcuLCBgTVJTX3N0cnVjdGAgb3Igd2hhdGV2ZXIgbmFtZSB0aGUgdXNlciBoYXMgY2hvc2VuKSB0aGF0IGNvbnRhaW5zIG1hbnkgZmllbGRzIGFuZCBzdWJmaWVsZHMuIExpc3RlZCBiZWxvdyBhcmUgbGlzdHMgb2YgdGhlc2UgZmllbGRzIGFuZCB0aGVpciBkZXNjcmlwdGlvbnMuIE5vdGUgdGhhdCBub3QgZXZlcnkgcG9zc2libGUgZmllbGQgdGhhdCBHYW5uZXQgY2FuIGdlbmVyYXRlIGlzIHNob3duIGZvciB0aGUgc2FrZSBvZiBicmV2aXR5LgoKIyMgTVJTX3N0cnVjdAoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tLSB8CnwgYHZlcnNpb25gIHwgQSBzdHJ1Y3R1cmUgY29udGFpbmluZyByZWxlYXNlIG51bWJlcnMgb2YgR2FubmV0IGFuZCB0aGUgR2FubmV0IG1vZHVsZXMgfAp8IGBpaWAgfCBEdXJpbmcgYW5hbHlzaXMsIHRoZSBjdXJyZW50IGZpbGUgYmVpbmcgbG9hZGVkOyBhZnRlciBhbmFseXNpcywgdGhlIG51bWJlciBvZiBmaWxlcyB0aGF0IHdlcmUgbG9hZGVkIHwKfCBgbWV0YWJmaWxlYCB8IENlbGwgYXJyYXkgY29udGFpbmluZyB0aGUgaW5wdXR0ZWQgbWV0YWJvbGl0ZSBkYXRhIGZpbGVuYW1lcyB8CnwgYHdhdGVyZmlsZWAgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhlIGlucHV0dGVkIHdhdGVyIHJlZmVyZW5jZSBkYXRhIGZpbGVuYW1lcyB8CgojIyBNUlNfc3RydWN0LnAKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfApgUmVmZXJlbmNlX2NvbXBvdW5kYCB8IENvbmNlbnRyYXRpb25zIHdpbGwgYmUgY2FsY3VsYXRlZCByZWxhdGl2ZSB0byB0aGlzOyBpZiBhIHdhdGVyIHJlZmVyZW5jZSBpcyBwcm92aWRlZCwgY29uY2VudHJhdGlvbnMgd2lsbCBiZSBjYWxjdWxhdGVkIHJlbGF0aXZlIHRvIGJvdGggd2F0ZXIgYW5kIENyLCBvdGhlcndpc2UgdGhleSB3aWxsIGJlIGNhbGN1bGF0ZWQgcmVsYXRpdmUgdG8gQ3IgfApgdGFyZ2V0YCB8IApgT05PRkZvcmRlcmAgfCAKYHNlcW9yaWdgIHwgCmBMQmAgfCAKYHdhdGVyX3BoYXNlX2NvcnJlY3Rpb25gIHwKYGRhdGFfcGhhc2VfY29ycmVjdGlvbmAgfApgd2F0ZXJfcmVtb3ZhbGAgfApgQWxpZ25Ub2AgfApgVm94YCB8IApgRml0UmVzaWRXYXRlcmAgfApgSEVSTUVTYCB8CmBIRVJDVUxFU2AgfCAKYFBSSUFNYCB8CmBwaGFudG9tYCB8CmBtYXRgIHwKYHNkYXRgIHwKYGNzdmAgfApgdmVuZG9yYCB8IFNjYW5uZXIgdmVuZG9yIHwKYHNwYXJfc3RyaW5nYCB8CmBudW1zY2Fuc2AgfCBUb3RhbCBudW1iZXIgb2Ygc2NhbnMgaW4gdGhlIGJhdGNoIHwKYG5wb2ludHNgIHwgTnVtYmVyIG9mIGRhdGEgcG9pbnRzIHwKYG5yb3dzYCB8CmBOYXZnYCB8IFRvdGFsIG51bWJlciBvZiBhdmVyYWdlcyB8CmBUUmAgfCBSZXBldGl0aW9uIHRpbWUgKG1zKSB8CmBURWAgfCBFY2hvIHRpbWUgKG0pIHwKYExhcm1vckZyZXFgIHwgTGFybW9yIGZyZXF1ZW5jeSAoa0h6KSB8CmBzd2AgfCBTcGVjdHJhbCB3aWR0aCAoSHopIHwKYHZveGRpbWAgfCBWb3hlbCBkaW1lbnNpb25zIChtbSkgfApgdm94b2ZmYCB8IFZveGVsIHBvc2l0aW9uIG9mZnNldCAobW0pIHwKYHZveGFuZ2AgfCBWb3hlbCBhbmd1bGF0aW9uIChkZWcpIHwKYE53YXRlcmF2Z2AgfCBUb3RhbCBudW1iZXIgb2Ygd2F0ZXIgYXZlcmFnZXMgfApgWmVyb0ZpbGxUb2AgfCBQcm9jZXNzZWQgc3BlY3RyYSBhcmUgemVyby1maWxsZWQgdG8gdGhpcyBtYW55IGRhdGEgcG9pbnRzIHwKYHpmYCB8IFplcm8tZmlsbGluZyBmYWN0b3IgfApgZGZgIHwgCmBTcGVjUmVzYCB8IFNwZWN0cmFsIHJlc29sdXRpb24gb2YgdGhlIHJhdyBkYXRhIHwKYFNwZWNSZXNOb21pbmFsYCB8IE5vbWluYWwgc3BlY3RyYWwgcmVzb2x1dGlvbiBvZiB0aGUgcHJvY2Vzc2VkIGRhdGEgfApgVGFjcWAgfCBBY3F1aXNpdGlvbiB0aW1lIHwKCiMjIE1SU19zdHJ1Y3QuZmlkcwoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tLSB8CnwgYGRhdGFgIHwgUmF3IHRpbWUtZG9tYWluIG1ldGFib2xpdGUgZGF0YSAoZGltZW5zaW9uczogYG5wb2ludHNgICRcdGltZXMkIGBucm93c2ApIG9mIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHwKfCBgZGF0YV93YXRlcmAgfAp8IGBPTl9PRkZgIHwKfCBgZGF0YV9hbGlnbmAgfAp8IGB2b3gxYCB8CgojIyBNUlNfc3RydWN0LnNwZWMKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBkYXRhYCB8IFJhdyB0aW1lLWRvbWFpbiBtZXRhYm9saXRlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3NgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYGRhdGFfd2F0ZXJgIHwKfCBgT05fT0ZGYCB8CnwgYGRhdGFfYWxpZ25gIHwKfCBgdm94MWAgfAoKIyMgTVJTX3N0cnVjdC5vdXQKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBkYXRhYCB8IFJhdyB0aW1lLWRvbWFpbiBtZXRhYm9saXRlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3NgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYGRhdGFfd2F0ZXJgIHwKfCBgT05fT0ZGYCB8CnwgYGRhdGFfYWxpZ25gIHwKfCBgdm94MWAgfAoKIyMgTVJTX3N0cnVjdC5tYXNrCgp8IDx1PkZpZWxkPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8CnwgOi0gfCA6LS0tLS0tLS0tIHwKfCBgb3V0ZmlsZWAgfCBDZWxsIGFycmF5IG9mIHRoZSBvdXRwdXQgZmlsZW5hbWVzIG9mIHRoZSB2b3hlbCBtYXNrcyB8CnwgYGltZ2AgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhyZWUtZGltZW5zaW9uYWwgYXJyYXlzIHJlcHJlc2VudGluZyB0aGUgdGhyZWUgb3J0aG9nb25hbCBzbGljZXMgb2YgdGhlIFQxIGltYWdlcyB8CnwgYFQxaW1hZ2VgIHwgQ2VsbCBhcnJheSBvZiB0aGUgaW5wdXQgVDEgaW1hZ2UgZmlsZW5hbWVzIHwKfCBgaW1nX21vbnRhZ2VgIHwgQ2VsbCBhcnJheSBjb250YWluaW5nIHRocmVlLWRpbWVuc2lvbmFsIGFycmF5cyByZXByZXNlbnRpbmcgYSBtb250YWdlIG9mIGF4aWFsIGFsaWNlcyBvZiB0aGUgVDEgaW1hZ2VzIG92ZXJsYWlkIGJ5IHRoZSB0aXNzdWUtc2VnbWVudGVkIHZveGVsIG1hc2tzIHwKCgoK</div>
 <!DOCTYPE html>
 <br>
 <hr>

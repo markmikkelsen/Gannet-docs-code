@@ -11,7 +11,7 @@
 
 
 
-<title>Loading data</title>
+<title>Signal modeling</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -421,17 +421,12 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Loading data</h1>
+<h1 class="title toc-ignore">Signal modeling</h1>
 <h4 class="date">Last updated: January 31, 2023</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -456,9 +451,104 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
-<p><br></p>
+<style type="text/css">
+table {
+  margin: auto;
+}
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9hZGluZyBkYXRhIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKPHN0eWxlPgpib2R5IC5tYWluLWNvbnRhaW5lciB7CiAgbWF4LXdpZHRoOiAxMjAwcHg7Cn0KPC9zdHlsZT4KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSAianMvYmFjay10by10b3AuanMifQpgYGAKCjxicj4KCg==</div>
+table thead th {
+  border-bottom: 1px solid #ddd;
+}
+
+th, td {
+  padding: 5px;
+}
+
+tfoot, tr:nth-child(even) {
+  background: #eee;
+}
+</style>
+<div id="gabaglx" class="section level2 hasAnchor">
+<h2 class="hasAnchor">GABA+Glx<a href="#gabaglx" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>GABA and Glx are fitted using a three-Gaussian model with a linear
+slope and non-linear baseline:</p>
+<p><span class="math display">\[
+S(\omega) =
+\sum_{i=1}^{3}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
+m(\omega-\omega_1)+
+b_1\sin(\pi\omega/1.31/4)+
+b_2\cos(\pi\omega/1.31/4)
+\]</span></p>
+<p>where:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><u>Parameter</u></th>
+<th align="left"><u>Definition</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\omega\)</span></td>
+<td align="left">Frequency (ppm)</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(a_i\)</span></td>
+<td align="left">Gaussian <em>i</em>’s amplitude</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(g_i\)</span></td>
+<td align="left">Gaussian <em>i</em>’s width</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\omega_i\)</span></td>
+<td align="left">Gaussian <em>i</em>’s center frequency</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(m\)</span></td>
+<td align="left">Slope of baseline</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(b_1\)</span></td>
+<td align="left">Sine baseline term</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(b_2\)</span></td>
+<td align="left">Cosine baseline term</td>
+</tr>
+</tbody>
+</table>
+<p><img id="myImg2" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model"></p>
+</div>
+<div id="gsh-te-100-ms" class="section level2 hasAnchor">
+<h2 class="hasAnchor">GSH (TE &lt; 100 ms)<a href="#gsh-te-100-ms"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>GSH that is edited at a TE &lt; 100 ms is fitted with a five-Gaussian
+model with a linear + quadratic baseline:</p>
+<p><span class="math display">\[
+S(\omega) =
+\sum_{i=1}^{5}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+b+
+m_2(\omega-\omega_1)^2
+\]</span></p>
+<p><img id="myImg2" src="images/signal-modeling/GSH-80.png" alt="Illustration of the GSH model at TE = 80 ms"></p>
+</div>
+<div id="gsh-te-100-ms-1" class="section level2 hasAnchor">
+<h2 class="hasAnchor">GSH (TE &gt;= 100 ms)<a href="#gsh-te-100-ms-1"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>GSH that is edited at a TE &gt;= 100 ms is fitted with a six-Gaussian
+model with a linear + quadratic baseline:</p>
+<p><span class="math display">\[
+S(\omega) =
+\sum_{i=1}^{6}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+b+
+m_2(\omega-\omega_1)^2
+\]</span></p>
+<p><img id="myImg2" src="images/signal-modeling/GSH-120.png" alt="Illustration of the GSH model at TE = 120 ms"></p>
+</div>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2lnbmFsIG1vZGVsaW5nIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYgpjc2w6IGFtZXJpY2FuLW1lZGljYWwtYXNzb2NpYXRpb24uY3NsCmxpbmstY2l0YXRpb25zOiB5ZXMKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQp0YWJsZSB7CiAgbWFyZ2luOiBhdXRvOwp9Cgp0YWJsZSB0aGVhZCB0aCB7CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNkZGQ7Cn0KCnRoLCB0ZCB7CiAgcGFkZGluZzogNXB4Owp9Cgp0Zm9vdCwgdHI6bnRoLWNoaWxkKGV2ZW4pIHsKICBiYWNrZ3JvdW5kOiAjZWVlOwp9CmBgYAoKIyMgR0FCQStHbHgKCkdBQkEgYW5kIEdseCBhcmUgZml0dGVkIHVzaW5nIGEgdGhyZWUtR2F1c3NpYW4gbW9kZWwgd2l0aCBhIGxpbmVhciBzbG9wZSBhbmQgbm9uLWxpbmVhciBiYXNlbGluZToKCiQkClMoXG9tZWdhKSA9ClxzdW1fe2k9MX1eezN9XGxlZnRce2FfaVxleHBbZ19pKFxvbWVnYS1cb21lZ2FfaSleMl1ccmlnaHRcfSsKbShcb21lZ2EtXG9tZWdhXzEpKwpiXzFcc2luKFxwaVxvbWVnYS8xLjMxLzQpKwpiXzJcY29zKFxwaVxvbWVnYS8xLjMxLzQpCiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlZmluaXRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLSB8CnwgJFxvbWVnYSQgfCBGcmVxdWVuY3kgKHBwbSkgfAp8ICRhX2kkIHwgR2F1c3NpYW4gKmkqJ3MgYW1wbGl0dWRlIHwKfCAkZ19pJCB8IEdhdXNzaWFuICppKidzIHdpZHRoIHwKfCAkXG9tZWdhX2kkIHwgR2F1c3NpYW4gKmkqJ3MgY2VudGVyIGZyZXF1ZW5jeSB8CnwgJG0kIHwgU2xvcGUgb2YgYmFzZWxpbmUgfAp8ICRiXzEkIHwgU2luZSBiYXNlbGluZSB0ZXJtIHwKfCAkYl8yJCB8IENvc2luZSBiYXNlbGluZSB0ZXJtIHwKCjxpbWcgaWQ9Im15SW1nMiIgc3JjPSJpbWFnZXMvc2lnbmFsLW1vZGVsaW5nL0dBQkErR2x4LnBuZyIgYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhlIEdBQkErR2x4IG1vZGVsIj4KCiMjIEdTSCAoVEUgPCAxMDAgbXMpCgpHU0ggdGhhdCBpcyBlZGl0ZWQgYXQgYSBURSA8IDEwMCBtcyBpcyBmaXR0ZWQgd2l0aCBhIGZpdmUtR2F1c3NpYW4gbW9kZWwgd2l0aCBhIGxpbmVhciArIHF1YWRyYXRpYyBiYXNlbGluZToKCiQkClMoXG9tZWdhKSA9ClxzdW1fe2k9MX1eezV9XGxlZnRce2FfaVxleHBbZ19pKFxvbWVnYS1cb21lZ2FfaSleMl1ccmlnaHRcfSsKbV8xKFxvbWVnYS1cb21lZ2FfMSkrYisKbV8yKFxvbWVnYS1cb21lZ2FfMSleMgokJAoKPGltZyBpZD0ibXlJbWcyIiBzcmM9ImltYWdlcy9zaWduYWwtbW9kZWxpbmcvR1NILTgwLnBuZyIgYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhlIEdTSCBtb2RlbCBhdCBURSA9IDgwIG1zIj4KCiMjIEdTSCAoVEUgPj0gMTAwIG1zKQoKR1NIIHRoYXQgaXMgZWRpdGVkIGF0IGEgVEUgPj0gMTAwIG1zIGlzIGZpdHRlZCB3aXRoIGEgc2l4LUdhdXNzaWFuIG1vZGVsIHdpdGggYSBsaW5lYXIgKyBxdWFkcmF0aWMgYmFzZWxpbmU6CgokJApTKFxvbWVnYSkgPQpcc3VtX3tpPTF9Xns2fVxsZWZ0XHthX2lcZXhwW2dfaShcb21lZ2EtXG9tZWdhX2kpXjJdXHJpZ2h0XH0rCm1fMShcb21lZ2EtXG9tZWdhXzEpK2IrCm1fMihcb21lZ2EtXG9tZWdhXzEpXjIKJCQKCjxpbWcgaWQ9Im15SW1nMiIgc3JjPSJpbWFnZXMvc2lnbmFsLW1vZGVsaW5nL0dTSC0xMjAucG5nIiBhbHQ9IklsbHVzdHJhdGlvbiBvZiB0aGUgR1NIIG1vZGVsIGF0IFRFID0gMTIwIG1zIj4KCgoKCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>
@@ -509,7 +599,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("loading-data.Rmd");
+  window.initializeSourceEmbed("signal-modeling.Rmd");
 });
 </script>
 
