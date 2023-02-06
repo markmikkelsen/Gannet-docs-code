@@ -44,26 +44,20 @@ MRS = GannetFit(MRS);
 PaperPlot(MRS); % Use default settings
 ```
 
-```{r echo = FALSE, out.width = '75%', fig.align = 'left'}
-knitr::include_graphics('images/additional-tools/paperplot-1.png')
-```
+<img id="img_75" src="images/additional-tools/paperplot-1.png" alt="Example output of PaperPlot.m">
 
 ```{octave, eval = FALSE}
 PaperPlot(MRS, 'plotModel', true); % Overlay fit models
 ```
 
-```{r echo = FALSE, out.width = '75%', fig.align = 'left'}
-knitr::include_graphics('images/additional-tools/paperplot-2.png')
-```
+<img id="img_75" src="images/additional-tools/paperplot-2.png" alt="Example output of PaperPlot.m">
 
 ```{octave, eval = FALSE}
 PaperPlot(MRS, 'plotModel', true, 'freqLim', [2 4.25]); % Overlay fit models and
                                                         % set ppm limits to 2-4.25
 ```
 
-```{r echo = FALSE, out.width = '75%', fig.align = 'left'}
-knitr::include_graphics('images/additional-tools/paperplot-3.png')
-```
+<img id="img_75" src="images/additional-tools/paperplot-3.png" alt="Example output of PaperPlot.m">
 
 ## De-identification
 
@@ -77,7 +71,7 @@ Please note the following:
 <i class="fa fa-exclamation-circle" style="color: white"></i>
 <ul>
   <li>Gannet does not remove PHI/PII from filenames; this is solely your responsibility.</li>
-  <li>In addition to any PHI/PII associated with the NIfTI file itself, the structural image needs to be defaced. Please either use a skull-stripping tool (such as the one implemented in FSL) or a defacing tool (e.g., <a href="https://github.com/poldracklab/pydeface" target="_blank" style="color:white"><u>pydeface</u></a>).</li>
+  <li>In addition to any PHI/PII in the header of structural image files, they need to be defaced as well. Please use a skull-stripping tool (such as the one implemented in FSL) or a defacing tool (e.g., <a href="https://github.com/poldracklab/pydeface" target="_blank" style="color:white"><u>pydeface</u></a>).</li>
   <li>Per our <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html" target="_blank" style="color:white"><u>software license</u></a>, the Gannet developers are not liable for any failure of our de-identification routines to remove PHI/PII from your data.</li>
 </ul>
 :::
@@ -104,7 +98,7 @@ The Gannet de-identification functions currently remove PHI/PII identifiers defi
 - Medical record numbers
 - Device identifiers and serial numbers
 
-Should the regulations in your country or your institution require additional information to be removed from the files, please <a href="https://gabamrs.com/contact" target="_blank">contact us</a>.
+Should the regulations in your country or your institution require additional information to be removed from the files, please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<subject>" target="_blank">contact us</a>.
 
 ::: danger
 <i class="fa fa-exclamation-triangle" style="color: white"></i>&nbsp; There is <u>no way</u> to retrieve PHI/PII from a de-identified file! Make sure that you either retain a copy of the original file or that you keep a separate record that uniquely links all necessary subject information to the de-identified file.

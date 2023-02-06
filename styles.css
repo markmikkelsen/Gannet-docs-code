@@ -61,12 +61,15 @@ img {
   height: auto;
 }
 
-#myImg {
+#img_50 {
   width: 50%;
   box-shadow: 0 0 0 0, 0 0 0 0;
 }
 
-#myImg2 {
+#img_75 {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
   width: 75%;
   box-shadow: 0 0 0 0, 0 0 0 0;
 }

@@ -13,7 +13,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-<img src="images/logo+title.png" alt="The Gannet logo" id="myImg"/>
+<img id="img_50" src="images/logo+title.png" alt="The Gannet logo"/>
 
 ::: release
 <h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.3.0</a></h3>
@@ -50,7 +50,7 @@ To run the voxel co-registration and structural image segmentation modules, <a h
 
 ### Download
 
-The simplest way to install Gannet is to download the zipped [main directory](https://github.com/markmikkelsen/Gannet/archive/refs/heads/main.zip) from the <a href="https://github.com/markmikkelsen/Gannet" target="_blank">repository</a> on GitHub, unzip it, and move the `Gannet-main/` directory into your MATLAB directory (or anywhere of your choice).
+The simplest way to install Gannet is to download the code from the <a href="https://github.com/markmikkelsen/Gannet" target="_blank">GitHub repository</a> and move the `Gannet-main/` directory into your MATLAB directory.
 
 Alternatively, git-savvy users can clone the Gannet repository into a directory of their choice:
 
@@ -58,9 +58,17 @@ Alternatively, git-savvy users can clone the Gannet repository into a directory 
 git clone https://github.com/markmikkelsen/Gannet.git
 ```
 
+The development version can be downloaded from the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">development branch</a> on GitHub or by using the following git command if the repository was cloned:
+
+```{bash, eval = FALSE}
+git checkout dev
+```
+
+Stable releases can be found <a href="https://github.com/markmikkelsen/Gannet/releases" target="_blank">here</a>.
+
 ### Setup
 
-Open the *Set Path* dialog box from the MATLAB menu (or run the command `pathtool` in the Command Window), click *Add with Subfolders...*, find the downloaded Gannet directory and then select it. When done, press *Save* to permanently save the Gannet directory to MATLAB's default search path.
+Open the *Set Path* dialog box from the MATLAB menu (or run the command `pathtool` in the Command Window), click *Add with Subfolders...*, find the downloaded Gannet directory, and then select it. When done, press *Save* to permanently save the Gannet directory to MATLAB's default search path.
 
 SPM12 can be installed in the same manner after it has been downloaded from the SPM website.
 
@@ -89,7 +97,7 @@ At present, the following MRS data file formats are supported:
 For creating and co-registering voxel masks, structural images need to be in NIfTI format (DICOM files can also be used if processing GE P-files).
 
 ::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i>  Philips users: Do not use structural images exported using the *fsl-nifti* option as this creates problems with co-registration in Gannet.
+<i class="fa fa-exclamation-circle" style="color: white"></i> Philips users: Do not use structural images exported using the *fsl-nifti* option as this creates problems with co-registration in Gannet.
 :::
 
 ## Getting help
@@ -98,7 +106,7 @@ If you encounter any problems, please first check the Documentation or <a href="
 
 Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on <a href="https://mrshub.org/" target="_blank">MRSHub</a>.
 
-The support team can also be directly <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20" target="_blank">contacted</a>. We will do our best to work with you to solve your issue.
+The Gannet team can also be directly <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<subject>" target="_blank">contacted</a>. We will do our best to work with you to solve your issue.
 
 ## Versioning
 
@@ -172,9 +180,11 @@ We wish to thank the following individuals for their direct or indirect contribu
 -   Alex Craven (University of Bergen)
 -   Philipp Ehses (Max Planck Institute for Biological Cybernetics)
 -   Robin de Graaf (Yale School of Medicine)
+-   Xiangrui Li (Ohio State University)
 -   Jamie Near (McGill University)
 -   Ralph Noeske (GE Healthcare)
 -   Wouter Potters (UMC Amsterdam)
+-   Jan Simon (Heidelberg)
 
 
 

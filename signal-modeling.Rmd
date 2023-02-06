@@ -37,13 +37,17 @@ tfoot, tr:nth-child(even) {
 }
 ```
 
+<br>
+
+This page describes the functions Gannet uses to model signals processed through the pipeline. Note that where definition of a parameter is not shown for a particular, it is implied that it has been already defined in a previous model.
+
 ## GABA+Glx
 
 GABA and Glx are fitted using a three-Gaussian model with a linear slope and non-linear baseline:
 
 $$
 S(\omega) =
-\sum_{i=1}^{3}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
+\sum_{i=1}^{3}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
 m(\omega-\omega_1)+
 b_1\sin(\pi\omega/1.31/4)+
 b_2\cos(\pi\omega/1.31/4)
@@ -54,14 +58,14 @@ where:
 | <u>Parameter</u> | <u>Definition</u> |
 | :- | :-------- |
 | $\omega$ | Frequency (ppm) |
-| $a_i$ | Gaussian *i*'s amplitude |
-| $g_i$ | Gaussian *i*'s width |
-| $\omega_i$ | Gaussian *i*'s center frequency |
-| $m$ | Slope of baseline |
+| $A_i$ | Gaussian *i*'s amplitude |
+| $\sigma_i$ | Gaussian *i*'s width |
+| $\omega_i$ | Gaussian *i*'s center frequency (ppm) |
+| $m$ | Slope of linear baseline |
 | $b_1$ | Sine baseline term |
 | $b_2$ | Cosine baseline term |
 
-<img id="myImg2" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model">
+<img id="img_75" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model">
 
 ## GSH (TE < 100 ms)
 
@@ -69,12 +73,20 @@ GSH that is edited at a TE < 100 ms is fitted with a five-Gaussian model with a 
 
 $$
 S(\omega) =
-\sum_{i=1}^{5}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
-m_1(\omega-\omega_1)+b+
-m_2(\omega-\omega_1)^2
+\sum_{i=1}^{5}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+
+m_2(\omega-\omega_1)^2+b
 $$
 
-<img id="myImg2" src="images/signal-modeling/GSH-80.png" alt="Illustration of the GSH model at TE = 80 ms">
+where:
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :- | :-------- |
+| $m_1$ | Slope of linear baseline |
+| $m_2$ | Quadratic baseline term |
+| $b$ | Baseline offset |
+
+<img id="img_75" src="images/signal-modeling/GSH-80.png" alt="Illustration of the GSH model at TE = 80 ms">
 
 ## GSH (TE >= 100 ms)
 
@@ -82,12 +94,101 @@ GSH that is edited at a TE >= 100 ms is fitted with a six-Gaussian model with a 
 
 $$
 S(\omega) =
-\sum_{i=1}^{6}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
-m_1(\omega-\omega_1)+b+
-m_2(\omega-\omega_1)^2
+\sum_{i=1}^{6}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+
+m_2(\omega-\omega_1)^2+b
 $$
 
-<img id="myImg2" src="images/signal-modeling/GSH-120.png" alt="Illustration of the GSH model at TE = 120 ms">
+<img id="img_75" src="images/signal-modeling/GSH-120.png" alt="Illustration of the GSH model at TE = 120 ms">
+
+## Lac
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i> Optimizing the modeling of edited Lac is ongoing.
+:::
+
+Lac is fitted with a four-Gaussian model with a linear + quadratic baseline:
+
+$$
+S(\omega) =
+\sum_{i=1}^{4}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+
+m_2(\omega-\omega_1)^2+b
+$$
+
+<img id="img_75" src="images/signal-modeling/Lac.png" alt="Illustration of the Lac model">
+
+## Cho+Cr
+
+Cho and Cr in the edit-OFF spectrum are fitted with a two-Lorentzian model with a linear baseline:
+
+$$
+Absorption(\omega) =
+\frac{A}{2\pi}\frac{\gamma}{(\omega-\omega_0)^2+\gamma^2}+
+\frac{Ah}{2\pi}\frac{\gamma}{(\omega-\omega_0-0.18)^2+\gamma^2}
+$$
+$$
+Dispersion(\omega) =
+\frac{A}{2\pi}\frac{\omega-\omega_0}{(\omega-\omega_0)^2+\gamma^2}+
+\frac{Ah}{2\pi}\frac{\omega-\omega_0-0.18}{(\omega-\omega_0-0.18)^2+\gamma^2}
+$$
+
+$$
+S(\omega) =
+\cos\varphi Absorption(\omega)+
+\sin\varphi Dispersion(\omega)+
+m(\omega-\omega_0)+b
+$$
+
+where:
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :- | :-------- |
+| $A$ | Amplitude of Cr peak |
+| $\gamma$ | Lorentzian width (half-width half-maximum) |
+| $\omega_0$ | Center frequency of Cr peak |
+| $h$ | Amplitude scaling factor for Cho peak |
+| $\varphi$ | Phase |
+
+<img id="img_75" src="images/signal-modeling/Cho+Cr.png" alt="Illustration of the Cho+Cr model">
+
+## NAA
+
+NAA in the edit-OFF spectrum is fitted with a Lorentzian model with a linear baseline:
+
+$$
+Absorption(\omega) =
+\frac{A}{2\pi}\frac{\gamma}{(\omega-\omega_0)^2+\gamma^2}
+$$
+$$
+Dispersion(\omega) =
+\frac{A}{2\pi}\frac{(\omega-\omega_0)}{(\omega-\omega_0)^2+\gamma^2}
+$$
+
+$$
+S(\omega) =
+\cos\varphi Absorption(\omega)+
+\sin\varphi Dispersion(\omega)+
+m(\omega-\omega_0)+b
+$$
+
+## Water
+
+The unsurpressed water signal is fitted with a Lorentzian-Gaussian model with a linear baseline:
+
+$$
+S(\omega) = 
+\left\{\frac{\cos\varphi A+\sin\varphi A\gamma(\omega-\omega_0)}
+{\gamma^2(\omega-\omega_0)^2+1}\right\}
+\left\{\exp[\sigma(\omega-\omega_0)^2]\right\}+
+m(\omega-\omega_0)+b
+$$
+
+<img id="img_75" src="images/signal-modeling/water.png" alt="Illustration of the water model">
+
+
+
+
 
 
 

@@ -419,7 +419,7 @@ $(document).ready(function () {
   </a>
 </li>
 <li>
-  <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20">
+  <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20&lt;subject&gt;">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -441,7 +441,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Batch processing script</h1>
-<h4 class="date">Last updated: January 31, 2023</h4>
+<h4 class="date">Last updated: February 06, 2023</h4>
 
 </div>
 
@@ -470,6 +470,11 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
+<style type="text/css">
+body .main-container {
+  max-width: 900px;
+}
+</style>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre
 class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images</span></span>
@@ -498,7 +503,7 @@ class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a hr
 <span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetSegment(MRS)<span class="op">;</span></span>
 <span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetQuantify(MRS)<span class="op">;</span></span></code></pre></div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmF0Y2ggcHJvY2Vzc2luZyBzY3JpcHQiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgo8YnI+CgpgYGB7b2N0YXZlLCBldmFsID0gRkFMU0V9CiUgRXhhbXBsZSBiYXRjaCBzY3JpcHQgZm9yIFBoaWxpcHMgTUVHQS1QUkVTUyBkYXRhIHdpdGggYWNjb21wYW55aW5nIHdhdGVyIHJlZmVyZW5jZXMgYW5kIHN0cnVjdHVyYWwgaW1hZ2VzCiUgUmVtZW1iZXIgdG8gY2hlY2sgR2FubmV0UHJlSW5pdGlhbGlzZS5tIGhhcyB0aGUgYXBwcm9wcmlhdGUgc2V0dGluZ3MgZm9yIHlvdXIgZGF0YQoKZGF0YV9kaXIgPSAnL1VzZXJzL3VzZXJuYW1lL0RvY3VtZW50cy9teV9wcm9qZWN0L2RhdGEnOwoKbWV0YWIgPSB7J1MwMV9HQUJBXzY4X2FjdC5zZGF0JwogICAgICAgICAnUzAyX0dBQkFfNjhfYWN0LnNkYXQnCiAgICAgICAgICdTMDNfR0FCQV82OF9hY3Quc2RhdCd9OwptZXRhYiA9IGZ1bGxmaWxlKGRhdGFfZGlyLCBtZXRhYik7ICUgSXQgaXMgZ29vZCBwcmFjdGljZSB0byBpbmNsdWRlIHRoZSBmdWxsIHBhdGggb2YgZmlsZXMKICAgICAgICAgCndhdGVyID0geydTMDFfR0FCQV82OF9yZWYuc2RhdCcKICAgICAgICAgJ1MwMl9HQUJBXzY4X3JlZi5zZGF0JwogICAgICAgICAnUzAzX0dBQkFfNjhfcmVmLnNkYXQnfTsKd2F0ZXIgPSBmdWxsZmlsZShkYXRhX2Rpciwgd2F0ZXIpOwoKYW5hdCA9IHsnUzAxX1QxX2FuYXQubmlpJwogICAgICAgICdTMDJfVDFfYW5hdC5uaWknCiAgICAgICAgJ1MwM19UMV9hbmF0Lm5paSd9OwphbmF0ID0gZnVsbGZpbGUoZGF0YV9kaXIsIGFuYXQpOwoKTVJTID0gR2FubmV0TG9hZChtZXRhYiwgd2F0ZXIpOwpNUlMgPSBHYW5uZXRGaXQoTVJTKTsKTVJTID0gR2FubmV0Q29SZWdpc3RlcihNUlMsIGFuYXQpOwpNUlMgPSBHYW5uZXRTZWdtZW50KE1SUyk7Ck1SUyA9IEdhbm5ldFF1YW50aWZ5KE1SUyk7CmBgYAo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmF0Y2ggcHJvY2Vzc2luZyBzY3JpcHQiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgpgYGB7Y3NzLCBlY2hvID0gRkFMU0V9CmJvZHkgLm1haW4tY29udGFpbmVyIHsKICBtYXgtd2lkdGg6IDkwMHB4Owp9CmBgYAoKPGJyPgoKYGBge29jdGF2ZSwgZXZhbCA9IEZBTFNFfQolIEV4YW1wbGUgYmF0Y2ggc2NyaXB0IGZvciBQaGlsaXBzIE1FR0EtUFJFU1MgZGF0YSB3aXRoIGFjY29tcGFueWluZyB3YXRlciByZWZlcmVuY2VzIGFuZCBzdHJ1Y3R1cmFsIGltYWdlcwolIFJlbWVtYmVyIHRvIGNoZWNrIEdhbm5ldFByZUluaXRpYWxpc2UubSBoYXMgdGhlIGFwcHJvcHJpYXRlIHNldHRpbmdzIGZvciB5b3VyIGRhdGEKCmRhdGFfZGlyID0gJy9Vc2Vycy91c2VybmFtZS9Eb2N1bWVudHMvbXlfcHJvamVjdC9kYXRhJzsKCm1ldGFiID0geydTMDFfR0FCQV82OF9hY3Quc2RhdCcKICAgICAgICAgJ1MwMl9HQUJBXzY4X2FjdC5zZGF0JwogICAgICAgICAnUzAzX0dBQkFfNjhfYWN0LnNkYXQnfTsKbWV0YWIgPSBmdWxsZmlsZShkYXRhX2RpciwgbWV0YWIpOyAlIEl0IGlzIGdvb2QgcHJhY3RpY2UgdG8gaW5jbHVkZSB0aGUgZnVsbCBwYXRoIG9mIGZpbGVzCiAgICAgICAgIAp3YXRlciA9IHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnCiAgICAgICAgICdTMDJfR0FCQV82OF9yZWYuc2RhdCcKICAgICAgICAgJ1MwM19HQUJBXzY4X3JlZi5zZGF0J307CndhdGVyID0gZnVsbGZpbGUoZGF0YV9kaXIsIHdhdGVyKTsKCmFuYXQgPSB7J1MwMV9UMV9hbmF0Lm5paScKICAgICAgICAnUzAyX1QxX2FuYXQubmlpJwogICAgICAgICdTMDNfVDFfYW5hdC5uaWknfTsKYW5hdCA9IGZ1bGxmaWxlKGRhdGFfZGlyLCBhbmF0KTsKCk1SUyA9IEdhbm5ldExvYWQobWV0YWIsIHdhdGVyKTsKTVJTID0gR2FubmV0Rml0KE1SUyk7Ck1SUyA9IEdhbm5ldENvUmVnaXN0ZXIoTVJTLCBhbmF0KTsKTVJTID0gR2FubmV0U2VnbWVudChNUlMpOwpNUlMgPSBHYW5uZXRRdWFudGlmeShNUlMpOwpgYGAK</div>
 <!DOCTYPE html>
 <br>
 <hr>

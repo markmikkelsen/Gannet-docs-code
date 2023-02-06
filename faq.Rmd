@@ -26,7 +26,7 @@ pre.sourceCode code {
 <br>
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, please first check you are using the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>stable release</u></a>. It may be that your issue has already been addressed. Alternatively, consider using the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development version</u></a> as bug fixes/changes are continually being uploaded to this branch.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, please first check you are using the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>version</u></a>. It may be that your issue has already been addressed. Alternatively, consider using the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development version</u></a> as bug fixes/changes are continually being uploaded to this branch.
 :::
 
 ## General
@@ -55,7 +55,7 @@ Yes, Gannet can process and fit phantom edited data as described above. Make sur
 
 #### **Why is my spectrum upside down?**
 
-<img id="myImg" src="images/faq/upside-down-spectrum.png" alt="A screenshot example of upside-down MRS spectra">
+<img id="img_50" src="images/faq/upside-down-spectrum.png" alt="A screenshot example of upside-down MRS spectra">
 
 Gannet has a routine that automatically phases spectra so that they are not upside-down or otherwise out of phase. However, this routine can fail. It is best to contact the developers for assistance to resolve the problem. However, a simple, albeit imperfect, solution is to add the following line of code to `GannetLoad.m` after the function `PhaseCorrection.m` is run for global zero-order phase correction (around line 400):
 

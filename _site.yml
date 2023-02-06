@@ -37,7 +37,7 @@ navbar:
     - icon: fa-github fa-lg
       href: https://github.com/markmikkelsen/Gannet
     - icon: fa-envelope fa-lg
-      href: mailto:mam4041@med.cornell.edu?subject=[Gannet]%20
+      href: mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<subject>
 output:
   html_document:
     anchor_sections: TRUE

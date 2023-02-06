@@ -400,7 +400,7 @@ div.tocify {
   </a>
 </li>
 <li>
-  <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20">
+  <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20&lt;subject&gt;">
     <span class="fa fa-envelope fa-lg"></span>
      
   </a>
@@ -422,7 +422,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Signal modeling</h1>
-<h4 class="date">Last updated: January 31, 2023</h4>
+<h4 class="date">Last updated: February 06, 2023</h4>
 
 </div>
 
@@ -468,6 +468,11 @@ tfoot, tr:nth-child(even) {
   background: #eee;
 }
 </style>
+<p><br></p>
+<p>This page describes the functions Gannet uses to model signals
+processed through the pipeline. Note that where definition of a
+parameter is not shown for a particular, it is implied that it has been
+already defined in a previous model.</p>
 <div id="gabaglx" class="section level2 hasAnchor">
 <h2 class="hasAnchor">GABA+Glx<a href="#gabaglx" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
@@ -475,7 +480,7 @@ aria-label="Anchor link to header"></a></h2>
 slope and non-linear baseline:</p>
 <p><span class="math display">\[
 S(\omega) =
-\sum_{i=1}^{3}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
+\sum_{i=1}^{3}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
 m(\omega-\omega_1)+
 b_1\sin(\pi\omega/1.31/4)+
 b_2\cos(\pi\omega/1.31/4)
@@ -494,20 +499,20 @@ b_2\cos(\pi\omega/1.31/4)
 <td align="left">Frequency (ppm)</td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(a_i\)</span></td>
+<td align="left"><span class="math inline">\(A_i\)</span></td>
 <td align="left">Gaussian <em>i</em>’s amplitude</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(g_i\)</span></td>
+<td align="left"><span class="math inline">\(\sigma_i\)</span></td>
 <td align="left">Gaussian <em>i</em>’s width</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(\omega_i\)</span></td>
-<td align="left">Gaussian <em>i</em>’s center frequency</td>
+<td align="left">Gaussian <em>i</em>’s center frequency (ppm)</td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(m\)</span></td>
-<td align="left">Slope of baseline</td>
+<td align="left">Slope of linear baseline</td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(b_1\)</span></td>
@@ -519,7 +524,7 @@ b_2\cos(\pi\omega/1.31/4)
 </tr>
 </tbody>
 </table>
-<p><img id="myImg2" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model"></p>
+<p><img id="img_75" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model"></p>
 </div>
 <div id="gsh-te-100-ms" class="section level2 hasAnchor">
 <h2 class="hasAnchor">GSH (TE &lt; 100 ms)<a href="#gsh-te-100-ms"
@@ -528,11 +533,34 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 model with a linear + quadratic baseline:</p>
 <p><span class="math display">\[
 S(\omega) =
-\sum_{i=1}^{5}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
-m_1(\omega-\omega_1)+b+
-m_2(\omega-\omega_1)^2
+\sum_{i=1}^{5}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+
+m_2(\omega-\omega_1)^2+b
 \]</span></p>
-<p><img id="myImg2" src="images/signal-modeling/GSH-80.png" alt="Illustration of the GSH model at TE = 80 ms"></p>
+<p>where:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><u>Parameter</u></th>
+<th align="left"><u>Definition</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(m_1\)</span></td>
+<td align="left">Slope of linear baseline</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(m_2\)</span></td>
+<td align="left">Quadratic baseline term</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(b\)</span></td>
+<td align="left">Baseline offset</td>
+</tr>
+</tbody>
+</table>
+<p><img id="img_75" src="images/signal-modeling/GSH-80.png" alt="Illustration of the GSH model at TE = 80 ms"></p>
 </div>
 <div id="gsh-te-100-ms-1" class="section level2 hasAnchor">
 <h2 class="hasAnchor">GSH (TE &gt;= 100 ms)<a href="#gsh-te-100-ms-1"
@@ -541,14 +569,117 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 model with a linear + quadratic baseline:</p>
 <p><span class="math display">\[
 S(\omega) =
-\sum_{i=1}^{6}\left\{a_i\exp[g_i(\omega-\omega_i)^2]\right\}+
-m_1(\omega-\omega_1)+b+
-m_2(\omega-\omega_1)^2
+\sum_{i=1}^{6}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+
+m_2(\omega-\omega_1)^2+b
 \]</span></p>
-<p><img id="myImg2" src="images/signal-modeling/GSH-120.png" alt="Illustration of the GSH model at TE = 120 ms"></p>
+<p><img id="img_75" src="images/signal-modeling/GSH-120.png" alt="Illustration of the GSH model at TE = 120 ms"></p>
+</div>
+<div id="lac" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Lac<a href="#lac" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<div class="info">
+<p><i class="fa fa-info-circle" style="color: white"></i> Optimizing the
+modeling of edited Lac is ongoing.</p>
+</div>
+<p>Lac is fitted with a four-Gaussian model with a linear + quadratic
+baseline:</p>
+<p><span class="math display">\[
+S(\omega) =
+\sum_{i=1}^{4}\left\{A_i\exp[\sigma_i(\omega-\omega_i)^2]\right\}+
+m_1(\omega-\omega_1)+
+m_2(\omega-\omega_1)^2+b
+\]</span></p>
+<p><img id="img_75" src="images/signal-modeling/Lac.png" alt="Illustration of the Lac model"></p>
+</div>
+<div id="chocr" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Cho+Cr<a href="#chocr" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>Cho and Cr in the edit-OFF spectrum are fitted with a two-Lorentzian
+model with a linear baseline:</p>
+<p><span class="math display">\[
+Absorption(\omega) =
+\frac{A}{2\pi}\frac{\gamma}{(\omega-\omega_0)^2+\gamma^2}+
+\frac{Ah}{2\pi}\frac{\gamma}{(\omega-\omega_0-0.18)^2+\gamma^2}
+\]</span> <span class="math display">\[
+Dispersion(\omega) =
+\frac{A}{2\pi}\frac{\omega-\omega_0}{(\omega-\omega_0)^2+\gamma^2}+
+\frac{Ah}{2\pi}\frac{\omega-\omega_0-0.18}{(\omega-\omega_0-0.18)^2+\gamma^2}
+\]</span></p>
+<p><span class="math display">\[
+S(\omega) =
+\cos\varphi Absorption(\omega)+
+\sin\varphi Dispersion(\omega)+
+m(\omega-\omega_0)+b
+\]</span></p>
+<p>where:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><u>Parameter</u></th>
+<th align="left"><u>Definition</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A\)</span></td>
+<td align="left">Amplitude of Cr peak</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(\gamma\)</span></td>
+<td align="left">Lorentzian width (half-width half-maximum)</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\omega_0\)</span></td>
+<td align="left">Center frequency of Cr peak</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(h\)</span></td>
+<td align="left">Amplitude scaling factor for Cho peak</td>
+</tr>
+<tr class="odd">
+<td align="left"><span class="math inline">\(\varphi\)</span></td>
+<td align="left">Phase</td>
+</tr>
+</tbody>
+</table>
+<p><img id="img_75" src="images/signal-modeling/Cho+Cr.png" alt="Illustration of the Cho+Cr model"></p>
+</div>
+<div id="naa" class="section level2 hasAnchor">
+<h2 class="hasAnchor">NAA<a href="#naa" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>NAA in the edit-OFF spectrum is fitted with a Lorentzian model with a
+linear baseline:</p>
+<p><span class="math display">\[
+Absorption(\omega) =
+\frac{A}{2\pi}\frac{\gamma}{(\omega-\omega_0)^2+\gamma^2}
+\]</span> <span class="math display">\[
+Dispersion(\omega) =
+\frac{A}{2\pi}\frac{(\omega-\omega_0)}{(\omega-\omega_0)^2+\gamma^2}
+\]</span></p>
+<p><span class="math display">\[
+S(\omega) =
+\cos\varphi Absorption(\omega)+
+\sin\varphi Dispersion(\omega)+
+m(\omega-\omega_0)+b
+\]</span></p>
+</div>
+<div id="water" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Water<a href="#water" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>The unsurpressed water signal is fitted with a Lorentzian-Gaussian
+model with a linear baseline:</p>
+<p><span class="math display">\[
+S(\omega) =
+\left\{\frac{\cos\varphi A+\sin\varphi A\gamma(\omega-\omega_0)}
+{\gamma^2(\omega-\omega_0)^2+1}\right\}
+\left\{\exp[\sigma(\omega-\omega_0)^2]\right\}+
+m(\omega-\omega_0)+b
+\]</span></p>
+<p><img id="img_75" src="images/signal-modeling/water.png" alt="Illustration of the water model"></p>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2lnbmFsIG1vZGVsaW5nIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYgpjc2w6IGFtZXJpY2FuLW1lZGljYWwtYXNzb2NpYXRpb24uY3NsCmxpbmstY2l0YXRpb25zOiB5ZXMKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQp0YWJsZSB7CiAgbWFyZ2luOiBhdXRvOwp9Cgp0YWJsZSB0aGVhZCB0aCB7CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNkZGQ7Cn0KCnRoLCB0ZCB7CiAgcGFkZGluZzogNXB4Owp9Cgp0Zm9vdCwgdHI6bnRoLWNoaWxkKGV2ZW4pIHsKICBiYWNrZ3JvdW5kOiAjZWVlOwp9CmBgYAoKIyMgR0FCQStHbHgKCkdBQkEgYW5kIEdseCBhcmUgZml0dGVkIHVzaW5nIGEgdGhyZWUtR2F1c3NpYW4gbW9kZWwgd2l0aCBhIGxpbmVhciBzbG9wZSBhbmQgbm9uLWxpbmVhciBiYXNlbGluZToKCiQkClMoXG9tZWdhKSA9ClxzdW1fe2k9MX1eezN9XGxlZnRce2FfaVxleHBbZ19pKFxvbWVnYS1cb21lZ2FfaSleMl1ccmlnaHRcfSsKbShcb21lZ2EtXG9tZWdhXzEpKwpiXzFcc2luKFxwaVxvbWVnYS8xLjMxLzQpKwpiXzJcY29zKFxwaVxvbWVnYS8xLjMxLzQpCiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlZmluaXRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLSB8CnwgJFxvbWVnYSQgfCBGcmVxdWVuY3kgKHBwbSkgfAp8ICRhX2kkIHwgR2F1c3NpYW4gKmkqJ3MgYW1wbGl0dWRlIHwKfCAkZ19pJCB8IEdhdXNzaWFuICppKidzIHdpZHRoIHwKfCAkXG9tZWdhX2kkIHwgR2F1c3NpYW4gKmkqJ3MgY2VudGVyIGZyZXF1ZW5jeSB8CnwgJG0kIHwgU2xvcGUgb2YgYmFzZWxpbmUgfAp8ICRiXzEkIHwgU2luZSBiYXNlbGluZSB0ZXJtIHwKfCAkYl8yJCB8IENvc2luZSBiYXNlbGluZSB0ZXJtIHwKCjxpbWcgaWQ9Im15SW1nMiIgc3JjPSJpbWFnZXMvc2lnbmFsLW1vZGVsaW5nL0dBQkErR2x4LnBuZyIgYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhlIEdBQkErR2x4IG1vZGVsIj4KCiMjIEdTSCAoVEUgPCAxMDAgbXMpCgpHU0ggdGhhdCBpcyBlZGl0ZWQgYXQgYSBURSA8IDEwMCBtcyBpcyBmaXR0ZWQgd2l0aCBhIGZpdmUtR2F1c3NpYW4gbW9kZWwgd2l0aCBhIGxpbmVhciArIHF1YWRyYXRpYyBiYXNlbGluZToKCiQkClMoXG9tZWdhKSA9ClxzdW1fe2k9MX1eezV9XGxlZnRce2FfaVxleHBbZ19pKFxvbWVnYS1cb21lZ2FfaSleMl1ccmlnaHRcfSsKbV8xKFxvbWVnYS1cb21lZ2FfMSkrYisKbV8yKFxvbWVnYS1cb21lZ2FfMSleMgokJAoKPGltZyBpZD0ibXlJbWcyIiBzcmM9ImltYWdlcy9zaWduYWwtbW9kZWxpbmcvR1NILTgwLnBuZyIgYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhlIEdTSCBtb2RlbCBhdCBURSA9IDgwIG1zIj4KCiMjIEdTSCAoVEUgPj0gMTAwIG1zKQoKR1NIIHRoYXQgaXMgZWRpdGVkIGF0IGEgVEUgPj0gMTAwIG1zIGlzIGZpdHRlZCB3aXRoIGEgc2l4LUdhdXNzaWFuIG1vZGVsIHdpdGggYSBsaW5lYXIgKyBxdWFkcmF0aWMgYmFzZWxpbmU6CgokJApTKFxvbWVnYSkgPQpcc3VtX3tpPTF9Xns2fVxsZWZ0XHthX2lcZXhwW2dfaShcb21lZ2EtXG9tZWdhX2kpXjJdXHJpZ2h0XH0rCm1fMShcb21lZ2EtXG9tZWdhXzEpK2IrCm1fMihcb21lZ2EtXG9tZWdhXzEpXjIKJCQKCjxpbWcgaWQ9Im15SW1nMiIgc3JjPSJpbWFnZXMvc2lnbmFsLW1vZGVsaW5nL0dTSC0xMjAucG5nIiBhbHQ9IklsbHVzdHJhdGlvbiBvZiB0aGUgR1NIIG1vZGVsIGF0IFRFID0gMTIwIG1zIj4KCgoKCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiU2lnbmFsIG1vZGVsaW5nIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKYmlibGlvZ3JhcGh5OiByZWZlcmVuY2VzLmJpYgpjc2w6IGFtZXJpY2FuLW1lZGljYWwtYXNzb2NpYXRpb24uY3NsCmxpbmstY2l0YXRpb25zOiB5ZXMKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQp0YWJsZSB7CiAgbWFyZ2luOiBhdXRvOwp9Cgp0YWJsZSB0aGVhZCB0aCB7CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNkZGQ7Cn0KCnRoLCB0ZCB7CiAgcGFkZGluZzogNXB4Owp9Cgp0Zm9vdCwgdHI6bnRoLWNoaWxkKGV2ZW4pIHsKICBiYWNrZ3JvdW5kOiAjZWVlOwp9CmBgYAoKPGJyPgoKVGhpcyBwYWdlIGRlc2NyaWJlcyB0aGUgZnVuY3Rpb25zIEdhbm5ldCB1c2VzIHRvIG1vZGVsIHNpZ25hbHMgcHJvY2Vzc2VkIHRocm91Z2ggdGhlIHBpcGVsaW5lLiBOb3RlIHRoYXQgd2hlcmUgZGVmaW5pdGlvbiBvZiBhIHBhcmFtZXRlciBpcyBub3Qgc2hvd24gZm9yIGEgcGFydGljdWxhciwgaXQgaXMgaW1wbGllZCB0aGF0IGl0IGhhcyBiZWVuIGFscmVhZHkgZGVmaW5lZCBpbiBhIHByZXZpb3VzIG1vZGVsLgoKIyMgR0FCQStHbHgKCkdBQkEgYW5kIEdseCBhcmUgZml0dGVkIHVzaW5nIGEgdGhyZWUtR2F1c3NpYW4gbW9kZWwgd2l0aCBhIGxpbmVhciBzbG9wZSBhbmQgbm9uLWxpbmVhciBiYXNlbGluZToKCiQkClMoXG9tZWdhKSA9ClxzdW1fe2k9MX1eezN9XGxlZnRce0FfaVxleHBbXHNpZ21hX2koXG9tZWdhLVxvbWVnYV9pKV4yXVxyaWdodFx9KwptKFxvbWVnYS1cb21lZ2FfMSkrCmJfMVxzaW4oXHBpXG9tZWdhLzEuMzEvNCkrCmJfMlxjb3MoXHBpXG9tZWdhLzEuMzEvNCkKJCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVmaW5pdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tIHwKfCAkXG9tZWdhJCB8IEZyZXF1ZW5jeSAocHBtKSB8CnwgJEFfaSQgfCBHYXVzc2lhbiAqaSoncyBhbXBsaXR1ZGUgfAp8ICRcc2lnbWFfaSQgfCBHYXVzc2lhbiAqaSoncyB3aWR0aCB8CnwgJFxvbWVnYV9pJCB8IEdhdXNzaWFuICppKidzIGNlbnRlciBmcmVxdWVuY3kgKHBwbSkgfAp8ICRtJCB8IFNsb3BlIG9mIGxpbmVhciBiYXNlbGluZSB8CnwgJGJfMSQgfCBTaW5lIGJhc2VsaW5lIHRlcm0gfAp8ICRiXzIkIHwgQ29zaW5lIGJhc2VsaW5lIHRlcm0gfAoKPGltZyBpZD0iaW1nXzc1IiBzcmM9ImltYWdlcy9zaWduYWwtbW9kZWxpbmcvR0FCQStHbHgucG5nIiBhbHQ9IklsbHVzdHJhdGlvbiBvZiB0aGUgR0FCQStHbHggbW9kZWwiPgoKIyMgR1NIIChURSA8IDEwMCBtcykKCkdTSCB0aGF0IGlzIGVkaXRlZCBhdCBhIFRFIDwgMTAwIG1zIGlzIGZpdHRlZCB3aXRoIGEgZml2ZS1HYXVzc2lhbiBtb2RlbCB3aXRoIGEgbGluZWFyICsgcXVhZHJhdGljIGJhc2VsaW5lOgoKJCQKUyhcb21lZ2EpID0KXHN1bV97aT0xfV57NX1cbGVmdFx7QV9pXGV4cFtcc2lnbWFfaShcb21lZ2EtXG9tZWdhX2kpXjJdXHJpZ2h0XH0rCm1fMShcb21lZ2EtXG9tZWdhXzEpKwptXzIoXG9tZWdhLVxvbWVnYV8xKV4yK2IKJCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVmaW5pdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tIHwKfCAkbV8xJCB8IFNsb3BlIG9mIGxpbmVhciBiYXNlbGluZSB8CnwgJG1fMiQgfCBRdWFkcmF0aWMgYmFzZWxpbmUgdGVybSB8CnwgJGIkIHwgQmFzZWxpbmUgb2Zmc2V0IHwKCjxpbWcgaWQ9ImltZ183NSIgc3JjPSJpbWFnZXMvc2lnbmFsLW1vZGVsaW5nL0dTSC04MC5wbmciIGFsdD0iSWxsdXN0cmF0aW9uIG9mIHRoZSBHU0ggbW9kZWwgYXQgVEUgPSA4MCBtcyI+CgojIyBHU0ggKFRFID49IDEwMCBtcykKCkdTSCB0aGF0IGlzIGVkaXRlZCBhdCBhIFRFID49IDEwMCBtcyBpcyBmaXR0ZWQgd2l0aCBhIHNpeC1HYXVzc2lhbiBtb2RlbCB3aXRoIGEgbGluZWFyICsgcXVhZHJhdGljIGJhc2VsaW5lOgoKJCQKUyhcb21lZ2EpID0KXHN1bV97aT0xfV57Nn1cbGVmdFx7QV9pXGV4cFtcc2lnbWFfaShcb21lZ2EtXG9tZWdhX2kpXjJdXHJpZ2h0XH0rCm1fMShcb21lZ2EtXG9tZWdhXzEpKwptXzIoXG9tZWdhLVxvbWVnYV8xKV4yK2IKJCQKCjxpbWcgaWQ9ImltZ183NSIgc3JjPSJpbWFnZXMvc2lnbmFsLW1vZGVsaW5nL0dTSC0xMjAucG5nIiBhbHQ9IklsbHVzdHJhdGlvbiBvZiB0aGUgR1NIIG1vZGVsIGF0IFRFID0gMTIwIG1zIj4KCiMjIExhYwoKOjo6IGluZm8KPGkgY2xhc3M9ImZhIGZhLWluZm8tY2lyY2xlIiBzdHlsZT0iY29sb3I6IHdoaXRlIj48L2k+IE9wdGltaXppbmcgdGhlIG1vZGVsaW5nIG9mIGVkaXRlZCBMYWMgaXMgb25nb2luZy4KOjo6CgpMYWMgaXMgZml0dGVkIHdpdGggYSBmb3VyLUdhdXNzaWFuIG1vZGVsIHdpdGggYSBsaW5lYXIgKyBxdWFkcmF0aWMgYmFzZWxpbmU6CgokJApTKFxvbWVnYSkgPQpcc3VtX3tpPTF9Xns0fVxsZWZ0XHtBX2lcZXhwW1xzaWdtYV9pKFxvbWVnYS1cb21lZ2FfaSleMl1ccmlnaHRcfSsKbV8xKFxvbWVnYS1cb21lZ2FfMSkrCm1fMihcb21lZ2EtXG9tZWdhXzEpXjIrYgokJAoKPGltZyBpZD0iaW1nXzc1IiBzcmM9ImltYWdlcy9zaWduYWwtbW9kZWxpbmcvTGFjLnBuZyIgYWx0PSJJbGx1c3RyYXRpb24gb2YgdGhlIExhYyBtb2RlbCI+CgojIyBDaG8rQ3IKCkNobyBhbmQgQ3IgaW4gdGhlIGVkaXQtT0ZGIHNwZWN0cnVtIGFyZSBmaXR0ZWQgd2l0aCBhIHR3by1Mb3JlbnR6aWFuIG1vZGVsIHdpdGggYSBsaW5lYXIgYmFzZWxpbmU6CgokJApBYnNvcnB0aW9uKFxvbWVnYSkgPQpcZnJhY3tBfXsyXHBpfVxmcmFje1xnYW1tYX17KFxvbWVnYS1cb21lZ2FfMCleMitcZ2FtbWFeMn0rClxmcmFje0FofXsyXHBpfVxmcmFje1xnYW1tYX17KFxvbWVnYS1cb21lZ2FfMC0wLjE4KV4yK1xnYW1tYV4yfQokJAokJApEaXNwZXJzaW9uKFxvbWVnYSkgPQpcZnJhY3tBfXsyXHBpfVxmcmFje1xvbWVnYS1cb21lZ2FfMH17KFxvbWVnYS1cb21lZ2FfMCleMitcZ2FtbWFeMn0rClxmcmFje0FofXsyXHBpfVxmcmFje1xvbWVnYS1cb21lZ2FfMC0wLjE4fXsoXG9tZWdhLVxvbWVnYV8wLTAuMTgpXjIrXGdhbW1hXjJ9CiQkCgokJApTKFxvbWVnYSkgPQpcY29zXHZhcnBoaSBBYnNvcnB0aW9uKFxvbWVnYSkrClxzaW5cdmFycGhpIERpc3BlcnNpb24oXG9tZWdhKSsKbShcb21lZ2EtXG9tZWdhXzApK2IKJCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVmaW5pdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tIHwKfCAkQSQgfCBBbXBsaXR1ZGUgb2YgQ3IgcGVhayB8CnwgJFxnYW1tYSQgfCBMb3JlbnR6aWFuIHdpZHRoIChoYWxmLXdpZHRoIGhhbGYtbWF4aW11bSkgfAp8ICRcb21lZ2FfMCQgfCBDZW50ZXIgZnJlcXVlbmN5IG9mIENyIHBlYWsgfAp8ICRoJCB8IEFtcGxpdHVkZSBzY2FsaW5nIGZhY3RvciBmb3IgQ2hvIHBlYWsgfAp8ICRcdmFycGhpJCB8IFBoYXNlIHwKCjxpbWcgaWQ9ImltZ183NSIgc3JjPSJpbWFnZXMvc2lnbmFsLW1vZGVsaW5nL0NobytDci5wbmciIGFsdD0iSWxsdXN0cmF0aW9uIG9mIHRoZSBDaG8rQ3IgbW9kZWwiPgoKIyMgTkFBCgpOQUEgaW4gdGhlIGVkaXQtT0ZGIHNwZWN0cnVtIGlzIGZpdHRlZCB3aXRoIGEgTG9yZW50emlhbiBtb2RlbCB3aXRoIGEgbGluZWFyIGJhc2VsaW5lOgoKJCQKQWJzb3JwdGlvbihcb21lZ2EpID0KXGZyYWN7QX17MlxwaX1cZnJhY3tcZ2FtbWF9eyhcb21lZ2EtXG9tZWdhXzApXjIrXGdhbW1hXjJ9CiQkCiQkCkRpc3BlcnNpb24oXG9tZWdhKSA9ClxmcmFje0F9ezJccGl9XGZyYWN7KFxvbWVnYS1cb21lZ2FfMCl9eyhcb21lZ2EtXG9tZWdhXzApXjIrXGdhbW1hXjJ9CiQkCgokJApTKFxvbWVnYSkgPQpcY29zXHZhcnBoaSBBYnNvcnB0aW9uKFxvbWVnYSkrClxzaW5cdmFycGhpIERpc3BlcnNpb24oXG9tZWdhKSsKbShcb21lZ2EtXG9tZWdhXzApK2IKJCQKCiMjIFdhdGVyCgpUaGUgdW5zdXJwcmVzc2VkIHdhdGVyIHNpZ25hbCBpcyBmaXR0ZWQgd2l0aCBhIExvcmVudHppYW4tR2F1c3NpYW4gbW9kZWwgd2l0aCBhIGxpbmVhciBiYXNlbGluZToKCiQkClMoXG9tZWdhKSA9IApcbGVmdFx7XGZyYWN7XGNvc1x2YXJwaGkgQStcc2luXHZhcnBoaSBBXGdhbW1hKFxvbWVnYS1cb21lZ2FfMCl9CntcZ2FtbWFeMihcb21lZ2EtXG9tZWdhXzApXjIrMX1ccmlnaHRcfQpcbGVmdFx7XGV4cFtcc2lnbWEoXG9tZWdhLVxvbWVnYV8wKV4yXVxyaWdodFx9KwptKFxvbWVnYS1cb21lZ2FfMCkrYgokJAoKPGltZyBpZD0iaW1nXzc1IiBzcmM9ImltYWdlcy9zaWduYWwtbW9kZWxpbmcvd2F0ZXIucG5nIiBhbHQ9IklsbHVzdHJhdGlvbiBvZiB0aGUgd2F0ZXIgbW9kZWwiPgoKCgoKCgoKCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>

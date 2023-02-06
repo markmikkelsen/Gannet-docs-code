@@ -11,6 +11,12 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, child = "js/back-to-top.js"}
 ```
 
+```{css, echo = FALSE}
+body .main-container {
+  max-width: 900px;
+}
+```
+
 <br>
 
 ```{octave, eval = FALSE}
