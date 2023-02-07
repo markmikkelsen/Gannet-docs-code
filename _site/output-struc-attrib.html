@@ -422,7 +422,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Output structure attributes</h1>
-<h4 class="date">Last updated: February 06, 2023</h4>
+<h4 class="date">Last updated: February 07, 2023</h4>
 
 </div>
 
@@ -484,8 +484,8 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <tbody>
 <tr class="odd">
 <td align="left"><code>version</code></td>
-<td align="left">A structure containing release numbers of Gannet and
-the Gannet modules</td>
+<td align="left">Structure containing release numbers of Gannet and the
+Gannet modules</td>
 </tr>
 <tr class="even">
 <td align="left"><code>ii</code></td>
@@ -521,19 +521,8 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>Reference_compound</code></td>
-<td align="left">Concentrations will be calculated relative to this; if
-a water reference is provided, concentrations will be calculated
-relative to both water and Cr, otherwise they will be calculated
-relative to Cr</td>
-</tr>
-<tr class="even">
 <td align="left"><code>target</code></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>ONOFForder</code></td>
-<td align="left"></td>
+<td align="left">The metabolite(s) targeted by the editing pulses</td>
 </tr>
 <tr class="even">
 <td align="left"><code>seqorig</code></td>
@@ -544,11 +533,11 @@ relative to Cr</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><code>water_phase_correction</code></td>
+<td align="left"><code>water_ECC</code></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>data_phase_correction</code></td>
+<td align="left"><code>metab_ECC</code></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
@@ -556,123 +545,130 @@ relative to Cr</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>AlignTo</code></td>
+<td align="left"><code>alignment</code></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><code>Vox</code></td>
+<td align="left"><code>vox</code></td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><code>FitResidWater</code></td>
+<td align="left"><code>fit_resid_water</code></td>
 <td align="left"></td>
 </tr>
 <tr class="even">
+<td align="left"><code>weighted_averaging</code></td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
 <td align="left"><code>HERMES</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>HERCULES</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>PRIAM</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>phantom</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>mat</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>sdat</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>csv</code></td>
 <td align="left"></td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>vendor</code></td>
 <td align="left">Scanner vendor</td>
 </tr>
-<tr class="even">
-<td align="left"><code>spar_string</code></td>
-<td align="left"></td>
-</tr>
 <tr class="odd">
-<td align="left"><code>numscans</code></td>
+<td align="left"><code>reference</code></td>
+<td align="left">Concentrations will be calculated relative to this; if
+a water reference is provided, concentrations will be calculated
+relative to both water and Cr, otherwise they will be calculated
+relative to Cr</td>
+</tr>
+<tr class="even">
+<td align="left"><code>numScans</code></td>
 <td align="left">Total number of scans in the batch</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>npoints</code></td>
 <td align="left">Number of data points</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>nrows</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>Navg</code></td>
 <td align="left">Total number of averages</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>TR</code></td>
 <td align="left">Repetition time (ms)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>TE</code></td>
 <td align="left">Echo time (m)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>LarmorFreq</code></td>
 <td align="left">Larmor frequency (kHz)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>sw</code></td>
 <td align="left">Spectral width (Hz)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>voxdim</code></td>
 <td align="left">Voxel dimensions (mm)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>voxoff</code></td>
 <td align="left">Voxel position offset (mm)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>voxang</code></td>
 <td align="left">Voxel angulation (deg)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>Nwateravg</code></td>
 <td align="left">Total number of water averages</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>ZeroFillTo</code></td>
 <td align="left">Processed spectra are zero-filled to this many data
 points</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>zf</code></td>
 <td align="left">Zero-filling factor</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>df</code></td>
 <td align="left"></td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>SpecRes</code></td>
 <td align="left">Spectral resolution of the raw data</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>SpecResNominal</code></td>
 <td align="left">Nominal spectral resolution of the processed data</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>Tacq</code></td>
 <td align="left">Acquisition time</td>
 </tr>
@@ -775,26 +771,25 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><code>data</code></td>
-<td align="left">Raw time-domain metabolite data (dimensions:
-<code>npoints</code> <span class="math inline">\(\times\)</span>
-<code>nrows</code>) of the last loaded dataset</td>
+<td align="left"><code>AvgDeltaF0</code></td>
+<td align="left">A metric of the degree of frequency offsets during the
+acquisition relative to the nominal water frequency (4.68 ppm) or the 3
+ppm Cr signal (if HERMES or GSH editing)</td>
 </tr>
 <tr class="even">
-<td align="left"><code>data_water</code></td>
-<td align="left"></td>
+<td align="left"><code>SpecReg</code></td>
+<td align="left">Structure containing output from spectral
+registration</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>ON_OFF</code></td>
-<td align="left"></td>
+<td align="left"><code>reject</code></td>
+<td align="left">Cell array of binary integers indicating whether an
+individual transient should be rejected during signal averaging</td>
 </tr>
 <tr class="even">
-<td align="left"><code>data_align</code></td>
-<td align="left"></td>
-</tr>
-<tr class="odd">
-<td align="left"><code>vox1</code></td>
-<td align="left"></td>
+<td align="left"><code>QA</code></td>
+<td align="left">Metrics calculated to quantify the performance of
+tissue segmentation</td>
 </tr>
 </tbody>
 </table>
@@ -831,14 +826,14 @@ representing the three orthogonal slices of the T1 images</td>
 <tr class="even">
 <td align="left"><code>img_montage</code></td>
 <td align="left">Cell array containing three-dimensional arrays
-representing a montage of axial alices of the T1 images overlaid by the
+representing a montage of axial slices of the T1 images overlaid by the
 tissue-segmented voxel masks</td>
 </tr>
 </tbody>
 </table>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiT3V0cHV0IHN0cnVjdHVyZSBhdHRyaWJ1dGVzIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQouaW5mbyB7CiAgbWFyZ2luLWJvdHRvbTogMjBweDsKfQpgYGAKCjxicj4KCjo6OiBpbmZvCjxpIGNsYXNzPSJmYSBmYS1pbmZvLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPiZuYnNwOyBUaGUgZmllbGRzIGxpc3RlZCBvbiB0aGlzIHBhZ2UgYXJlIGFwcGxpY2FibGUgdG8gcmVsZWFzZSAzLjMuMCBhbmQgYXJlIG5vdCBuZWNlc3NhcmlseSBjb3JyZWN0IGZvciBvdGhlciB2ZXJzaW9ucyBvZiBHYW5uZXQuCjo6OgoKQWxsIHRoZSBvdXRwdXQgZnJvbSBHYW5uZXQgYW5heWxzZXMgYXJlIHNhdmVkIGluIGEgc3RydWN0dXJlIChlLmcuLCBgTVJTX3N0cnVjdGAgb3Igd2hhdGV2ZXIgbmFtZSB0aGUgdXNlciBoYXMgY2hvc2VuKSB0aGF0IGNvbnRhaW5zIG1hbnkgZmllbGRzIGFuZCBzdWJmaWVsZHMuIExpc3RlZCBiZWxvdyBhcmUgbGlzdHMgb2YgdGhlc2UgZmllbGRzIGFuZCB0aGVpciBkZXNjcmlwdGlvbnMuIE5vdGUgdGhhdCBub3QgZXZlcnkgcG9zc2libGUgZmllbGQgdGhhdCBHYW5uZXQgY2FuIGdlbmVyYXRlIGlzIHNob3duIGZvciB0aGUgc2FrZSBvZiBicmV2aXR5LgoKIyMgTVJTX3N0cnVjdAoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tLSB8CnwgYHZlcnNpb25gIHwgQSBzdHJ1Y3R1cmUgY29udGFpbmluZyByZWxlYXNlIG51bWJlcnMgb2YgR2FubmV0IGFuZCB0aGUgR2FubmV0IG1vZHVsZXMgfAp8IGBpaWAgfCBEdXJpbmcgYW5hbHlzaXMsIHRoZSBjdXJyZW50IGZpbGUgYmVpbmcgbG9hZGVkOyBhZnRlciBhbmFseXNpcywgdGhlIG51bWJlciBvZiBmaWxlcyB0aGF0IHdlcmUgbG9hZGVkIHwKfCBgbWV0YWJmaWxlYCB8IENlbGwgYXJyYXkgY29udGFpbmluZyB0aGUgaW5wdXR0ZWQgbWV0YWJvbGl0ZSBkYXRhIGZpbGVuYW1lcyB8CnwgYHdhdGVyZmlsZWAgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhlIGlucHV0dGVkIHdhdGVyIHJlZmVyZW5jZSBkYXRhIGZpbGVuYW1lcyB8CgojIyBNUlNfc3RydWN0LnAKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfApgUmVmZXJlbmNlX2NvbXBvdW5kYCB8IENvbmNlbnRyYXRpb25zIHdpbGwgYmUgY2FsY3VsYXRlZCByZWxhdGl2ZSB0byB0aGlzOyBpZiBhIHdhdGVyIHJlZmVyZW5jZSBpcyBwcm92aWRlZCwgY29uY2VudHJhdGlvbnMgd2lsbCBiZSBjYWxjdWxhdGVkIHJlbGF0aXZlIHRvIGJvdGggd2F0ZXIgYW5kIENyLCBvdGhlcndpc2UgdGhleSB3aWxsIGJlIGNhbGN1bGF0ZWQgcmVsYXRpdmUgdG8gQ3IgfApgdGFyZ2V0YCB8IApgT05PRkZvcmRlcmAgfCAKYHNlcW9yaWdgIHwgCmBMQmAgfCAKYHdhdGVyX3BoYXNlX2NvcnJlY3Rpb25gIHwKYGRhdGFfcGhhc2VfY29ycmVjdGlvbmAgfApgd2F0ZXJfcmVtb3ZhbGAgfApgQWxpZ25Ub2AgfApgVm94YCB8IApgRml0UmVzaWRXYXRlcmAgfApgSEVSTUVTYCB8CmBIRVJDVUxFU2AgfCAKYFBSSUFNYCB8CmBwaGFudG9tYCB8CmBtYXRgIHwKYHNkYXRgIHwKYGNzdmAgfApgdmVuZG9yYCB8IFNjYW5uZXIgdmVuZG9yIHwKYHNwYXJfc3RyaW5nYCB8CmBudW1zY2Fuc2AgfCBUb3RhbCBudW1iZXIgb2Ygc2NhbnMgaW4gdGhlIGJhdGNoIHwKYG5wb2ludHNgIHwgTnVtYmVyIG9mIGRhdGEgcG9pbnRzIHwKYG5yb3dzYCB8CmBOYXZnYCB8IFRvdGFsIG51bWJlciBvZiBhdmVyYWdlcyB8CmBUUmAgfCBSZXBldGl0aW9uIHRpbWUgKG1zKSB8CmBURWAgfCBFY2hvIHRpbWUgKG0pIHwKYExhcm1vckZyZXFgIHwgTGFybW9yIGZyZXF1ZW5jeSAoa0h6KSB8CmBzd2AgfCBTcGVjdHJhbCB3aWR0aCAoSHopIHwKYHZveGRpbWAgfCBWb3hlbCBkaW1lbnNpb25zIChtbSkgfApgdm94b2ZmYCB8IFZveGVsIHBvc2l0aW9uIG9mZnNldCAobW0pIHwKYHZveGFuZ2AgfCBWb3hlbCBhbmd1bGF0aW9uIChkZWcpIHwKYE53YXRlcmF2Z2AgfCBUb3RhbCBudW1iZXIgb2Ygd2F0ZXIgYXZlcmFnZXMgfApgWmVyb0ZpbGxUb2AgfCBQcm9jZXNzZWQgc3BlY3RyYSBhcmUgemVyby1maWxsZWQgdG8gdGhpcyBtYW55IGRhdGEgcG9pbnRzIHwKYHpmYCB8IFplcm8tZmlsbGluZyBmYWN0b3IgfApgZGZgIHwgCmBTcGVjUmVzYCB8IFNwZWN0cmFsIHJlc29sdXRpb24gb2YgdGhlIHJhdyBkYXRhIHwKYFNwZWNSZXNOb21pbmFsYCB8IE5vbWluYWwgc3BlY3RyYWwgcmVzb2x1dGlvbiBvZiB0aGUgcHJvY2Vzc2VkIGRhdGEgfApgVGFjcWAgfCBBY3F1aXNpdGlvbiB0aW1lIHwKCiMjIE1SU19zdHJ1Y3QuZmlkcwoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tLSB8CnwgYGRhdGFgIHwgUmF3IHRpbWUtZG9tYWluIG1ldGFib2xpdGUgZGF0YSAoZGltZW5zaW9uczogYG5wb2ludHNgICRcdGltZXMkIGBucm93c2ApIG9mIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHwKfCBgZGF0YV93YXRlcmAgfAp8IGBPTl9PRkZgIHwKfCBgZGF0YV9hbGlnbmAgfAp8IGB2b3gxYCB8CgojIyBNUlNfc3RydWN0LnNwZWMKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBkYXRhYCB8IFJhdyB0aW1lLWRvbWFpbiBtZXRhYm9saXRlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3NgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYGRhdGFfd2F0ZXJgIHwKfCBgT05fT0ZGYCB8CnwgYGRhdGFfYWxpZ25gIHwKfCBgdm94MWAgfAoKIyMgTVJTX3N0cnVjdC5vdXQKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBkYXRhYCB8IFJhdyB0aW1lLWRvbWFpbiBtZXRhYm9saXRlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3NgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYGRhdGFfd2F0ZXJgIHwKfCBgT05fT0ZGYCB8CnwgYGRhdGFfYWxpZ25gIHwKfCBgdm94MWAgfAoKIyMgTVJTX3N0cnVjdC5tYXNrCgp8IDx1PkZpZWxkPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8CnwgOi0gfCA6LS0tLS0tLS0tIHwKfCBgb3V0ZmlsZWAgfCBDZWxsIGFycmF5IG9mIHRoZSBvdXRwdXQgZmlsZW5hbWVzIG9mIHRoZSB2b3hlbCBtYXNrcyB8CnwgYGltZ2AgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhyZWUtZGltZW5zaW9uYWwgYXJyYXlzIHJlcHJlc2VudGluZyB0aGUgdGhyZWUgb3J0aG9nb25hbCBzbGljZXMgb2YgdGhlIFQxIGltYWdlcyB8CnwgYFQxaW1hZ2VgIHwgQ2VsbCBhcnJheSBvZiB0aGUgaW5wdXQgVDEgaW1hZ2UgZmlsZW5hbWVzIHwKfCBgaW1nX21vbnRhZ2VgIHwgQ2VsbCBhcnJheSBjb250YWluaW5nIHRocmVlLWRpbWVuc2lvbmFsIGFycmF5cyByZXByZXNlbnRpbmcgYSBtb250YWdlIG9mIGF4aWFsIGFsaWNlcyBvZiB0aGUgVDEgaW1hZ2VzIG92ZXJsYWlkIGJ5IHRoZSB0aXNzdWUtc2VnbWVudGVkIHZveGVsIG1hc2tzIHwKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiT3V0cHV0IHN0cnVjdHVyZSBhdHRyaWJ1dGVzIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQouaW5mbyB7CiAgbWFyZ2luLWJvdHRvbTogMjBweDsKfQpgYGAKCjxicj4KCjo6OiBpbmZvCjxpIGNsYXNzPSJmYSBmYS1pbmZvLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPiZuYnNwOyBUaGUgZmllbGRzIGxpc3RlZCBvbiB0aGlzIHBhZ2UgYXJlIGFwcGxpY2FibGUgdG8gcmVsZWFzZSAzLjMuMCBhbmQgYXJlIG5vdCBuZWNlc3NhcmlseSBjb3JyZWN0IGZvciBvdGhlciB2ZXJzaW9ucyBvZiBHYW5uZXQuCjo6OgoKQWxsIHRoZSBvdXRwdXQgZnJvbSBHYW5uZXQgYW5heWxzZXMgYXJlIHNhdmVkIGluIGEgc3RydWN0dXJlIChlLmcuLCBgTVJTX3N0cnVjdGAgb3Igd2hhdGV2ZXIgbmFtZSB0aGUgdXNlciBoYXMgY2hvc2VuKSB0aGF0IGNvbnRhaW5zIG1hbnkgZmllbGRzIGFuZCBzdWJmaWVsZHMuIExpc3RlZCBiZWxvdyBhcmUgbGlzdHMgb2YgdGhlc2UgZmllbGRzIGFuZCB0aGVpciBkZXNjcmlwdGlvbnMuIE5vdGUgdGhhdCBub3QgZXZlcnkgcG9zc2libGUgZmllbGQgdGhhdCBHYW5uZXQgY2FuIGdlbmVyYXRlIGlzIHNob3duIGZvciB0aGUgc2FrZSBvZiBicmV2aXR5LgoKIyMgTVJTX3N0cnVjdAoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tLSB8CnwgYHZlcnNpb25gIHwgU3RydWN0dXJlIGNvbnRhaW5pbmcgcmVsZWFzZSBudW1iZXJzIG9mIEdhbm5ldCBhbmQgdGhlIEdhbm5ldCBtb2R1bGVzIHwKfCBgaWlgIHwgRHVyaW5nIGFuYWx5c2lzLCB0aGUgY3VycmVudCBmaWxlIGJlaW5nIGxvYWRlZDsgYWZ0ZXIgYW5hbHlzaXMsIHRoZSBudW1iZXIgb2YgZmlsZXMgdGhhdCB3ZXJlIGxvYWRlZCB8CnwgYG1ldGFiZmlsZWAgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhlIGlucHV0dGVkIG1ldGFib2xpdGUgZGF0YSBmaWxlbmFtZXMgfAp8IGB3YXRlcmZpbGVgIHwgQ2VsbCBhcnJheSBjb250YWluaW5nIHRoZSBpbnB1dHRlZCB3YXRlciByZWZlcmVuY2UgZGF0YSBmaWxlbmFtZXMgfAoKIyMgTVJTX3N0cnVjdC5wCgp8IDx1PkZpZWxkPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8CnwgOi0gfCA6LS0tLS0tLS0tIHwKYHRhcmdldGAgfCBUaGUgbWV0YWJvbGl0ZShzKSB0YXJnZXRlZCBieSB0aGUgZWRpdGluZyBwdWxzZXMgfApgc2Vxb3JpZ2AgfCAKYExCYCB8IApgd2F0ZXJfRUNDYCB8CmBtZXRhYl9FQ0NgIHwKYHdhdGVyX3JlbW92YWxgIHwKYGFsaWdubWVudGAgfApgdm94YCB8IApgZml0X3Jlc2lkX3dhdGVyYCB8CmB3ZWlnaHRlZF9hdmVyYWdpbmdgIHwKYEhFUk1FU2AgfApgSEVSQ1VMRVNgIHwgCmBQUklBTWAgfApgcGhhbnRvbWAgfApgbWF0YCB8CmBzZGF0YCB8CmBjc3ZgIHwKYHZlbmRvcmAgfCBTY2FubmVyIHZlbmRvciB8CmByZWZlcmVuY2VgIHwgQ29uY2VudHJhdGlvbnMgd2lsbCBiZSBjYWxjdWxhdGVkIHJlbGF0aXZlIHRvIHRoaXM7IGlmIGEgd2F0ZXIgcmVmZXJlbmNlIGlzIHByb3ZpZGVkLCBjb25jZW50cmF0aW9ucyB3aWxsIGJlIGNhbGN1bGF0ZWQgcmVsYXRpdmUgdG8gYm90aCB3YXRlciBhbmQgQ3IsIG90aGVyd2lzZSB0aGV5IHdpbGwgYmUgY2FsY3VsYXRlZCByZWxhdGl2ZSB0byBDciB8CmBudW1TY2Fuc2AgfCBUb3RhbCBudW1iZXIgb2Ygc2NhbnMgaW4gdGhlIGJhdGNoIHwKYG5wb2ludHNgIHwgTnVtYmVyIG9mIGRhdGEgcG9pbnRzIHwKYG5yb3dzYCB8CmBOYXZnYCB8IFRvdGFsIG51bWJlciBvZiBhdmVyYWdlcyB8CmBUUmAgfCBSZXBldGl0aW9uIHRpbWUgKG1zKSB8CmBURWAgfCBFY2hvIHRpbWUgKG0pIHwKYExhcm1vckZyZXFgIHwgTGFybW9yIGZyZXF1ZW5jeSAoa0h6KSB8CmBzd2AgfCBTcGVjdHJhbCB3aWR0aCAoSHopIHwKYHZveGRpbWAgfCBWb3hlbCBkaW1lbnNpb25zIChtbSkgfApgdm94b2ZmYCB8IFZveGVsIHBvc2l0aW9uIG9mZnNldCAobW0pIHwKYHZveGFuZ2AgfCBWb3hlbCBhbmd1bGF0aW9uIChkZWcpIHwKYE53YXRlcmF2Z2AgfCBUb3RhbCBudW1iZXIgb2Ygd2F0ZXIgYXZlcmFnZXMgfApgWmVyb0ZpbGxUb2AgfCBQcm9jZXNzZWQgc3BlY3RyYSBhcmUgemVyby1maWxsZWQgdG8gdGhpcyBtYW55IGRhdGEgcG9pbnRzIHwKYHpmYCB8IFplcm8tZmlsbGluZyBmYWN0b3IgfApgZGZgIHwgCmBTcGVjUmVzYCB8IFNwZWN0cmFsIHJlc29sdXRpb24gb2YgdGhlIHJhdyBkYXRhIHwKYFNwZWNSZXNOb21pbmFsYCB8IE5vbWluYWwgc3BlY3RyYWwgcmVzb2x1dGlvbiBvZiB0aGUgcHJvY2Vzc2VkIGRhdGEgfApgVGFjcWAgfCBBY3F1aXNpdGlvbiB0aW1lIHwKCiMjIE1SU19zdHJ1Y3QuZmlkcwoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tLSB8CnwgYGRhdGFgIHwgUmF3IHRpbWUtZG9tYWluIG1ldGFib2xpdGUgZGF0YSAoZGltZW5zaW9uczogYG5wb2ludHNgICRcdGltZXMkIGBucm93c2ApIG9mIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHwKfCBgZGF0YV93YXRlcmAgfAp8IGBPTl9PRkZgIHwKfCBgZGF0YV9hbGlnbmAgfAp8IGB2b3gxYCB8CgojIyBNUlNfc3RydWN0LnNwZWMKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBkYXRhYCB8IFJhdyB0aW1lLWRvbWFpbiBtZXRhYm9saXRlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3NgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYGRhdGFfd2F0ZXJgIHwKfCBgT05fT0ZGYCB8CnwgYGRhdGFfYWxpZ25gIHwKfCBgdm94MWAgfAoKIyMgTVJTX3N0cnVjdC5vdXQKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBBdmdEZWx0YUYwYCB8IEEgbWV0cmljIG9mIHRoZSBkZWdyZWUgb2YgZnJlcXVlbmN5IG9mZnNldHMgZHVyaW5nIHRoZSBhY3F1aXNpdGlvbiByZWxhdGl2ZSB0byB0aGUgbm9taW5hbCB3YXRlciBmcmVxdWVuY3kgKDQuNjggcHBtKSBvciB0aGUgMyBwcG0gQ3Igc2lnbmFsIChpZiBIRVJNRVMgb3IgR1NIIGVkaXRpbmcpIHwKfCBgU3BlY1JlZ2AgfCBTdHJ1Y3R1cmUgY29udGFpbmluZyBvdXRwdXQgZnJvbSBzcGVjdHJhbCByZWdpc3RyYXRpb24gfAp8IGByZWplY3RgIHwgQ2VsbCBhcnJheSBvZiBiaW5hcnkgaW50ZWdlcnMgaW5kaWNhdGluZyB3aGV0aGVyIGFuIGluZGl2aWR1YWwgdHJhbnNpZW50IHNob3VsZCBiZSByZWplY3RlZCBkdXJpbmcgc2lnbmFsIGF2ZXJhZ2luZyB8CnwgYFFBYCB8IE1ldHJpY3MgY2FsY3VsYXRlZCB0byBxdWFudGlmeSB0aGUgcGVyZm9ybWFuY2Ugb2YgdGlzc3VlIHNlZ21lbnRhdGlvbiB8CgojIyBNUlNfc3RydWN0Lm1hc2sKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8IGBvdXRmaWxlYCB8IENlbGwgYXJyYXkgb2YgdGhlIG91dHB1dCBmaWxlbmFtZXMgb2YgdGhlIHZveGVsIG1hc2tzIHwKfCBgaW1nYCB8IENlbGwgYXJyYXkgY29udGFpbmluZyB0aHJlZS1kaW1lbnNpb25hbCBhcnJheXMgcmVwcmVzZW50aW5nIHRoZSB0aHJlZSBvcnRob2dvbmFsIHNsaWNlcyBvZiB0aGUgVDEgaW1hZ2VzIHwKfCBgVDFpbWFnZWAgfCBDZWxsIGFycmF5IG9mIHRoZSBpbnB1dCBUMSBpbWFnZSBmaWxlbmFtZXMgfAp8IGBpbWdfbW9udGFnZWAgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhyZWUtZGltZW5zaW9uYWwgYXJyYXlzIHJlcHJlc2VudGluZyBhIG1vbnRhZ2Ugb2YgYXhpYWwgc2xpY2VzIG9mIHRoZSBUMSBpbWFnZXMgb3ZlcmxhaWQgYnkgdGhlIHRpc3N1ZS1zZWdtZW50ZWQgdm94ZWwgbWFza3MgfAoKCgo=</div>
 <!DOCTYPE html>
 <br>
 <hr>

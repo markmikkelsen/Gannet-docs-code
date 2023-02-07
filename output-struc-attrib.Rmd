@@ -34,7 +34,7 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
-| `version` | A structure containing release numbers of Gannet and the Gannet modules |
+| `version` | Structure containing release numbers of Gannet and the Gannet modules |
 | `ii` | During analysis, the current file being loaded; after analysis, the number of files that were loaded |
 | `metabfile` | Cell array containing the inputted metabolite data filenames |
 | `waterfile` | Cell array containing the inputted water reference data filenames |
@@ -43,17 +43,16 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
-`Reference_compound` | Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr |
-`target` | 
-`ONOFForder` | 
+`target` | The metabolite(s) targeted by the editing pulses |
 `seqorig` | 
 `LB` | 
-`water_phase_correction` |
-`data_phase_correction` |
+`water_ECC` |
+`metab_ECC` |
 `water_removal` |
-`AlignTo` |
-`Vox` | 
-`FitResidWater` |
+`alignment` |
+`vox` | 
+`fit_resid_water` |
+`weighted_averaging` |
 `HERMES` |
 `HERCULES` | 
 `PRIAM` |
@@ -62,8 +61,8 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 `sdat` |
 `csv` |
 `vendor` | Scanner vendor |
-`spar_string` |
-`numscans` | Total number of scans in the batch |
+`reference` | Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr |
+`numScans` | Total number of scans in the batch |
 `npoints` | Number of data points |
 `nrows` |
 `Navg` | Total number of averages |
@@ -106,11 +105,10 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
-| `data` | Raw time-domain metabolite data (dimensions: `npoints` $\times$ `nrows`) of the last loaded dataset |
-| `data_water` |
-| `ON_OFF` |
-| `data_align` |
-| `vox1` |
+| `AvgDeltaF0` | A metric of the degree of frequency offsets during the acquisition relative to the nominal water frequency (4.68 ppm) or the 3 ppm Cr signal (if HERMES or GSH editing) |
+| `SpecReg` | Structure containing output from spectral registration |
+| `reject` | Cell array of binary integers indicating whether an individual transient should be rejected during signal averaging |
+| `QA` | Metrics calculated to quantify the performance of tissue segmentation |
 
 ## MRS_struct.mask
 
@@ -119,7 +117,7 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 | `outfile` | Cell array of the output filenames of the voxel masks |
 | `img` | Cell array containing three-dimensional arrays representing the three orthogonal slices of the T1 images |
 | `T1image` | Cell array of the input T1 image filenames |
-| `img_montage` | Cell array containing three-dimensional arrays representing a montage of axial alices of the T1 images overlaid by the tissue-segmented voxel masks |
+| `img_montage` | Cell array containing three-dimensional arrays representing a montage of axial slices of the T1 images overlaid by the tissue-segmented voxel masks |
 
 
 
