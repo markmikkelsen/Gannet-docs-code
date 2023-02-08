@@ -63,7 +63,9 @@ PaperPlot(MRS, 'plotModel', true, 'freqLim', [2 4.25]); % Overlay fit models and
 
 MRI examinations involving human volunteers routinely store sensitive protected health information (PHI) and personally identifiable information (PII) in the exported data files. It is of vital importance to protect volunteers’ privacy. To comply with privacy legislation, you need to ensure that the data you handle, process, and share is appropriately and thoroughly de-identified, i.e., stripped of all PHI/PII that allows the data to be linked to an individual. This is particularly critical if you intend to share data outside your institution.
 
-Gannet includes several functions to remove PHI/PII from the most commonly used file formats. Currently, we offer functions to remove PHI/PII from GE P-files (\*.7), Siemens TWIX (\*.dat), Philips (\*.sdat/\*.spar), and generic DICOM (\*.dcm) files. We plan to add support for other formats in the future. Please <a href="https://gabamrs.com/contact" target="_blank">contact us</a> if you require a de-identification tool for a different format.
+Gannet includes several functions to remove PHI/PII from the most commonly used file formats. Currently, we offer functions to remove PHI/PII from GE P-files (\*.7), Siemens TWIX (\*.dat), Philips (\*.sdat/\*.spar), and generic DICOM (\*.dcm) files. We plan to add support for other formats in the future.
+
+Please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<subject>" target="_blank">contact us</a> if you require a de-identification tool for a different format.
 
 Please note the following:
 
