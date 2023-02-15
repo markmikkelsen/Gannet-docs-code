@@ -46,40 +46,43 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 `target` | The metabolite(s) targeted by the editing pulses |
 `seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
 `LB` | Exponential line-broadening applied (in Hz) |
-`water_ECC` | Whether eddy current correction was applied to the water data |
-`metab_ECC` | Whether eddy current correction was applied to the metabolite data |
+`water_ECC` | Whether eddy-current correction was applied to the water data |
+`metab_ECC` | Whether eddy-current correction was applied to the metabolite data |
 `water_removal` | Whether the residual water signal in DIFF spectrum was removed using HSVD |
 `alignment` | Choice of shot-to-shot frequency-and-phase correction |
 `use_prealign_ref` | Whether `RobustSpecReg` used the averaged pre-aligned subspectra as references to align the averaged post-aligned subspectra |
 `fit_resid_water` | Whether the residual water signal in the OFF spectrum was fitted to calculate a water suppression factor |
 `weighted_averaging` | Whether weighted signal averaging was implemented |
-`HERMES` |
-`HERCULES` | 
-`PRIAM` |
-`phantom` |
-`mat` |
-`sdat` |
-`csv` |
+`HERMES` | Whether the data are HERMES data |
+`HERCULES` | Whether the data are HERCULES data | 
+`PRIAM` | Whether the data are PRIAM data |
+`phantom` | Whether the data are phantom data |
+`join` | Whether the input files were joined |
+`mat` | Whether the output structure was saved as MAT-file |
+`csv` | Whether a CSV file of useful data was created |
+`append` | Whether the PDF outputs were appended into single files |
+`hide` | Whether the output figures were hidden |
 `vendor` | Scanner vendor |
 `reference` | Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr |
 `numScans` | Total number of scans in the batch |
-`npoints` | Number of data points |
-`nrows` |
-`Navg` | Total number of averages |
-`TR` | Repetition time (ms) |
-`TE` | Echo time (m) |
+`numFilesPerScan` | When input files are joined, the number of files joined per scan |
 `LarmorFreq` | Larmor frequency (MHz) |
 `sw` | Spectral width (Hz) |
-`voxdim` | Voxel dimensions (mm) |
-`voxoff` | Voxel position offset (mm) |
-`voxang` | Voxel angulation (deg) |
-`Nwateravg` | Total number of water averages |
+`npoints` | Number of data points of each input file |
+`nrows` | Total number of individual averages of each input file |
+`Navg` | Total number of individual averages of each input file |
+`TE` | Echo time (m) |
+`TR` | Repetition time (ms) |
+`voxdim` | Array of voxel dimensions (mm) |
+`voxoff` | Array of voxel position offset (mm) |
+`voxang` | Array of voxel angulation (deg) |
+`Nwateravg` | Total number of individual averages of each input water reference file |
 `ZeroFillTo` | Processed spectra are zero-filled to this many data points |
-`zf` | Zero-filling factor |
-`df` | 
-`SpecRes` | Spectral resolution of the raw data |
-`SpecResNominal` | Nominal spectral resolution of the processed data |
-`Tacq` | Acquisition time |
+`zf` | Zero-fill factor |
+`dt` | Dwell time (s) |
+`SpecRes` | Spectral resolution of the raw data (Hz/point) |
+`SpecResNominal` | Nominal spectral resolution of the processed data (Hz/point) |
+`Tacq` | Acquisition time (s) |
 
 ## MRS_struct.fids
 

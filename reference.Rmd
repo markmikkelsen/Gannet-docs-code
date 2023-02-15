@@ -59,8 +59,8 @@ knitr::opts_chunk$set(echo = TRUE)
 | `phantom`  | Set to `1` if the data were acquired in a phantom                                                                                         |
 | `join`     | Set to `1` to join multiple files (this can be batched across subjects)                                                                   |
 | `mat`      | Set to `1` to save the output structure as a MAT-file                                                                                     |
-| `csv`      | Set to `1` to export a .csv file containing useful data for analysis (applies to `GannetFit.m`, `GannetSegment.m` and `GannetQuantify.m`) |
-| `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig` in the Gannet directory to be added to the search path and <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> to be installed (NB: macOS users should use <a href="https://pages.uoregon.edu/koch/" target="_blank">this version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript) |
+| `csv`      | Set to `1` to export a CSV file containing useful data for analysis (applies to `GannetFit.m`, `GannetSegment.m` and `GannetQuantify.m`) |
+| `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig` in the `Gannet/` directory to be added to the search path and <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> to be installed (NB: macOS users should use <a href="https://pages.uoregon.edu/koch/" target="_blank">this version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript) |
 | `hide`     | Set to `1` to not display output figures |
 
 <br>
