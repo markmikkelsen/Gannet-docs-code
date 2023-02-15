@@ -44,15 +44,15 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
 `target` | The metabolite(s) targeted by the editing pulses |
-`seqorig` | 
-`LB` | 
-`water_ECC` |
-`metab_ECC` |
-`water_removal` |
-`alignment` |
-`vox` | 
-`fit_resid_water` |
-`weighted_averaging` |
+`seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
+`LB` | Exponential line-broadening applied (in Hz) |
+`water_ECC` | Whether eddy current correction was applied to the water data |
+`metab_ECC` | Whether eddy current correction was applied to the metabolite data |
+`water_removal` | Whether the residual water signal in DIFF spectrum was removed using HSVD |
+`alignment` | Choice of shot-to-shot frequency-and-phase correction |
+`use_prealign_ref` | Whether `RobustSpecReg` used the averaged pre-aligned subspectra as references to align the averaged post-aligned subspectra |
+`fit_resid_water` | Whether the residual water signal in the OFF spectrum was fitted to calculate a water suppression factor |
+`weighted_averaging` | Whether weighted signal averaging was implemented |
 `HERMES` |
 `HERCULES` | 
 `PRIAM` |
@@ -68,7 +68,7 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 `Navg` | Total number of averages |
 `TR` | Repetition time (ms) |
 `TE` | Echo time (m) |
-`LarmorFreq` | Larmor frequency (kHz) |
+`LarmorFreq` | Larmor frequency (MHz) |
 `sw` | Spectral width (Hz) |
 `voxdim` | Voxel dimensions (mm) |
 `voxoff` | Voxel position offset (mm) |

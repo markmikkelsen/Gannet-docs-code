@@ -38,7 +38,7 @@ knitr::opts_chunk$set(echo = TRUE)
 | <u>Acquisition parameters</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
 | `target` | Sets the metabolite of interest that was edited in the MRS experiment; if HERMES or HERCULES was used, multiple metabolites should be selected |
-| `seqorig` | Origin of Philips MEGA-PRESS or GE HERMES sequences |
+| `seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
 
 | <u>Analysis parameters</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
@@ -48,7 +48,6 @@ knitr::opts_chunk$set(echo = TRUE)
 | `water_removal` | Whether to remove the residual water signal from the difference spectra using an HSVD filter [@Barkhuijsen1987]       |
 | `alignment` | Which method to use for shot-to-shot frequency-and-phase correction [@Evans2013; @Near2015; @Mikkelsen2018; @Mikkelsen2020] |
 | `use_prealign_ref` | In some cases, using `RobustSpecReg` to align HERMES/HERCULES data can result in worse alignment compared to the pre-aligned data; setting this parameter to 1 will make `RobustSpecReg` use the averaged pre-aligned subspectra as references to align the averaged post-aligned subspectra, which may improve the final alignment; this has not be tested extensively |
-| `vox` | Only applies to PRIAM data; the desired naming of the output structure fields                                         |
 | `fit_resid_water` | Whether to model the residual water signal in the difference spectrum; used to calculate a water suppression factor |
 | `weighted_averaging` | Whether to average the data using weighted averaging; the default approach use is mean-squared error, but other approaches can be set in `SignalAveraging.m` |
 
@@ -61,7 +60,7 @@ knitr::opts_chunk$set(echo = TRUE)
 | `join`     | Set to `1` to join multiple files (this can be batched across subjects)                                                                   |
 | `mat`      | Set to `1` to save the output structure as a MAT-file                                                                                     |
 | `csv`      | Set to `1` to export a .csv file containing useful data for analysis (applies to `GannetFit.m`, `GannetSegment.m` and `GannetQuantify.m`) |
-| `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig` in the Gannet directory to be added to the search path and Ghostscript to be installed) |
+| `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig` in the Gannet directory to be added to the search path and <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> to be installed (NB: macOS users should use <a href="https://pages.uoregon.edu/koch/" target="_blank">this version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript) |
 | `hide`     | Set to `1` to not display output figures |
 
 <br>
