@@ -136,11 +136,11 @@ Robust spectral registration (`RobustSpecReg`):
 
 multi-step FPC (`SpecRegHERMES`):
 
--   Mikkelsen M, Saleh MG, Near J, et al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency and phase correction for multiplexed edited MRS of GABA and glutathione.</a> *Magnetic Resonance in Medicine*. 2018;80(1):21-28
+-   Mikkelsen M, Saleh MG, Near J, et al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency and phase correction for multiplexed edited MRS of GABA and glutathione.</a> *Magnetic Resonance in Medicine*. 2018;80(1):21--28
 
 or spectral registration (`SpecReg`):
 
--   Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency and phase drift correction of magnetic resonance spectroscopy data by spectral registration in the time domain.</a> *Magnetic Resonance in Medicine*. 2015;73(1):44-50
+-   Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency and phase drift correction of magnetic resonance spectroscopy data by spectral registration in the time domain.</a> *Magnetic Resonance in Medicine*. 2015;73(1):44--50
 
 **If you perform voxel co-registration:**
 

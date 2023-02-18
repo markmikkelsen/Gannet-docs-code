@@ -28,7 +28,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <i class="fa fa-info-circle" style="color: white"></i>&nbsp; The fields listed on this page are applicable to release 3.3.0 and are not necessarily correct for other versions of Gannet.
 :::
 
-All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct` or whatever name the user has chosen) that contains many fields and subfields. Listed below are lists of these fields and their descriptions. Note that not every possible field that Gannet can generate is shown for the sake of brevity.
+All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or whatever name the user has chosen) that contains many fields and subfields. Listed below are lists of these fields and their descriptions. Note that not possible field that Gannet can generate during an analysis pipeline is shown for the sake of brevity.
 
 ## MRS_struct
 
@@ -66,17 +66,18 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 `reference` | Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr |
 `numScans` | Total number of scans in the batch |
 `numFilesPerScan` | When input files are joined, the number of files joined per scan |
+`npoints` | Number of data points of each input file |
+`nrows` | Number of data frames stored in each input water reference file |
+`nrows_water` | Number of data frames stored in each input file |
+`Navg` | Total number of averages collected at acquisition for each input file |
+`Nwateravg` | Total number of averages collected at acquisition for each input water reference file |
+`TR` | Repetition time (ms) |
+`TE` | Echo time (ms) |
 `LarmorFreq` | Larmor frequency (MHz) |
 `sw` | Spectral width (Hz) |
-`npoints` | Number of data points of each input file |
-`nrows` | Total number of individual averages of each input file |
-`Navg` | Total number of individual averages of each input file |
-`TE` | Echo time (m) |
-`TR` | Repetition time (ms) |
 `voxdim` | Array of voxel dimensions (mm) |
 `voxoff` | Array of voxel position offset (mm) |
 `voxang` | Array of voxel angulation (deg) |
-`Nwateravg` | Total number of individual averages of each input water reference file |
 `ZeroFillTo` | Processed spectra are zero-filled to this many data points |
 `zf` | Zero-fill factor |
 `dt` | Dwell time (s) |
@@ -89,26 +90,25 @@ All the output from Gannet anaylses are saved in a structure (e.g., `MRS_struct`
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
 | `data` | Raw time-domain metabolite data (dimensions: `npoints` $\times$ `nrows`) of the last loaded dataset |
-| `data_water` |
-| `ON_OFF` |
-| `data_align` |
-| `vox1` |
+| `data_water` | Raw time-domain water reference data (dimensions: `npoints` $\times$ `nrows_water`) of the last loaded dataset |
+| `ON_OFF` | Array of the editing order of the last loaded dataset |
+| `data_align` | Raw time-domain metabolite data of the last loaded dataset with frequency-and-phase correction applied |
 
 ## MRS_struct.spec
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
-| `data` | Raw time-domain metabolite data (dimensions: `npoints` $\times$ `nrows`) of the last loaded dataset |
-| `data_water` |
-| `ON_OFF` |
-| `data_align` |
-| `vox1` |
+| `freq` | Frequency axis (ppm), calculated from the last loaded dataset |
+| `F0freq` | Cell array of the observed frequency of either residual water signal or the 3 ppm Cr signal for each average |
+| `F0freq2` | Cell array of the observed frequency of the 3 ppm Cr signal for each average; this is used in `RobustSpectralRegistration.m` as the starting values for frequency during optimization |
+| `AllFramesFT` | Spectra of the last loaded dataset without frequency-and-phase correction applied |
+| `AllFramesFTrealign` | Spectra of the last loaded dataset with frequency-and-phase correction applied |
 
 ## MRS_struct.out
 
 | <u>Field</u> | <u>Description</u> |
 | :- | :--------- |
-| `AvgDeltaF0` | A metric of the amount of center frequency offsets observed during the acquisition, calculated as the mean difference between the observed frequency of the residual water signal (or the 3 ppm Cr signal) in the pre-frequency-corrected subspectra and the nominal water frequency at 4.68 ppm (or the nominal 3 ppm Cr signal if HERMES or GSH editing) |
+| `AvgDeltaF0` | A metric of the amount of frequency offset observed during the acquisition, calculated as the mean difference between the observed frequency of the residual water signal (or the 3 ppm Cr signal) in the pre-frequency-corrected subspectra and the nominal water frequency at 4.68 ppm (or the nominal 3 ppm Cr signal if HERMES or GSH editing) |
 | `SpecReg` | Structure containing output from spectral registration |
 | `reject` | Cell array of binary integers indicating whether an individual transient should be rejected during signal averaging |
 | `QA` | Metrics calculated to quantify the performance of tissue segmentation |
