@@ -65,7 +65,7 @@ MRI examinations involving human volunteers routinely store sensitive protected 
 
 Gannet includes several functions to remove PHI/PII from the most commonly used file formats. Currently, we offer functions to remove PHI/PII from GE P-files (\*.7), Siemens TWIX (\*.dat), Philips (\*.sdat/\*.spar), and generic DICOM (\*.dcm) files. We plan to add support for other formats in the future.
 
-Please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<subject>" target="_blank">contact us</a> if you require a de-identification tool for a different format.
+Please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20" target="_blank">contact us</a> if you require a de-identification tool for a different format.
 
 Please note the following:
 

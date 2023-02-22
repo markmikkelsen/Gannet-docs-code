@@ -27,7 +27,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Pre-initialize Gannet
 
-------------------------------------------------------------------------
+<br>
 
 **Parent function**
 
@@ -63,11 +63,11 @@ knitr::opts_chunk$set(echo = TRUE)
 | `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig` in the `Gannet/` directory to be added to the search path and <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> to be installed (NB: macOS users should use <a href="https://pages.uoregon.edu/koch/" target="_blank">this version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript) |
 | `hide`     | Set to `1` to not display output figures |
 
-<br>
+------------------------------------------------------------------------
 
 ## Loading and preprocessing data
 
-------------------------------------------------------------------------
+<br>
 
 **Parent function**
 
@@ -85,9 +85,11 @@ Output:
 
 <img src="images/reference/GannetLoad-example.png" alt="A screenshot example of GannetLoad output">
 
+------------------------------------------------------------------------
+
 ## Signal fitting
 
-------------------------------------------------------------------------
+<br>
 
 **Parent function**
 
@@ -106,9 +108,11 @@ Output:
 
 <img src="images/reference/GannetFit-example.png" alt="A screenshot example of GannetFit output">
 
+------------------------------------------------------------------------
+
 ## Voxel co-registration
 
-------------------------------------------------------------------------
+<br>
 
 **Parent function**
 
@@ -128,9 +132,11 @@ Output:
 
 <img src="images/reference/GannetCoRegister-example.png" alt="A screenshot example of GannetCoRegister output">
 
+------------------------------------------------------------------------
+
 ## Tissue segmentation
 
-------------------------------------------------------------------------
+<br>
 
 **Parent function**
 
@@ -151,9 +157,11 @@ Output:
 
 <img src="images/reference/GannetSegment-example.png" alt="A screenshot example of GannetSegment output">
 
+------------------------------------------------------------------------
+
 ## Quantification
 
-------------------------------------------------------------------------
+<br>
 
 **Parent function**
 

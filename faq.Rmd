@@ -26,18 +26,18 @@ pre.sourceCode code {
 <br>
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, please first check you are using the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>version</u></a>. It may be that your issue has already been addressed. Alternatively, consider using the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development version</u></a> as bug fixes/changes are continually being uploaded to this branch.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, please first check you are using the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>version</u></a>. It may be that your issue has already been addressed. Alternatively, consider using the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank" style="color:white"><u>development version</u></a> as bug fixes/changes are regularly uploaded to this branch.
 :::
 
 ## General
 
 #### **Can Gannet process non-edited data?**
 
-Gannet is designed to process edited single-voxel data only. However, the standalone tool [`CoRegStandAlone.m`](https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone) can be used with non-edited single-voxel data to co-register voxels to structural images and segment the images to obtain voxel tissue fractions.
+No, Gannet is designed to process edited single-voxel data only. However, the standalone tool [CoRegStandAlone](https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone) can be used with non-edited single-voxel data to co-register voxels to structural images and segment the images to obtain voxel tissue fractions.
 
 #### **Can Gannet process MRSI data?**
 
-No, Gannet is designed to process edited single-voxel data only.
+No.
 
 #### **Can Gannet process GSH-edited data?**
 
@@ -75,13 +75,13 @@ Specifically:
 
 or
 
-```{verbatim, eval = FALSE}
+```{verbatim}
 Code signature not valid for use in process using Library Validation: library load disallowed by system policy.
 ```
 
 Please visit the <a href="https://en.wikibooks.org/wiki/SPM/Installation_on_64bit_Mac_OS_(Intel)#macOS_Catalina,_Big_Sur,_Monterey,_Ventura" target="_blank">SPM Wikibooks page</a> for troubleshooting.
 
-#### **MATLAB says my structural image does not exist.**
+#### **MATLAB says my structural image does not exist**
 
 For example:
 

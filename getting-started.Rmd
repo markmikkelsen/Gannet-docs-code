@@ -54,9 +54,22 @@ The default settings pre-initialize a standard analysis for in vivo GABA-edited 
 
 Depending on the format of your data, and if you have water reference data and/or structural images, the commands for running Gannet to load and fit your data follow a specific syntax.
 
-For all modules, an output argument containing a structure should always be included, for example `MRS_struct`. Input arguments for `GannetLoad.m` are usually given as cell arrays. The remaining modules require input of the output structure from `GannetLoad.m`. The exception is `GannetCoRegister.m`, which additionally requires a cell array of structural images.
+For all modules, an output argument containing a structure should always be included, for example `MRS_struct`. Input arguments for `GannetLoad.m` are usually given as cell arrays. Water-suppressed metabolite files must be given as the first input argument, while unsuppressed water reference files must be given as the second input argument. The remaining modules require input of the output structure from `GannetLoad.m`. The exception is `GannetCoRegister.m`, which additionally requires a cell array of structural images.
 
 Some examples for different data file formats:
+
+#### **DICOM data (\*.ima files)**
+
+The DICOM format saves each transient in a separate file, such that for an acquisition with 320 transients, there will be 320 DICOM files. Data from each acquisition should be stored in an individual directory. To run such data, use the following commands:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetLoad(metab({'metab/file1.dcm'}, {'water/file1.dcm'});
+MRS_struct = GannetFit(MRS_struct);
+```
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Note how the metabolite and water data are stored in separate directories and that a single IMA file is selected for data loading (it does not matter which file in each directory is chosen).
+:::
 
 #### **GE data (\*.7 files)**
 
@@ -84,6 +97,19 @@ It is highly recommended that users export data in the TWIX format for Siemens d
 MRS_struct = GannetLoad({'sub-01.dat'}, {'sub-01_water.dat'});
 MRS_struct = GannetFit(MRS_struct);
 ```
+
+#### **Siemens data (\*.ima files)**
+
+The Siemens DICOM-structured IMA format saves each transient in a separate file, such that for an acquisition with 320 transients, there will be 320 IMA files. Data from each acquisition should be stored in an individual directory. To run such data, use the following commands:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetLoad(metab({'metab/file1.ima'}, {'water/file1.ima'});
+MRS_struct = GannetFit(MRS_struct);
+```
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Note how the metabolite and water data are stored in separate directories and that a single IMA file is selected for data loading (it does not matter which file in each directory is chosen).
+:::
 
 #### **Siemens data (\*.rda files)**
 

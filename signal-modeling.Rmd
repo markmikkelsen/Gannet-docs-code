@@ -104,7 +104,7 @@ $$
 ## Lac
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i> Optimizing the modeling of edited Lac is ongoing.
+<i class="fa fa-info-circle" style="color: white"></i> Optimization of the modeling of edited Lac is ongoing.
 :::
 
 Lac is fitted with a four-Gaussian model with a linear + quadratic baseline:

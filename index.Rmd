@@ -106,7 +106,7 @@ If you encounter any problems, please first check the Documentation or <a href="
 
 Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on <a href="https://mrshub.org/" target="_blank">MRSHub</a>.
 
-The Gannet team can also be directly <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<subject>" target="_blank">contacted</a>. We will do our best to work with you to solve your issue.
+The Gannet team can also be directly <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20" target="_blank">contacted</a>. We will do our best to work with you to solve your issue.
 
 ## Versioning
 
@@ -166,11 +166,11 @@ The development and dissemination of Gannet has been supported by the following 
 
 -   R01 EB016089
 -   R01 EB023963
--   K99 EB028828
 -   P41 EB015909
+-   K99 EB028828
 -   R01 MH106564
--   R21 NS077300
 -   R21 MH098228
+-   R21 NS077300
 -   R01 MH096263
 
 We wish to thank the following individuals for their direct or indirect contributions:
