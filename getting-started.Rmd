@@ -58,7 +58,7 @@ For all modules, an output argument containing a structure should always be incl
 
 Some examples for different data file formats:
 
-#### **DICOM data (\*.ima files)**
+#### **DICOM data (\*.dcm files)**
 
 The DICOM format saves each transient in a separate file, such that for an acquisition with 320 transients, there will be 320 DICOM files. Data from each acquisition should be stored in an individual directory. To run such data, use the following commands:
 
@@ -68,7 +68,7 @@ MRS_struct = GannetFit(MRS_struct);
 ```
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Note how the metabolite and water data are stored in separate directories and that a single IMA file is selected for data loading (it does not matter which file in each directory is chosen).
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Note how the metabolite and water data are stored in separate directories and that a single DICOM file is selected for data loading (it does not matter which file in each directory is chosen).
 :::
 
 #### **GE data (\*.7 files)**
