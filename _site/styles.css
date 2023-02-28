@@ -1,4 +1,38 @@
 /* ----- Main ----- */
+html {
+  scroll-padding-top: 5rem;
+}
+
+body .main-container {
+  max-width: 850px;
+}
+
+body {
+  font-size: 17px;
+  color: #000000;
+}
+
+code {
+  color: #000000;
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
+.section h2 {
+  font-weight: bold;
+}
+
+.level2 {
+  padding-top:20px;
+}
+
+.level3 {
+  padding-top:12px;
+}
+
+.level4 {
+  padding-top:10px;
+}
+
 .navbar-default .navbar-nav>li>a {
   font-size: 17px;
 }
@@ -21,36 +55,6 @@
 
 a.anchor-section::before {
   content: '#';
-}
-
-body .main-container {
-  max-width: 850px;
-}
-
-body {
-  font-size: 17px;
-  color: #000000;
-}
-
-.section h2 {
-  font-weight: bold;
-}
-
-.level2 {
-  padding-top:20px;
-}
-
-.level3 {
-  padding-top:12px;
-}
-
-.level4 {
-  padding-top:10px;
-}
-
-code {
-  color: #000000;
-  background-color: rgba(0, 0, 0, 0.07);
 }
 /* ---------------- */
 
