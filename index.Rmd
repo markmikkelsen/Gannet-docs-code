@@ -106,7 +106,7 @@ If you encounter any problems, please first check the Documentation or <a href="
 
 Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on <a href="https://mrshub.org/" target="_blank">MRSHub</a>.
 
-The Gannet team can also be directly <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20" target="_blank">contacted</a>. We will do our best to work with you to solve your issue.
+The Gannet team can also be directly <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contacted</a>. We will do our best to work with you to solve your issue.
 
 ## Versioning
 

@@ -65,7 +65,7 @@ MRI examinations involving human volunteers routinely store sensitive protected 
 
 Gannet includes several functions to remove PHI/PII from the most commonly used file formats. Currently, we offer functions to remove PHI/PII from GE P-files (\*.7), Siemens TWIX (\*.dat), Philips (\*.sdat/\*.spar), and generic DICOM (\*.dcm) files. We plan to add support for other formats in the future.
 
-Please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20" target="_blank">contact us</a> if you require a de-identification tool for a different format.
+Please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contact us</a> if you require a de-identification tool for a different format.
 
 Please note the following:
 
@@ -100,7 +100,7 @@ The Gannet de-identification functions currently remove PHI/PII identifiers defi
 - Medical record numbers
 - Device identifiers and serial numbers
 
-Should the regulations in your country or your institution require additional information to be removed from the files, please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<subject>" target="_blank">contact us</a>.
+Should the regulations in your country or institution require additional information to be removed, please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contact us</a>.
 
 ::: danger
 <i class="fa fa-exclamation-triangle" style="color: white"></i>&nbsp; There is <u>no way</u> to retrieve PHI/PII from a de-identified file! Make sure that you either retain a copy of the original file or that you keep a separate record that uniquely links all necessary subject information to the de-identified file.
