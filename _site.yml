@@ -21,10 +21,12 @@ navbar:
           href: additional-tools.html
     - text: "Examples"
       menu:
-        - text: "Batch processing script"
-          href: batch-script.html
         - text: "GannetPreInitialise settings"
           href: gannetpreinitialise-settings.html
+        - text: "Batch processing script"
+          href: batch-script.html
+        - text: "Joining data files"
+          href: joining-data-files.html
     - text: "FAQ"
       href: faq.html
     - text: "Release notes"

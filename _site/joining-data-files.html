@@ -11,7 +11,7 @@
 
 
 
-<title>Batch processing script</title>
+<title>Joining data files</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -443,7 +443,7 @@ $(document).ready(function () {
 
 
 
-<h1 class="title toc-ignore">Batch processing script</h1>
+<h1 class="title toc-ignore">Joining data files</h1>
 <h4 class="date">Last updated: March 08, 2023</h4>
 
 </div>
@@ -480,33 +480,58 @@ body .main-container {
 </style>
 <p><br></p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Example batch script for Philips MEGA-PRESS data with accompanying water references and structural images</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">% Remember to check GannetPreInitialise.m has the appropriate settings for your data</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">&#39;/Users/username/Documents/my_project/data&#39;</span><span class="op">;</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>metab <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_act.sdat&#39;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_act.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>metab <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> metab)<span class="op">;</span> <span class="co">% It is good practice to include the full path of files</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>         </span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>water <span class="op">=</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S02_GABA_68_ref.sdat&#39;</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;S03_GABA_68_ref.sdat&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>water <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> water)<span class="op">;</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>anat <span class="op">=</span> {<span class="st">&#39;S01_T1_anat.nii&#39;</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;S02_T1_anat.nii&#39;</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="st">&#39;S03_T1_anat.nii&#39;</span>}<span class="op">;</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>anat <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> anat)<span class="op">;</span></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetLoad(metab<span class="op">,</span> water)<span class="op">;</span></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetFit(MRS)<span class="op">;</span></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetCoRegister(MRS<span class="op">,</span> anat)<span class="op">;</span></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetSegment(MRS)<span class="op">;</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetQuantify(MRS)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">% Example script for batch-processing multiple subjects&#39; Siemens IMA data</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co">% with accompanying water references. Each subject has four scans each to</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co">% be joined together and treated as single datasets during data processing.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co">% </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">% Remember to check GannetPreInitialise.m has the appropriate settings for</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">% your data: &#39;join&#39; must be set to &#39;1&#39;.</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>data_dir <span class="op">=</span> <span class="st">&#39;/Users/username/Documents/my_project/data&#39;</span><span class="op">;</span> <span class="co">% Root data directory</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">% For joining the four files per subject and batching over multiple</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">% subjects, the data must be entered an an M x N cell array, where M is the</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">% number of files per subject and N is the number of subjects. In this</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">% example, we have only two subjects, each with four files that are to be</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="co">% joined.</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>sub01 <span class="op">=</span> {<span class="st">&#39;sub-01-1/MPRESS1_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;sub-01-2/MPRESS2_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;sub-01-3/MPRESS3_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;sub-01-4/MPRESS4_1.IMA&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>sub02 <span class="op">=</span> {<span class="st">&#39;sub-02-1/MPRESS1_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;sub-02-2/MPRESS2_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;sub-02-3/MPRESS3_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>         <span class="st">&#39;sub-02-4/MPRESS4_1.IMA&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>metab_data <span class="op">=</span> [sub01(<span class="op">:</span>)<span class="op">,</span> sub02(<span class="op">:</span>)]<span class="op">;</span> <span class="co">% Make an M x N cell array</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>metab_data <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> metab_data)<span class="op">;</span> <span class="co">% It is good practice to include the full pathname</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>         </span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="co">% Now we do the same for the water reference data. Because of how file</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co">% joining is currently coded in Gannet, there needs to be the same number</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="co">% of water reference files per subject as the metabolite data.</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>sub01_w <span class="op">=</span> {<span class="st">&#39;sub-01-1_w/WATREF1_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;sub-01-2_w/WATREF2_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;sub-01-3_w/WATREF3_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;sub-01-4_w/WATREF4_1.IMA&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>sub02_w <span class="op">=</span> {<span class="st">&#39;sub-02-1_w/WATREF1_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;sub-02-2_w/WATREF2_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;sub-02-3_w/WATREF3_1.IMA&#39;</span><span class="op">,</span> <span class="op">...</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a>           <span class="st">&#39;sub-02-4_w/WATREF4_1.IMA&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>water_data <span class="op">=</span> [sub01_w(<span class="op">:</span>)<span class="op">,</span> sub02_w(<span class="op">:</span>)]<span class="op">;</span></span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>water_data <span class="op">=</span> <span class="fu">fullfile</span>(data_dir<span class="op">,</span> water_data)<span class="op">;</span></span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a>anat <span class="op">=</span> {<span class="st">&#39;sub-01_T1w.nii&#39;</span><span class="op">,</span> <span class="st">&#39;sub-02_T1w.nii&#39;</span>}<span class="op">;</span></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetLoad(metab_data<span class="op">,</span> water_data)<span class="op">;</span></span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetFit(MRS)<span class="op">;</span></span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetCoRegister(MRS<span class="op">,</span> anat)<span class="op">;</span></span>
+<span id="cb1-49"><a href="#cb1-49" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetSegment(MRS)<span class="op">;</span></span>
+<span id="cb1-50"><a href="#cb1-50" aria-hidden="true" tabindex="-1"></a>MRS <span class="op">=</span> GannetQuantify(MRS)<span class="op">;</span></span></code></pre></div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiQmF0Y2ggcHJvY2Vzc2luZyBzY3JpcHQiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpvdXRwdXQ6IGh0bWxfZG9jdW1lbnQKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgpgYGB7Y3NzLCBlY2hvID0gRkFMU0V9CmJvZHkgLm1haW4tY29udGFpbmVyIHsKICBtYXgtd2lkdGg6IDkwMHB4Owp9CmBgYAoKPGJyPgoKYGBge29jdGF2ZSwgZXZhbCA9IEZBTFNFfQolIEV4YW1wbGUgYmF0Y2ggc2NyaXB0IGZvciBQaGlsaXBzIE1FR0EtUFJFU1MgZGF0YSB3aXRoIGFjY29tcGFueWluZyB3YXRlciByZWZlcmVuY2VzIGFuZCBzdHJ1Y3R1cmFsIGltYWdlcwolIFJlbWVtYmVyIHRvIGNoZWNrIEdhbm5ldFByZUluaXRpYWxpc2UubSBoYXMgdGhlIGFwcHJvcHJpYXRlIHNldHRpbmdzIGZvciB5b3VyIGRhdGEKCmRhdGFfZGlyID0gJy9Vc2Vycy91c2VybmFtZS9Eb2N1bWVudHMvbXlfcHJvamVjdC9kYXRhJzsKCm1ldGFiID0geydTMDFfR0FCQV82OF9hY3Quc2RhdCcKICAgICAgICAgJ1MwMl9HQUJBXzY4X2FjdC5zZGF0JwogICAgICAgICAnUzAzX0dBQkFfNjhfYWN0LnNkYXQnfTsKbWV0YWIgPSBmdWxsZmlsZShkYXRhX2RpciwgbWV0YWIpOyAlIEl0IGlzIGdvb2QgcHJhY3RpY2UgdG8gaW5jbHVkZSB0aGUgZnVsbCBwYXRoIG9mIGZpbGVzCiAgICAgICAgIAp3YXRlciA9IHsnUzAxX0dBQkFfNjhfcmVmLnNkYXQnCiAgICAgICAgICdTMDJfR0FCQV82OF9yZWYuc2RhdCcKICAgICAgICAgJ1MwM19HQUJBXzY4X3JlZi5zZGF0J307CndhdGVyID0gZnVsbGZpbGUoZGF0YV9kaXIsIHdhdGVyKTsKCmFuYXQgPSB7J1MwMV9UMV9hbmF0Lm5paScKICAgICAgICAnUzAyX1QxX2FuYXQubmlpJwogICAgICAgICdTMDNfVDFfYW5hdC5uaWknfTsKYW5hdCA9IGZ1bGxmaWxlKGRhdGFfZGlyLCBhbmF0KTsKCk1SUyA9IEdhbm5ldExvYWQobWV0YWIsIHdhdGVyKTsKTVJTID0gR2FubmV0Rml0KE1SUyk7Ck1SUyA9IEdhbm5ldENvUmVnaXN0ZXIoTVJTLCBhbmF0KTsKTVJTID0gR2FubmV0U2VnbWVudChNUlMpOwpNUlMgPSBHYW5uZXRRdWFudGlmeShNUlMpOwpgYGAK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiSm9pbmluZyBkYXRhIGZpbGVzIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OiBodG1sX2RvY3VtZW50Ci0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQpib2R5IC5tYWluLWNvbnRhaW5lciB7CiAgbWF4LXdpZHRoOiA5MDBweDsKfQpgYGAKCjxicj4KCmBgYHtvY3RhdmUsIGV2YWwgPSBGQUxTRX0KJSBFeGFtcGxlIHNjcmlwdCBmb3IgYmF0Y2gtcHJvY2Vzc2luZyBtdWx0aXBsZSBzdWJqZWN0cycgU2llbWVucyBJTUEgZGF0YQolIHdpdGggYWNjb21wYW55aW5nIHdhdGVyIHJlZmVyZW5jZXMuIEVhY2ggc3ViamVjdCBoYXMgZm91ciBzY2FucyBlYWNoIHRvCiUgYmUgam9pbmVkIHRvZ2V0aGVyIGFuZCB0cmVhdGVkIGFzIHNpbmdsZSBkYXRhc2V0cyBkdXJpbmcgZGF0YSBwcm9jZXNzaW5nLgolIAolIFJlbWVtYmVyIHRvIGNoZWNrIEdhbm5ldFByZUluaXRpYWxpc2UubSBoYXMgdGhlIGFwcHJvcHJpYXRlIHNldHRpbmdzIGZvcgolIHlvdXIgZGF0YTogJ2pvaW4nIG11c3QgYmUgc2V0IHRvICcxJy4KCmRhdGFfZGlyID0gJy9Vc2Vycy91c2VybmFtZS9Eb2N1bWVudHMvbXlfcHJvamVjdC9kYXRhJzsgJSBSb290IGRhdGEgZGlyZWN0b3J5CgolIEZvciBqb2luaW5nIHRoZSBmb3VyIGZpbGVzIHBlciBzdWJqZWN0IGFuZCBiYXRjaGluZyBvdmVyIG11bHRpcGxlCiUgc3ViamVjdHMsIHRoZSBkYXRhIG11c3QgYmUgZW50ZXJlZCBhbiBhbiBNIHggTiBjZWxsIGFycmF5LCB3aGVyZSBNIGlzIHRoZQolIG51bWJlciBvZiBmaWxlcyBwZXIgc3ViamVjdCBhbmQgTiBpcyB0aGUgbnVtYmVyIG9mIHN1YmplY3RzLiBJbiB0aGlzCiUgZXhhbXBsZSwgd2UgaGF2ZSBvbmx5IHR3byBzdWJqZWN0cywgZWFjaCB3aXRoIGZvdXIgZmlsZXMgdGhhdCBhcmUgdG8gYmUKJSBqb2luZWQuCnN1YjAxID0geydzdWItMDEtMS9NUFJFU1MxXzEuSU1BJywgLi4uCiAgICAgICAgICdzdWItMDEtMi9NUFJFU1MyXzEuSU1BJywgLi4uCiAgICAgICAgICdzdWItMDEtMy9NUFJFU1MzXzEuSU1BJywgLi4uCiAgICAgICAgICdzdWItMDEtNC9NUFJFU1M0XzEuSU1BJ307CgpzdWIwMiA9IHsnc3ViLTAyLTEvTVBSRVNTMV8xLklNQScsIC4uLgogICAgICAgICAnc3ViLTAyLTIvTVBSRVNTMl8xLklNQScsIC4uLgogICAgICAgICAnc3ViLTAyLTMvTVBSRVNTM18xLklNQScsIC4uLgogICAgICAgICAnc3ViLTAyLTQvTVBSRVNTNF8xLklNQSd9OwoKbWV0YWJfZGF0YSA9IFtzdWIwMSg6KSwgc3ViMDIoOildOyAlIE1ha2UgYW4gTSB4IE4gY2VsbCBhcnJheQptZXRhYl9kYXRhID0gZnVsbGZpbGUoZGF0YV9kaXIsIG1ldGFiX2RhdGEpOyAlIEl0IGlzIGdvb2QgcHJhY3RpY2UgdG8gaW5jbHVkZSB0aGUgZnVsbCBwYXRobmFtZQogICAgICAgICAKJSBOb3cgd2UgZG8gdGhlIHNhbWUgZm9yIHRoZSB3YXRlciByZWZlcmVuY2UgZGF0YS4gQmVjYXVzZSBvZiBob3cgZmlsZQolIGpvaW5pbmcgaXMgY3VycmVudGx5IGNvZGVkIGluIEdhbm5ldCwgdGhlcmUgbmVlZHMgdG8gYmUgdGhlIHNhbWUgbnVtYmVyCiUgb2Ygd2F0ZXIgcmVmZXJlbmNlIGZpbGVzIHBlciBzdWJqZWN0IGFzIHRoZSBtZXRhYm9saXRlIGRhdGEuCnN1YjAxX3cgPSB7J3N1Yi0wMS0xX3cvV0FUUkVGMV8xLklNQScsIC4uLgogICAgICAgICAgICdzdWItMDEtMl93L1dBVFJFRjJfMS5JTUEnLCAuLi4KICAgICAgICAgICAnc3ViLTAxLTNfdy9XQVRSRUYzXzEuSU1BJywgLi4uCiAgICAgICAgICAgJ3N1Yi0wMS00X3cvV0FUUkVGNF8xLklNQSd9OwoKc3ViMDJfdyA9IHsnc3ViLTAyLTFfdy9XQVRSRUYxXzEuSU1BJywgLi4uCiAgICAgICAgICAgJ3N1Yi0wMi0yX3cvV0FUUkVGMl8xLklNQScsIC4uLgogICAgICAgICAgICdzdWItMDItM193L1dBVFJFRjNfMS5JTUEnLCAuLi4KICAgICAgICAgICAnc3ViLTAyLTRfdy9XQVRSRUY0XzEuSU1BJ307Cgp3YXRlcl9kYXRhID0gW3N1YjAxX3coOiksIHN1YjAyX3coOildOwp3YXRlcl9kYXRhID0gZnVsbGZpbGUoZGF0YV9kaXIsIHdhdGVyX2RhdGEpOwoKYW5hdCA9IHsnc3ViLTAxX1Qxdy5uaWknLCAnc3ViLTAyX1Qxdy5uaWknfTsKCk1SUyA9IEdhbm5ldExvYWQobWV0YWJfZGF0YSwgd2F0ZXJfZGF0YSk7Ck1SUyA9IEdhbm5ldEZpdChNUlMpOwpNUlMgPSBHYW5uZXRDb1JlZ2lzdGVyKE1SUywgYW5hdCk7Ck1SUyA9IEdhbm5ldFNlZ21lbnQoTVJTKTsKTVJTID0gR2FubmV0UXVhbnRpZnkoTVJTKTsKYGBgCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>
@@ -555,7 +580,7 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("batch-script.Rmd");
+  window.initializeSourceEmbed("joining-data-files.Rmd");
 });
 </script>
 

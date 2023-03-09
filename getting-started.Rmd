@@ -20,7 +20,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Gannet simplifies the preprocessing, signal fitting, and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of MATLAB and the five Gannet modules (listed below).
 
-If this is your first time using Gannet, you will likely want to read through the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html) as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.
+If this is your first time using Gannet, you should read through the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html) as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.
 
 ## Modules
 
@@ -50,11 +50,11 @@ The default settings pre-initialize a standard analysis for in vivo GABA-edited 
 
 <img src="images/getting-started/GannetPreInitialise-example.png" alt="A screenshot example of GannetPreInitialise.m">
 
-### Running Gannet
+### Loading and fitting data
 
 Depending on the format of your data, and if you have water reference data and/or structural images, the commands for running Gannet to load and fit your data follow a specific syntax.
 
-For all modules, an output argument containing a structure should always be included, for example `MRS_struct`. Input arguments for `GannetLoad.m` are usually given as cell arrays. Water-suppressed metabolite files must be given as the first input argument, while unsuppressed water reference files must be given as the second input argument. The remaining modules require input of the output structure from `GannetLoad.m`. The exception is `GannetCoRegister.m`, which additionally requires a cell array of structural images.
+For all modules, an output argument containing a structure should always be included, for example `MRS_struct`. Input arguments for `GannetLoad.m` are usually given as cell arrays. Water-suppressed metabolite files must be given as the first input argument, while unsuppressed water reference files must be given as the second input argument. The remaining modules require input of the output structure from `GannetLoad.m`. (The exception is `GannetCoRegister.m`, which additionally requires a cell array of structural images.)
 
 Some examples for different data file formats:
 
@@ -135,6 +135,14 @@ MRS_struct = GannetFit(MRS_struct);
 ```
 
 Note that the respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays. We have provided an [example batch processing script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own purposes.
+
+## Joining data files
+
+In some instances users may want to conjoin consecutively acquired data files, such that they are processed as if they were one single dataset. Gannet is able to do this. To enable this functionality, the `join` flag in `GannetPreInitialise.m` must be set to `1`.
+
+However, there is a different command syntax when batch-processing across multiple subjects' datasets In such cases, rather than entering files as vectors, the input cell arrays must be M $\times$ N matrices, where M is the number of files per subject to be conjoined and N is the number of subjects.
+
+We have provided an [example script](https://markmikkelsen.github.io/Gannet-docs/joining-data-files.html) for joining files.
 
 ## Output
 
