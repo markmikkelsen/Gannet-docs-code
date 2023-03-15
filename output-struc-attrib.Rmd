@@ -45,7 +45,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 | :- | :--------- |
 `target` | The metabolite(s) targeted by the editing pulses |
 `seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
-`LB` | Exponential line-broadening applied (in Hz) |
+`LB` | Exponential line-broadening applied (Hz) |
 `water_ECC` | Whether eddy-current correction was applied to the water data |
 `metab_ECC` | Whether eddy-current correction was applied to the metabolite data |
 `water_removal` | Whether the residual water signal in DIFF spectrum was removed using HSVD |

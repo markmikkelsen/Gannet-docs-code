@@ -80,6 +80,15 @@ MRS_struct = GannetLoad({'sub-01.7'});
 MRS_struct = GannetFit(MRS_struct);
 ```
 
+#### **NIfTI data (\*.nii[.gz] files)**
+
+<a href="https://doi.org/10.1002/mrm.29418" target="_blank">NIfTI-MRS</a> was developed to serve as an open-source data format standard for MRS. Both compressed and uncompressed files can be processed in Gannet. To run such data, use the following commands:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetLoad({'sub-01.nii'}, {'sub-01_ref.nii'});
+MRS_struct = GannetFit(MRS_struct);
+```
+
 #### **Philips data (\*.sdat/\*.spar files)**
 
 Data from Philips scanners are most commonly exported as a pair of \*.sdat/\*.spar files, where the \*.sdat file contains the data and the \*.spar contains the acquisition parameters. A water reference usually is also acquired and exported as a separate pair of files. The two are distinguished by the suffices `_act` and `_ref`. To run such data, use the following commands:
@@ -88,6 +97,10 @@ Data from Philips scanners are most commonly exported as a pair of \*.sdat/\*.sp
 MRS_struct = GannetLoad({'sub-01_act.sdat'}, {'sub-01_ref.sdat'});
 MRS_struct = GannetFit(MRS_struct);
 ```
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The \*.spar files must be in the same directory as the \*.sdat files, otherwise an error will occur.
+:::
 
 #### **Siemens data (\*.dat files)**
 
@@ -134,7 +147,7 @@ MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'
 MRS_struct = GannetFit(MRS_struct);
 ```
 
-Note that the respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays. We have provided an [example batch processing script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own purposes.
+The respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays. We have provided an [example batch processing script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own purposes.
 
 ## Joining data files
 

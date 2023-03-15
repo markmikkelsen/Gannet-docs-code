@@ -18,7 +18,68 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-This page logs the stable releases of Gannet. However, minor edits and bug fixes are also made in the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">development version</a>. For a more comprehensive list of changes, see the commits logged on <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">GitHub</a>.
+This page lists the stable releases of Gannet since v3.1.3. All releases can be found on GitHub <a href="https://github.com/richardedden/Gannet3.1/releases" target="_blank">here</a> and <a href="https://github.com/markmikkelsen/Gannet/releases" target="_blank">here</a>. The development version of Gannet can be found <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">here</a>. For a more comprehensive list of changes to the current main version, see the commits logged on GitHub <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">here</a>.
+
+## 3.3.1
+<span style="color: grey;">2023-03-14</span>
+
+### New features
+
+- Compressed NIfTI files (\*.nii.gz) are now fully supported
+- Gannet now fully quantifies metabolite levels for Cr, Cho, and NAA (estimated from the OFF
+  spectrum)
+
+### Major changes
+
+- Moved local signal model functions out of `GannetFit.m` and into their own files:
+  - `BaselineModel.m`
+  - `CalcIU.m`
+  - `DoubleGaussModel.m`
+  - `EtOHModel.m`
+  - `GABAGlxModel.m`
+  - `GaussModel.m`
+  - `LorentzGaussModel.m`
+  - `LorentzGaussModelP.m`
+- Added `GetFullPath.m`; Gannet now will find the full path of input files by default
+- Renamed some of the data-loading functions
+
+### Minor changes
+
+- Added a check in `GannetQuantify.m` for datasets without water references; `GannetQuantify.m` will
+  not run if no water references are present
+- Added a check in `GannetCoRegister.m` to ensure all structural image files can be found
+- Updated `export_fig` to v3.33
+- Updated `dicm2nii` to version 2023.03.08
+- Updated `LICENSE` and `README.md`
+- Updated `ExportToCSV.m`
+- Updated `CoRegStandAlone` functions
+- Replaced use of `1i` with `complex()`
+- Removed unused variable `T1max`
+- Removed unnecessary `ones()` parameter in `LorentzModel.m` and `TwoLorentzModel.m`
+- Philips \*.spar file extension is no longer saved in the output structure
+- Removed calculation of `df` in `GannetLoad.m`; added `dt` in its place
+- Exported CSV files will no longer be overwritten if a CSV file of the same name already exists in
+  the output directory; instead, a new file is created and appended with an integer
+- Added new output structure attribute `nrows_water`
+- Reordered structure subfields for metabolites in `GannetFit.m` and `ExportToCSV.m`
+- Shifted Gannet logo and version number in PDF outputs slightly to the right
+- Alpha values are now included in exported CSV files
+- Replaced the Gannet logo with a PNG version
+- MANY COSMETIC CHANGES
+
+### Bug fixes
+
+- Added a check for letter case of \*.dcm and \*.ima files in `DICOMRead.m` and `SiemensDICOMRead.m`
+  (`dir()` is case-sensitive in Linux)
+- Added a fix to avoid an error where MATLAB tried to close figures following an unrelated internal
+  error, but no figures were created
+- Fixed a bug in `NIfTIMRSRead.m` that led to an error if the `Manufacturer` field is not found in
+  the data file header
+- If `export_fig.m` cannot be found on the search path and `append` has been flagged in
+  `GannetPreInitialise.m`, it is made clear to the user that PDFs will be saved separately
+- Fixed bugs in `AlignUsingH2O.m`
+- Fixed a bug in `SiemensDICOMRead.m` where an error occurred if `centerFreq` is not found in the
+  data file header
 
 ## 3.3.0
 <span style="color: grey;">2022-10-22</span>

@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <img id="img_50" src="images/logo+title.png" alt="The Gannet logo"/>
 
 ::: release
-<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.3.0</a></h3>
+<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.3.1</a></h3>
 :::
 
 ## Overview
@@ -78,21 +78,21 @@ SPM12 can be installed in the same manner after it has been downloaded from the 
 
 ## Compatibility
 
-Gannet is currently being developed in MATLAB R2022b in macOS 13.1 Ventura. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
+Gannet is currently being developed in MATLAB R2022b in macOS 13 Ventura. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
 
 ## Supported file formats
 
 At present, the following MRS data file formats are supported:
 
--   DICOM (.dcm)
--   GE P-file (.7)
--   NIfTI-MRS (.nii[.gz])
--   Philips .data/.list
--   Philips .raw
--   Philips .sdat/.spar
--   Siemens DICOM (.ima)
--   Siemens .rda
--   Siemens TWIX (.dat)
+- DICOM (.dcm)
+- GE P-file (.7)
+- NIfTI-MRS (.nii[.gz])
+- Philips .data/.list
+- Philips .raw
+- Philips .sdat/.spar
+- Siemens DICOM (.ima)
+- Siemens .rda
+- Siemens TWIX (.dat)
 
 For creating and co-registering voxel masks, structural images need to be in NIfTI format (DICOM files can also be used if processing GE P-files).
 
@@ -114,77 +114,77 @@ The Gannet team can also be directly <a href="mailto:mam4041@med.cornell.edu?sub
 
 ## Developers
 
--   Richard Edden (Johns Hopkins University)
--   Mark Mikkelsen (Weill Cornell Medicine)
--   Georg Oeltzschner (Johns Hopkins University)
--   Muhammad Saleh (University of Maryland)
--   C. John Evans (Cardiff University)
--   Ashley Harris (University of Calgary)
--   Nicolaas Puts (King's College London)
+- Richard Edden (Johns Hopkins University)
+- Mark Mikkelsen (Weill Cornell Medicine)
+- Georg Oeltzschner (Johns Hopkins University)
+- Muhammad Saleh (University of Maryland)
+- C. John Evans (Cardiff University)
+- Ashley Harris (University of Calgary)
+- Nicolaas Puts (King's College London)
 
 ## License and citing Gannet
 
 This software is licensed under an open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD-3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:
 
--   Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> *Journal of Magnetic Resonance Imaging*. 2014;40(6):1445--1452
+- Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> *Journal of Magnetic Resonance Imaging*. 2014;40(6):1445--1452
 
 **If you perform frequency-and-phase correction (FPC) using:**
 
 Robust spectral registration (`RobustSpecReg`):
 
--   Mikkelsen M, Tapper S, Near J, Mostofsky SH, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting frequency and phase offsets in MRS data using robust spectral registration.</a> *NMR in Biomedicine*. 2020;33(10):e4368
+- Mikkelsen M, Tapper S, Near J, Mostofsky SH, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/nbm.4368" target="_blank">Correcting frequency and phase offsets in MRS data using robust spectral registration.</a> *NMR in Biomedicine*. 2020;33(10):e4368
 
 multi-step FPC (`SpecRegHERMES`):
 
--   Mikkelsen M, Saleh MG, Near J, et al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency and phase correction for multiplexed edited MRS of GABA and glutathione.</a> *Magnetic Resonance in Medicine*. 2018;80(1):21--28
+- Mikkelsen M, Saleh MG, Near J, et al. <a href="https://doi.org/10.1002/mrm.27027" target="_blank">Frequency and phase correction for multiplexed edited MRS of GABA and glutathione.</a> *Magnetic Resonance in Medicine*. 2018;80(1):21--28
 
 or spectral registration (`SpecReg`):
 
--   Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency and phase drift correction of magnetic resonance spectroscopy data by spectral registration in the time domain.</a> *Magnetic Resonance in Medicine*. 2015;73(1):44--50
+- Near J, Edden R, Evans CJ, Paquin R, Harris A, Jezzard P. <a href="https://doi.org/10.1002/mrm.25094" target="_blank">Frequency and phase drift correction of magnetic resonance spectroscopy data by spectral registration in the time domain.</a> *Magnetic Resonance in Medicine*. 2015;73(1):44--50
 
 **If you perform voxel co-registration:**
 
--   Please acknowledge the use of SPM12. You may also link/cite the <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12 website</a>.
+- Please acknowledge the use of SPM12. You may also link/cite the <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12 website</a>.
 
 **If you perform tissue segmentation:**
 
--   Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> *NeuroImage*. 2005;26(3):839--851
+- Ashburner J, Friston KJ. <a href="https://doi.org/10.1016/j.neuroimage.2005.02.018" target="_blank">Unified segmentation.</a> *NeuroImage*. 2005;26(3):839--851
 
 **If you report water-referenced, tissue-corrected metabolite measurements using:**
 
 The Harris et al. method:
 
--   Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> *Journal of Magnetic Resonance Imaging*. 2015;42(5):1431--1440
+- Harris AD, Puts NAJ, Edden RAE. <a href="https://doi.org/10.1002/jmri.24903" target="_blank">Tissue correction for GABA-edited MRS: Considerations of voxel composition, tissue segmentation, and tissue relaxations.</a> *Journal of Magnetic Resonance Imaging*. 2015;42(5):1431--1440
 
 or the Gasparovic et al. method:
 
--   Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> *Magnetic Resonance in Medicine*. 2006;55(6):1219--1226
+- Gasparovic C, Song T, Devier D, et al. <a href="https://doi.org/10.1002/mrm.20901" target="_blank">Use of tissue water as a concentration reference for proton spectroscopic imaging.</a> *Magnetic Resonance in Medicine*. 2006;55(6):1219--1226
 
 ## Acknowledgments
 
 The development and dissemination of Gannet has been supported by the following NIH grants:
 
--   R01 EB016089
--   R01 EB023963
--   P41 EB015909
--   K99 EB028828
--   R01 MH106564
--   R21 MH098228
--   R21 NS077300
--   R01 MH096263
+- R01 EB016089
+- R01 EB023963
+- P41 EB015909
+- K99 EB028828
+- R01 MH106564
+- R21 MH098228
+- R21 NS077300
+- R01 MH096263
 
 We wish to thank the following individuals for their direct or indirect contributions:
 
--   Yair Altman (Undocumented Matlab)
--   Peter Barker (Johns Hopkins University)
--   Alex Craven (University of Bergen)
--   Philipp Ehses (Max Planck Institute for Biological Cybernetics)
--   Robin de Graaf (Yale School of Medicine)
--   Xiangrui Li (Ohio State University)
--   Jamie Near (McGill University)
--   Ralph Noeske (GE Healthcare)
--   Wouter Potters (UMC Amsterdam)
--   Jan Simon (Heidelberg)
+- Yair Altman (Undocumented Matlab)
+- Peter Barker (Johns Hopkins University)
+- Alex Craven (University of Bergen)
+- Philipp Ehses (Max Planck Institute for Biological Cybernetics)
+- Robin de Graaf (Yale School of Medicine)
+- Xiangrui Li (Ohio State University)
+- Jamie Near (McGill University)
+- Ralph Noeske (GE Healthcare)
+- Wouter Potters (UMC Amsterdam)
+- Jan Simon (Heidelberg)
 
 
 
