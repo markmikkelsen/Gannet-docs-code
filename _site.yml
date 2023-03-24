@@ -12,11 +12,15 @@ navbar:
         - text: "Reference"
           href: reference.html
         - text: "Output structure attributes"
-          href: output-struc-attrib.html
+          href: output-structure-attributes.html
+        - text: "Preprocessing"
+          href: preprocessing.html
         - text: "Signal modeling"
           href: signal-modeling.html
-        - text: "Tissue correction"
-          href: tissue-correction.html
+        - text: "Data quality metrics"
+          href: data-quality-metrics.html
+        - text: "Quantification & tissue correction"
+          href: quantification-tissue-correction.html
         - text: "Additional tools"
           href: additional-tools.html
     - text: "Examples"

@@ -11,7 +11,7 @@
 
 
 
-<title>Loading data</title>
+<title>Data quality metrics</title>
 
 <script src="site_libs/header-attrs-2.20/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -29,9 +29,6 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
-<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
-<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
@@ -228,75 +225,6 @@ $(document).ready(function () {
 
 
 
-<style type="text/css">
-
-#TOC {
-  margin: 25px 0px 20px 0px;
-}
-@media (max-width: 768px) {
-#TOC {
-  position: relative;
-  width: 100%;
-}
-}
-
-@media print {
-.toc-content {
-  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
-  float: right;
-}
-}
-
-.toc-content {
-  padding-left: 30px;
-  padding-right: 40px;
-}
-
-div.main-container {
-  max-width: 1200px;
-}
-
-div.tocify {
-  width: 20%;
-  max-width: 260px;
-  max-height: 85%;
-}
-
-@media (min-width: 768px) and (max-width: 991px) {
-  div.tocify {
-    width: 25%;
-  }
-}
-
-@media (max-width: 767px) {
-  div.tocify {
-    width: 100%;
-    max-width: none;
-  }
-}
-
-.tocify ul, .tocify li {
-  line-height: 20px;
-}
-
-.tocify-subheader .tocify-item {
-  font-size: 0.90em;
-}
-
-.tocify .list-group-item {
-  border-radius: 0px;
-}
-
-.tocify-subheader {
-  display: inline;
-}
-.tocify-subheader .tocify-item {
-  font-size: 0.95em;
-}
-
-</style>
-
-
 
 </head>
 
@@ -304,16 +232,6 @@ div.tocify {
 
 
 <div class="container-fluid main-container">
-
-
-<!-- setup 3col/9col grid for toc_float and main content  -->
-<div class="row">
-<div class="col-xs-12 col-sm-4 col-md-3">
-<div id="TOC" class="tocify">
-</div>
-</div>
-
-<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -430,17 +348,12 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Loading data</h1>
+<h1 class="title toc-ignore">Data quality metrics</h1>
 <h4 class="date">Last updated: March 24, 2023</h4>
 
 </div>
 
 
-<style>
-body .main-container {
-  max-width: 1200px;
-}
-</style>
 <button onclick="topFunction()" id="myBtn" title="Go to top">
 Back to top
 </button>
@@ -465,9 +378,27 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
-<p><br></p>
+<style type="text/css">
+table {
+  margin: auto;
+}
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiTG9hZGluZyBkYXRhIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKPHN0eWxlPgpib2R5IC5tYWluLWNvbnRhaW5lciB7CiAgbWF4LXdpZHRoOiAxMjAwcHg7Cn0KPC9zdHlsZT4KCmBgYHtyIHNldHVwLCBpbmNsdWRlID0gRkFMU0V9CmtuaXRyOjpvcHRzX2NodW5rJHNldChlY2hvID0gVFJVRSkKYGBgCgpgYGB7ciwgY2hpbGQgPSAianMvYmFjay10by10b3AuanMifQpgYGAKCjxicj4KCg==</div>
+table thead th {
+  border-bottom: 1px solid #ddd;
+}
+
+th, td {
+  padding: 5px;
+}
+
+tfoot, tr:nth-child(even) {
+  background: #eee;
+}
+</style>
+<p><br></p>
+<p>[UNDER DEVELOPMENT]</p>
+
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBxdWFsaXR5IG1ldHJpY3MiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliCmNzbDogYW1lcmljYW4tbWVkaWNhbC1hc3NvY2lhdGlvbi5jc2wKbGluay1jaXRhdGlvbnM6IHllcwpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIHRvYzogRkFMU0UKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQp0YWJsZSB7CiAgbWFyZ2luOiBhdXRvOwp9Cgp0YWJsZSB0aGVhZCB0aCB7CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNkZGQ7Cn0KCnRoLCB0ZCB7CiAgcGFkZGluZzogNXB4Owp9Cgp0Zm9vdCwgdHI6bnRoLWNoaWxkKGV2ZW4pIHsKICBiYWNrZ3JvdW5kOiAjZWVlOwp9CmBgYAoKPGJyPgoKW1VOREVSIERFVkVMT1BNRU5UXQoKCgoKCgo=</div>
 <!DOCTYPE html>
 <br>
 <hr>
@@ -483,8 +414,6 @@ function topFunction() {
 </p>
 
 
-</div>
-</div>
 
 </div>
 
@@ -518,39 +447,10 @@ $(document).ready(function () {
 <!-- code folding -->
 <script>
 $(document).ready(function () {
-  window.initializeSourceEmbed("loading-data.Rmd");
+  window.initializeSourceEmbed("data-quality-metrics.Rmd");
 });
 </script>
 
-<script>
-$(document).ready(function ()  {
-
-    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
-    $('.unlisted.unnumbered').addClass('toc-ignore')
-
-    // move toc-ignore selectors from section div to header
-    $('div.section.toc-ignore')
-        .removeClass('toc-ignore')
-        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
-
-    // establish options
-    var options = {
-      selectors: "h1,h2",
-      theme: "bootstrap3",
-      context: '.toc-content',
-      hashGenerator: function (text) {
-        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
-      },
-      ignoreSelector: ".toc-ignore",
-      scrollTo: 0
-    };
-    options.showAndHide = false;
-    options.smoothScroll = true;
-
-    // tocify
-    var toc = $("#TOC").tocify(options).data("toc-tocify");
-});
-</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

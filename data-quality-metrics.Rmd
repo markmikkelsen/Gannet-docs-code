@@ -1,0 +1,48 @@
+---
+title: "Data quality metrics"
+date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+bibliography: references.bib
+csl: american-medical-association.csl
+link-citations: yes
+output:
+  html_document:
+    toc: FALSE
+    toc_depth: 2
+    toc_float:
+      collapsed: FALSE
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r, child = "js/back-to-top.js"}
+```
+
+```{css, echo = FALSE}
+table {
+  margin: auto;
+}
+
+table thead th {
+  border-bottom: 1px solid #ddd;
+}
+
+th, td {
+  padding: 5px;
+}
+
+tfoot, tr:nth-child(even) {
+  background: #eee;
+}
+```
+
+<br>
+
+[UNDER DEVELOPMENT]
+
+
+
+
+
+

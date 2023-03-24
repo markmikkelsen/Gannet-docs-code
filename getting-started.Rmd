@@ -28,7 +28,7 @@ The linear workflow of Gannet is made up of five modules. For proper functionali
 
 | <u>Module</u> | <u>Description</u> |
 | :- | :--------- |
-| **GannetLoad** | Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the timecourse of the experiment. |
+| **GannetLoad** | Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the time course of the experiment. |
 | **GannetFit** | Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality. |
 | **GannetCoRegister** | Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image on three orthogonal slices. |
 | **GannetSegment** | Calls SPM to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the MRS voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates. |
@@ -147,7 +147,9 @@ MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'
 MRS_struct = GannetFit(MRS_struct);
 ```
 
-The respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays. We have provided an [example batch processing script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own purposes.
+The respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays.
+
+We have provided an [example batch processing script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own purposes.
 
 ## Joining data files
 
@@ -161,7 +163,7 @@ We have provided an [example script](https://markmikkelsen.github.io/Gannet-docs
 
 As shown in the syntax above, Gannet saves all relevant data and results in a structure (e.g., `MRS_struct`) at all steps in the analysis pipeline. After creating the initial output from `GannetLoad.m`, `MRS_struct` is used as both the output and input arguments for the other Gannet modules. (You need not use `MRS_struct`; you can use something more descriptive and relevant to your purposes if you wish.)
 
-The output structure contains several fields and subfields, which grow in number as your proceed through the Gannet analysis pipeline. See the list of [output structure attributes](https://markmikkelsen.github.io/Gannet-docs/output-struc-attrib.html) for a complete description.
+The output structure contains several fields and subfields, which grow in number as your proceed through the Gannet analysis pipeline. See the list of [output structure attributes](https://markmikkelsen.github.io/Gannet-docs/output-structure-attributes.html) for a complete description.
 
 You can also output a CSV file containing useful values from the output structure for further analysis in a statistical program of your choice. This functionality is set in `GannetPreInitialise.m`.
 

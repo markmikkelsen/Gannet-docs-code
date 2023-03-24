@@ -65,7 +65,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ------------------------------------------------------------------------
 
-## Loading and preprocessing data
+## Loading and preprocessing
 
 <br>
 
@@ -84,6 +84,14 @@ MRS_struct = GannetLoad({'S01_GABA_68_act.sdat'}, {'S01_GABA_68_ref.sdat'});
 Output:
 
 <img src="images/reference/GannetLoad-example.png" alt="A screenshot example of GannetLoad output">
+
+A) Edited difference spectra before and after frequency and phase alignment. Users should look out for poor alignment and signal distortions from lipid contamination or ghosting artifacts [@Kreis2004].
+
+B) The observed frequency of either the residual water signal or 3 ppm Cr peak on a average-by-average basis. Users can use this panel to check for participant motion and/or scanner-related frequency drift. The solid black line is the nominal water or 3 ppm Cr frequency, while the dashed lines represent +/-1 standard deviation of population-level frequency offsets observed in the Big GABA study [@Mikkelsen2017]. In other words, frequency shifts beyond these limits indicates above-average offsets that should be of concern to data fidelity.
+
+C) A spectrogram of the 3 ppm Cr signal average by average before and after frequency and phase alignment. These data complement the data shown in panel B by additionally showing spectral distortions in each average.
+
+D) Textual details of the data and processing procedures. When "n/a - wgt. avg. used" is shown for "Rejects", this means the data were averaged using weighted averaging, which down-weights bad (i.e., "rejected") averages.
 
 ------------------------------------------------------------------------
 
@@ -108,6 +116,17 @@ Output:
 
 <img src="images/reference/GannetFit-example.png" alt="A screenshot example of GannetFit output">
 
+A) Edited difference spectrum (spectra) with fitted model function(s) overlaid. The fit residuals are also shown. NB: When modeling the GABA peak, Gannet applies weights to the residual Cho signal data points at 3.16 to 3.285 ppm. This improves fitting of the GABA peak when there are subtraction artifacts.
+
+B) Reference spectra (water and Cr) with fitted model functions overlaid. The fit residuals are also shown. If no water reference data was given during data loading, only Cr is shown.
+
+C) Textual results from GannetFit (full details can be found on the [Data quality metrics](https://markmikkelsen.github.io/Gannet-docs/data-quality-metrics.html) page). For the metabolites listed:
+    - Area is the integrated signal (in arbitrary units) of the peaks shown
+    - Linewidth is the full-width, half-maximum (FWHM) (in Hz)
+    - SNR is defined as the signal model amplitude divided by twice the standard deviation of noise
+    - Fit error is defined as the standard deviation of residuals divided by the signal model amplitude multiplied by 100
+    - Quantification details can be found on the [Quantification & tissue correction](https://markmikkelsen.github.io/Gannet-docs/quantification-tissue-correction.html) page.
+
 ------------------------------------------------------------------------
 
 ## Voxel co-registration
@@ -131,6 +150,10 @@ MRS_struct = GannetCoRegister(MRS_struct, {'S01_struc.nii'});
 Output:
 
 <img src="images/reference/GannetCoRegister-example.png" alt="A screenshot example of GannetCoRegister output">
+
+A) Co-registration of the MRS voxel on the corresponding structural MR image. The three orthogonal slices are shown at the voxel center.
+
+B) Textual details of the voxel geometry.
 
 ------------------------------------------------------------------------
 
@@ -157,6 +180,10 @@ Output:
 
 <img src="images/reference/GannetSegment-example.png" alt="A screenshot example of GannetSegment output">
 
+A) Axial view of the probabilistic voxel tissue segmentation maps for grey matter (GM), white matter (WM), and cerebrospinal fluid (CSF).
+
+B) Textual details of the CSF-corrected metabolites values (see [Quantification & tissue correction](https://markmikkelsen.github.io/Gannet-docs/quantification-tissue-correction.html) for further details) and the voxel tissue volume fractions.
+
 ------------------------------------------------------------------------
 
 ## Quantification
@@ -182,6 +209,12 @@ MRS_struct = GannetQuantify(MRS_struct);
 Output:
 
 <img src="images/reference/GannetQuantify-example.png" alt="A screenshot example of GannetQuantify output">
+
+A) Axial view of the probabilistic voxel tissue segmentation maps for grey matter (GM), white matter (WM), and cerebrospinal fluid (CSF).
+
+B)  Edited difference spectrum (spectra) with fitted model function(s) overlaid.
+
+C) Textual details of tissue-corrected metabolite values (see [Quantification & tissue correction](https://markmikkelsen.github.io/Gannet-docs/quantification-tissue-correction.html) for further details).
 
 ### References
 
