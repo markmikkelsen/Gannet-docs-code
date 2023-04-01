@@ -33,7 +33,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 ## MRS_struct
 
 | <u>Field</u> | <u>Description</u> |
-| :- | :--------- |
+|:------------------|:----------------------------------------------------|
 | `version` | Structure containing release numbers of Gannet and the Gannet modules |
 | `ii` | During analysis, the current file being loaded; after analysis, the number of files that were loaded |
 | `metabfile` | Cell array containing the inputted metabolite data filenames |
@@ -42,7 +42,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 ## MRS_struct.p
 
 | <u>Field</u> | <u>Description</u> |
-| :- | :--------- |
+|:------------------|:----------------------------------------------------|
 `target` | The metabolite(s) targeted by the editing pulses |
 `seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
 `LB` | Exponential line-broadening applied (Hz) |
@@ -88,7 +88,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 ## MRS_struct.fids
 
 | <u>Field</u> | <u>Description</u> |
-| :- | :--------- |
+|:------------------|:----------------------------------------------------|
 | `data` | Raw time-domain metabolite data (dimensions: `npoints` $\times$ `nrows`) of the last loaded dataset |
 | `data_water` | Raw time-domain water reference data (dimensions: `npoints` $\times$ `nrows_water`) of the last loaded dataset |
 | `ON_OFF` | Array of the editing order of the last loaded dataset |
@@ -97,7 +97,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 ## MRS_struct.spec
 
 | <u>Field</u> | <u>Description</u> |
-| :- | :--------- |
+|:------------------|:----------------------------------------------------|
 | `freq` | Frequency axis (ppm), calculated from the last loaded dataset |
 | `F0freq` | Cell array of the observed frequency of either residual water signal or the 3 ppm Cr signal for each average |
 | `F0freq2` | Cell array of the observed frequency of the 3 ppm Cr signal for each average; this is used in `RobustSpectralRegistration.m` as the starting values for frequency during optimization |
@@ -107,7 +107,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 ## MRS_struct.out
 
 | <u>Field</u> | <u>Description</u> |
-| :- | :--------- |
+|:------------------|:----------------------------------------------------|
 | `AvgDeltaF0` | A metric of the amount of frequency offset observed during the acquisition, calculated as the mean difference between the observed frequency of the residual water signal (or the 3 ppm Cr signal) in the pre-frequency-corrected subspectra and the nominal water frequency at 4.68 ppm (or the nominal 3 ppm Cr signal if HERMES or GSH editing) |
 | `SpecReg` | Structure containing output from spectral registration |
 | `reject` | Cell array of binary integers indicating whether an individual transient should be rejected during signal averaging |
@@ -116,7 +116,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 ## MRS_struct.mask
 
 | <u>Field</u> | <u>Description</u> |
-| :- | :--------- |
+|:------------------|:----------------------------------------------------|
 | `outfile` | Cell array of the output filenames of the voxel masks |
 | `img` | Cell array containing three-dimensional arrays representing the three orthogonal slices of the T1 images |
 | `T1image` | Cell array of the input T1 image filenames |

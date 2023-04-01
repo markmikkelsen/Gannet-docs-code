@@ -178,9 +178,9 @@ The unsurpressed water signal is fitted with a Lorentzian-Gaussian model with a 
 
 $$
 S(f) = 
-\left\{\frac{\cos(\varphi)A+\sin(\varphi)A\gamma(f-f_0)}
-{\gamma^2(f-f_0)^2+1}\right\}
-\left\{\exp[\sigma(f-f_0)^2]\right\}+
+\frac{\cos(\varphi)A+\sin(\varphi)A\gamma(f-f_0)}
+{\gamma^2(f-f_0)^2+1}
+\exp[\sigma(f-f_0)^2]+
 m(f-f_0)+b
 $$
 

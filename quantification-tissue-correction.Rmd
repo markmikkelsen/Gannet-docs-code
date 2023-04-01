@@ -68,8 +68,8 @@ C_{corr} =
 \frac{MM}{\kappa}\cdot
 C_{W}\cdot
 W_{vis}\cdot
-\left\{\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}
+\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}
 $$
 
 where:
@@ -107,8 +107,8 @@ C_{CSFcorr} =
 \frac{MM}{\kappa}\cdot
 C_{W}\cdot
 W_{vis}\cdot
-\left\{\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
+\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
 \frac{1}{1-f_{CSF}}
 $$
 
@@ -128,8 +128,8 @@ C_{TissCorr} =
 \frac{H_{W}}{H_{M}}\cdot
 \frac{MM}{\kappa}\cdot
 C_{W}\cdot
-\left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}\beta_{i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{(1-f_{CSF})\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}
+\frac{\sum_{i}^{GM,WM,CSF}f_{i}\beta_{i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
+{(1-f_{CSF})\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}
 $$
 
 where:
@@ -151,8 +151,8 @@ C_{AlphaCorr} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
 \frac{MM}{\kappa}\cdot
-\left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
+\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
 \frac{1}{f_{GM}+\alpha{f_{WM}}}
 $$
 
@@ -173,8 +173,8 @@ C_{AlphaCorrNorm} =
 \frac{I_{M}}{I_{W}}\cdot
 \frac{H_{W}}{H_{M}}\cdot
 \frac{MM}{\kappa}\cdot
-\left\{\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\right\}\cdot
+\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
 \frac{\mu_{GM}+\alpha{\mu_{WM}}}{(f_{GM}+\alpha{f_{WM}})(\mu_{GM}+{\mu_{WM}})}
 $$
 
@@ -186,7 +186,8 @@ where:
 | ${\mu_{GM}}$ | Group-averaged voxel volume fraction of GM |
 | ${\mu_{WM}}$ | Group-averaged voxel volume fraction of WM |
 
-### References
+<br>
 
+### References
 
 

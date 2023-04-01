@@ -6,7 +6,7 @@ csl: american-medical-association.csl
 link-citations: yes
 output:
   html_document:
-    toc: FALSE
+    toc: TRUE
     toc_depth: 2
     toc_float:
       collapsed: FALSE
@@ -31,15 +31,58 @@ table thead th {
 th, td {
   padding: 5px;
 }
-
-tfoot, tr:nth-child(even) {
-  background: #eee;
-}
 ```
 
 <br>
 
-[UNDER DEVELOPMENT]
+Listed below are the preprocessing routines that are run in `GannetLoad.m`. Whether a particular routine or subroutine is run will depend on the format of the inputted data and the options set in `GannetPreInitialise.m`.
+
+## RF coil combination
+
+Certain raw MRS data formats store data without coil combination; specifically, GE P-file (.7), NIfTI-MRS (if the source data were raw), Philips .raw, and Siemens TWIX (.dat) data. Gannet uses generalized least squares [@An2013] to optimally combine the signal from the multiple RF channels. If water files are provided, these data will be used as references for signal weighting and phasing of the coil data.
+
+## Eddy-current correction
+
+In `GannetPreInitialise.m`, users have the option to apply eddy-current correction (ECC) to metabolite and water data. If applied, Gannet uses the method described by Klose (1990) [@Klose1990]. The ECC routine can be round in `EddyCurrentCorrection.m`.
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; ECC can only be applied if water data are provided.
+:::
+
+## Line-broadending (apodization)
+
+FID data are line-broadened using a time-varying exponential weighting function where the weighting constant set in `GannetPreInitialise.m` (3 Hz is the default).
+
+## Frequency and phase alignment
+
+During acquisition, spectral data are affected by frequency and phase offsets as a results of biophysical, electrical, mechanical, and participant factors. Gannet has several algorithms to correct for these errors during preprocessing. Users can choose which method to use in `GannetPreInitialise.m`. The methods are:
+
+| <u>Method</u> | <u>Option</u> | <u>Description</u> |
+| :-------- | :---- | :--------- |
+| Robust spectral registration [@Mikkelsen2020] (default) | `RobustSpecReg` | A method based on spectral registration [@Near2015] that is robust against spectral distortions such as unstable residual water and lipid contamination.  |
+| Multi-step frequency and phase correction [@Mikkelsen2018] | `SpecRegHERMES` | A method originally developed to align multiplexed edited HERMES data. This approach is also based on spectral registration. |
+
+## Phase correction
+
+It is common for unprocessed spectra to be out of phase. Gannet applies a global zero-order phase correction to all transients by fitting the 3 ppm Cr and 3.2 ppm Cho peaks in the.
+
+## Signal averaging
+
+Gannet provides two methods for averaging individual transients: arithmetic averaging (with outlier rejection) and weighted averaging (the default).
+
+### Arithmetic averaging
+
+Text.
+
+### Weighted averaging
+
+Text.
+
+<br>
+
+### References
+
+
 
 
 

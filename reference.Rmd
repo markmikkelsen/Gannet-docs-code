@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The variables listed on this page are applicable to release 3.3.0 and are not necessarily correct for older versions of Gannet.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The variables listed on this page are applicable to release 3.3.0 onwards and are not necessarily correct for older versions of Gannet.
 :::
 
 ## Pre-initializing Gannet
@@ -60,12 +60,12 @@ knitr::opts_chunk$set(echo = TRUE)
 | `join`     | Set to `1` to join multiple files (this can be batched across subjects)                                                                   |
 | `mat`      | Set to `1` to save the output structure as a MAT-file                                                                                     |
 | `csv`      | Set to `1` to export a CSV file containing useful data for statistical analysis (applies to `GannetFit.m`, `GannetSegment.m` and `GannetQuantify.m`) |
-| `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig/` in the `Gannet/` directory to be added to the search path and <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> to be installed (NB: macOS users should use <a href="https://pages.uoregon.edu/koch/" target="_blank">this version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript) |
+| `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig/` in the `Gannet/` directory to be added to the search path and <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> to be installed on the user's machine (NB: macOS users should use <a href="https://pages.uoregon.edu/koch/" target="_blank">this version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript) |
 | `hide`     | Set to `1` to not display output figures |
 
 ------------------------------------------------------------------------
 
-## Loading and preprocessing
+## Loading & preprocessing
 
 <br>
 
@@ -215,6 +215,8 @@ A) Axial view of the probabilistic voxel tissue segmentation maps for grey matte
 B)  Edited difference spectrum (spectra) with fitted model function(s) overlaid.
 
 C) Textual details of tissue-corrected metabolite values (see [Quantification & tissue correction](https://markmikkelsen.github.io/Gannet-docs/quantification-tissue-correction.html) for further details).
+
+<br>
 
 ### References
 
