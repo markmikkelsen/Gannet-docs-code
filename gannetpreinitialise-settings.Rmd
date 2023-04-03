@@ -19,7 +19,7 @@ body .main-container {
 
 <br>
 
-::: info
+::: warning
 <i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; These examples were created in release 3.3.0. Take care copy-pasting these examples into your version of `GannetPreInitialise.m`. You may be using a different release that has older/newer variables that could result in an error during the analysis pipeline.
 :::
 
