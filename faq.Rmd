@@ -26,7 +26,9 @@ pre.sourceCode code {
 <br>
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, please first check you are using the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank" style="color:white"><u>version</u></a>. It may be that your issue has already been addressed.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; When encountering an error or bug in Gannet, please first check you are using the latest <a href="https://github.com/markmikkelsen/Gannet" target="_blank"><u>version</u></a>. It may be that your issue has already been addressed.
+
+If your issue has not been addressed or is not found in this FAQ, please report the issue to us on <a href="https://github.com/markmikkelsen/Gannet/issues" target="_blank"><u>GitHub</u></a> or the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank"><u>MRSHub Forum</u></a>.
 :::
 
 ## General

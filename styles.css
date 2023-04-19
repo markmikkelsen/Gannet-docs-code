@@ -108,6 +108,11 @@ img {
   background-color: rgba(0, 0, 0, 0.1);
 }
 
+.info a {
+  color: #FFFFFF;
+  background-color: transparent;
+}
+
 .warning {
   background-color: #FF851B;
   color: #FFFFFF;

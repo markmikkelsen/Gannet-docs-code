@@ -39,7 +39,9 @@ tfoot, tr:nth-child(even) {
 
 <br>
 
-This page describes the functions Gannet uses to model metabolite signals. Note that when the definition of a parameter is omitted for a particular metabolite signal, it is implied that it already has been defined in a previously described function for brevity.
+This page describes the functions Gannet uses to model metabolite signals. Note that when the definition of a parameter is omitted from a table under a particular metabolite, it is implied that it has been defined already in a previously described function.
+
+For all model fitting, Gannet uses nonlinear regression, with fit parameters optimized using the least-squares Levenberg-Marquardt algorithm. For increased computational speed and a better solution, the starting values of the optimization are derived from a "pre-fit" that uses the trust-region-reflective algorithm. Description of these algorithms can be found in the <a href="https://www.mathworks.com/help/optim/ug/least-squares-model-fitting-algorithms.html" target="_blank">online MATLAB documentation</a>.
 
 ## GABA+Glx
 
@@ -64,6 +66,10 @@ where:
 | $m$ | Slope of linear baseline |
 | $b_1$ | Sine baseline term |
 | $b_2$ | Cosine baseline term |
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The GABA+Glx model is fitted using a model that has observation weights between 3.16 and 3.285 ppm, where the Cho subtraction artifact [@Evans2013] appears. The purpose is to down-weight the influence of this artifact (if present) on the model fitting.
+:::
 
 <img id="img_75" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model">
 
@@ -118,6 +124,28 @@ $$
 
 <img id="img_75" src="images/signal-modeling/Lac.png" alt="Illustration of the Lac model">
 
+## EtOH
+
+EtOH is fitted with a two-Lorentzian model with a linear baseline:
+
+$$
+S(f) =
+\sum_{i=1}^{2}\left[\frac{A_{i}}{1+\left(\frac{f-f_{i}}{\gamma_{i}/2}\right)^2}\right]+
+m(f-f_1)+b
+$$
+
+where:
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :- | :-------- |
+| $A_i$ | Lorentzian *i*'s amplitude |
+| $f_i$ | Lorentzian *i*'s center frequency (ppm) |
+| $\gamma$ | Lorentzian width (full-width at half-maximum) |
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The EtOH model is fitted using a model that has observation weights between 1.29 and 1.51 ppm, where the Lac subtraction artifact appears. The purpose is to down-weight the influence of this artifact (if present) on the model fitting.
+:::
+
 ## Cho+Cr
 
 Cho and Cr in the edit-OFF spectrum are fitted with a two-Lorentzian model with a linear baseline:
@@ -145,7 +173,7 @@ where:
 | <u>Parameter</u> | <u>Definition</u> |
 | :- | :-------- |
 | $A$ | Amplitude of Cr peak |
-| $\gamma$ | Lorentzian width (half-width half-maximum) |
+| $\gamma$ | Lorentzian width (half-width at half-maximum) |
 | $f_0$ | Center frequency of Cr peak |
 | $h$ | Amplitude scaling factor for Cho peak |
 | $\varphi$ | Phase |
@@ -185,6 +213,10 @@ m(f-f_0)+b
 $$
 
 <img id="img_75" src="images/signal-modeling/water.png" alt="Illustration of the water model">
+
+<br>
+
+### References
 
 
 

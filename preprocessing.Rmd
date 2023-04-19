@@ -51,7 +51,7 @@ In `GannetPreInitialise.m`, users have the option to apply eddy-current correcti
 
 ## Line-broadending (apodization)
 
-FID data are line-broadened using a time-varying exponential weighting function where the weighting constant set in `GannetPreInitialise.m` (3 Hz is the default).
+FID data are multiplied by a time-varying exponential weighting function where the weighting constant is set in `GannetPreInitialise.m` (3 Hz is the default).
 
 ## Frequency and phase alignment
 
