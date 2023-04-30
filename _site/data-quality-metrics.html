@@ -29,6 +29,9 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <script src="site_libs/navigation-1.1/codefolding.js"></script>
 <script src="site_libs/navigation-1.1/sourceembed.js"></script>
@@ -225,6 +228,75 @@ $(document).ready(function () {
 
 
 
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+.tocify-subheader {
+  display: inline;
+}
+.tocify-subheader .tocify-item {
+  font-size: 0.95em;
+}
+
+</style>
+
+
 
 </head>
 
@@ -232,6 +304,16 @@ $(document).ready(function () {
 
 
 <div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
 
 
 
@@ -349,7 +431,7 @@ $(document).ready(function () {
 
 
 <h1 class="title toc-ignore">Data quality metrics</h1>
-<h4 class="date">Last updated: April 19, 2023</h4>
+<h4 class="date">Last updated: April 30, 2023</h4>
 
 </div>
 
@@ -378,27 +460,67 @@ function topFunction() {
   document.documentElement.scrollTop = 0;
 }
 </script>
-<style type="text/css">
-table {
-  margin: auto;
-}
-
-table thead th {
-  border-bottom: 1px solid #ddd;
-}
-
-th, td {
-  padding: 5px;
-}
-
-tfoot, tr:nth-child(even) {
-  background: #eee;
-}
-</style>
 <p><br></p>
-<p>[UNDER DEVELOPMENT]</p>
+<p>Listed below are the preprocessing routines that are run in
+<code>GannetLoad.m</code>. Whether a particular routine or subroutine is
+run will depend on the format of the inputted data and the options set
+in <code>GannetPreInitialise.m</code>.</p>
+<div id="linewidth" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Linewidth<a href="#linewidth"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[Text]</p>
+</div>
+<div id="signal-to-noise-ratio-snr" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Signal-to-noise ratio (SNR)<a
+href="#signal-to-noise-ratio-snr" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>[Text]</p>
+</div>
+<div id="fit-error" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Fit error<a href="#fit-error"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>When fitting signal functions to metabolite peaks, Gannet will also
+estimate the error in the fit. This is defined as the signal model
+amplitude divided by the standard deviation of the model fit
+residuals:</p>
+<p><span class="math display">\[
+\epsilon_{metab} = A_{metab}/std(resid)
+\]</span></p>
+<p>where:</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left"><u>Parameter</u></th>
+<th align="left"><u>Definition</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A_{metab}\)</span></td>
+<td align="left">Signal model amplitude</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(resid\)</span></td>
+<td align="left">Signal model fit residuals</td>
+</tr>
+</tbody>
+</table>
+<p>Since all metabolite are normalized to a reference signal (Cr or
+unsuppressed water), the fit error that really should be considered (and
+reported) is the combined error of the metabolite and reference signal
+model fits, which add up in quadrature. Formulaically, this is defined
+as:</p>
+<p><span class="math display">\[
+\epsilon_{metab,ref} = \sqrt{\epsilon_{metab}^2 + \epsilon_{ref}^2}
+\]</span></p>
+</div>
+<div id="tissue-segmentation" class="section level2 hasAnchor">
+<h2 class="hasAnchor">Tissue segmentation<a href="#tissue-segmentation"
+class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>[Text]</p>
+</div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBxdWFsaXR5IG1ldHJpY3MiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliCmNzbDogYW1lcmljYW4tbWVkaWNhbC1hc3NvY2lhdGlvbi5jc2wKbGluay1jaXRhdGlvbnM6IHllcwpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIHRvYzogRkFMU0UKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQp0YWJsZSB7CiAgbWFyZ2luOiBhdXRvOwp9Cgp0YWJsZSB0aGVhZCB0aCB7CiAgYm9yZGVyLWJvdHRvbTogMXB4IHNvbGlkICNkZGQ7Cn0KCnRoLCB0ZCB7CiAgcGFkZGluZzogNXB4Owp9Cgp0Zm9vdCwgdHI6bnRoLWNoaWxkKGV2ZW4pIHsKICBiYWNrZ3JvdW5kOiAjZWVlOwp9CmBgYAoKPGJyPgoKW1VOREVSIERFVkVMT1BNRU5UXQoKCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBxdWFsaXR5IG1ldHJpY3MiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliCmNzbDogYW1lcmljYW4tbWVkaWNhbC1hc3NvY2lhdGlvbi5jc2wKbGluay1jaXRhdGlvbnM6IHllcwpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIHRvYzogVFJVRQogICAgdG9jX2RlcHRoOiAyCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogRkFMU0UKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgo8YnI+CgpMaXN0ZWQgYmVsb3cgYXJlIHRoZSBwcmVwcm9jZXNzaW5nIHJvdXRpbmVzIHRoYXQgYXJlIHJ1biBpbiBgR2FubmV0TG9hZC5tYC4gV2hldGhlciBhIHBhcnRpY3VsYXIgcm91dGluZSBvciBzdWJyb3V0aW5lIGlzIHJ1biB3aWxsIGRlcGVuZCBvbiB0aGUgZm9ybWF0IG9mIHRoZSBpbnB1dHRlZCBkYXRhIGFuZCB0aGUgb3B0aW9ucyBzZXQgaW4gYEdhbm5ldFByZUluaXRpYWxpc2UubWAuCgojIyBMaW5ld2lkdGgKCltUZXh0XQoKIyMgU2lnbmFsLXRvLW5vaXNlIHJhdGlvIChTTlIpCgpbVGV4dF0KCiMjIEZpdCBlcnJvcgoKV2hlbiBmaXR0aW5nIHNpZ25hbCBmdW5jdGlvbnMgdG8gbWV0YWJvbGl0ZSBwZWFrcywgR2FubmV0IHdpbGwgYWxzbyBlc3RpbWF0ZSB0aGUgZXJyb3IgaW4gdGhlIGZpdC4gVGhpcyBpcyBkZWZpbmVkIGFzIHRoZSBzaWduYWwgbW9kZWwgYW1wbGl0dWRlIGRpdmlkZWQgYnkgdGhlIHN0YW5kYXJkIGRldmlhdGlvbiBvZiB0aGUgbW9kZWwgZml0IHJlc2lkdWFsczoKCiQkClxlcHNpbG9uX3ttZXRhYn0gPSBBX3ttZXRhYn0vc3RkKHJlc2lkKQokJAoKd2hlcmU6Cgp8IDx1PlBhcmFtZXRlcjwvdT4gfCA8dT5EZWZpbml0aW9uPC91PiB8CnwgOi0gfCA6LS0tLS0tLS0tIHwKfCAkQV97bWV0YWJ9JCB8IFNpZ25hbCBtb2RlbCBhbXBsaXR1ZGUgfAp8ICRyZXNpZCQgfCBTaWduYWwgbW9kZWwgZml0IHJlc2lkdWFscyB8CgpTaW5jZSBhbGwgbWV0YWJvbGl0ZSBhcmUgbm9ybWFsaXplZCB0byBhIHJlZmVyZW5jZSBzaWduYWwgKENyIG9yIHVuc3VwcHJlc3NlZCB3YXRlciksIHRoZSBmaXQgZXJyb3IgdGhhdCByZWFsbHkgc2hvdWxkIGJlIGNvbnNpZGVyZWQgKGFuZCByZXBvcnRlZCkgaXMgdGhlIGNvbWJpbmVkIGVycm9yIG9mIHRoZSBtZXRhYm9saXRlIGFuZCByZWZlcmVuY2Ugc2lnbmFsIG1vZGVsIGZpdHMsIHdoaWNoIGFkZCB1cCBpbiBxdWFkcmF0dXJlLiBGb3JtdWxhaWNhbGx5LCB0aGlzIGlzIGRlZmluZWQgYXM6CgokJApcZXBzaWxvbl97bWV0YWIscmVmfSA9IFxzcXJ0e1xlcHNpbG9uX3ttZXRhYn1eMiArIFxlcHNpbG9uX3tyZWZ9XjJ9CiQkCgojIyBUaXNzdWUgc2VnbWVudGF0aW9uCgpbVGV4dF0KCgoKCgo=</div>
 <!DOCTYPE html>
 <br>
 <hr>
@@ -414,6 +536,8 @@ tfoot, tr:nth-child(even) {
 </p>
 
 
+</div>
+</div>
 
 </div>
 
@@ -451,6 +575,35 @@ $(document).ready(function () {
 });
 </script>
 
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = false;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
 
 <!-- dynamically load mathjax for compatibility with self-contained -->
 <script>

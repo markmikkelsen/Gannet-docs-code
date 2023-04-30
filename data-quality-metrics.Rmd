@@ -6,7 +6,7 @@ csl: american-medical-association.csl
 link-citations: yes
 output:
   html_document:
-    toc: FALSE
+    toc: TRUE
     toc_depth: 2
     toc_float:
       collapsed: FALSE
@@ -19,28 +19,42 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, child = "js/back-to-top.js"}
 ```
 
-```{css, echo = FALSE}
-table {
-  margin: auto;
-}
-
-table thead th {
-  border-bottom: 1px solid #ddd;
-}
-
-th, td {
-  padding: 5px;
-}
-
-tfoot, tr:nth-child(even) {
-  background: #eee;
-}
-```
-
 <br>
 
-[UNDER DEVELOPMENT]
+Listed below are the preprocessing routines that are run in `GannetLoad.m`. Whether a particular routine or subroutine is run will depend on the format of the inputted data and the options set in `GannetPreInitialise.m`.
 
+## Linewidth
+
+[Text]
+
+## Signal-to-noise ratio (SNR)
+
+[Text]
+
+## Fit error
+
+When fitting signal functions to metabolite peaks, Gannet will also estimate the error in the fit. This is defined as the signal model amplitude divided by the standard deviation of the model fit residuals:
+
+$$
+\epsilon_{metab} = A_{metab}/std(resid)
+$$
+
+where:
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :- | :--------- |
+| $A_{metab}$ | Signal model amplitude |
+| $resid$ | Signal model fit residuals |
+
+Since all metabolite are normalized to a reference signal (Cr or unsuppressed water), the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature. Formulaically, this is defined as:
+
+$$
+\epsilon_{metab,ref} = \sqrt{\epsilon_{metab}^2 + \epsilon_{ref}^2}
+$$
+
+## Tissue segmentation
+
+[Text]
 
 
 

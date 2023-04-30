@@ -106,21 +106,21 @@ If you encounter any problems, please first check the Documentation or <a href="
 
 Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on <a href="https://mrshub.org/" target="_blank">MRSHub</a>.
 
-The Gannet team can also be directly <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contacted</a>. We will do our best to work with you to solve your issue.
+The Gannet team can also be <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contacted</a> directly. We will do our best to work with you to solve your issue.
 
 ## Versioning
 
-<a href="https://semver.org/" target="_blank">Semantic versioning</a> is used when updates are made to Gannet using the style 'x.x.x'. Versioning is also conducted on a module-specific basis using the style 'YYMMDD'. That is, each Gannet module has its own release version.
+Gannet uses a form of <a href="https://semver.org/" target="_blank">semantic versioning</a> in the style 'x.x.x' to mark code releases. Versioning is also conducted on a module-specific basis using the style 'YYMMDD'. That is, each Gannet module has its own release version. Users should note that module-specific versions sometimes are updated despite the semantic version number remaining unchanged (typically for minor updates/bug fixes).
 
 ## Developers
 
-- Richard Edden (Johns Hopkins University)
-- Mark Mikkelsen (Weill Cornell Medicine)
-- Georg Oeltzschner (Johns Hopkins University)
-- Muhammad Saleh (University of Maryland)
-- C. John Evans (Cardiff University)
-- Ashley Harris (University of Calgary)
-- Nicolaas Puts (King's College London)
+- Richard Edden (Johns Hopkins University) - creator
+- Mark Mikkelsen (Weill Cornell Medicine) - lead developer
+- Georg Oeltzschner (Johns Hopkins University) - contributor
+- Muhammad Saleh (University of Maryland) - contributor
+- C. John Evans (Cardiff University) - contributor
+- Ashley Harris (University of Calgary) - contributor
+- Nicolaas Puts (King's College London) - contributor
 
 ## License and citing Gannet
 
