@@ -13,7 +13,7 @@
 
 <title>Getting started</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -99,11 +99,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -112,14 +112,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -532,7 +532,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Getting started</h1>
-<h4 class="date">Last updated: April 30, 2023</h4>
+<h4 class="date">Last updated: August 03, 2023</h4>
 
 </div>
 
@@ -686,8 +686,8 @@ for an acquisition with 320 transients, there will be 320 DICOM files.
 Data from each acquisition should be stored in an individual directory.
 To run such data, use the following commands:</p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad(metab({<span class="st">&#39;metab/file1.dcm&#39;</span>}<span class="op">,</span> {<span class="st">&#39;water/file1.dcm&#39;</span>})<span class="op">;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad(metab({<span class="st">&#39;metab/file1.dcm&#39;</span>}<span class="op">,</span> {<span class="st">&#39;water/file1.dcm&#39;</span>})<span class="op">;</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <div class="info">
 <p><i class="fa fa-info-circle" style="color: white"></i>  Note how the
 metabolite and water data are stored in separate directories and that a
@@ -704,8 +704,8 @@ aria-label="Anchor link to header"></a></h4>
 which is stored within the P-file. To run such data, use the following
 commands:</p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01.7&#39;</span>})<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01.7&#39;</span>})<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="nifti-data-.nii.gz-files" class="section level4 hasAnchor">
 <h4 class="hasAnchor"><strong>NIfTI data (*.nii[.gz] files)</strong><a
@@ -716,8 +716,8 @@ was developed to serve as an open-source data format standard for MRS.
 Both compressed and uncompressed files can be processed in Gannet. To
 run such data, use the following commands:</p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01.nii&#39;</span>}<span class="op">,</span> {<span class="st">&#39;sub-01_ref.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01.nii&#39;</span>}<span class="op">,</span> {<span class="st">&#39;sub-01_ref.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="philips-data-.sdat.spar-files"
 class="section level4 hasAnchor">
@@ -731,8 +731,8 @@ also acquired and exported as a separate pair of files. The two are
 distinguished by the suffices <code>_act</code> and <code>_ref</code>.
 To run such data, use the following commands:</p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;sub-01_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;sub-01_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <div class="info">
 <p><i class="fa fa-info-circle" style="color: white"></i>  The *.spar
 files must be in the same directory as the *.sdat files, otherwise an
@@ -748,8 +748,8 @@ for Siemens data. This is a raw format that saves the MRS signal for
 each transient from each RF coil element separately. To run such data,
 use the following commands:</p>
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01.dat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;sub-01_water.dat&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01.dat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;sub-01_water.dat&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 </div>
 <div id="siemens-data-.ima-files" class="section level4 hasAnchor">
 <h4 class="hasAnchor"><strong>Siemens data (*.ima files)</strong><a
@@ -760,8 +760,8 @@ separate file, such that for an acquisition with 320 transients, there
 will be 320 IMA files. Data from each acquisition should be stored in an
 individual directory. To run such data, use the following commands:</p>
 <div class="sourceCode" id="cb6"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad(metab({<span class="st">&#39;metab/file1.ima&#39;</span>}<span class="op">,</span> {<span class="st">&#39;water/file1.ima&#39;</span>})<span class="op">;</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad(metab({<span class="st">&#39;metab/file1.ima&#39;</span>}<span class="op">,</span> {<span class="st">&#39;water/file1.ima&#39;</span>})<span class="op">;</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <div class="info">
 <p><i class="fa fa-info-circle" style="color: white"></i>  Note how the
 metabolite and water data are stored in separate directories and that a
@@ -780,8 +780,8 @@ is not recommended for use in Gannet as a number of important
 preprocessing steps cannot be run. However, to run such data, use the
 following commands:</p>
 <div class="sourceCode" id="cb7"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad(metab({<span class="st">&#39;OFF.rda&#39;</span><span class="op">,</span> <span class="st">&#39;ON.rda&#39;</span>})<span class="op">;</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad(metab({<span class="st">&#39;OFF.rda&#39;</span><span class="op">,</span> <span class="st">&#39;ON.rda&#39;</span>})<span class="op">;</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <div class="info">
 <p><i class="fa fa-info-circle" style="color: white"></i>  Take note
 that the edit-OFF file must be input first.</p>
@@ -798,9 +798,9 @@ files, simply add more filenames to the respective cell arrays that are
 passed to <code>GannetLoad.m</code>, as shown below for Philips
 data:</p>
 <div class="sourceCode" id="cb8"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-02_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-03_act.sdat&#39;</span>}<span class="op">,</span> <span class="op">...</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>                        {<span class="st">&#39;sub-01_ref.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-02_ref.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-03_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;sub-01_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-02_act.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-03_act.sdat&#39;</span>}<span class="op">,</span> <span class="op">...</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a>                        {<span class="st">&#39;sub-01_ref.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-02_ref.sdat&#39;</span><span class="op">,</span> <span class="st">&#39;sub-03_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p>The respective water reference files <code>sub-01_ref.sdat</code>,
 <code>sub-02_ref.sdat</code>, etc. need to be listed in the same order
 as the water-suppressed files <code>sub-01_act.sdat</code>,

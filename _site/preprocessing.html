@@ -13,7 +13,7 @@
 
 <title>Preprocessing</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -453,7 +453,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Preprocessing</h1>
-<h4 class="date">Last updated: April 30, 2023</h4>
+<h4 class="date">Last updated: August 03, 2023</h4>
 
 </div>
 
@@ -506,8 +506,8 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>Certain raw MRS data formats store data without coil combination;
 specifically, GE P-file (.7), NIfTI-MRS (if the source data were raw),
 Philips .raw, and Siemens TWIX (.dat) data. Gannet uses generalized
-least squares<span class="citation"><sup><a href="#ref-An2013"
-role="doc-biblioref">1</a></sup></span> to optimally combine the signal
+least squares<span class="citation"><sup><a
+href="#ref-An2013">1</a></sup></span> to optimally combine the signal
 from the multiple RF channels. If water files are provided, these data
 will be used as references for signal weighting and phasing of the coil
 data.</p>
@@ -519,9 +519,8 @@ aria-label="Anchor link to header"></a></h2>
 <p>In <code>GannetPreInitialise.m</code>, users have the option to apply
 eddy-current correction (ECC) to metabolite and water data. If applied,
 Gannet uses the method described by Klose (1990)<span
-class="citation"><sup><a href="#ref-Klose1990"
-role="doc-biblioref">2</a></sup></span>. The ECC routine can be round in
-<code>EddyCurrentCorrection.m</code>.</p>
+class="citation"><sup><a href="#ref-Klose1990">2</a></sup></span>. The
+ECC routine can be round in <code>EddyCurrentCorrection.m</code>.</p>
 <div class="info">
 <p><i class="fa fa-info-circle" style="color: white"></i>  ECC can only
 be applied if water data are provided.</p>
@@ -561,19 +560,18 @@ errors during preprocessing. Users can choose which method to use in
 <tbody>
 <tr class="odd">
 <td align="left">Robust spectral registration<span
-class="citation"><sup><a href="#ref-Mikkelsen2020"
-role="doc-biblioref">3</a></sup></span> (default)</td>
+class="citation"><sup><a href="#ref-Mikkelsen2020">3</a></sup></span>
+(default)</td>
 <td align="left"><code>RobustSpecReg</code></td>
 <td align="left">A method based on spectral registration<span
-class="citation"><sup><a href="#ref-Near2015"
-role="doc-biblioref">4</a></sup></span> that is robust against spectral
-distortions such as unstable residual water and lipid
-contamination.</td>
+class="citation"><sup><a href="#ref-Near2015">4</a></sup></span> that is
+robust against spectral distortions such as unstable residual water and
+lipid contamination.</td>
 </tr>
 <tr class="even">
 <td align="left">Multi-step frequency and phase correction<span
-class="citation"><sup><a href="#ref-Mikkelsen2018"
-role="doc-biblioref">5</a></sup></span></td>
+class="citation"><sup><a
+href="#ref-Mikkelsen2018">5</a></sup></span></td>
 <td align="left"><code>SpecRegHERMES</code></td>
 <td align="left">A method originally developed to align multiplexed
 edited HERMES data. This approach is also based on spectral

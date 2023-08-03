@@ -13,7 +13,7 @@
 
 <title>Quantification &amp; tissue correction</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -453,7 +453,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Quantification &amp; tissue correction</h1>
-<h4 class="date">Last updated: April 30, 2023</h4>
+<h4 class="date">Last updated: August 03, 2023</h4>
 
 </div>
 
@@ -616,7 +616,7 @@ metabolites</td>
 <td align="left">Approximate relative MR visibility of water in brain
 tissue</td>
 <td align="left">0.65<span class="citation"><sup><a
-href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
+href="#ref-Ernst1993">1</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(TE_{W}\)</span></td>
@@ -643,14 +643,14 @@ href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
 <td align="left">Average transverse relaxation time of water in GM and
 WM</td>
 <td align="left">1.100 s<span class="citation"><sup><a
-href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
+href="#ref-Wansapura1999">2</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(T_{1W}\)</span></td>
 <td align="left">Average longitudinal relaxation time of water in GM and
 WM</td>
 <td align="left">0.095 s<span class="citation"><sup><a
-href="#ref-Wansapura1999" role="doc-biblioref">2</a></sup></span></td>
+href="#ref-Wansapura1999">2</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{2M}\)</span></td>
@@ -697,10 +697,9 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 partial volume effects that attenuate the observed water and metabolite
 signals. There are two approaches that are employed. The first is termed
 the Gasparovic et al.<span class="citation"><sup><a
-href="#ref-Gasparovic2006" role="doc-biblioref">3</a></sup></span>
-method and the second is termed the Harris et al.<span
-class="citation"><sup><a href="#ref-Harris2015"
-role="doc-biblioref">4</a></sup></span> method. Although similar, the
+href="#ref-Gasparovic2006">3</a></sup></span> method and the second is
+termed the Harris et al.<span class="citation"><sup><a
+href="#ref-Harris2015">4</a></sup></span> method. Although similar, the
 difference between these approaches is that the Harris et al. method
 additionally accounts for intrinsic differences in metabolite
 concentrations in GM and WM.</p>
@@ -748,24 +747,23 @@ for partial volume effects of water</td>
 <td align="left"><span class="math inline">\(\beta_i\)</span></td>
 <td align="left">Relative MR visibility of water in GM, WM, or CSF</td>
 <td align="left">0.78, 0.65, and 0.97<span class="citation"><sup><a
-href="#ref-Ernst1993" role="doc-biblioref">1</a></sup></span></td>
+href="#ref-Ernst1993">1</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><span class="math inline">\(T_{2W,i}\)</span></td>
 <td align="left">Transverse relaxation time of water in GM, WM, or
 CSF</td>
 <td align="left">0.110, 0.0792, and 0.503 s<span
-class="citation"><sup><a href="#ref-Wansapura1999"
-role="doc-biblioref">2</a>,<a href="#ref-Piechnik2009"
-role="doc-biblioref">5</a></sup></span></td>
+class="citation"><sup><a href="#ref-Wansapura1999">2</a>,<a
+href="#ref-Piechnik2009">5</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(T_{1W,i}\)</span></td>
 <td align="left">Longitudinal relaxation time of water in GM, WM, or
 CSF</td>
 <td align="left">1.331, 0.832, and 3.817 s<span class="citation"><sup><a
-href="#ref-Wansapura1999" role="doc-biblioref">2</a>,<a
-href="#ref-Lu2005" role="doc-biblioref">6</a></sup></span></td>
+href="#ref-Wansapura1999">2</a>,<a
+href="#ref-Lu2005">6</a></sup></span></td>
 </tr>
 </tbody>
 </table>
@@ -809,9 +807,8 @@ for partial volume effects of water and metabolite</td>
 <td align="left"><span class="math inline">\(C_{W,i}\)</span></td>
 <td align="left">Molal concentration of water in GM, WM, or CSF</td>
 <td align="left">43.30, 36.08, and 53.84 mol/kg<span
-class="citation"><sup><a href="#ref-Ernst1993"
-role="doc-biblioref">1</a>,<a href="#ref-Gasparovic2006"
-role="doc-biblioref">3</a></sup></span></td>
+class="citation"><sup><a href="#ref-Ernst1993">1</a>,<a
+href="#ref-Gasparovic2006">3</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><span class="math inline">\(\alpha\)</span></td>

@@ -13,7 +13,7 @@
 
 <title>Reference</title>
 
-<script src="site_libs/header-attrs-2.21/header-attrs.js"></script>
+<script src="site_libs/header-attrs-2.23/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <link href="site_libs/bootstrap-3.3.5/css/lumen.min.css" rel="stylesheet" />
@@ -29,7 +29,7 @@
        h6 {font-size: 12px;}
        code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
        pre:not([class]) { background-color: white }</style>
-<script src="site_libs/jqueryui-1.11.4/jquery-ui.min.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
@@ -99,11 +99,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 }
 code span.al { color: #ef2929; } /* Alert */
 code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #c4a000; } /* Attribute */
+code span.at { color: #204a87; } /* Attribute */
 code span.bn { color: #0000cf; } /* BaseN */
 code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #000000; } /* Constant */
+code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #8f5902; font-style: italic; } /* Comment */
 code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
 code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
@@ -112,14 +112,14 @@ code span.dv { color: #0000cf; } /* DecVal */
 code span.er { color: #a40000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #000000; } /* Function */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
 code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
 code span.ot { color: #8f5902; } /* Other */
 code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #000000; } /* SpecialChar */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
 code span.ss { color: #4e9a06; } /* SpecialString */
 code span.st { color: #4e9a06; } /* String */
 code span.va { color: #000000; } /* Variable */
@@ -554,7 +554,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Reference</h1>
-<h4 class="date">Last updated: April 30, 2023</h4>
+<h4 class="date">Last updated: August 03, 2023</h4>
 
 </div>
 
@@ -642,8 +642,8 @@ to the data (in Hz)</td>
 <tr class="even">
 <td align="left"><code>water_ECC</code></td>
 <td align="left">Whether to perform an eddy-current correction<span
-class="citation"><sup><a href="#ref-Klose1990"
-role="doc-biblioref">1</a></sup></span> on the water data</td>
+class="citation"><sup><a href="#ref-Klose1990">1</a></sup></span> on the
+water data</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>metab_ECC</code></td>
@@ -654,14 +654,14 @@ metabolite data</td>
 <td align="left"><code>water_removal</code></td>
 <td align="left">Whether to remove the residual water signal from the
 difference spectra using an HSVD filter<span class="citation"><sup><a
-href="#ref-Barkhuijsen1987" role="doc-biblioref">2</a></sup></span></td>
+href="#ref-Barkhuijsen1987">2</a></sup></span></td>
 </tr>
 <tr class="odd">
 <td align="left"><code>alignment</code></td>
 <td align="left">Which method to use for shot-to-shot
 frequency-and-phase correction<span class="citation"><sup><a
-href="#ref-Evans2013" role="doc-biblioref">3</a>–<a
-href="#ref-Mikkelsen2020" role="doc-biblioref">6</a></sup></span></td>
+href="#ref-Evans2013">3</a>–<a
+href="#ref-Mikkelsen2020">6</a></sup></span></td>
 </tr>
 <tr class="even">
 <td align="left"><code>use_prealign_ref</code></td>
@@ -765,25 +765,25 @@ aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb1"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
 <p><img src="images/reference/GannetLoad-example.png" alt="A screenshot example of GannetLoad output"></p>
 <ol style="list-style-type: upper-alpha">
 <li><p>Edited difference spectra before and after frequency and phase
 alignment. Users should look out for poor alignment and signal
 distortions from lipid contamination or ghosting artifacts<span
-class="citation"><sup><a href="#ref-Kreis2004"
-role="doc-biblioref">7</a></sup></span>.</p></li>
+class="citation"><sup><a
+href="#ref-Kreis2004">7</a></sup></span>.</p></li>
 <li><p>The observed frequency of either the residual water signal or 3
 ppm Cr peak on a average-by-average basis. Users can use this panel to
 check for participant motion and/or scanner-related frequency drift. The
 solid black line is the nominal water or 3 ppm Cr frequency, while the
 dashed lines represent +/-1 standard deviation of population-level
 frequency offsets observed in the Big GABA study<span
-class="citation"><sup><a href="#ref-Mikkelsen2017"
-role="doc-biblioref">8</a></sup></span>. In other words, frequency
-shifts beyond these limits indicates above-average offsets that should
-be of concern to data fidelity.</p></li>
+class="citation"><sup><a href="#ref-Mikkelsen2017">8</a></sup></span>.
+In other words, frequency shifts beyond these limits indicates
+above-average offsets that should be of concern to data
+fidelity.</p></li>
 <li><p>A spectrogram of the 3 ppm Cr signal average by average before
 and after frequency and phase alignment. These data complement the data
 shown in panel B by additionally showing spectral distortions in each
@@ -804,8 +804,8 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb2"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
 <p><img src="images/reference/GannetFit-example.png" alt="A screenshot example of GannetFit output"></p>
 <ol style="list-style-type: upper-alpha">
@@ -846,9 +846,9 @@ aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb3"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
 <p><img src="images/reference/GannetCoRegister-example.png" alt="A screenshot example of GannetCoRegister output"></p>
 <ol style="list-style-type: upper-alpha">
@@ -868,10 +868,10 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb4"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
 <p><img src="images/reference/GannetSegment-example.png" alt="A screenshot example of GannetSegment output"></p>
 <ol style="list-style-type: upper-alpha">
@@ -894,11 +894,11 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><br></p>
 <p><strong>Example usage:</strong></p>
 <div class="sourceCode" id="cb5"><pre
-class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetQuantify(MRS_struct)<span class="op">;</span></span></code></pre></div>
+class="sourceCode octave"><code class="sourceCode octave"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetLoad({<span class="st">&#39;S01_GABA_68_act.sdat&#39;</span>}<span class="op">,</span> {<span class="st">&#39;S01_GABA_68_ref.sdat&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetFit(MRS_struct)<span class="op">;</span></span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetCoRegister(MRS_struct<span class="op">,</span> {<span class="st">&#39;S01_struc.nii&#39;</span>})<span class="op">;</span></span>
+<span id="cb5-4"><a href="#cb5-4" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetSegment(MRS_struct)<span class="op">;</span></span>
+<span id="cb5-5"><a href="#cb5-5" tabindex="-1"></a>MRS_struct <span class="op">=</span> GannetQuantify(MRS_struct)<span class="op">;</span></span></code></pre></div>
 <p>Output:</p>
 <p><img src="images/reference/GannetQuantify-example.png" alt="A screenshot example of GannetQuantify output"></p>
 <ol style="list-style-type: upper-alpha">
