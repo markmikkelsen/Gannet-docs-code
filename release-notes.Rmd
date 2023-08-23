@@ -20,6 +20,49 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This page lists the stable releases of Gannet since v3.1.3. All releases can be found on GitHub <a href="https://github.com/richardedden/Gannet3.1/releases" target="_blank">here</a> and <a href="https://github.com/markmikkelsen/Gannet/releases" target="_blank">here</a>. The development version of Gannet can be found <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">here</a>. For a more comprehensive list of changes to the current main version, see the commits logged on GitHub <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">here</a>.
 
+## 3.3.2
+<span style="color: grey;">2023-08-02</span>
+
+### Major changes
+
+- Rewrote `SiemensRead.m` to reduce code length
+
+### Minor changes
+
+- Updated `DICOMRead.m`, including to support Siemens XA30 data
+- Updated `SpectralRegistrationHERMES.m`
+  - SNR limit is now estimated as in `RobustSpectralRegistration.m`
+  - Bug fix for indexing for output saved from maximum likelihood estimation
+- Updated `dicm2nii` to version 2023.03.16
+- Updated `export_fig` to v3.40
+- Added Gannet documentation website URL to error dialog box
+- Changed the way path names are printed in error dialog box
+- Turned off iteration limit warning in `FitChoCr.m`
+- Updated `UpdateGannet.m` to ensure all sub-directories are added to the search path after updating
+- Added issue templates (in `.github/ISSUE_TEMPLATE`) for blank issues, bug reports, and feature requests
+- Refined alignment of text/logos in output figures
+  - The units used for displaying textual results are now normalized to fit to any subplot dimension
+  - The textual results in the `GannetCoRegister`, `GannetSegment`, `CoReg`, and `Seg` output figures are now correctly centered
+- The weighted signal averaging method used is now saved in the structure output
+- The weighting factors calculated when applying weighted signal averaging are also now saved in the output
+- Updated `SavePDF.m` such that when appending PDFs using `export_fig`, the figure size will now be equivalent in pixels on Windows and Mac systems
+- Updated `NIfTIMRSRead.m`
+- Updated `README.md`
+- Updated `GannetFitPhantom.m`
+- Removed redundant global frequency shift in `RobustSpectralRegistration.m`
+- The z-standardized MSEs calculated in the spectral registration subroutines are now saved in the structure output
+- Updated `GannetVersion.m` to also output version numbers of Gannet modules
+- A warning is now printed when users process Siemens .rda data encouraging them to instead use TWIX (.dat) data
+- Added support for GE P-file header revision 30 (<a href="https://github.com/markmikkelsen/Gannet/issues/28" target="_blank">#28</a>)
+- MANY COSMETIC CHANGES
+
+### Bug fixes
+
+- Bug fix for special character `\` in Windows file path names printed in the error dialog box
+- Fixed bug in `GannetMask_NIfTI.m` where the co-registered MRS voxel was incorrectly flipped in the `GannetCoRegister` output figure
+- Fixed bug in `GannetQuantify.m` where the alpha value was incorrectly being printed multiple times when multiple were run in batch
+- Added fix in `VersionCheck.m` so that when users have limited or restricted internet access, an error is avoided (<a href="https://github.com/markmikkelsen/Gannet/pull/27" target="_blank">#27</a>) - thanks <a href="https://github.com/alexcraven" target="_blank">@alexcraven</a>!
+
 ## 3.3.1
 <span style="color: grey;">2023-03-14</span>
 
