@@ -63,7 +63,7 @@ Some examples for different data file formats:
 The DICOM format saves each transient in a separate file, such that for an acquisition with 320 transients, there will be 320 DICOM files. Data from each acquisition should be stored in an individual directory. To run such data, use the following commands:
 
 ```{octave, eval = FALSE}
-MRS_struct = GannetLoad(metab({'metab/file1.dcm'}, {'water/file1.dcm'});
+MRS_struct = GannetLoad({'metab/file1.dcm'}, {'water/file1.dcm'});
 MRS_struct = GannetFit(MRS_struct);
 ```
 
