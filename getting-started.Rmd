@@ -116,7 +116,7 @@ MRS_struct = GannetFit(MRS_struct);
 The Siemens DICOM-structured IMA format saves each transient in a separate file, such that for an acquisition with 320 transients, there will be 320 IMA files. Data from each acquisition should be stored in an individual directory. To run such data, use the following commands:
 
 ```{octave, eval = FALSE}
-MRS_struct = GannetLoad(metab({'metab/file1.ima'}, {'water/file1.ima'});
+MRS_struct = GannetLoad({'metab/file1.ima'}, {'water/file1.ima'});
 MRS_struct = GannetFit(MRS_struct);
 ```
 
@@ -129,7 +129,7 @@ MRS_struct = GannetFit(MRS_struct);
 The Siemens RDA format for edited MRS data usually sums the edit-ON and edit-OFF transients and exports them as single files. A third file with the resulting difference spectrum may also be exported. This format is not recommended for use in Gannet as a number of important preprocessing steps cannot be run. However, to run such data, use the following commands:
 
 ```{octave, eval = FALSE}
-MRS_struct = GannetLoad(metab({'OFF.rda', 'ON.rda'});
+MRS_struct = GannetLoad({'OFF.rda', 'ON.rda'});
 MRS_struct = GannetFit(MRS_struct);
 ```
 
