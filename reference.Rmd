@@ -22,7 +22,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <br>
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The variables listed on this page are applicable to release 3.3.0 onwards and are not necessarily correct for older versions of Gannet.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The variables listed on this page are applicable to releases 3.3.0+ and are not necessarily correct for older versions of Gannet.
 :::
 
 ## Pre-initializing Gannet

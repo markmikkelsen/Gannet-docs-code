@@ -431,7 +431,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Data quality metrics</h1>
-<h4 class="date">Last updated: September 24, 2023</h4>
+<h4 class="date">Last updated: December 05, 2023</h4>
 
 </div>
 
@@ -470,30 +470,73 @@ function topFunction() {
 <p><i class="fa fa-exclamation-circle" style="color: white"></i>  THIS
 PAGE IS UNDER DEVELOPMENT</p>
 </div>
-<p>Listed below are the preprocessing routines that are run in
-<code>GannetLoad.m</code>. Whether a particular routine or subroutine is
-run will depend on the format of the inputted data and the options set
-in <code>GannetPreInitialise.m</code>.</p>
+<p>Listed below are the data quality metrics that Gannet computes during
+data processing, signal fitting, and tissue segmentation.</p>
 <div id="linewidth" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Linewidth<a href="#linewidth"
 class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>[Text]</p>
+<p>[TEXT]</p>
 </div>
 <div id="signal-to-noise-ratio-snr" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Signal-to-noise ratio (SNR)<a
 href="#signal-to-noise-ratio-snr" class="anchor-section"
 aria-label="Anchor link to header"></a></h2>
-<p>[Text]</p>
+<p>The SNR of fitted signals is calculated as the amplitude of the given
+modeled signal divided by twice the standard deviation of the noise
+signal. To estimate noise, Gannet takes two independent segments of the
+OFF or DIFF spectrum (as appropriate to the modeled signal of interest)
+between 8–9 ppm and 9–10 ppm, and detrends them using a second-order
+polynomial function. The standard deviation of each detrended noise
+segment is then calculated. Detrending is required to remove baseline
+artifacts (often related to the water signal). The smaller of the two
+standard deviations is then used as the estimate of noise, which is then
+multiplied by 2.</p>
+<p>Formulaically, this is defined as:</p>
+<p><span class="math display">\[
+SNR_{signal} = \frac{A_{signal}}{2*\mathrm{std}(noise)}
+\]</span></p>
+<p>where:</p>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="83%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left"><u>Parameter</u></th>
+<th align="left"><u>Definition</u></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><span class="math inline">\(A_{signal}\)</span></td>
+<td align="left">Signal model amplitude</td>
+</tr>
+<tr class="even">
+<td align="left"><span class="math inline">\(noise\)</span></td>
+<td align="left">Detrended noise signal between either 8–9 or 9–10 ppm
+(whichever is lower) in the appropriate spectrum (i.e., either the OFF
+or DIFF spectrum)</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="frequency-offsets-frequency-driftmotion"
+class="section level2 hasAnchor">
+<h2 class="hasAnchor">Frequency offsets (frequency drift/motion)<a
+href="#frequency-offsets-frequency-driftmotion" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
+<p>[TEXT]</p>
 </div>
 <div id="fit-error" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Fit error<a href="#fit-error"
 class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>When fitting signal functions to metabolite peaks, Gannet will also
-estimate the error in the fit. This is defined as the signal model
-amplitude divided by the standard deviation of the model fit
-residuals:</p>
+estimate the error of the fit. This is defined as the standard deviation
+of the residuals of the signal model fit divided by the signal model
+amplitude. For metabolite peak fits, this is:</p>
 <p><span class="math display">\[
-\epsilon_{metab} = A_{metab}/std(resid)
+\epsilon_{metab} = 100\frac{\mathrm{std}(resid_{metab})}{A_{metab}}
 \]</span></p>
 <p>where:</p>
 <table>
@@ -505,16 +548,20 @@ residuals:</p>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left"><span class="math inline">\(resid_{metab}\)</span></td>
+<td align="left">Signal model fit residuals</td>
+</tr>
+<tr class="even">
 <td align="left"><span class="math inline">\(A_{metab}\)</span></td>
 <td align="left">Signal model amplitude</td>
 </tr>
-<tr class="even">
-<td align="left"><span class="math inline">\(resid\)</span></td>
-<td align="left">Signal model fit residuals</td>
-</tr>
 </tbody>
 </table>
-<p>Since all metabolite are normalized to a reference signal (Cr or
+<p>Similarly, for reference signal fits, this is:</p>
+<p><span class="math display">\[
+\epsilon_{ref} = 100\frac{\mathrm{std}(resid_{ref})}{A_{ref}}
+\]</span></p>
+<p>Since all metabolites are normalized to a reference signal (Cr or
 unsuppressed water), the fit error that really should be considered (and
 reported) is the combined error of the metabolite and reference signal
 model fits, which add up in quadrature. Formulaically, this is defined
@@ -526,10 +573,10 @@ as:</p>
 <div id="tissue-segmentation" class="section level2 hasAnchor">
 <h2 class="hasAnchor">Tissue segmentation<a href="#tissue-segmentation"
 class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>[Text]</p>
+<p>[TEXT]</p>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBxdWFsaXR5IG1ldHJpY3MiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliCmNzbDogYW1lcmljYW4tbWVkaWNhbC1hc3NvY2lhdGlvbi5jc2wKbGluay1jaXRhdGlvbnM6IHllcwpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIHRvYzogVFJVRQogICAgdG9jX2RlcHRoOiAyCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogRkFMU0UKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgpgYGB7Y3NzLCBlY2hvID0gRkFMU0V9Ci53YXJuaW5nIHsKICBtYXJnaW4tYm90dG9tOiAyMHB4Owp9CmBgYAoKPGJyPgoKOjo6IHdhcm5pbmcKPGkgY2xhc3M9ImZhIGZhLWV4Y2xhbWF0aW9uLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPiZuYnNwOyBUSElTIFBBR0UgSVMgVU5ERVIgREVWRUxPUE1FTlQKOjo6CgpMaXN0ZWQgYmVsb3cgYXJlIHRoZSBwcmVwcm9jZXNzaW5nIHJvdXRpbmVzIHRoYXQgYXJlIHJ1biBpbiBgR2FubmV0TG9hZC5tYC4gV2hldGhlciBhIHBhcnRpY3VsYXIgcm91dGluZSBvciBzdWJyb3V0aW5lIGlzIHJ1biB3aWxsIGRlcGVuZCBvbiB0aGUgZm9ybWF0IG9mIHRoZSBpbnB1dHRlZCBkYXRhIGFuZCB0aGUgb3B0aW9ucyBzZXQgaW4gYEdhbm5ldFByZUluaXRpYWxpc2UubWAuCgojIyBMaW5ld2lkdGgKCltUZXh0XQoKIyMgU2lnbmFsLXRvLW5vaXNlIHJhdGlvIChTTlIpCgpbVGV4dF0KCiMjIEZpdCBlcnJvcgoKV2hlbiBmaXR0aW5nIHNpZ25hbCBmdW5jdGlvbnMgdG8gbWV0YWJvbGl0ZSBwZWFrcywgR2FubmV0IHdpbGwgYWxzbyBlc3RpbWF0ZSB0aGUgZXJyb3IgaW4gdGhlIGZpdC4gVGhpcyBpcyBkZWZpbmVkIGFzIHRoZSBzaWduYWwgbW9kZWwgYW1wbGl0dWRlIGRpdmlkZWQgYnkgdGhlIHN0YW5kYXJkIGRldmlhdGlvbiBvZiB0aGUgbW9kZWwgZml0IHJlc2lkdWFsczoKCiQkClxlcHNpbG9uX3ttZXRhYn0gPSBBX3ttZXRhYn0vc3RkKHJlc2lkKQokJAoKd2hlcmU6Cgp8IDx1PlBhcmFtZXRlcjwvdT4gfCA8dT5EZWZpbml0aW9uPC91PiB8CnwgOi0gfCA6LS0tLS0tLS0tIHwKfCAkQV97bWV0YWJ9JCB8IFNpZ25hbCBtb2RlbCBhbXBsaXR1ZGUgfAp8ICRyZXNpZCQgfCBTaWduYWwgbW9kZWwgZml0IHJlc2lkdWFscyB8CgpTaW5jZSBhbGwgbWV0YWJvbGl0ZSBhcmUgbm9ybWFsaXplZCB0byBhIHJlZmVyZW5jZSBzaWduYWwgKENyIG9yIHVuc3VwcHJlc3NlZCB3YXRlciksIHRoZSBmaXQgZXJyb3IgdGhhdCByZWFsbHkgc2hvdWxkIGJlIGNvbnNpZGVyZWQgKGFuZCByZXBvcnRlZCkgaXMgdGhlIGNvbWJpbmVkIGVycm9yIG9mIHRoZSBtZXRhYm9saXRlIGFuZCByZWZlcmVuY2Ugc2lnbmFsIG1vZGVsIGZpdHMsIHdoaWNoIGFkZCB1cCBpbiBxdWFkcmF0dXJlLiBGb3JtdWxhaWNhbGx5LCB0aGlzIGlzIGRlZmluZWQgYXM6CgokJApcZXBzaWxvbl97bWV0YWIscmVmfSA9IFxzcXJ0e1xlcHNpbG9uX3ttZXRhYn1eMiArIFxlcHNpbG9uX3tyZWZ9XjJ9CiQkCgojIyBUaXNzdWUgc2VnbWVudGF0aW9uCgpbVGV4dF0KCgoKCgo=</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiRGF0YSBxdWFsaXR5IG1ldHJpY3MiCmRhdGU6ICJMYXN0IHVwZGF0ZWQ6IGByIGZvcm1hdChTeXMudGltZSgpLCAnJUIgJWQsICVZJylgIgpiaWJsaW9ncmFwaHk6IHJlZmVyZW5jZXMuYmliCmNzbDogYW1lcmljYW4tbWVkaWNhbC1hc3NvY2lhdGlvbi5jc2wKbGluay1jaXRhdGlvbnM6IHllcwpvdXRwdXQ6CiAgaHRtbF9kb2N1bWVudDoKICAgIHRvYzogVFJVRQogICAgdG9jX2RlcHRoOiAyCiAgICB0b2NfZmxvYXQ6CiAgICAgIGNvbGxhcHNlZDogRkFMU0UKLS0tCgpgYGB7ciBzZXR1cCwgaW5jbHVkZSA9IEZBTFNFfQprbml0cjo6b3B0c19jaHVuayRzZXQoZWNobyA9IFRSVUUpCmBgYAoKYGBge3IsIGNoaWxkID0gImpzL2JhY2stdG8tdG9wLmpzIn0KYGBgCgpgYGB7Y3NzLCBlY2hvID0gRkFMU0V9Ci53YXJuaW5nIHsKICBtYXJnaW4tYm90dG9tOiAyMHB4Owp9CmBgYAoKPGJyPgoKOjo6IHdhcm5pbmcKPGkgY2xhc3M9ImZhIGZhLWV4Y2xhbWF0aW9uLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPiZuYnNwOyBUSElTIFBBR0UgSVMgVU5ERVIgREVWRUxPUE1FTlQKOjo6CgpMaXN0ZWQgYmVsb3cgYXJlIHRoZSBkYXRhIHF1YWxpdHkgbWV0cmljcyB0aGF0IEdhbm5ldCBjb21wdXRlcyBkdXJpbmcgZGF0YSBwcm9jZXNzaW5nLCBzaWduYWwgZml0dGluZywgYW5kIHRpc3N1ZSBzZWdtZW50YXRpb24uCgojIyBMaW5ld2lkdGgKCltURVhUXQoKIyMgU2lnbmFsLXRvLW5vaXNlIHJhdGlvIChTTlIpCgpUaGUgU05SIG9mIGZpdHRlZCBzaWduYWxzIGlzIGNhbGN1bGF0ZWQgYXMgdGhlIGFtcGxpdHVkZSBvZiB0aGUgZ2l2ZW4gbW9kZWxlZCBzaWduYWwgZGl2aWRlZCBieSB0d2ljZSB0aGUgc3RhbmRhcmQgZGV2aWF0aW9uIG9mIHRoZSBub2lzZSBzaWduYWwuIFRvIGVzdGltYXRlIG5vaXNlLCBHYW5uZXQgdGFrZXMgdHdvIGluZGVwZW5kZW50IHNlZ21lbnRzIG9mIHRoZSBPRkYgb3IgRElGRiBzcGVjdHJ1bSAoYXMgYXBwcm9wcmlhdGUgdG8gdGhlIG1vZGVsZWQgc2lnbmFsIG9mIGludGVyZXN0KSBiZXR3ZWVuIDjigJM5IHBwbSBhbmQgOeKAkzEwIHBwbSwgYW5kIGRldHJlbmRzIHRoZW0gdXNpbmcgYSBzZWNvbmQtb3JkZXIgcG9seW5vbWlhbCBmdW5jdGlvbi4gVGhlIHN0YW5kYXJkIGRldmlhdGlvbiBvZiBlYWNoIGRldHJlbmRlZCBub2lzZSBzZWdtZW50IGlzIHRoZW4gY2FsY3VsYXRlZC4gRGV0cmVuZGluZyBpcyByZXF1aXJlZCB0byByZW1vdmUgYmFzZWxpbmUgYXJ0aWZhY3RzIChvZnRlbiByZWxhdGVkIHRvIHRoZSB3YXRlciBzaWduYWwpLiBUaGUgc21hbGxlciBvZiB0aGUgdHdvIHN0YW5kYXJkIGRldmlhdGlvbnMgaXMgdGhlbiB1c2VkIGFzIHRoZSBlc3RpbWF0ZSBvZiBub2lzZSwgd2hpY2ggaXMgdGhlbiBtdWx0aXBsaWVkIGJ5IDIuCgpGb3JtdWxhaWNhbGx5LCB0aGlzIGlzIGRlZmluZWQgYXM6CgokJApTTlJfe3NpZ25hbH0gPSBcZnJhY3tBX3tzaWduYWx9fXsyKlxtYXRocm17c3RkfShub2lzZSl9CiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlZmluaXRpb248L3U+IHwKfCA6LSB8IDotLS0tLS0tLS0gfAp8ICRBX3tzaWduYWx9JCB8IFNpZ25hbCBtb2RlbCBhbXBsaXR1ZGUgfAp8ICRub2lzZSQgfCBEZXRyZW5kZWQgbm9pc2Ugc2lnbmFsIGJldHdlZW4gZWl0aGVyIDjigJM5IG9yIDnigJMxMCBwcG0gKHdoaWNoZXZlciBpcyBsb3dlcikgaW4gdGhlIGFwcHJvcHJpYXRlIHNwZWN0cnVtIChpLmUuLCBlaXRoZXIgdGhlIE9GRiBvciBESUZGIHNwZWN0cnVtKSB8CgojIyBGcmVxdWVuY3kgb2Zmc2V0cyAoZnJlcXVlbmN5IGRyaWZ0L21vdGlvbikKCltURVhUXQoKIyMgRml0IGVycm9yCgpXaGVuIGZpdHRpbmcgc2lnbmFsIGZ1bmN0aW9ucyB0byBtZXRhYm9saXRlIHBlYWtzLCBHYW5uZXQgd2lsbCBhbHNvIGVzdGltYXRlIHRoZSBlcnJvciBvZiB0aGUgZml0LiBUaGlzIGlzIGRlZmluZWQgYXMgdGhlIHN0YW5kYXJkIGRldmlhdGlvbiBvZiB0aGUgcmVzaWR1YWxzIG9mIHRoZSBzaWduYWwgbW9kZWwgZml0IGRpdmlkZWQgYnkgdGhlIHNpZ25hbCBtb2RlbCBhbXBsaXR1ZGUuIEZvciBtZXRhYm9saXRlIHBlYWsgZml0cywgdGhpcyBpczoKCiQkClxlcHNpbG9uX3ttZXRhYn0gPSAxMDBcZnJhY3tcbWF0aHJte3N0ZH0ocmVzaWRfe21ldGFifSl9e0Ffe21ldGFifX0KJCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVmaW5pdGlvbjwvdT4gfAp8IDotIHwgOi0tLS0tLS0tLSB8CnwgJHJlc2lkX3ttZXRhYn0kIHwgU2lnbmFsIG1vZGVsIGZpdCByZXNpZHVhbHMgfAp8ICRBX3ttZXRhYn0kIHwgU2lnbmFsIG1vZGVsIGFtcGxpdHVkZSB8CgpTaW1pbGFybHksIGZvciByZWZlcmVuY2Ugc2lnbmFsIGZpdHMsIHRoaXMgaXM6CgokJApcZXBzaWxvbl97cmVmfSA9IDEwMFxmcmFje1xtYXRocm17c3RkfShyZXNpZF97cmVmfSl9e0Ffe3JlZn19CiQkCgpTaW5jZSBhbGwgbWV0YWJvbGl0ZXMgYXJlIG5vcm1hbGl6ZWQgdG8gYSByZWZlcmVuY2Ugc2lnbmFsIChDciBvciB1bnN1cHByZXNzZWQgd2F0ZXIpLCB0aGUgZml0IGVycm9yIHRoYXQgcmVhbGx5IHNob3VsZCBiZSBjb25zaWRlcmVkIChhbmQgcmVwb3J0ZWQpIGlzIHRoZSBjb21iaW5lZCBlcnJvciBvZiB0aGUgbWV0YWJvbGl0ZSBhbmQgcmVmZXJlbmNlIHNpZ25hbCBtb2RlbCBmaXRzLCB3aGljaCBhZGQgdXAgaW4gcXVhZHJhdHVyZS4gRm9ybXVsYWljYWxseSwgdGhpcyBpcyBkZWZpbmVkIGFzOgoKJCQKXGVwc2lsb25fe21ldGFiLHJlZn0gPSBcc3FydHtcZXBzaWxvbl97bWV0YWJ9XjIgKyBcZXBzaWxvbl97cmVmfV4yfQokJAoKIyMgVGlzc3VlIHNlZ21lbnRhdGlvbgoKW1RFWFRdCgoKCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>

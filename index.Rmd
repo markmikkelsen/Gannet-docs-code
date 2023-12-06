@@ -57,7 +57,7 @@ To run the voxel co-registration and structural image segmentation modules, <a h
 
 ### Download
 
-The simplest way to install Gannet is to download the code as a ZIP file from the <a href="https://github.com/markmikkelsen/Gannet" target="_blank">GitHub repository</a> and move the `Gannet-main/` directory into your MATLAB directory.
+The simplest way to install Gannet is to download the latest source code as a ZIP file from the <a href="https://github.com/markmikkelsen/Gannet" target="_blank">GitHub repository</a> and move the `Gannet-main/` directory into your main MATLAB directory (or wherever else you wish).
 
 Alternatively, Git users can clone the Gannet repository into a directory of their choice:
 
@@ -84,12 +84,12 @@ SPM12 can be installed in the same manner after it has been downloaded from the 
 :::
 
 ::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i> If you have <a href="https://github.com/schorschinho/osprey" target="_blank" style="color:white"><u>Osprey</u></a> also installed on your computer, please ensure that you have either all the Gannet and SPM12 directories at the top of your search path or removed the Osprey directories from your search path. Gannet and Osprey share several functions that can lead to conflicts that result in Gannet not functioning correctly.
+<i class="fa fa-exclamation-circle" style="color: white"></i> If you have <a href="https://github.com/schorschinho/osprey" target="_blank" style="color:white"><u>Osprey</u></a> also installed on your computer, please ensure that you either have all the Gannet and SPM12 directories at the top of your search path or have removed the Osprey directories from your search path. Gannet and Osprey share several functions that can lead to conflicts that result in Gannet not functioning correctly.
 :::
 
 ## Compatibility
 
-Gannet is currently being developed in MATLAB R2023a in macOS 13 Ventura. While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
+Gannet is currently being developed in MATLAB R2023b in macOS 14 Sonoma (Apple silicon M1). While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
 
 ## Supported file formats
 

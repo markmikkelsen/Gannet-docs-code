@@ -70,7 +70,7 @@ During acquisition, spectral data are affected by frequency and phase offsets as
 
 ## Phase correction
 
-It is common for unprocessed spectra to be out of phase. Gannet applies a global zero-order phase correction to all transients by fitting the 3 ppm Cr and 3.2 ppm Cho peaks in the.
+It is common for unprocessed spectra to be out of phase. Gannet applies a global zero-order phase correction to all transients by fitting the real-valued 3 ppm Cr and 3.2 ppm Cho signals in the frequency domain.
 
 ## Signal averaging
 
@@ -78,20 +78,15 @@ Gannet provides two methods for averaging individual transients: arithmetic aver
 
 ### Arithmetic averaging
 
-Text.
+[TEXT]
 
 ### Weighted averaging
 
-Text.
+[TEXT]
 
 <br>
 
 ### References
-
-
-
-
-
 
 
 

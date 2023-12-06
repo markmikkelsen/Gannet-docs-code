@@ -163,8 +163,8 @@ $$
 
 $$
 S(f) =
-\cos(\varphi)Absorption(f)+
-\sin(\varphi)Dispersion(f)+
+\cos(\phi)Absorption(f)+
+\sin(\phi)Dispersion(f)+
 m(f-f_0)+b
 $$
 
@@ -176,7 +176,7 @@ where:
 | $\gamma$ | Lorentzian width (half-width at half-maximum) |
 | $f_0$ | Center frequency of Cr peak |
 | $h$ | Amplitude scaling factor for Cho peak |
-| $\varphi$ | Phase |
+| $\phi$ | Phase |
 
 <img id="img_75" src="images/signal-modeling/Cho+Cr.png" alt="Illustration of the Cho+Cr model">
 
@@ -195,8 +195,8 @@ $$
 
 $$
 S(f) =
-\cos(\varphi)Absorption(f)+
-\sin(\varphi)Dispersion(f)+
+\cos(\phi)Absorption(f)+
+\sin(\phi)Dispersion(f)+
 m(f-f_0)+b
 $$
 
@@ -206,7 +206,7 @@ The unsurpressed water signal is fitted with a Lorentzian-Gaussian model with a 
 
 $$
 S(f) = 
-\frac{\cos(\varphi)A+\sin(\varphi)A\gamma(f-f_0)}
+\frac{\cos(\phi)A+\sin(\phi)A\gamma(f-f_0)}
 {\gamma^2(f-f_0)^2+1}
 \exp[\sigma(f-f_0)^2]+
 m(f-f_0)+b
