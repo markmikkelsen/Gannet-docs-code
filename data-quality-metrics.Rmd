@@ -44,7 +44,7 @@ The SNR of fitted signals is calculated as the amplitude of the given modeled si
 Formulaically, this is defined as:
 
 $$
-SNR_{signal} = \frac{A_{signal}}{2*\mathrm{std}(noise)}
+SNR_{signal} = \frac{A_{signal}}{2\cdot\mathrm{std}(noise)}
 $$
 
 where:
@@ -63,7 +63,7 @@ where:
 When fitting signal functions to metabolite peaks, Gannet will also estimate the error of the fit. This is defined as the standard deviation of the residuals of the signal model fit divided by the signal model amplitude. For metabolite peak fits, this is:
 
 $$
-\epsilon_{metab} = 100\frac{\mathrm{std}(resid_{metab})}{A_{metab}}
+\epsilon_{metab} = 100\cdot\frac{\mathrm{std}(resid_{metab})}{A_{metab}}
 $$
 
 where:
@@ -76,7 +76,7 @@ where:
 Similarly, for reference signal fits, this is:
 
 $$
-\epsilon_{ref} = 100\frac{\mathrm{std}(resid_{ref})}{A_{ref}}
+\epsilon_{ref} = 100\cdot\frac{\mathrm{std}(resid_{ref})}{A_{ref}}
 $$
 
 Since all metabolites are normalized to a reference signal (Cr or unsuppressed water), the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature. Formulaically, this is defined as:
