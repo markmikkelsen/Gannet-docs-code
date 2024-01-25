@@ -35,7 +35,7 @@ Listed below are the data quality metrics that Gannet computes during data proce
 
 ## Linewidth
 
-[TEXT]
+Linewidth is calculated as the full-width half-maximum (FWHM) (in Hz) of fitted signals. When reporting linewidths of datasets, you may use the FWHM of Cr, NAA, or the water reference (if provided).
 
 ## Signal-to-noise ratio (SNR)
 
@@ -52,7 +52,7 @@ where:
 | <u>Parameter</u> | <u>Definition</u> |
 | :- | :--------- |
 | $A_{signal}$ | Signal model amplitude |
-| $noise$ | Detrended noise signal between either 8–9 or 9–10 ppm (whichever is lower) in the appropriate spectrum (i.e., either the OFF or DIFF spectrum) |
+| $noise$ | Detrended noise signal between either 8–9 or 9–10 ppm (whichever produces a lower standard deviation) in the appropriate spectrum (i.e., either the OFF or DIFF spectrum) |
 
 ## Frequency offsets (frequency drift/motion)
 
@@ -60,7 +60,7 @@ where:
 
 ## Fit error
 
-When fitting signal functions to metabolite peaks, Gannet will also estimate the error of the fit. This is defined as the standard deviation of the residuals of the signal model fit divided by the signal model amplitude. For metabolite peak fits, this is:
+When fitting signal functions to metabolite peaks, Gannet will also estimate the error of the fit. This is defined as the standard deviation of the residuals of the signal model fit divided by the signal model amplitude and multiplied by 100 to give a percentage. For metabolite peak fits, this is:
 
 $$
 \epsilon_{metab} = 100\cdot\frac{\mathrm{std}(resid_{metab})}{A_{metab}}
@@ -79,7 +79,7 @@ $$
 \epsilon_{ref} = 100\cdot\frac{\mathrm{std}(resid_{ref})}{A_{ref}}
 $$
 
-Since all metabolites are normalized to a reference signal (Cr or unsuppressed water), the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature. Formulaically, this is defined as:
+Since all metabolites are normalized to a reference signal (either Cr or unsuppressed water), the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature. Formulaically, this is defined as:
 
 $$
 \epsilon_{metab,ref} = \sqrt{\epsilon_{metab}^2 + \epsilon_{ref}^2}

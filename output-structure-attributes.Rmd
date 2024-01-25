@@ -43,47 +43,51 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 
 | <u>Field</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
-`target` | The metabolite(s) targeted by the editing pulses |
-`seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
-`LB` | Exponential line-broadening applied (Hz) |
-`water_ECC` | Whether eddy-current correction was applied to the water data |
-`metab_ECC` | Whether eddy-current correction was applied to the metabolite data |
-`water_removal` | Whether the residual water signal in DIFF spectrum was removed using HSVD |
-`alignment` | Choice of shot-to-shot frequency-and-phase correction |
-`use_prealign_ref` | Whether `RobustSpecReg` used the averaged pre-aligned subspectra as references to align the averaged post-aligned subspectra |
-`fit_resid_water` | Whether the residual water signal in the OFF spectrum was fitted to calculate a water suppression factor |
-`weighted_averaging` | Whether weighted signal averaging was implemented |
-`HERMES` | Whether the data are HERMES data |
-`HERCULES` | Whether the data are HERCULES data | 
-`PRIAM` | Whether the data are PRIAM data |
-`phantom` | Whether the data are phantom data |
-`join` | Whether the input files were joined |
-`mat` | Whether the output structure was saved as MAT-file |
-`csv` | Whether a CSV file of useful data was created |
-`append` | Whether the PDF outputs were appended into single files |
-`hide` | Whether the output figures were hidden |
-`vendor` | Scanner vendor |
-`reference` | Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr |
-`numScans` | Total number of scans in the batch |
-`numFilesPerScan` | When input files are joined, the number of files joined per scan |
-`npoints` | Number of data points of each input file |
-`nrows` | Number of data frames stored in each input water reference file |
-`nrows_water` | Number of data frames stored in each input file |
-`Navg` | Total number of averages collected at acquisition for each input file |
-`Nwateravg` | Total number of averages collected at acquisition for each input water reference file |
-`TR` | Repetition time (ms) |
-`TE` | Echo time (ms) |
-`LarmorFreq` | Larmor frequency (MHz) |
-`sw` | Spectral width (Hz) |
-`voxdim` | Array of voxel dimensions (mm) |
-`voxoff` | Array of voxel position offset (mm) |
-`voxang` | Array of voxel angulation (deg) |
-`ZeroFillTo` | Processed spectra are zero-filled to this many data points |
-`zf` | Zero-fill factor |
-`dt` | Dwell time (s) |
-`SpecRes` | Spectral resolution of the raw data (Hz/point) |
-`SpecResNominal` | Nominal spectral resolution of the processed data (Hz/point) |
-`Tacq` | Acquisition time (s) |
+| `target` | The metabolite(s) targeted by the editing pulses |
+| `ON_OFF_order` | Order of the editing subexperiments | 
+| `seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
+| `LB` | Exponential line-broadening applied (Hz) |
+| `water_ECC` | Whether eddy-current correction was applied to the water data |
+| `metab_ECC` | Whether eddy-current correction was applied to the metabolite data |
+| `water_removal` | Whether the residual water signal in DIFF spectrum was removed using HSVD |
+| `alignment` | Choice of shot-to-shot frequency-and-phase correction |
+| `use_prealign_ref` | Whether `RobustSpecReg` used the averaged pre-aligned subspectra as references to align the averaged post-aligned subspectra |
+| `fit_resid_water` | Whether the residual water signal in the OFF spectrum was fitted to calculate a water suppression factor |
+| `weighted_averaging` | Whether weighted signal averaging was implemented |
+| `HERMES` | Whether the data are HERMES data |
+| `HERCULES` | Whether the data are HERCULES data | 
+| `PRIAM` | Whether the data are PRIAM data |
+| `phantom` | Whether the data are phantom data |
+| `join` | Whether the input files were joined |
+| `mat` | Whether the output structure was saved as MAT-file |
+| `csv` | Whether a CSV file of useful data was created |
+| `append` | Whether the PDF outputs were appended into single files |
+| `hide` | Whether the output figures were hidden |
+| `vendor` | Scanner vendor |
+| `reference` | Concentrations will be calculated relative to this; if a water reference is provided, concentrations will be calculated relative to both water and Cr, otherwise they will be calculated relative to Cr |
+| `numScans` | Total number of scans in the batch |
+| `numFilesPerScan` | When input files are joined, the number of files joined per scan |
+| `npoints` | Number of data points of each input file |
+| `nrows` | Number of data frames stored in each input file |
+| `nrows_water` | Number of data frames stored in each input water reference file |
+| `Navg` | Total number of averages collected at acquisition |
+| `Nwateravg` | Total number of averages collected at acquisition |
+| `TR` | Repetition time (ms) |
+| `TE` | Echo time (ms) |
+| `TR_water` | Repetition time (ms) |
+| `TE_water` | Echo time (ms) |
+| `LarmorFreq` | Larmor frequency (MHz) |
+| `sw` | Spectral width (Hz) |
+| `voxdim` | Array of voxel dimensions (mm) |
+| `voxoff` | Array of voxel position offset (mm) |
+| `voxang` | Array of voxel angulation (deg) |
+| `ZeroFillTo` | Processed spectra are zero-filled to this many data points |
+| `zf` | Zero-fill factor |
+| `dt` | Dwell time (s) |
+| `SpecRes` | Spectral resolution of the raw data (Hz/point) |
+| `SpecResNominal` | Nominal spectral resolution of the processed data (Hz/point) |
+| `Tacq` | Acquisition time (s) |
+| `weighted_averaging_method` | The algorithm used for weighted signal averaging |
 
 ## MRS_struct.fids
 
@@ -91,13 +95,14 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 |:------------------|:----------------------------------------------------|
 | `data` | Raw time-domain metabolite data (dimensions: `npoints` $\times$ `nrows`) of the last loaded dataset |
 | `data_water` | Raw time-domain water reference data (dimensions: `npoints` $\times$ `nrows_water`) of the last loaded dataset |
-| `ON_OFF` | Array of the editing order of the last loaded dataset |
+| `ON_OFF` | Array of the editing order of the last loaded dataset (`1` = ON; `0` = OFF) |
 | `data_align` | Raw time-domain metabolite data of the last loaded dataset with frequency-and-phase correction applied |
 
 ## MRS_struct.spec
 
 | <u>Field</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
+| `vox1` (or whatever was set in `MRS_struct.p.vox` in `GannetPreInitialise.m`) | This structure contains the complex frequency-domain spectral data for all input datasets |
 | `freq` | Frequency axis (ppm), calculated from the last loaded dataset |
 | `F0freq` | Cell array of the observed frequency of either residual water signal or the 3 ppm Cr signal for each average |
 | `F0freq2` | Cell array of the observed frequency of the 3 ppm Cr signal for each average; this is used in `RobustSpectralRegistration.m` as the starting values for frequency during optimization |
@@ -108,19 +113,21 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 
 | <u>Field</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
-| `AvgDeltaF0` | A metric of the amount of frequency offset observed during the acquisition, calculated as the mean difference between the observed frequency of the residual water signal (or the 3 ppm Cr signal) in the pre-frequency-corrected subspectra and the nominal water frequency at 4.68 ppm (or the nominal 3 ppm Cr signal if HERMES or GSH editing) |
+| `AvgDeltaF0` | Vector containing a metric of the amount of frequency offset observed during the acquisition, calculated as the mean difference between the observed frequency of the residual water signal (or the 3 ppm Cr signal) in the pre-frequency-corrected subspectra and the nominal water frequency at 4.68 ppm (or the nominal 3 ppm Cr signal if HERMES or GSH editing) |
 | `SpecReg` | Structure containing output from spectral registration |
 | `reject` | Cell array of binary integers indicating whether an individual transient should be rejected during signal averaging |
-| `QA` | Metrics calculated to quantify the performance of tissue segmentation |
+| `signal_averaging` | Structure containing a cell array of the weighting factors applied if weighted signal averaging is used |
+| `vox1` (or whatever was set in `MRS_struct.p.vox` in `GannetPreInitialise.m`) | This structure contains the output from the signal modeling, quality analysis, and quantification of all the signals of interest |
+| `QA` | Structure containing metrics calculated to quantify the performance of the tissue segmentation |
 
-## MRS_struct.mask
+## MRS_struct.mask.(vox1)
 
 | <u>Field</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
 | `outfile` | Cell array of the output filenames of the voxel masks |
-| `img` | Cell array containing three-dimensional arrays representing the three orthogonal slices of the T1 images |
-| `T1image` | Cell array of the input T1 image filenames |
-| `img_montage` | Cell array containing three-dimensional arrays representing a montage of axial slices of the T1 images overlaid by the tissue-segmented voxel masks |
+| `img` | Cell array containing three-dimensional arrays representing the three orthogonal slices of the <i>T</i><sub>1</sub>-weighted structural images that are displayed in the figure outputs |
+| `T1image` | Cell array of the input <i>T</i><sub>1</sub>-weighted structural image filenames |
+| `img_montage` | Cell array containing three-dimensional arrays representing a montage of axial slices of the <i>T</i><sub>1</sub>-weighted structural images overlaid by the tissue-segmented voxel masks that are displayed in the `GannetQuantify.m` figure output |
 
 
 

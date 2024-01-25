@@ -39,8 +39,6 @@ th, td {
 <i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; THIS PAGE IS UNDER DEVELOPMENT
 :::
 
-<br>
-
 Listed below are the preprocessing routines that are run in `GannetLoad.m`. Whether a particular routine or subroutine is run will depend on the format of the inputted data and the options set in `GannetPreInitialise.m`.
 
 ## RF coil combination
@@ -78,7 +76,7 @@ Gannet provides two methods for averaging individual transients (selected in `Ga
 
 ### Conventional averaging
 
-Conventional (or arithmetic) averaging is straightforward. All sequentially acquired pairs of subspectra (e.g., all edit-ON and edit-OFF subspectra) are averaged using the arithmetic mean: $\bar{x} = \frac{1}{n}\sum_{i=1}^nx_i$.
+Conventional (or arithmetic) averaging is straightforward. All sequentially acquired $n$ pairs of subspectra $x_i$ (e.g., all edit-ON and edit-OFF subspectra) are averaged using the arithmetic mean: $\bar{x} = \frac{1}{n}\sum_{i=1}^nx_i$.
 
 Note that before the arithmetic averaging of subspectra, individual transients are excluded based on the outlier rejection algorithm used during frequency and phase alignment.
 

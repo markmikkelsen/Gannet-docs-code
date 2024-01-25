@@ -431,7 +431,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Output structure attributes</h1>
-<h4 class="date">Last updated: January 13, 2024</h4>
+<h4 class="date">Last updated: January 24, 2024</h4>
 
 </div>
 
@@ -535,182 +535,196 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <td align="left">The metabolite(s) targeted by the editing pulses</td>
 </tr>
 <tr class="even">
+<td align="left"><code>ON_OFF_order</code></td>
+<td align="left">Order of the editing subexperiments</td>
+</tr>
+<tr class="odd">
 <td align="left"><code>seqorig</code></td>
 <td align="left">Origin of the Philips MEGA-PRESS or GE HERMES
 sequences</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>LB</code></td>
 <td align="left">Exponential line-broadening applied (Hz)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>water_ECC</code></td>
 <td align="left">Whether eddy-current correction was applied to the
 water data</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>metab_ECC</code></td>
 <td align="left">Whether eddy-current correction was applied to the
 metabolite data</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>water_removal</code></td>
 <td align="left">Whether the residual water signal in DIFF spectrum was
 removed using HSVD</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>alignment</code></td>
 <td align="left">Choice of shot-to-shot frequency-and-phase
 correction</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>use_prealign_ref</code></td>
 <td align="left">Whether <code>RobustSpecReg</code> used the averaged
 pre-aligned subspectra as references to align the averaged post-aligned
 subspectra</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>fit_resid_water</code></td>
 <td align="left">Whether the residual water signal in the OFF spectrum
 was fitted to calculate a water suppression factor</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>weighted_averaging</code></td>
 <td align="left">Whether weighted signal averaging was implemented</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>HERMES</code></td>
 <td align="left">Whether the data are HERMES data</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>HERCULES</code></td>
 <td align="left">Whether the data are HERCULES data</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>PRIAM</code></td>
 <td align="left">Whether the data are PRIAM data</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>phantom</code></td>
 <td align="left">Whether the data are phantom data</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>join</code></td>
 <td align="left">Whether the input files were joined</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>mat</code></td>
 <td align="left">Whether the output structure was saved as MAT-file</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>csv</code></td>
 <td align="left">Whether a CSV file of useful data was created</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>append</code></td>
 <td align="left">Whether the PDF outputs were appended into single
 files</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>hide</code></td>
 <td align="left">Whether the output figures were hidden</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>vendor</code></td>
 <td align="left">Scanner vendor</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>reference</code></td>
 <td align="left">Concentrations will be calculated relative to this; if
 a water reference is provided, concentrations will be calculated
 relative to both water and Cr, otherwise they will be calculated
 relative to Cr</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>numScans</code></td>
 <td align="left">Total number of scans in the batch</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>numFilesPerScan</code></td>
 <td align="left">When input files are joined, the number of files joined
 per scan</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>npoints</code></td>
 <td align="left">Number of data points of each input file</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>nrows</code></td>
+<td align="left">Number of data frames stored in each input file</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>nrows_water</code></td>
 <td align="left">Number of data frames stored in each input water
 reference file</td>
 </tr>
 <tr class="even">
-<td align="left"><code>nrows_water</code></td>
-<td align="left">Number of data frames stored in each input file</td>
+<td align="left"><code>Navg</code></td>
+<td align="left">Total number of averages collected at acquisition</td>
 </tr>
 <tr class="odd">
-<td align="left"><code>Navg</code></td>
-<td align="left">Total number of averages collected at acquisition for
-each input file</td>
+<td align="left"><code>Nwateravg</code></td>
+<td align="left">Total number of averages collected at acquisition</td>
 </tr>
 <tr class="even">
-<td align="left"><code>Nwateravg</code></td>
-<td align="left">Total number of averages collected at acquisition for
-each input water reference file</td>
-</tr>
-<tr class="odd">
 <td align="left"><code>TR</code></td>
 <td align="left">Repetition time (ms)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>TE</code></td>
 <td align="left">Echo time (ms)</td>
 </tr>
+<tr class="even">
+<td align="left"><code>TR_water</code></td>
+<td align="left">Repetition time (ms)</td>
+</tr>
 <tr class="odd">
+<td align="left"><code>TE_water</code></td>
+<td align="left">Echo time (ms)</td>
+</tr>
+<tr class="even">
 <td align="left"><code>LarmorFreq</code></td>
 <td align="left">Larmor frequency (MHz)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>sw</code></td>
 <td align="left">Spectral width (Hz)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>voxdim</code></td>
 <td align="left">Array of voxel dimensions (mm)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>voxoff</code></td>
 <td align="left">Array of voxel position offset (mm)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>voxang</code></td>
 <td align="left">Array of voxel angulation (deg)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>ZeroFillTo</code></td>
 <td align="left">Processed spectra are zero-filled to this many data
 points</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>zf</code></td>
 <td align="left">Zero-fill factor</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>dt</code></td>
 <td align="left">Dwell time (s)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>SpecRes</code></td>
 <td align="left">Spectral resolution of the raw data (Hz/point)</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>SpecResNominal</code></td>
 <td align="left">Nominal spectral resolution of the processed data
 (Hz/point)</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>Tacq</code></td>
 <td align="left">Acquisition time (s)</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>weighted_averaging_method</code></td>
+<td align="left">The algorithm used for weighted signal averaging</td>
 </tr>
 </tbody>
 </table>
@@ -744,8 +758,8 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </tr>
 <tr class="odd">
 <td align="left"><code>ON_OFF</code></td>
-<td align="left">Array of the editing order of the last loaded
-dataset</td>
+<td align="left">Array of the editing order of the last loaded dataset
+(<code>1</code> = ON; <code>0</code> = OFF)</td>
 </tr>
 <tr class="even">
 <td align="left"><code>data_align</code></td>
@@ -771,28 +785,35 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left"><code>vox1</code> (or whatever was set in
+<code>MRS_struct.p.vox</code> in
+<code>GannetPreInitialise.m</code>)</td>
+<td align="left">This structure contains the complex frequency-domain
+spectral data for all input datasets</td>
+</tr>
+<tr class="even">
 <td align="left"><code>freq</code></td>
 <td align="left">Frequency axis (ppm), calculated from the last loaded
 dataset</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>F0freq</code></td>
 <td align="left">Cell array of the observed frequency of either residual
 water signal or the 3 ppm Cr signal for each average</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>F0freq2</code></td>
 <td align="left">Cell array of the observed frequency of the 3 ppm Cr
 signal for each average; this is used in
 <code>RobustSpectralRegistration.m</code> as the starting values for
 frequency during optimization</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left"><code>AllFramesFT</code></td>
 <td align="left">Spectra of the last loaded dataset without
 frequency-and-phase correction applied</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left"><code>AllFramesFTrealign</code></td>
 <td align="left">Spectra of the last loaded dataset with
 frequency-and-phase correction applied</td>
@@ -817,12 +838,12 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <tbody>
 <tr class="odd">
 <td align="left"><code>AvgDeltaF0</code></td>
-<td align="left">A metric of the amount of frequency offset observed
-during the acquisition, calculated as the mean difference between the
-observed frequency of the residual water signal (or the 3 ppm Cr signal)
-in the pre-frequency-corrected subspectra and the nominal water
-frequency at 4.68 ppm (or the nominal 3 ppm Cr signal if HERMES or GSH
-editing)</td>
+<td align="left">Vector containing a metric of the amount of frequency
+offset observed during the acquisition, calculated as the mean
+difference between the observed frequency of the residual water signal
+(or the 3 ppm Cr signal) in the pre-frequency-corrected subspectra and
+the nominal water frequency at 4.68 ppm (or the nominal 3 ppm Cr signal
+if HERMES or GSH editing)</td>
 </tr>
 <tr class="even">
 <td align="left"><code>SpecReg</code></td>
@@ -835,16 +856,30 @@ registration</td>
 individual transient should be rejected during signal averaging</td>
 </tr>
 <tr class="even">
+<td align="left"><code>signal_averaging</code></td>
+<td align="left">Structure containing a cell array of the weighting
+factors applied if weighted signal averaging is used</td>
+</tr>
+<tr class="odd">
+<td align="left"><code>vox1</code> (or whatever was set in
+<code>MRS_struct.p.vox</code> in
+<code>GannetPreInitialise.m</code>)</td>
+<td align="left">This structure contains the output from the signal
+modeling, quality analysis, and quantification of all the signals of
+interest</td>
+</tr>
+<tr class="even">
 <td align="left"><code>QA</code></td>
-<td align="left">Metrics calculated to quantify the performance of
-tissue segmentation</td>
+<td align="left">Structure containing metrics calculated to quantify the
+performance of the tissue segmentation</td>
 </tr>
 </tbody>
 </table>
 </div>
-<div id="mrs_struct.mask" class="section level2 hasAnchor">
-<h2 class="hasAnchor">MRS_struct.mask<a href="#mrs_struct.mask"
-class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="mrs_struct.mask.vox1" class="section level2 hasAnchor">
+<h2 class="hasAnchor">MRS_struct.mask.(vox1)<a
+href="#mrs_struct.mask.vox1" class="anchor-section"
+aria-label="Anchor link to header"></a></h2>
 <table>
 <colgroup>
 <col width="26%" />
@@ -865,31 +900,36 @@ masks</td>
 <tr class="even">
 <td align="left"><code>img</code></td>
 <td align="left">Cell array containing three-dimensional arrays
-representing the three orthogonal slices of the T1 images</td>
+representing the three orthogonal slices of the
+<i>T</i><sub>1</sub>-weighted structural images that are displayed in
+the figure outputs</td>
 </tr>
 <tr class="odd">
 <td align="left"><code>T1image</code></td>
-<td align="left">Cell array of the input T1 image filenames</td>
+<td align="left">Cell array of the input <i>T</i><sub>1</sub>-weighted
+structural image filenames</td>
 </tr>
 <tr class="even">
 <td align="left"><code>img_montage</code></td>
 <td align="left">Cell array containing three-dimensional arrays
-representing a montage of axial slices of the T1 images overlaid by the
-tissue-segmented voxel masks</td>
+representing a montage of axial slices of the
+<i>T</i><sub>1</sub>-weighted structural images overlaid by the
+tissue-segmented voxel masks that are displayed in the
+<code>GannetQuantify.m</code> figure output</td>
 </tr>
 </tbody>
 </table>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiT3V0cHV0IHN0cnVjdHVyZSBhdHRyaWJ1dGVzIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQouaW5mbyB7CiAgbWFyZ2luLWJvdHRvbTogMjBweDsKfQpgYGAKCjxicj4KCjo6OiBpbmZvCjxpIGNsYXNzPSJmYSBmYS1pbmZvLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPiZuYnNwOyBUaGUgZmllbGRzIGxpc3RlZCBvbiB0aGlzIHBhZ2UgYXJlIGFwcGxpY2FibGUgdG8gcmVsZWFzZXMgMy4zLjArIGFuZCBhcmUgbm90IG5lY2Vzc2FyaWx5IGNvcnJlY3QgZm9yIG90aGVyIHZlcnNpb25zIG9mIEdhbm5ldC4KOjo6CgpBbGwgb3V0cHV0IGZyb20gR2FubmV0IGFuYWx5c2VzIGFyZSBzYXZlZCBpbiBhIHN0cnVjdHVyZSAoZS5nLiwgYE1SU19zdHJ1Y3RgLCBvciB3aGF0ZXZlciBuYW1lIHRoZSB1c2VyIGhhcyBjaG9zZW4pIHRoYXQgY29udGFpbnMgbWFueSBmaWVsZHMgYW5kIHN1YmZpZWxkcy4gTGlzdGVkIGJlbG93IGFyZSBsaXN0cyBvZiB0aGVzZSBmaWVsZHMgYW5kIHRoZWlyIGRlc2NyaXB0aW9ucy4gTm90ZSB0aGF0IG5vdCBwb3NzaWJsZSBmaWVsZCB0aGF0IEdhbm5ldCBjYW4gZ2VuZXJhdGUgZHVyaW5nIGFuIGFuYWx5c2lzIHBpcGVsaW5lIGlzIHNob3duIGZvciB0aGUgc2FrZSBvZiBicmV2aXR5LgoKIyMgTVJTX3N0cnVjdAoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBgdmVyc2lvbmAgfCBTdHJ1Y3R1cmUgY29udGFpbmluZyByZWxlYXNlIG51bWJlcnMgb2YgR2FubmV0IGFuZCB0aGUgR2FubmV0IG1vZHVsZXMgfAp8IGBpaWAgfCBEdXJpbmcgYW5hbHlzaXMsIHRoZSBjdXJyZW50IGZpbGUgYmVpbmcgbG9hZGVkOyBhZnRlciBhbmFseXNpcywgdGhlIG51bWJlciBvZiBmaWxlcyB0aGF0IHdlcmUgbG9hZGVkIHwKfCBgbWV0YWJmaWxlYCB8IENlbGwgYXJyYXkgY29udGFpbmluZyB0aGUgaW5wdXR0ZWQgbWV0YWJvbGl0ZSBkYXRhIGZpbGVuYW1lcyB8CnwgYHdhdGVyZmlsZWAgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhlIGlucHV0dGVkIHdhdGVyIHJlZmVyZW5jZSBkYXRhIGZpbGVuYW1lcyB8CgojIyBNUlNfc3RydWN0LnAKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfDotLS0tLS0tLS0tLS0tLS0tLS18Oi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CmB0YXJnZXRgIHwgVGhlIG1ldGFib2xpdGUocykgdGFyZ2V0ZWQgYnkgdGhlIGVkaXRpbmcgcHVsc2VzIHwKYHNlcW9yaWdgIHwgT3JpZ2luIG9mIHRoZSBQaGlsaXBzIE1FR0EtUFJFU1Mgb3IgR0UgSEVSTUVTIHNlcXVlbmNlcyB8CmBMQmAgfCBFeHBvbmVudGlhbCBsaW5lLWJyb2FkZW5pbmcgYXBwbGllZCAoSHopIHwKYHdhdGVyX0VDQ2AgfCBXaGV0aGVyIGVkZHktY3VycmVudCBjb3JyZWN0aW9uIHdhcyBhcHBsaWVkIHRvIHRoZSB3YXRlciBkYXRhIHwKYG1ldGFiX0VDQ2AgfCBXaGV0aGVyIGVkZHktY3VycmVudCBjb3JyZWN0aW9uIHdhcyBhcHBsaWVkIHRvIHRoZSBtZXRhYm9saXRlIGRhdGEgfApgd2F0ZXJfcmVtb3ZhbGAgfCBXaGV0aGVyIHRoZSByZXNpZHVhbCB3YXRlciBzaWduYWwgaW4gRElGRiBzcGVjdHJ1bSB3YXMgcmVtb3ZlZCB1c2luZyBIU1ZEIHwKYGFsaWdubWVudGAgfCBDaG9pY2Ugb2Ygc2hvdC10by1zaG90IGZyZXF1ZW5jeS1hbmQtcGhhc2UgY29ycmVjdGlvbiB8CmB1c2VfcHJlYWxpZ25fcmVmYCB8IFdoZXRoZXIgYFJvYnVzdFNwZWNSZWdgIHVzZWQgdGhlIGF2ZXJhZ2VkIHByZS1hbGlnbmVkIHN1YnNwZWN0cmEgYXMgcmVmZXJlbmNlcyB0byBhbGlnbiB0aGUgYXZlcmFnZWQgcG9zdC1hbGlnbmVkIHN1YnNwZWN0cmEgfApgZml0X3Jlc2lkX3dhdGVyYCB8IFdoZXRoZXIgdGhlIHJlc2lkdWFsIHdhdGVyIHNpZ25hbCBpbiB0aGUgT0ZGIHNwZWN0cnVtIHdhcyBmaXR0ZWQgdG8gY2FsY3VsYXRlIGEgd2F0ZXIgc3VwcHJlc3Npb24gZmFjdG9yIHwKYHdlaWdodGVkX2F2ZXJhZ2luZ2AgfCBXaGV0aGVyIHdlaWdodGVkIHNpZ25hbCBhdmVyYWdpbmcgd2FzIGltcGxlbWVudGVkIHwKYEhFUk1FU2AgfCBXaGV0aGVyIHRoZSBkYXRhIGFyZSBIRVJNRVMgZGF0YSB8CmBIRVJDVUxFU2AgfCBXaGV0aGVyIHRoZSBkYXRhIGFyZSBIRVJDVUxFUyBkYXRhIHwgCmBQUklBTWAgfCBXaGV0aGVyIHRoZSBkYXRhIGFyZSBQUklBTSBkYXRhIHwKYHBoYW50b21gIHwgV2hldGhlciB0aGUgZGF0YSBhcmUgcGhhbnRvbSBkYXRhIHwKYGpvaW5gIHwgV2hldGhlciB0aGUgaW5wdXQgZmlsZXMgd2VyZSBqb2luZWQgfApgbWF0YCB8IFdoZXRoZXIgdGhlIG91dHB1dCBzdHJ1Y3R1cmUgd2FzIHNhdmVkIGFzIE1BVC1maWxlIHwKYGNzdmAgfCBXaGV0aGVyIGEgQ1NWIGZpbGUgb2YgdXNlZnVsIGRhdGEgd2FzIGNyZWF0ZWQgfApgYXBwZW5kYCB8IFdoZXRoZXIgdGhlIFBERiBvdXRwdXRzIHdlcmUgYXBwZW5kZWQgaW50byBzaW5nbGUgZmlsZXMgfApgaGlkZWAgfCBXaGV0aGVyIHRoZSBvdXRwdXQgZmlndXJlcyB3ZXJlIGhpZGRlbiB8CmB2ZW5kb3JgIHwgU2Nhbm5lciB2ZW5kb3IgfApgcmVmZXJlbmNlYCB8IENvbmNlbnRyYXRpb25zIHdpbGwgYmUgY2FsY3VsYXRlZCByZWxhdGl2ZSB0byB0aGlzOyBpZiBhIHdhdGVyIHJlZmVyZW5jZSBpcyBwcm92aWRlZCwgY29uY2VudHJhdGlvbnMgd2lsbCBiZSBjYWxjdWxhdGVkIHJlbGF0aXZlIHRvIGJvdGggd2F0ZXIgYW5kIENyLCBvdGhlcndpc2UgdGhleSB3aWxsIGJlIGNhbGN1bGF0ZWQgcmVsYXRpdmUgdG8gQ3IgfApgbnVtU2NhbnNgIHwgVG90YWwgbnVtYmVyIG9mIHNjYW5zIGluIHRoZSBiYXRjaCB8CmBudW1GaWxlc1BlclNjYW5gIHwgV2hlbiBpbnB1dCBmaWxlcyBhcmUgam9pbmVkLCB0aGUgbnVtYmVyIG9mIGZpbGVzIGpvaW5lZCBwZXIgc2NhbiB8CmBucG9pbnRzYCB8IE51bWJlciBvZiBkYXRhIHBvaW50cyBvZiBlYWNoIGlucHV0IGZpbGUgfApgbnJvd3NgIHwgTnVtYmVyIG9mIGRhdGEgZnJhbWVzIHN0b3JlZCBpbiBlYWNoIGlucHV0IHdhdGVyIHJlZmVyZW5jZSBmaWxlIHwKYG5yb3dzX3dhdGVyYCB8IE51bWJlciBvZiBkYXRhIGZyYW1lcyBzdG9yZWQgaW4gZWFjaCBpbnB1dCBmaWxlIHwKYE5hdmdgIHwgVG90YWwgbnVtYmVyIG9mIGF2ZXJhZ2VzIGNvbGxlY3RlZCBhdCBhY3F1aXNpdGlvbiBmb3IgZWFjaCBpbnB1dCBmaWxlIHwKYE53YXRlcmF2Z2AgfCBUb3RhbCBudW1iZXIgb2YgYXZlcmFnZXMgY29sbGVjdGVkIGF0IGFjcXVpc2l0aW9uIGZvciBlYWNoIGlucHV0IHdhdGVyIHJlZmVyZW5jZSBmaWxlIHwKYFRSYCB8IFJlcGV0aXRpb24gdGltZSAobXMpIHwKYFRFYCB8IEVjaG8gdGltZSAobXMpIHwKYExhcm1vckZyZXFgIHwgTGFybW9yIGZyZXF1ZW5jeSAoTUh6KSB8CmBzd2AgfCBTcGVjdHJhbCB3aWR0aCAoSHopIHwKYHZveGRpbWAgfCBBcnJheSBvZiB2b3hlbCBkaW1lbnNpb25zIChtbSkgfApgdm94b2ZmYCB8IEFycmF5IG9mIHZveGVsIHBvc2l0aW9uIG9mZnNldCAobW0pIHwKYHZveGFuZ2AgfCBBcnJheSBvZiB2b3hlbCBhbmd1bGF0aW9uIChkZWcpIHwKYFplcm9GaWxsVG9gIHwgUHJvY2Vzc2VkIHNwZWN0cmEgYXJlIHplcm8tZmlsbGVkIHRvIHRoaXMgbWFueSBkYXRhIHBvaW50cyB8CmB6ZmAgfCBaZXJvLWZpbGwgZmFjdG9yIHwKYGR0YCB8IER3ZWxsIHRpbWUgKHMpIHwKYFNwZWNSZXNgIHwgU3BlY3RyYWwgcmVzb2x1dGlvbiBvZiB0aGUgcmF3IGRhdGEgKEh6L3BvaW50KSB8CmBTcGVjUmVzTm9taW5hbGAgfCBOb21pbmFsIHNwZWN0cmFsIHJlc29sdXRpb24gb2YgdGhlIHByb2Nlc3NlZCBkYXRhIChIei9wb2ludCkgfApgVGFjcWAgfCBBY3F1aXNpdGlvbiB0aW1lIChzKSB8CgojIyBNUlNfc3RydWN0LmZpZHMKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfDotLS0tLS0tLS0tLS0tLS0tLS18Oi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgYGRhdGFgIHwgUmF3IHRpbWUtZG9tYWluIG1ldGFib2xpdGUgZGF0YSAoZGltZW5zaW9uczogYG5wb2ludHNgICRcdGltZXMkIGBucm93c2ApIG9mIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHwKfCBgZGF0YV93YXRlcmAgfCBSYXcgdGltZS1kb21haW4gd2F0ZXIgcmVmZXJlbmNlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3Nfd2F0ZXJgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYE9OX09GRmAgfCBBcnJheSBvZiB0aGUgZWRpdGluZyBvcmRlciBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYGRhdGFfYWxpZ25gIHwgUmF3IHRpbWUtZG9tYWluIG1ldGFib2xpdGUgZGF0YSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB3aXRoIGZyZXF1ZW5jeS1hbmQtcGhhc2UgY29ycmVjdGlvbiBhcHBsaWVkIHwKCiMjIE1SU19zdHJ1Y3Quc3BlYwoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBgZnJlcWAgfCBGcmVxdWVuY3kgYXhpcyAocHBtKSwgY2FsY3VsYXRlZCBmcm9tIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHwKfCBgRjBmcmVxYCB8IENlbGwgYXJyYXkgb2YgdGhlIG9ic2VydmVkIGZyZXF1ZW5jeSBvZiBlaXRoZXIgcmVzaWR1YWwgd2F0ZXIgc2lnbmFsIG9yIHRoZSAzIHBwbSBDciBzaWduYWwgZm9yIGVhY2ggYXZlcmFnZSB8CnwgYEYwZnJlcTJgIHwgQ2VsbCBhcnJheSBvZiB0aGUgb2JzZXJ2ZWQgZnJlcXVlbmN5IG9mIHRoZSAzIHBwbSBDciBzaWduYWwgZm9yIGVhY2ggYXZlcmFnZTsgdGhpcyBpcyB1c2VkIGluIGBSb2J1c3RTcGVjdHJhbFJlZ2lzdHJhdGlvbi5tYCBhcyB0aGUgc3RhcnRpbmcgdmFsdWVzIGZvciBmcmVxdWVuY3kgZHVyaW5nIG9wdGltaXphdGlvbiB8CnwgYEFsbEZyYW1lc0ZUYCB8IFNwZWN0cmEgb2YgdGhlIGxhc3QgbG9hZGVkIGRhdGFzZXQgd2l0aG91dCBmcmVxdWVuY3ktYW5kLXBoYXNlIGNvcnJlY3Rpb24gYXBwbGllZCB8CnwgYEFsbEZyYW1lc0ZUcmVhbGlnbmAgfCBTcGVjdHJhIG9mIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHdpdGggZnJlcXVlbmN5LWFuZC1waGFzZSBjb3JyZWN0aW9uIGFwcGxpZWQgfAoKIyMgTVJTX3N0cnVjdC5vdXQKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfDotLS0tLS0tLS0tLS0tLS0tLS18Oi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgYEF2Z0RlbHRhRjBgIHwgQSBtZXRyaWMgb2YgdGhlIGFtb3VudCBvZiBmcmVxdWVuY3kgb2Zmc2V0IG9ic2VydmVkIGR1cmluZyB0aGUgYWNxdWlzaXRpb24sIGNhbGN1bGF0ZWQgYXMgdGhlIG1lYW4gZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZSBvYnNlcnZlZCBmcmVxdWVuY3kgb2YgdGhlIHJlc2lkdWFsIHdhdGVyIHNpZ25hbCAob3IgdGhlIDMgcHBtIENyIHNpZ25hbCkgaW4gdGhlIHByZS1mcmVxdWVuY3ktY29ycmVjdGVkIHN1YnNwZWN0cmEgYW5kIHRoZSBub21pbmFsIHdhdGVyIGZyZXF1ZW5jeSBhdCA0LjY4IHBwbSAob3IgdGhlIG5vbWluYWwgMyBwcG0gQ3Igc2lnbmFsIGlmIEhFUk1FUyBvciBHU0ggZWRpdGluZykgfAp8IGBTcGVjUmVnYCB8IFN0cnVjdHVyZSBjb250YWluaW5nIG91dHB1dCBmcm9tIHNwZWN0cmFsIHJlZ2lzdHJhdGlvbiB8CnwgYHJlamVjdGAgfCBDZWxsIGFycmF5IG9mIGJpbmFyeSBpbnRlZ2VycyBpbmRpY2F0aW5nIHdoZXRoZXIgYW4gaW5kaXZpZHVhbCB0cmFuc2llbnQgc2hvdWxkIGJlIHJlamVjdGVkIGR1cmluZyBzaWduYWwgYXZlcmFnaW5nIHwKfCBgUUFgIHwgTWV0cmljcyBjYWxjdWxhdGVkIHRvIHF1YW50aWZ5IHRoZSBwZXJmb3JtYW5jZSBvZiB0aXNzdWUgc2VnbWVudGF0aW9uIHwKCiMjIE1SU19zdHJ1Y3QubWFzawoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBgb3V0ZmlsZWAgfCBDZWxsIGFycmF5IG9mIHRoZSBvdXRwdXQgZmlsZW5hbWVzIG9mIHRoZSB2b3hlbCBtYXNrcyB8CnwgYGltZ2AgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhyZWUtZGltZW5zaW9uYWwgYXJyYXlzIHJlcHJlc2VudGluZyB0aGUgdGhyZWUgb3J0aG9nb25hbCBzbGljZXMgb2YgdGhlIFQxIGltYWdlcyB8CnwgYFQxaW1hZ2VgIHwgQ2VsbCBhcnJheSBvZiB0aGUgaW5wdXQgVDEgaW1hZ2UgZmlsZW5hbWVzIHwKfCBgaW1nX21vbnRhZ2VgIHwgQ2VsbCBhcnJheSBjb250YWluaW5nIHRocmVlLWRpbWVuc2lvbmFsIGFycmF5cyByZXByZXNlbnRpbmcgYSBtb250YWdlIG9mIGF4aWFsIHNsaWNlcyBvZiB0aGUgVDEgaW1hZ2VzIG92ZXJsYWlkIGJ5IHRoZSB0aXNzdWUtc2VnbWVudGVkIHZveGVsIG1hc2tzIHwKCgoK</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiT3V0cHV0IHN0cnVjdHVyZSBhdHRyaWJ1dGVzIgpkYXRlOiAiTGFzdCB1cGRhdGVkOiBgciBmb3JtYXQoU3lzLnRpbWUoKSwgJyVCICVkLCAlWScpYCIKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQouaW5mbyB7CiAgbWFyZ2luLWJvdHRvbTogMjBweDsKfQpgYGAKCjxicj4KCjo6OiBpbmZvCjxpIGNsYXNzPSJmYSBmYS1pbmZvLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPiZuYnNwOyBUaGUgZmllbGRzIGxpc3RlZCBvbiB0aGlzIHBhZ2UgYXJlIGFwcGxpY2FibGUgdG8gcmVsZWFzZXMgMy4zLjArIGFuZCBhcmUgbm90IG5lY2Vzc2FyaWx5IGNvcnJlY3QgZm9yIG90aGVyIHZlcnNpb25zIG9mIEdhbm5ldC4KOjo6CgpBbGwgb3V0cHV0IGZyb20gR2FubmV0IGFuYWx5c2VzIGFyZSBzYXZlZCBpbiBhIHN0cnVjdHVyZSAoZS5nLiwgYE1SU19zdHJ1Y3RgLCBvciB3aGF0ZXZlciBuYW1lIHRoZSB1c2VyIGhhcyBjaG9zZW4pIHRoYXQgY29udGFpbnMgbWFueSBmaWVsZHMgYW5kIHN1YmZpZWxkcy4gTGlzdGVkIGJlbG93IGFyZSBsaXN0cyBvZiB0aGVzZSBmaWVsZHMgYW5kIHRoZWlyIGRlc2NyaXB0aW9ucy4gTm90ZSB0aGF0IG5vdCBwb3NzaWJsZSBmaWVsZCB0aGF0IEdhbm5ldCBjYW4gZ2VuZXJhdGUgZHVyaW5nIGFuIGFuYWx5c2lzIHBpcGVsaW5lIGlzIHNob3duIGZvciB0aGUgc2FrZSBvZiBicmV2aXR5LgoKIyMgTVJTX3N0cnVjdAoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBgdmVyc2lvbmAgfCBTdHJ1Y3R1cmUgY29udGFpbmluZyByZWxlYXNlIG51bWJlcnMgb2YgR2FubmV0IGFuZCB0aGUgR2FubmV0IG1vZHVsZXMgfAp8IGBpaWAgfCBEdXJpbmcgYW5hbHlzaXMsIHRoZSBjdXJyZW50IGZpbGUgYmVpbmcgbG9hZGVkOyBhZnRlciBhbmFseXNpcywgdGhlIG51bWJlciBvZiBmaWxlcyB0aGF0IHdlcmUgbG9hZGVkIHwKfCBgbWV0YWJmaWxlYCB8IENlbGwgYXJyYXkgY29udGFpbmluZyB0aGUgaW5wdXR0ZWQgbWV0YWJvbGl0ZSBkYXRhIGZpbGVuYW1lcyB8CnwgYHdhdGVyZmlsZWAgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhlIGlucHV0dGVkIHdhdGVyIHJlZmVyZW5jZSBkYXRhIGZpbGVuYW1lcyB8CgojIyBNUlNfc3RydWN0LnAKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfDotLS0tLS0tLS0tLS0tLS0tLS18Oi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgYHRhcmdldGAgfCBUaGUgbWV0YWJvbGl0ZShzKSB0YXJnZXRlZCBieSB0aGUgZWRpdGluZyBwdWxzZXMgfAp8IGBPTl9PRkZfb3JkZXJgIHwgT3JkZXIgb2YgdGhlIGVkaXRpbmcgc3ViZXhwZXJpbWVudHMgfCAKfCBgc2Vxb3JpZ2AgfCBPcmlnaW4gb2YgdGhlIFBoaWxpcHMgTUVHQS1QUkVTUyBvciBHRSBIRVJNRVMgc2VxdWVuY2VzIHwKfCBgTEJgIHwgRXhwb25lbnRpYWwgbGluZS1icm9hZGVuaW5nIGFwcGxpZWQgKEh6KSB8CnwgYHdhdGVyX0VDQ2AgfCBXaGV0aGVyIGVkZHktY3VycmVudCBjb3JyZWN0aW9uIHdhcyBhcHBsaWVkIHRvIHRoZSB3YXRlciBkYXRhIHwKfCBgbWV0YWJfRUNDYCB8IFdoZXRoZXIgZWRkeS1jdXJyZW50IGNvcnJlY3Rpb24gd2FzIGFwcGxpZWQgdG8gdGhlIG1ldGFib2xpdGUgZGF0YSB8CnwgYHdhdGVyX3JlbW92YWxgIHwgV2hldGhlciB0aGUgcmVzaWR1YWwgd2F0ZXIgc2lnbmFsIGluIERJRkYgc3BlY3RydW0gd2FzIHJlbW92ZWQgdXNpbmcgSFNWRCB8CnwgYGFsaWdubWVudGAgfCBDaG9pY2Ugb2Ygc2hvdC10by1zaG90IGZyZXF1ZW5jeS1hbmQtcGhhc2UgY29ycmVjdGlvbiB8CnwgYHVzZV9wcmVhbGlnbl9yZWZgIHwgV2hldGhlciBgUm9idXN0U3BlY1JlZ2AgdXNlZCB0aGUgYXZlcmFnZWQgcHJlLWFsaWduZWQgc3Vic3BlY3RyYSBhcyByZWZlcmVuY2VzIHRvIGFsaWduIHRoZSBhdmVyYWdlZCBwb3N0LWFsaWduZWQgc3Vic3BlY3RyYSB8CnwgYGZpdF9yZXNpZF93YXRlcmAgfCBXaGV0aGVyIHRoZSByZXNpZHVhbCB3YXRlciBzaWduYWwgaW4gdGhlIE9GRiBzcGVjdHJ1bSB3YXMgZml0dGVkIHRvIGNhbGN1bGF0ZSBhIHdhdGVyIHN1cHByZXNzaW9uIGZhY3RvciB8CnwgYHdlaWdodGVkX2F2ZXJhZ2luZ2AgfCBXaGV0aGVyIHdlaWdodGVkIHNpZ25hbCBhdmVyYWdpbmcgd2FzIGltcGxlbWVudGVkIHwKfCBgSEVSTUVTYCB8IFdoZXRoZXIgdGhlIGRhdGEgYXJlIEhFUk1FUyBkYXRhIHwKfCBgSEVSQ1VMRVNgIHwgV2hldGhlciB0aGUgZGF0YSBhcmUgSEVSQ1VMRVMgZGF0YSB8IAp8IGBQUklBTWAgfCBXaGV0aGVyIHRoZSBkYXRhIGFyZSBQUklBTSBkYXRhIHwKfCBgcGhhbnRvbWAgfCBXaGV0aGVyIHRoZSBkYXRhIGFyZSBwaGFudG9tIGRhdGEgfAp8IGBqb2luYCB8IFdoZXRoZXIgdGhlIGlucHV0IGZpbGVzIHdlcmUgam9pbmVkIHwKfCBgbWF0YCB8IFdoZXRoZXIgdGhlIG91dHB1dCBzdHJ1Y3R1cmUgd2FzIHNhdmVkIGFzIE1BVC1maWxlIHwKfCBgY3N2YCB8IFdoZXRoZXIgYSBDU1YgZmlsZSBvZiB1c2VmdWwgZGF0YSB3YXMgY3JlYXRlZCB8CnwgYGFwcGVuZGAgfCBXaGV0aGVyIHRoZSBQREYgb3V0cHV0cyB3ZXJlIGFwcGVuZGVkIGludG8gc2luZ2xlIGZpbGVzIHwKfCBgaGlkZWAgfCBXaGV0aGVyIHRoZSBvdXRwdXQgZmlndXJlcyB3ZXJlIGhpZGRlbiB8CnwgYHZlbmRvcmAgfCBTY2FubmVyIHZlbmRvciB8CnwgYHJlZmVyZW5jZWAgfCBDb25jZW50cmF0aW9ucyB3aWxsIGJlIGNhbGN1bGF0ZWQgcmVsYXRpdmUgdG8gdGhpczsgaWYgYSB3YXRlciByZWZlcmVuY2UgaXMgcHJvdmlkZWQsIGNvbmNlbnRyYXRpb25zIHdpbGwgYmUgY2FsY3VsYXRlZCByZWxhdGl2ZSB0byBib3RoIHdhdGVyIGFuZCBDciwgb3RoZXJ3aXNlIHRoZXkgd2lsbCBiZSBjYWxjdWxhdGVkIHJlbGF0aXZlIHRvIENyIHwKfCBgbnVtU2NhbnNgIHwgVG90YWwgbnVtYmVyIG9mIHNjYW5zIGluIHRoZSBiYXRjaCB8CnwgYG51bUZpbGVzUGVyU2NhbmAgfCBXaGVuIGlucHV0IGZpbGVzIGFyZSBqb2luZWQsIHRoZSBudW1iZXIgb2YgZmlsZXMgam9pbmVkIHBlciBzY2FuIHwKfCBgbnBvaW50c2AgfCBOdW1iZXIgb2YgZGF0YSBwb2ludHMgb2YgZWFjaCBpbnB1dCBmaWxlIHwKfCBgbnJvd3NgIHwgTnVtYmVyIG9mIGRhdGEgZnJhbWVzIHN0b3JlZCBpbiBlYWNoIGlucHV0IGZpbGUgfAp8IGBucm93c193YXRlcmAgfCBOdW1iZXIgb2YgZGF0YSBmcmFtZXMgc3RvcmVkIGluIGVhY2ggaW5wdXQgd2F0ZXIgcmVmZXJlbmNlIGZpbGUgfAp8IGBOYXZnYCB8IFRvdGFsIG51bWJlciBvZiBhdmVyYWdlcyBjb2xsZWN0ZWQgYXQgYWNxdWlzaXRpb24gfAp8IGBOd2F0ZXJhdmdgIHwgVG90YWwgbnVtYmVyIG9mIGF2ZXJhZ2VzIGNvbGxlY3RlZCBhdCBhY3F1aXNpdGlvbiB8CnwgYFRSYCB8IFJlcGV0aXRpb24gdGltZSAobXMpIHwKfCBgVEVgIHwgRWNobyB0aW1lIChtcykgfAp8IGBUUl93YXRlcmAgfCBSZXBldGl0aW9uIHRpbWUgKG1zKSB8CnwgYFRFX3dhdGVyYCB8IEVjaG8gdGltZSAobXMpIHwKfCBgTGFybW9yRnJlcWAgfCBMYXJtb3IgZnJlcXVlbmN5IChNSHopIHwKfCBgc3dgIHwgU3BlY3RyYWwgd2lkdGggKEh6KSB8CnwgYHZveGRpbWAgfCBBcnJheSBvZiB2b3hlbCBkaW1lbnNpb25zIChtbSkgfAp8IGB2b3hvZmZgIHwgQXJyYXkgb2Ygdm94ZWwgcG9zaXRpb24gb2Zmc2V0IChtbSkgfAp8IGB2b3hhbmdgIHwgQXJyYXkgb2Ygdm94ZWwgYW5ndWxhdGlvbiAoZGVnKSB8CnwgYFplcm9GaWxsVG9gIHwgUHJvY2Vzc2VkIHNwZWN0cmEgYXJlIHplcm8tZmlsbGVkIHRvIHRoaXMgbWFueSBkYXRhIHBvaW50cyB8CnwgYHpmYCB8IFplcm8tZmlsbCBmYWN0b3IgfAp8IGBkdGAgfCBEd2VsbCB0aW1lIChzKSB8CnwgYFNwZWNSZXNgIHwgU3BlY3RyYWwgcmVzb2x1dGlvbiBvZiB0aGUgcmF3IGRhdGEgKEh6L3BvaW50KSB8CnwgYFNwZWNSZXNOb21pbmFsYCB8IE5vbWluYWwgc3BlY3RyYWwgcmVzb2x1dGlvbiBvZiB0aGUgcHJvY2Vzc2VkIGRhdGEgKEh6L3BvaW50KSB8CnwgYFRhY3FgIHwgQWNxdWlzaXRpb24gdGltZSAocykgfAp8IGB3ZWlnaHRlZF9hdmVyYWdpbmdfbWV0aG9kYCB8IFRoZSBhbGdvcml0aG0gdXNlZCBmb3Igd2VpZ2h0ZWQgc2lnbmFsIGF2ZXJhZ2luZyB8CgojIyBNUlNfc3RydWN0LmZpZHMKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfDotLS0tLS0tLS0tLS0tLS0tLS18Oi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgYGRhdGFgIHwgUmF3IHRpbWUtZG9tYWluIG1ldGFib2xpdGUgZGF0YSAoZGltZW5zaW9uczogYG5wb2ludHNgICRcdGltZXMkIGBucm93c2ApIG9mIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHwKfCBgZGF0YV93YXRlcmAgfCBSYXcgdGltZS1kb21haW4gd2F0ZXIgcmVmZXJlbmNlIGRhdGEgKGRpbWVuc2lvbnM6IGBucG9pbnRzYCAkXHRpbWVzJCBgbnJvd3Nfd2F0ZXJgKSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYE9OX09GRmAgfCBBcnJheSBvZiB0aGUgZWRpdGluZyBvcmRlciBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCAoYDFgID0gT047IGAwYCA9IE9GRikgfAp8IGBkYXRhX2FsaWduYCB8IFJhdyB0aW1lLWRvbWFpbiBtZXRhYm9saXRlIGRhdGEgb2YgdGhlIGxhc3QgbG9hZGVkIGRhdGFzZXQgd2l0aCBmcmVxdWVuY3ktYW5kLXBoYXNlIGNvcnJlY3Rpb24gYXBwbGllZCB8CgojIyBNUlNfc3RydWN0LnNwZWMKCnwgPHU+RmllbGQ8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwKfDotLS0tLS0tLS0tLS0tLS0tLS18Oi0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgYHZveDFgIChvciB3aGF0ZXZlciB3YXMgc2V0IGluIGBNUlNfc3RydWN0LnAudm94YCBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYCkgfCBUaGlzIHN0cnVjdHVyZSBjb250YWlucyB0aGUgY29tcGxleCBmcmVxdWVuY3ktZG9tYWluIHNwZWN0cmFsIGRhdGEgZm9yIGFsbCBpbnB1dCBkYXRhc2V0cyB8CnwgYGZyZXFgIHwgRnJlcXVlbmN5IGF4aXMgKHBwbSksIGNhbGN1bGF0ZWQgZnJvbSB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB8CnwgYEYwZnJlcWAgfCBDZWxsIGFycmF5IG9mIHRoZSBvYnNlcnZlZCBmcmVxdWVuY3kgb2YgZWl0aGVyIHJlc2lkdWFsIHdhdGVyIHNpZ25hbCBvciB0aGUgMyBwcG0gQ3Igc2lnbmFsIGZvciBlYWNoIGF2ZXJhZ2UgfAp8IGBGMGZyZXEyYCB8IENlbGwgYXJyYXkgb2YgdGhlIG9ic2VydmVkIGZyZXF1ZW5jeSBvZiB0aGUgMyBwcG0gQ3Igc2lnbmFsIGZvciBlYWNoIGF2ZXJhZ2U7IHRoaXMgaXMgdXNlZCBpbiBgUm9idXN0U3BlY3RyYWxSZWdpc3RyYXRpb24ubWAgYXMgdGhlIHN0YXJ0aW5nIHZhbHVlcyBmb3IgZnJlcXVlbmN5IGR1cmluZyBvcHRpbWl6YXRpb24gfAp8IGBBbGxGcmFtZXNGVGAgfCBTcGVjdHJhIG9mIHRoZSBsYXN0IGxvYWRlZCBkYXRhc2V0IHdpdGhvdXQgZnJlcXVlbmN5LWFuZC1waGFzZSBjb3JyZWN0aW9uIGFwcGxpZWQgfAp8IGBBbGxGcmFtZXNGVHJlYWxpZ25gIHwgU3BlY3RyYSBvZiB0aGUgbGFzdCBsb2FkZWQgZGF0YXNldCB3aXRoIGZyZXF1ZW5jeS1hbmQtcGhhc2UgY29ycmVjdGlvbiBhcHBsaWVkIHwKCiMjIE1SU19zdHJ1Y3Qub3V0Cgp8IDx1PkZpZWxkPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8Cnw6LS0tLS0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfAp8IGBBdmdEZWx0YUYwYCB8IFZlY3RvciBjb250YWluaW5nIGEgbWV0cmljIG9mIHRoZSBhbW91bnQgb2YgZnJlcXVlbmN5IG9mZnNldCBvYnNlcnZlZCBkdXJpbmcgdGhlIGFjcXVpc2l0aW9uLCBjYWxjdWxhdGVkIGFzIHRoZSBtZWFuIGRpZmZlcmVuY2UgYmV0d2VlbiB0aGUgb2JzZXJ2ZWQgZnJlcXVlbmN5IG9mIHRoZSByZXNpZHVhbCB3YXRlciBzaWduYWwgKG9yIHRoZSAzIHBwbSBDciBzaWduYWwpIGluIHRoZSBwcmUtZnJlcXVlbmN5LWNvcnJlY3RlZCBzdWJzcGVjdHJhIGFuZCB0aGUgbm9taW5hbCB3YXRlciBmcmVxdWVuY3kgYXQgNC42OCBwcG0gKG9yIHRoZSBub21pbmFsIDMgcHBtIENyIHNpZ25hbCBpZiBIRVJNRVMgb3IgR1NIIGVkaXRpbmcpIHwKfCBgU3BlY1JlZ2AgfCBTdHJ1Y3R1cmUgY29udGFpbmluZyBvdXRwdXQgZnJvbSBzcGVjdHJhbCByZWdpc3RyYXRpb24gfAp8IGByZWplY3RgIHwgQ2VsbCBhcnJheSBvZiBiaW5hcnkgaW50ZWdlcnMgaW5kaWNhdGluZyB3aGV0aGVyIGFuIGluZGl2aWR1YWwgdHJhbnNpZW50IHNob3VsZCBiZSByZWplY3RlZCBkdXJpbmcgc2lnbmFsIGF2ZXJhZ2luZyB8CnwgYHNpZ25hbF9hdmVyYWdpbmdgIHwgU3RydWN0dXJlIGNvbnRhaW5pbmcgYSBjZWxsIGFycmF5IG9mIHRoZSB3ZWlnaHRpbmcgZmFjdG9ycyBhcHBsaWVkIGlmIHdlaWdodGVkIHNpZ25hbCBhdmVyYWdpbmcgaXMgdXNlZCB8CnwgYHZveDFgIChvciB3aGF0ZXZlciB3YXMgc2V0IGluIGBNUlNfc3RydWN0LnAudm94YCBpbiBgR2FubmV0UHJlSW5pdGlhbGlzZS5tYCkgfCBUaGlzIHN0cnVjdHVyZSBjb250YWlucyB0aGUgb3V0cHV0IGZyb20gdGhlIHNpZ25hbCBtb2RlbGluZywgcXVhbGl0eSBhbmFseXNpcywgYW5kIHF1YW50aWZpY2F0aW9uIG9mIGFsbCB0aGUgc2lnbmFscyBvZiBpbnRlcmVzdCB8CnwgYFFBYCB8IFN0cnVjdHVyZSBjb250YWluaW5nIG1ldHJpY3MgY2FsY3VsYXRlZCB0byBxdWFudGlmeSB0aGUgcGVyZm9ybWFuY2Ugb2YgdGhlIHRpc3N1ZSBzZWdtZW50YXRpb24gfAoKIyMgTVJTX3N0cnVjdC5tYXNrLih2b3gxKQoKfCA8dT5GaWVsZDwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCBgb3V0ZmlsZWAgfCBDZWxsIGFycmF5IG9mIHRoZSBvdXRwdXQgZmlsZW5hbWVzIG9mIHRoZSB2b3hlbCBtYXNrcyB8CnwgYGltZ2AgfCBDZWxsIGFycmF5IGNvbnRhaW5pbmcgdGhyZWUtZGltZW5zaW9uYWwgYXJyYXlzIHJlcHJlc2VudGluZyB0aGUgdGhyZWUgb3J0aG9nb25hbCBzbGljZXMgb2YgdGhlIDxpPlQ8L2k+PHN1Yj4xPC9zdWI+LXdlaWdodGVkIHN0cnVjdHVyYWwgaW1hZ2VzIHRoYXQgYXJlIGRpc3BsYXllZCBpbiB0aGUgZmlndXJlIG91dHB1dHMgfAp8IGBUMWltYWdlYCB8IENlbGwgYXJyYXkgb2YgdGhlIGlucHV0IDxpPlQ8L2k+PHN1Yj4xPC9zdWI+LXdlaWdodGVkIHN0cnVjdHVyYWwgaW1hZ2UgZmlsZW5hbWVzIHwKfCBgaW1nX21vbnRhZ2VgIHwgQ2VsbCBhcnJheSBjb250YWluaW5nIHRocmVlLWRpbWVuc2lvbmFsIGFycmF5cyByZXByZXNlbnRpbmcgYSBtb250YWdlIG9mIGF4aWFsIHNsaWNlcyBvZiB0aGUgPGk+VDwvaT48c3ViPjE8L3N1Yj4td2VpZ2h0ZWQgc3RydWN0dXJhbCBpbWFnZXMgb3ZlcmxhaWQgYnkgdGhlIHRpc3N1ZS1zZWdtZW50ZWQgdm94ZWwgbWFza3MgdGhhdCBhcmUgZGlzcGxheWVkIGluIHRoZSBgR2FubmV0UXVhbnRpZnkubWAgZmlndXJlIG91dHB1dCB8CgoKCg==</div>
 <!DOCTYPE html>
 <br>
 <hr>
 <p style="text-align: right;">Built with <a href="https://rmarkdown.rstudio.com/" target="_blank">R Markdown</a> in <a
-    href="https://posit.co/products/open-source/rstudio/" target="_blank">RStudio</a>.
-  <br><br>
+    href="https://posit.co/products/open-source/rstudio/" target="_blank">RStudio</a>
+  <br>
 </p>
-<p style="text-align: right;">Copyright &copy; 2020&ndash;2023, Mark Mikkelsen <a
+<p style="text-align: right;">Copyright &copy; 2020&ndash;2024, Mark Mikkelsen <a
     href="https://creativecommons.org/licenses/by/4.0" target="_blank"><img id="cc"
       style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;" src="images/license/cc-xlarge.png"><img
       id="cc" style="height:22px!important;margin-left: 3px;vertical-align:text-bottom;"
