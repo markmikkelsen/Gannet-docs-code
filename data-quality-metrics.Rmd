@@ -1,7 +1,7 @@
 ---
 title: "Data quality metrics"
 date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
-bibliography: references.bib
+bibliography: bibliography.bib
 csl: american-medical-association.csl
 link-citations: yes
 output:
@@ -35,11 +35,11 @@ Listed below are the data quality metrics that Gannet computes during data proce
 
 ## Linewidth
 
-Linewidth is calculated as the full-width half-maximum (FWHM) (in Hz) of fitted signals. When reporting linewidths of datasets, you may use the FWHM of Cr, NAA, or the water reference (if provided).
+Linewidth is calculated as the full-width half-maximum (FWHM) (in Hz) of fitted model signals. When reporting linewidths of datasets, you may choose to use the FWHM of Cr, NAA, or the water reference (if a water reference is provided).
 
 ## Signal-to-noise ratio (SNR)
 
-The SNR of fitted signals is calculated as the amplitude of the given modeled signal divided by twice the standard deviation of the noise signal. To estimate noise, Gannet takes two independent segments of the OFF or DIFF spectrum (as appropriate to the modeled signal of interest) between 8–9 ppm and 9–10 ppm, and detrends them using a second-order polynomial function. The standard deviation of each detrended noise segment is then calculated. Detrending is required to remove baseline artifacts (often related to the water signal). The smaller of the two standard deviations is then used as the estimate of noise, which is then multiplied by 2.
+The SNR of fitted model signals is calculated as the amplitude of the given modeled signal divided by twice the standard deviation of the noise signal. To estimate the noise signal, Gannet takes two independent segments of the OFF or DIFF spectrum (as appropriate to the modeled signal of interest) between 8–9 ppm and 9–10 ppm, and detrends them using a second-order polynomial function. The standard deviation of each detrended noise segment is then calculated. Detrending is performed to remove baseline artifacts (often related to the residual water signal). The smaller of the two standard deviations is then used as the estimate of noise, which is then multiplied by 2.
 
 Formulaically, this is defined as:
 
@@ -56,7 +56,18 @@ where:
 
 ## Frequency offsets (frequency drift/motion)
 
-[TEXT]
+To estimate the degree of frequency offsets that result from scanner-related frequency drift [@Hui2021a] and participant motion [@Evans2013], Gannet calculates the average frequency offset $\overline{\Delta\delta_{0}}$ [@Mikkelsen2017]. This is calculated as the mean (over the course of the acquisition) difference between the observed frequency of the residual water signal in the pre-frequency-corrected subspectra and the nominal water frequency $\delta_{0}$ at 4.68 ppm (4.8 ppm for room-temperature phantoms), or the nominal Cr frequency at 3.02 ppm for HERMES acquisitions. It should be noted that using the mean of offset differences does not fully characterize frequency offsets but is a useful heuristic.
+
+$$
+\overline{\Delta\delta_{0}} = \frac{1}{m}\sum{\widehat{\delta_{0,m}} - \delta_{0}}
+$$
+where:
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :- | :--------- |
+| $m$ | Each individual subspectrum index number |
+| $\widehat{\delta_{0,m}}$ | Observed water or Cr frequency in each individual subspectrum |
+| $\delta_{0}$ | Nominal water or Cr frequency |
 
 ## Fit error
 
@@ -88,6 +99,10 @@ $$
 ## Tissue segmentation
 
 [TEXT]
+
+<br>
+
+### References
 
 
 

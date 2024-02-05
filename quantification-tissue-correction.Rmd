@@ -1,7 +1,7 @@
 ---
 title: "Quantification & tissue correction"
 date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
-bibliography: references.bib
+bibliography: bibliography.bib
 csl: american-medical-association.csl
 link-citations: yes
 output:

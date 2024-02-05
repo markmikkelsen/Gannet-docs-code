@@ -33,29 +33,29 @@ If your issue has not been addressed or is not found in this FAQ, please report 
 
 ## General
 
-#### **Can Gannet process non-edited data?**
+#### **1. Can Gannet process non-edited data?**
 
 No, Gannet is designed to process edited single-voxel data only. However, the standalone tool [CoRegStandAlone](https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone) can be used with non-edited single-voxel data to co-register voxels to structural images and segment the images to obtain voxel tissue fractions.
 
-#### **Can Gannet process MRSI data?**
+#### **2. Can Gannet process MRSI data?**
 
 No.
 
-#### **Can Gannet process GSH-edited data?**
+#### **3. Can Gannet process GSH-edited data?**
 
 Yes, Gannet can process GABA-, GSH-, Lac-, and EtOH-edited MEGA-PRESS data, as well as GABA-/GSH-, Lac-/GSH-, and EtOH-/GABA-/GSH-edited HERMES and HERCULES data. (Fitting of HERCULES phantom data is not supported, however.) Simply set the appropriate `target` option(s) in `GannetPreInitialise.m`.
 
-#### **Can Gannet process HERMES/HERCULES data?**
+#### **4. Can Gannet process HERMES/HERCULES data?**
 
 `GannetLoad.m` can load and preprocess HERMES and HERCULES data, but only HERMES data can be modeled in `GannetFit.m`. HERCULES data can be fully processed and fitted using the <a href="https://github.com/schorschinho/osprey" target="_blank">Osprey</a> software package.
 
-#### **Can Gannet process phantom data?**
+#### **5. Can Gannet process phantom data?**
 
 Yes, Gannet can process and fit phantom edited data as described above. Make sure to set `phantom` to `1` under `Flags` in `GannetPreInitialise.m`. If you want to fit your data, run `GannetFitPhantom(MRS_struct);` instead of `GannetFit(MRS_struct);`. (Fitting of HERCULES phantom data is not supported.)
 
 ## Output
 
-#### **Why is my spectrum upside down?**
+#### **1. Why is my spectrum upside down?**
 
 <img id="img_50" src="images/faq/upside-down-spectrum.png" alt="A screenshot example of upside-down MRS spectra">
 
@@ -67,7 +67,7 @@ MRS_struct.fids.data = -MRS_struct.fids.data;
 
 ## Errors
 
-#### **You have issues with SPM MEX files on macOS Catalina, Big Sur, Monterey, Ventura**
+#### **1. You have issues with SPM MEX files on macOS Catalina, Big Sur, Monterey, Ventura**
 
 Specifically:
 
@@ -83,7 +83,7 @@ Code signature not valid for use in process using Library Validation: library lo
 
 Please visit the <a href="https://en.wikibooks.org/wiki/SPM/Installation_on_64bit_Mac_OS_(Intel)#macOS_Catalina,_Big_Sur,_Monterey,_Ventura" target="_blank">SPM Wikibooks page</a> for troubleshooting.
 
-#### **MATLAB says my structural image does not exist**
+#### **2. MATLAB says my structural image does not exist**
 
 For example:
 

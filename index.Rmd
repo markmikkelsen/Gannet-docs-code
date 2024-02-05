@@ -61,13 +61,13 @@ The simplest way to install Gannet is to download the latest source code as a ZI
 
 Alternatively, Git users can clone the Gannet repository into a directory of their choice:
 
-```{bash, eval = FALSE}
+```{verbatim, eval = FALSE}
 git clone https://github.com/markmikkelsen/Gannet.git
 ```
 
 The development version of Gannet can be downloaded from the <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">development branch</a> on GitHub or by using the following git command if the repository was cloned:
 
-```{bash, eval = FALSE}
+```{verbatim, eval = FALSE}
 git checkout dev
 ```
 

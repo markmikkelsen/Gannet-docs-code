@@ -1,15 +1,15 @@
 ---
 title: "Reference"
 date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+bibliography: bibliography.bib
+csl: american-medical-association.csl
+link-citations: yes
 output:
   html_document:
     toc: TRUE
     toc_depth: 2
     toc_float:
       collapsed: FALSE
-bibliography: references.bib
-csl: american-medical-association.csl
-link-citations: yes
 ---
 
 ```{r setup, include = FALSE}
