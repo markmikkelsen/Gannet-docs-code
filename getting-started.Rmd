@@ -36,7 +36,7 @@ The linear workflow of Gannet is made up of five modules. For proper functionali
 
 Familiarize yourself with the five basic Gannet commands, as described below. The number of commands is deliberately kept to a minimum, as is the number of possible input arguments to these commands. Incorrect syntax is a common source of user error, so make sure that you understand the argument structure of each function you intend to use.
 
-## Basic usage
+## Usage
 
 ### GannetPreInitialise
 
@@ -137,6 +137,34 @@ MRS_struct = GannetFit(MRS_struct);
 <i class="fa fa-info-circle" style="color: white"></i>&nbsp; Take note that the edit-OFF file must be input first.
 :::
 
+### Co-registration to an MR image
+
+After MRS data files are loaded and fitted, and if an anatomical MR image was acquired and used to place MRS voxels, Gannet can co-register the two. To do so, use the following command: 
+
+```{octave, eval = FALSE}
+MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii'});
+```
+
+### Segmenting MR images
+
+Gannet uses SPM12's segmentation routine to segment anatomical MR images. The grey matter, white matter, and cerebrospinal fluid fractions are then used in subsequent tissue corrections of metabolite concentration estimates.
+
+Installation instructions for SPM12 can be found [here](https://markmikkelsen.github.io/Gannet-docs/index.html#installation).
+
+Run segmentation using the following command:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetSegment(MRS_struct);
+```
+
+### Quantification
+
+Following tissue segmentation, and assuming a water reference was inputted at data loading, pseudo-absolute quantification can be performed using the following command:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetQuantify(MRS_struct);
+```
+
 ## Batch processing
 
 One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. To load and fit multiple files, simply add more filenames to the respective cell arrays that are passed to `GannetLoad.m`, as shown below for Philips data:
@@ -145,6 +173,10 @@ One of the major strengths of Gannet is its ability to process datasets in batch
 MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'}, ...
                         {'sub-01_ref.sdat', 'sub-02_ref.sdat', 'sub-03_ref.sdat'});
 MRS_struct = GannetFit(MRS_struct);
+# Only if anatomical MR images are available, the next lines can be run
+MRS_struct = GannetCoRegister(MRS_struct, repelem({'T1w.nii'},3)); # Note that the number of anatomical images must match the number of MRS data files inputted
+MRS_struct = GannetSegment(MRS_struct);
+MRS_struct = GannetQuantify(MRS_struct);
 ```
 
 The respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays.

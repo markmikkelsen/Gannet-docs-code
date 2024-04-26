@@ -89,7 +89,7 @@ SPM12 can be installed in the same manner after it has been downloaded from the 
 
 ## Compatibility
 
-Gannet is currently being developed in MATLAB R2023b in macOS 14 Sonoma (Apple silicon). While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
+Gannet is currently being developed in MATLAB R2024a in macOS 14 Sonoma (Apple silicon). While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
 
 ## Supported file formats
 
@@ -113,7 +113,7 @@ For creating and co-registering voxel masks, structural images need to be in NIf
 
 ## Getting help
 
-If you encounter any problems, please first check the Documentation or <a href="https://markmikkelsen.github.io/Gannet-docs/faq.html">FAQ</a> for a solution.
+If you encounter any problems, please first check the Documentation or [FAQ](https://markmikkelsen.github.io/Gannet-docs/faq.html) for a solution.
 
 Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on <a href="https://mrshub.org/" target="_blank">MRSHub</a>.
 
@@ -135,7 +135,7 @@ Gannet uses a form of <a href="https://semver.org/" target="_blank">semantic ver
 
 ## License and citing Gannet
 
-This software is licensed under an open-source <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html">BSD-3-Clause License</a>. Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:
+This software is licensed under an open-source [BSD-3-Clause License](https://markmikkelsen.github.io/Gannet-docs/gannet-license.html). Should you disseminate material that made use of Gannet, please cite the following publications, as appropriate:
 
 - Edden RAE, Puts NAJ, Harris AD, Barker PB, Evans CJ. <a href="https://doi.org/10.1002/jmri.24478" target="_blank">Gannet: A batch-processing tool for the quantitative analysis of gamma-aminobutyric acid-edited MR spectroscopy spectra.</a> *Journal of Magnetic Resonance Imaging*. 2014;40(6):1445--1452
 
