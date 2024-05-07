@@ -27,19 +27,15 @@ knitr::opts_chunk$set(echo = TRUE)
 
 <br>
 
-::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; THIS PAGE IS UNDER DEVELOPMENT
-:::
-
 Listed below are the data quality metrics that Gannet computes during data processing, signal fitting, and tissue segmentation.
 
 ## Linewidth
 
-Linewidth is calculated as the full-width half-maximum (FWHM) (in Hz) of fitted model signals. When reporting linewidths of datasets, you may choose to use the FWHM of Cr, NAA, or the water reference (if a water reference is provided).
+Linewidth is calculated as the full-width half-maximum (FWHM) (in Hz) of fitted model signals. When reporting linewidths of datasets, it is recommended to use the FWHM of Cr or NAA from the OFF spectrum, or the FWHM of the water reference (if a water reference is provided).
 
 ## Signal-to-noise ratio (SNR)
 
-The SNR of fitted model signals is calculated as the amplitude of the given modeled signal divided by twice the standard deviation of the noise signal. To estimate the noise signal, Gannet takes two independent segments of the OFF or DIFF spectrum (as appropriate to the modeled signal of interest) between 8–9 ppm and 9–10 ppm, and detrends them using a second-order polynomial function. The standard deviation of each detrended noise segment is then calculated. Detrending is performed to remove baseline artifacts (often related to the residual water signal). The smaller of the two standard deviations is then used as the estimate of noise, which is then multiplied by 2.
+The SNR of fitted signals is calculated as the amplitude of the given signal model divided by twice the standard deviation of the noise signal. To estimate the noise signal, Gannet takes two independent segments of the OFF or DIFF spectrum (as appropriate to the modeled signal of interest) between 8–9 ppm and 9–10 ppm, and detrends them using a second-order polynomial function. Detrending is performed to remove baseline artifacts (often related to the residual water signal). The standard deviation of each detrended noise segment is then calculated. The smaller of the two standard deviations is then used as the estimate of noise, which is then multiplied by 2.
 
 Formulaically, this is defined as:
 
@@ -56,7 +52,9 @@ where:
 
 ## Frequency offsets (frequency drift/motion)
 
-To estimate the degree of frequency offsets that result from scanner-related frequency drift [@Hui2021a] and participant motion [@Evans2013], Gannet calculates the average frequency offset $\overline{\Delta\delta_{0}}$ [@Mikkelsen2017]. This is calculated as the mean (over the course of the acquisition) difference between the observed frequency of the residual water signal in the pre-frequency-corrected subspectra and the nominal water frequency $\delta_{0}$ at 4.68 ppm (4.8 ppm for room-temperature phantoms), or the nominal Cr frequency at 3.02 ppm for HERMES acquisitions. It should be noted that using the mean of offset differences does not fully characterize frequency offsets but is a useful heuristic.
+To estimate the degree of frequency offsets that result from scanner-related frequency drift [@Hui2021a] and participant motion [@Evans2013], Gannet calculates an average frequency offset [@Mikkelsen2017] $\overline{\Delta\delta_{0}}$. This is calculated as the mean (over the course of the acquisition) difference between the observed frequency of the residual water signal in the pre-frequency-corrected subspectra and the nominal water frequency $\delta_{0}$ at 4.68 ppm (4.8 ppm for room-temperature phantoms), or the nominal Cr frequency at 3.02 ppm for HERMES acquisitions. It should be noted that using the mean of offset differences does not fully characterize frequency offsets but is a useful heuristic.
+
+Formulaically, this is defined as:
 
 $$
 \overline{\Delta\delta_{0}} = \frac{1}{m}\sum{\widehat{\delta_{0,m}} - \delta_{0}}
@@ -71,7 +69,9 @@ where:
 
 ## Fit error
 
-When fitting signal functions to metabolite peaks, Gannet will also estimate the error of the fit. This is defined as the standard deviation of the residuals of the signal model fit divided by the signal model amplitude and multiplied by 100 to give a percentage. For metabolite peak fits, this is:
+When fitting signal functions to metabolite peaks, Gannet will also estimate the error of the fit. This is defined as the standard deviation of the residuals of the signal model fit divided by the signal model amplitude and multiplied by 100 to give a percentage.
+
+For metabolite peak fits, this is:
 
 $$
 \epsilon_{metab} = 100\cdot\frac{\mathrm{std}(resid_{metab})}{A_{metab}}
@@ -90,17 +90,13 @@ $$
 \epsilon_{ref} = 100\cdot\frac{\mathrm{std}(resid_{ref})}{A_{ref}}
 $$
 
-Since all metabolites are normalized to a reference signal (either Cr or unsuppressed water), the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature. Formulaically, this is defined as:
+Since all metabolites are normalized to a reference signal (either Cr or unsuppressed water) and reported as such, the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature.
+
+Formulaically, this is defined as:
 
 $$
 \epsilon_{metab,ref} = \sqrt{\epsilon_{metab}^2 + \epsilon_{ref}^2}
 $$
-
-## Tissue segmentation
-
-[TEXT]
-
-<br>
 
 ### References
 

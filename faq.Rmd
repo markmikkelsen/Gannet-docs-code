@@ -59,7 +59,7 @@ Yes, Gannet can process and fit phantom edited data as described above. Make sur
 
 <img id="img_50" src="images/faq/upside-down-spectrum.png" alt="A screenshot example of upside-down MRS spectra">
 
-Gannet has a routine that automatically phases spectra so that they are not upside-down or otherwise out of phase. However, this routine can fail. It is best to contact the developers for assistance to resolve the problem. However, a simple, albeit imperfect, solution is to add the following line of code to `GannetLoad.m` after the function `PhaseCorrection.m` is run for global zero-order phase correction (around line 400):
+Gannet has a routine that automatically phases spectra so that they are not upside-down or otherwise out of phase. However, this routine can fail. It is best to contact the developers for assistance to resolve the problem. A possible, but not infallible, solution is to add the following line of code to `GannetLoad.m` after the function `PhaseCorrection.m` is run for global zero-order phase correction (around line 400):
 
 ```{octave, eval = FALSE}
 MRS_struct.fids.data = -MRS_struct.fids.data;

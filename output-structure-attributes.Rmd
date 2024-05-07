@@ -120,7 +120,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 | `vox1` (or whatever was set in `MRS_struct.p.vox` in `GannetPreInitialise.m`) | This structure contains the output from the signal modeling, quality analysis, and quantification of all the signals of interest |
 | `QA` | Structure containing metrics calculated to quantify the performance of the tissue segmentation |
 
-## MRS_struct.mask.(vox1)
+## MRS_struct.mask
 
 | <u>Field</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|

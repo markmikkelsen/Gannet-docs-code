@@ -35,10 +35,6 @@ th, td {
 
 <br>
 
-::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; THIS PAGE IS UNDER DEVELOPMENT
-:::
-
 Listed below are the preprocessing routines that are run in `GannetLoad.m`. Whether a particular routine or subroutine is run will depend on the format of the inputted data and the options set in `GannetPreInitialise.m`.
 
 ## RF coil combination
@@ -48,27 +44,34 @@ Certain raw MRS data formats store data without coil combination; specifically, 
 ## Eddy-current correction
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Eddy-current correction can only be applied if water data are provided.
+<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Eddy-current correction can only be applied if water reference data are provided.
 :::
 
 In `GannetPreInitialise.m`, users have the option to apply eddy-current correction (ECC) to metabolite and water data. If applied, Gannet uses the method described by Klose (1990) [@Klose1990]. The code for the ECC routine can be found in `EddyCurrentCorrection.m`.
+
+## Phase correction
+
+It is common for unprocessed spectra to be out of phase. Gannet applies a global zero-order phase correction to all transients by fitting the real-valued 3 ppm Cr and 3.2 ppm Cho signals in the frequency domain and correcting the phase to be 0&deg; phase (i.e., to make all the Cr and Cho peaks have positive phase). This is performed in `PhaseCorrection.m`.
 
 ## Line-broadending (apodization)
 
 FID data are multiplied by a time-varying exponential weighting function where the weighting constant is set in `GannetPreInitialise.m` (3 Hz is the default).
 
+## Zero-filling
+
+Gannet zero-pads all raw FIDs (i.e., adds zeros to the end of each FID) to obtain a nominal spectral resolution (the resolution between each frequency-domain data point) of 0.061 Hz/point. Differences in spectral width and number of complex data points of the raw FIDs are accounted for to obtain this nominal spectral resolution.
+
 ## Frequency and phase alignment
 
-During acquisition, spectral data are affected by frequency and phase offsets as a results of biophysical, electrical, mechanical, and participant factors. Gannet has several algorithms to correct for these errors during preprocessing. Users can choose which method to use in `GannetPreInitialise.m`. The methods are:
+During acquisition, spectral data are affected by frequency and phase offsets as a result of biophysical, electronic, and participant factors. Gannet has several algorithms to correct for these errors during preprocessing. Users can choose which method to use in `GannetPreInitialise.m`:
 
-| <u>Method</u> | <u>Option</u> | <u>Description</u> |
-| :-------- | :---- | :--------- |
-| Robust spectral registration [@Mikkelsen2020] (default) | `RobustSpecReg` | A method based on spectral registration [@Near2015] that is robust against spectral distortions such as unstable residual water and lipid contamination.  |
-| Multi-step frequency and phase correction [@Mikkelsen2018] | `SpecRegHERMES` | A method originally developed to align multiplexed edited HERMES data. This approach is also based on spectral registration. |
-
-## Phase correction
-
-It is common for unprocessed spectra to be out of phase. Gannet applies a global zero-order phase correction to all transients by fitting the real-valued 3 ppm Cr and 3.2 ppm Cho signals in the frequency domain.
+| <u>Method</u> | <u>Option</u> | <u>Description</u> | <u>Function</u> |
+| :---- | :---- | :--------- | :---- |
+| Spectral registration [@Near2015] | `SpecReg` | A time-domain-based alignment method that uses nonlinear least-squares optimization to align each individual transient to a reference transient. | `SpectralRegistration.m` |
+| Multi-step frequency and phase correction [@Mikkelsen2018] | `SpecRegHERMES` | A method originally developed to align multiplexed edited HERMES data. This approach is based on spectral registration. | `SpectralRegistrationHERMES.m` |
+| Robust spectral registration [@Mikkelsen2020] (the default and recommended) | `RobustSpecReg` | A method based on spectral registration that is robust against spectral distortions caused by unstable residual water peaks and lipid contamination. | `RobustSpectralRegistration.m` | 
+| Peak alignment | `Cr`, `Cho`, `NAA`, `H2O` | Frequency-domain-based alignment using one of the following peaks in each transient as the target signal: Cr, Cho, NAA, or residual H2O. | `AlignUsingPeak.m`, `AlignUsingH2O.m` |
+| No alignment | `none` | Do not perform any frequency or phase alignment between transients. | n/a |
 
 ## Signal averaging
 
@@ -83,6 +86,12 @@ Note that before the arithmetic averaging of subspectra, individual transients a
 ### Weighted averaging
 
 Weighted averaging down-weights individual difference subspectra that are corrupted by signal artifacts — this is an important distinction from traditional signal averaging. First, the difference between sequentially acquired pairs (e.g., all edit-ON and edit-OFF subspectra) is calculated. A similarity matrix $\mathbf{D}\in\mathbb{R}^{P{\times}P}$ is obtained by calculating the mean squared error between each real-valued difference subspectrum $p$ and every other real-valued difference subspectrum (in the range 1.8 to 3.4 ppm). A similarity metric $d_{p}$ is calculated as the column-wise median of $\mathbf{D}$. Normalized weights $w_{p}$ are then derived, $w_{p} = d^{-2}_p/\sum{d^{-2}_p}$, and applied to the difference pairs before summation.
+
+Other algorithms to calculate weights can be found in `SignalAveraging.m`. (Note: These have not been tested extensively and should be considered experimental.)
+
+## Residual water removal
+
+If `water_removal` is set to 1 in `GannetPreInitialise.m` (the default), the residual water peak is removed from all difference spectra using an HSVD filter [@Barkhuijsen1987].
 
 <br>
 

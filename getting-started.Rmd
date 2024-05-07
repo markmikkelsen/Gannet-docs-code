@@ -174,7 +174,8 @@ MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'
                         {'sub-01_ref.sdat', 'sub-02_ref.sdat', 'sub-03_ref.sdat'});
 MRS_struct = GannetFit(MRS_struct);
 # Only if anatomical MR images are available, the next lines can be run
-MRS_struct = GannetCoRegister(MRS_struct, repelem({'T1w.nii'},3)); # Note that the number of anatomical images must match the number of MRS data files inputted
+# Note that the number of anatomical images must match the number of MRS metabolite data files inputted
+MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii', 'T1w.nii', 'T1w.nii'});
 MRS_struct = GannetSegment(MRS_struct);
 MRS_struct = GannetQuantify(MRS_struct);
 ```
