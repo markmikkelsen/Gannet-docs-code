@@ -162,4 +162,11 @@ img {
 /* ------------------------------ */
 
 
+/* ----- Code blocks ----- */
+/* This enables wrapping of code blocks */
+pre.sourceCode code {
+  white-space: pre-wrap;
+}
+/* ----------------------- */
+
 

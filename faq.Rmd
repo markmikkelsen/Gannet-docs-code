@@ -16,13 +16,6 @@ knitr::opts_chunk$set(echo = TRUE)
 ```{r, child = "js/back-to-top.js"}
 ```
 
-```{css, echo = FALSE}
-/* This enables wrapping of code blocks */
-pre.sourceCode code {
-  white-space: pre-wrap;
-}
-```
-
 <br>
 
 ::: info

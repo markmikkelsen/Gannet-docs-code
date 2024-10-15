@@ -137,9 +137,9 @@ MRS_struct = GannetFit(MRS_struct);
 <i class="fa fa-info-circle" style="color: white"></i>&nbsp; Take note that the edit-OFF file must be input first.
 :::
 
-### Co-registration to an MR image
+### Co-registration to MR images
 
-After MRS data files are loaded and fitted, and if an anatomical MR image was acquired and used to place MRS voxels, Gannet can co-register the two. To do so, use the following command: 
+After MRS data files are loaded and fitted, and if an structural MR image was acquired and used to place MRS voxels, Gannet can co-register the two. To do so, use the following command: 
 
 ```{octave, eval = FALSE}
 MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii'});
@@ -147,7 +147,7 @@ MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii'});
 
 ### Segmenting MR images
 
-Gannet uses SPM12's segmentation routine to segment anatomical MR images. The grey matter, white matter, and cerebrospinal fluid fractions are then used in subsequent tissue corrections of metabolite concentration estimates.
+Gannet uses SPM12's segmentation routine to segment structural MR images. The grey matter, white matter, and cerebrospinal fluid fractions are then used in subsequent tissue corrections of metabolite concentration estimates.
 
 Installation instructions for SPM12 can be found [here](https://markmikkelsen.github.io/Gannet-docs/index.html#installation).
 
@@ -173,8 +173,8 @@ One of the major strengths of Gannet is its ability to process datasets in batch
 MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'}, ...
                         {'sub-01_ref.sdat', 'sub-02_ref.sdat', 'sub-03_ref.sdat'});
 MRS_struct = GannetFit(MRS_struct);
-# Only if anatomical MR images are available, the next lines can be run
-# Note that the number of anatomical images must match the number of MRS metabolite data files inputted
+# Only if structural MR images are available can the next lines can be run
+# Note that the number of structural images must match the number of MRS metabolite data files inputted in GannetLoad
 MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii', 'T1w.nii', 'T1w.nii'});
 MRS_struct = GannetSegment(MRS_struct);
 MRS_struct = GannetQuantify(MRS_struct);
