@@ -38,6 +38,7 @@ knitr::opts_chunk$set(echo = TRUE)
 | <u>Acquisition parameters</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
 | `target` | Sets the metabolite of interest that was edited in the MRS experiment; if HERMES or HERCULES was used, multiple metabolites should be selected |
+| `ON_OFF_order` | Gannet automatically determines the order of editing pulses, but a usesr may manually input the order with this parameter |
 | `seqorig` | Origin of the Philips MEGA-PRESS or GE HERMES sequences |
 
 | <u>Analysis parameters</u> | <u>Description</u> |
@@ -60,6 +61,7 @@ knitr::opts_chunk$set(echo = TRUE)
 | `join`     | Set to `1` to join multiple files (this can be batched across subjects)                                                                   |
 | `mat`      | Set to `1` to save the output structure as a MAT-file                                                                                     |
 | `csv`      | Set to `1` to export a CSV file containing useful data for statistical analysis (applies to `GannetFit.m`, `GannetSegment.m` and `GannetQuantify.m`) |
+| `normalize` | Set to `1` to create voxel masks normalized to MNI152 space |
 | `append`   | Set to `1` to append PDF outputs into one PDF (separately for each module) (requires `export_fig/` in the `Gannet/` directory to be added to the search path and <a href="https://www.ghostscript.com/" target="_blank">Ghostscript</a> to be installed on the user's machine (NB: macOS users should use <a href="https://pages.uoregon.edu/koch/" target="_blank">this version</a> or use <a href="https://formulae.brew.sh/formula/ghostscript" target="_blank">Homebrew</a> to install Ghostscript) |
 | `hide`     | Set to `1` to not display output figures |
 

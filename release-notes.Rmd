@@ -20,6 +20,44 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This page lists the stable releases of Gannet since v3.1.3. All releases can be found on GitHub <a href="https://github.com/markmikkelsen/Gannet/releases" target="_blank">here</a> and <a href="https://github.com/richardedden/Gannet3.1/releases" target="_blank">here</a>. The development version of Gannet can be found <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">here</a>. For a more comprehensive list of changes to the current main version, see the commits logged on GitHub <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">here</a>.
 
+## 3.4.0
+<span style="color: grey;">2025-03-30</span>
+
+### New features
+
+- Added support for fitting the 2.34 ppm Glu peak in the SUM spectrum
+- Added `DeIdentifyDisclaimer.m`, which prints a disclaimer that the developers provide no guarantee that the de-identification functions will remove all human participants' identifying information in the data header of files
+- The RF coil combination used is now stored in `MRS_struct.p.RFCoilCombination` (note: this only applies to raw data files that are not coil-combined during export from the scanner)
+- Data load time (`MRS_struct.loadtime`) is now stored when `GannetLoad.m` is run
+- Re-added the option to choose the editing pulse order in `GannetPreInitialise.m`: `MRS_struct.p.ON_OFF_order`
+- MRS voxel masks can now be normalized to MNI152 space; a flag in `GannetPreInitiliase.m` has been added to do so (note that this is only performed if GannetSegment has been run as the forward deformation map needed for MNI normalization is created during SPM12's segmentation routine)
+- Added `VoxelMaskOverlap.m`, a function that will create a voxel mask that indicates the degree of overlap of all datasets run in a batch
+- Added `ThreeLorentzModel.m`
+- Added `VoigtModel.m`
+
+### Minor changes
+
+- An "intro" message is printed whenever `GannetLoad.m` is run: the version number and a link to the software documentation website is displayed
+- Co-registration figure outputs now show the anatomical directions of the displayed MR image (i.e., anterior/posterior [A/P], left/right [L/R], and superior/inferior [S/I])
+- Replaced file separators with `filesep` so that they are specific to users' operating system
+- `voxoff` is now parsed in `GERead.m` instead of in `GannetMask_GE.m` and `GannetMask_GE_nii.m`
+- Minor changes to rounding in `ExportToCSV.m`
+- Renamed `FitPeaksByFrames2.m` to `FitPeaksByFrames.m`
+- Updated `export_fig` to v3.48
+- Updated `dicm2nii` to v2024.08.21
+- MANY COSMETIC CHANGES AND CLEANUP OF OLD UNUSED CODE
+
+### Bug fixes
+
+- Updated `AlignSubSpectra.m` to include Lac and GSH editing
+- Updated `AlignUsingPeak.m` to fit the indexing approach of Gannet 3
+- Fixed issue with Siemens .RDA files in `CoRegStandAlone.m`
+- Added `MRS_struct.p.seqorig` to `CoRegStandAlone.m`
+- Minor fix in `GannetMask_NIfTI.m` for how voxel offset is parsed from the NIfTI file
+- Fixed an issue with `GannetFit.m` when users choose to fit a specific metabolite
+- Corrected a bug in `PaperPlot.m` for plotting model fits for GABA+Glx
+- Fixed an issue in `AlignUsingPeak.m` when running more than one file in a batch
+
 ## 3.3.2
 <span style="color: grey;">2023-08-02</span>
 
@@ -170,8 +208,6 @@ This page lists the stable releases of Gannet since v3.1.3. All releases can be 
 - Fixed bug in `CoRegStandAlone.m`
 - Fixed bug in `read_dcm_header.m` (thanks to Meredith Reid)
 
-<br>
-
 ## 3.2.0
 <span style="color: grey;">2021-07-30</span>
 
@@ -242,8 +278,6 @@ This page lists the stable releases of Gannet since v3.1.3. All releases can be 
 - Removed unnecessary complex conjugate transpose during FFT of water data in `GannetLoad.m`
 - Turned off warnings about legacy number generator in `RobustSpectralRegistration.m` (for when rng and randn are run in `SignalFilter.m`) if they are already turned on
 
-<br>
-
 ## 3.1.5
 <span style="color: grey;">2020-03-02</span>
 
@@ -267,16 +301,12 @@ This page lists the stable releases of Gannet since v3.1.3. All releases can be 
 - Minor bug fixes in CoRegStandAlone functions
 - Corrected use of random number generation in `SignalFilter.m` when performing noise replacement to ensure the same results are reproduced each time it is run on a dataset
 
-<br>
-
 ## 3.1.4
 <span style="color: grey;">2019-10-03</span>
 
 ### Bug fix
 
 - Fixed error in the calculation of `AvgDeltaF0` for MEGA-PRESS data
-
-<br>
 
 ## 3.1.3
 <span style="color: grey;">2019-08-06</span>

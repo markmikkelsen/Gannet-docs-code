@@ -34,6 +34,7 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 
 | <u>Field</u> | <u>Description</u> |
 |:------------------|:----------------------------------------------------|
+| `loadtime` | The time when `GannetLoad` was initiated |
 | `version` | Structure containing release numbers of Gannet and the Gannet modules |
 | `ii` | During analysis, the current file being loaded; after analysis, the number of files that were loaded |
 | `metabfile` | Cell array containing the inputted metabolite data filenames |
@@ -128,6 +129,8 @@ All output from Gannet analyses are saved in a structure (e.g., `MRS_struct`, or
 | `img` | Cell array containing three-dimensional arrays representing the three orthogonal slices of the <i>T</i><sub>1</sub>-weighted structural images that are displayed in the figure outputs |
 | `T1image` | Cell array of the input <i>T</i><sub>1</sub>-weighted structural image filenames |
 | `img_montage` | Cell array containing three-dimensional arrays representing a montage of axial slices of the <i>T</i><sub>1</sub>-weighted structural images overlaid by the tissue-segmented voxel masks that are displayed in the `GannetQuantify.m` figure output |
+| `mask_overlap` | Structure giving details of where a voxel mask overlap is saved (this is created if the `normalize` flag is set to `1` in `GannetPreInitialise.m`) |
+
 
 
 
