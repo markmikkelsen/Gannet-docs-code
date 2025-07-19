@@ -116,15 +116,18 @@ The Gannet team can also be <a href="mailto:mam4041@med.cornell.edu?subject=[Gan
 
 Gannet uses a form of <a href="https://semver.org/" target="_blank">semantic versioning</a> in the style 'x.x.x' to mark code releases. Versioning is also conducted on a module-specific basis using the style 'YYMMDD'. That is, each Gannet module has its own release version. Users should note that module-specific versions sometimes are updated despite the semantic version number remaining unchanged (typically for minor updates/bug fixes).
 
-## Developers
+## Developer
 
-- Richard Edden (Johns Hopkins University) - creator
-- Mark Mikkelsen (Weill Cornell Medicine) - lead developer
-- Georg Oeltzschner (Johns Hopkins University) - contributor
-- Muhammad Saleh (Children's Hospital of Philadelphia) - contributor
-- C. John Evans (Cardiff University) - contributor
-- Ashley Harris (University of Calgary) - contributor
-- Nicolaas Puts (King's College London) - contributor
+- Mark Mikkelsen (Weill Cornell Medicine)
+
+## Contributors
+
+- Richard Edden (Johns Hopkins University School of Medicine) - creator
+- Georg Oeltzschner (Johns Hopkins University School of Medicine)
+- Muhammad Saleh (Children's Hospital of Philadelphia)
+- C. John Evans (Cardiff University) - former contributor
+- Ashley Harris (University of Calgary) - former contributor
+- Nicolaas Puts (King's College London) - former contributor
 
 ## License and citing Gannet
 
