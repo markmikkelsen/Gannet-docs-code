@@ -57,14 +57,14 @@ To estimate the degree of frequency offsets that result from scanner-related fre
 Formulaically, this is defined as:
 
 $$
-\overline{\Delta\delta_{0}} = \frac{1}{m}\sum{\hat{\delta}_{0,m} - \delta_{0}}
+\overline{\Delta\delta_{0}} = \frac{1}{m}\sum{\widehat{\delta}_{0,m} - \delta_{0}}
 $$
 where:
 
 | <u>Parameter</u> | <u>Definition</u> |
 | :- | :--------- |
 | $m$ | Each individual subspectrum index number |
-| $\hat{\delta}_{0,m}$ | Observed water or Cr frequency in each individual subspectrum |
+| $\widehat{\delta}_{0,m}$ | Observed water or Cr frequency in each individual subspectrum |
 | $\delta_{0}$ | Nominal water or Cr frequency |
 
 ## Fit error
