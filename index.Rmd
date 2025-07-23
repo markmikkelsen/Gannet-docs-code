@@ -188,7 +188,7 @@ We wish to thank the following individuals for their direct or indirect contribu
 - Philipp Ehses (Max Planck Institute for Biological Cybernetics)
 - Robin de Graaf (Yale School of Medicine)
 - Xiangrui Li (Ohio State University)
-- Jamie Near (McGill University)
+- Jamie Near (Sunnybrook Research Institute/University of Toronto)
 - Ralph Noeske (GE HealthCare)
 - Wouter Potters (UMC Amsterdam)
 - Jan Simon (Heidelberg)
