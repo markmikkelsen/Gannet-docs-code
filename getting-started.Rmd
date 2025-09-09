@@ -1,6 +1,9 @@
 ---
 title: "Getting started"
 date: "Last updated: `r format(Sys.time(), '%B %d, %Y')`"
+bibliography: bibliography.bib
+csl: american-medical-association.csl
+link-citations: yes
 output:
   html_document:
     toc: TRUE
@@ -27,7 +30,7 @@ If this is your first time using Gannet, you should read through the [Reference]
 The linear workflow of Gannet is made up of five modules. For proper functionality, they need to be executed in the following order:
 
 | <u>Module</u> | <u>Description</u> |
-| :- | :--------- |
+|:---------------|:-------------------------------------------------------|
 | **GannetLoad** | Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the time course of the experiment. |
 | **GannetFit** | Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality. |
 | **GannetCoRegister** | Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image on three orthogonal slices. |
@@ -43,12 +46,12 @@ Familiarize yourself with the five basic Gannet commands, as described below. Th
 The first step in using Gannet is to set up the `GannetPreInitialise.m` function. While the toolkit has many routines that automatically recognize data formats, sequences, and acquisition parameters from data file headers; some settings need to be set by the user to run Gannet properly. Additionally, `GannetPreInitialise.m` allows the user to choose how to process their data (for example, which frequency-and-phase correction algorithm to use).
 
 ::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; Any time you run Gannet, make sure to check that the settings in `GannetPreInitialise.m` are correct. Many errors can be avoided by following this simple step.
+<i class="fa fa-exclamation-circle" style="color: white"></i>  Any time you run Gannet, make sure to check that the settings in `GannetPreInitialise.m` are correct. Many errors can be avoided by following this simple step.
 :::
 
 The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html#pre-initializing-gannet) for detailed explanations of the options and flags in `GannetPreInitialise.m`.
 
-<img src="images/getting-started/GannetPreInitialise-example.png" alt="A screenshot example of GannetPreInitialise.m">
+<img src="images/getting-started/GannetPreInitialise-example.png" alt="A screenshot example of GannetPreInitialise.m"/>
 
 ### Loading and fitting data
 
@@ -58,7 +61,7 @@ For all modules, an output argument containing a structure should always be incl
 
 Some examples for different data file formats:
 
-#### **DICOM data (\*.dcm files)**
+#### DICOM data (\*.dcm files)
 
 The DICOM format saves each transient in a separate file, such that for an acquisition with 320 transients, there will be 320 DICOM files. Data from each acquisition should be stored in an individual directory. To run such data, use the following commands:
 
@@ -68,7 +71,7 @@ MRS_struct = GannetFit(MRS_struct);
 ```
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Note how the metabolite and water data are stored in separate directories and that a single DICOM file is selected for data loading (it does not matter which file in each directory is chosen).
+<i class="fa fa-info-circle" style="color: white"></i>  Note how the metabolite and water data are stored in separate directories and that a single DICOM file is selected for data loading (it does not matter which file in each directory is chosen).
 :::
 
 #### **GE data (\*.7 files)**
@@ -99,7 +102,7 @@ MRS_struct = GannetFit(MRS_struct);
 ```
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The \*.spar files must be in the same directory as the \*.sdat files, otherwise an error will occur.
+<i class="fa fa-info-circle" style="color: white"></i>  The \*.spar files must be in the same directory as the \*.sdat files, otherwise an error will occur.
 :::
 
 #### **Siemens data (\*.dat files)**
@@ -121,7 +124,7 @@ MRS_struct = GannetFit(MRS_struct);
 ```
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Note how the metabolite and water data are stored in separate directories and that a single IMA file is selected for data loading (it does not matter which file in each directory is chosen).
+<i class="fa fa-info-circle" style="color: white"></i>  Note how the metabolite and water data are stored in separate directories and that a single IMA file is selected for data loading (it does not matter which file in each directory is chosen).
 :::
 
 #### **Siemens data (\*.rda files)**
@@ -134,12 +137,12 @@ MRS_struct = GannetFit(MRS_struct);
 ```
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Take note that the edit-OFF file must be input first.
+<i class="fa fa-info-circle" style="color: white"></i>  Note that the edit-OFF file must be input first.
 :::
 
 ### Co-registration to MR images
 
-After MRS data files are loaded and fitted, and if an structural MR image was acquired and used to place MRS voxels, Gannet can co-register the two. To do so, use the following command: 
+After MRS data files are loaded and fitted, and if an structural MR image was acquired and used to place MRS voxels, Gannet can co-register the two and create a binary voxel mask in image space. To do so, use the following command:
 
 ```{octave, eval = FALSE}
 MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii'});
@@ -165,6 +168,36 @@ Following tissue segmentation, and assuming a water reference was inputted at da
 MRS_struct = GannetQuantify(MRS_struct);
 ```
 
+## Compatibility with BIDS
+
+Users are encouraged to organize their MRS data and metadata according to the Brain Imaging Data Structure (BIDS) [@Gorgolewski2016; @Bouchard2025]. Full details about the standard can be found on the <a href="https://bids-specification.readthedocs.io/en/stable/" target="_blank">BIDS website</a>. MRS specifications can be found <a href="https://bids-specification.readthedocs.io/en/stable/modality-specific-files/magnetic-resonance-spectroscopy.html" target="_blank">here</a>.
+
+::: info
+<i class="fa fa-info-circle" style="color: white"></i> While Gannet will automatically check if users' BIDS datasets are valid, users may also wish to validate their datasets using the <a href="https://bids-validator.readthedocs.io/en/stable/" target="_blank"><u>BIDS Validator</u></a>, which will perform a more thorough validation check.
+:::
+
+### Loading data
+
+The command syntax for loading a BIDS dataset is slightly different. The base directory path name of a BIDS dataset is entered into `GannetLoad.m` as a cell array as the first input argument. The second input argument is a cell array that specifies which MRS data to process. This is the label used with the `acq` entity in the filenames of the single-voxel MRS data files (those ending in `*_svs.nii[.gz]`) to be processed. If the second input argument is not provided, Gannet will process all single-voxel MRS data files in the dataset.
+
+Unsuppressed water reference files are automatically found by parsing the relevant `*_svs.json` files for the `ReferenceSignal` key.
+
+`GannetCoRegister.m` does not require a second input argument for structural image filenames as Gannet will search for the path names of the images associated with each MRS acquisition stored in the `AnatomicalImage` key in the `*_svs.json` files.
+
+This shows that it is crucial that users adhere to the BIDS specifications to avoid running into errors.
+
+Example usage:
+
+```{octave, eval = FALSE}
+MRS_struct = GannetLoad({'path/to/bids_dataset/'}, {'megapress'}); % 'megapress' would be the 'acq' entity label for the MEGA-PRESS files in 'path/to/bids_dataset/'
+MRS_struct = GannetFit(MRS_struct);
+MRS_struct = GannetCoRegister(MRS_struct);
+MRS_struct = GannetSegment(MRS_struct);
+MRS_struct = GannetQuantify(MRS_struct);
+```
+
+As shown, only the path name of the BIDS dataset base directory is inputted into `GannetLoad.m`. Gannet will then automatically parse the subject (and session) subdirectories to find all relevant single-voxel MRS data files, including water signal references and structural MR images.
+
 ## Batch processing
 
 One of the major strengths of Gannet is its ability to process datasets in batches using the same pipeline. To load and fit multiple files, simply add more filenames to the respective cell arrays that are passed to `GannetLoad.m`, as shown below for Philips data:
@@ -173,8 +206,8 @@ One of the major strengths of Gannet is its ability to process datasets in batch
 MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'}, ...
                         {'sub-01_ref.sdat', 'sub-02_ref.sdat', 'sub-03_ref.sdat'});
 MRS_struct = GannetFit(MRS_struct);
-# Only if structural MR images are available can the next lines can be run
-# Note that the number of structural images must match the number of MRS metabolite data files inputted in GannetLoad
+% Only if structural MR images are available can the next lines can be run
+% Note that the number of structural images must match the number of MRS metabolite data files inputted in GannetLoad
 MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii', 'T1w.nii', 'T1w.nii'});
 MRS_struct = GannetSegment(MRS_struct);
 MRS_struct = GannetQuantify(MRS_struct);
@@ -200,5 +233,4 @@ The output structure contains several fields and subfields, which grow in number
 
 You can also output a CSV file containing useful values from the output structure for further analysis in a statistical program of your choice. This functionality is set in `GannetPreInitialise.m`.
 
-
-
+### References
