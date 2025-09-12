@@ -20,6 +20,43 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This page lists the stable releases of Gannet since v3.1.3. All releases can be found on GitHub <a href="https://github.com/markmikkelsen/Gannet/releases" target="_blank">here</a> and <a href="https://github.com/richardedden/Gannet3.1/releases" target="_blank">here</a>. The development version of Gannet can be found <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">here</a>. For a more comprehensive list of changes to the current main version, see the commits logged on GitHub <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">here</a>.
 
+## 3.5.0
+<span style="color: grey;">2025-09-11</span>
+
+### New features
+
+- Gannet is now compatible with <a href="https://bids-specification.readthedocs.io/en/stable/" target="_blank">BIDS</a>
+  - [`bids-matlab`](https://bids-matlab.readthedocs.io/en/main/), a MATLAB toolkit for interfacing with BIDS datasets, is embedded in Gannet, and users can now input BIDS datasets directly into `GannetLoad.m` (see [documentation](https://markmikkelsen.github.io/Gannet-docs/getting-started.html#compatibility-with-bids) for usage instructions)
+- Added image QA metrics based on <a href="https://doi.org/10.1371/journal.pone.0184661" target="_blank">MRIQC</a>
+  - `GannetSegment.m` now calculates and saves the following QA metrics for each anatomical image:
+    - Signal-to-noise ratio (SNR) of GM, WM, CSF, and the whole brain (two variants: one using the median absolute deviation of the air background based on <a href="https://doi.org/10.1002/jmri.20969" target="_blank">Dietrich et al. (2007)</a>, and one using the standard deviation of the noise within the tissue class)
+    - Contrast-to-noise ratio (CNR) between GM and WM
+    - Coefficient of variation (CV) of GM and WM
+    - Coefficient of joint variation (CJV) between GM and WM
+    - Entropy-focus criterion (EFC)
+    - Foreground-background energy ratio (FBER)
+    - WM to maximum intensity ratio (WM2MAX): the median intensity within WM over the 95% percentile of the full intensity distribution, that captures the existence of long tails due to hyper-intensity of the carotid vessels and fat
+  - These metrics are saved in `MRS_struct.out.QA`
+- Added GitHub Actions for continuous integration with `bids-matlab`, `dicm2nii`, and `export_fig` to ensure compatibility with the latest versions of these dependencies
+- Added `dependabot.yml` to automatically check for updates to GitHub Actions
+- Water-unfiltered (but aligned) spectra are now saved in `MRS_struct`
+- All version strings (e.g., `MRS_struct.version.*`) are now stored under `MRS_struct.info.version.*`, and datetime stamps for processing steps are added as `MRS_struct.info.datetime.*`
+
+### Major changes
+
+- When calculating GM, WM, and CSF fractions in `GannetSegment.m`, the probabilistic tissue maps are now thresholded at 0.9 before calculating the fractions. This should improve the accuracy of tissue fraction estimates
+
+### Minor changes
+
+- Modified `SiemensTWIXRead.m` to use iceParam for `pointsBeforeEcho` in MEGA-sLASER, aligning with MEGA-PRESS handling for consistency
+- Changed the naming convention for water residual fit results from `ResidWater` to `resid_water` in `GannetFit.m` for consistency
+- Improved input argument validation and error messages, including checks for cell array inputs and file existence, with clearer error output for missing files
+- Updated `export_fig` to v3.52
+- Updated `dicm2nii` to v2025.08.21
+- MANY COSMETIC CHANGES to improve code readability and maintainability
+
+**Full Changelog**: <a href="https://github.com/markmikkelsen/Gannet/compare/v3.4.0...v3.5.0" target="_blank">`v3.4.0...v3.5.0`</a>
+
 ## 3.4.0
 <span style="color: grey;">2025-03-30</span>
 
