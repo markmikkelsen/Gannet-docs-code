@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <img id="img_50" src="images/logo+title.png" alt="The Gannet logo"/>
 
 ::: release
-<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.5.0</a></h3>
+<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.5.1</a></h3>
 :::
 
 ## Overview
