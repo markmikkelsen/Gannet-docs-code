@@ -191,7 +191,7 @@ Example usage:
 ```{octave, eval = FALSE}
 MRS_struct = GannetLoad({'path/to/bids_dataset/'}, {'megapress'}); % 'megapress' would be the 'acq' entity label for the MEGA-PRESS files in 'path/to/bids_dataset/'
 MRS_struct = GannetFit(MRS_struct);
-MRS_struct = GannetCoRegister(MRS_struct);
+MRS_struct = GannetCoRegister(MRS_struct); % No second input argument is needed as Gannet will find the associated structural images from the *_svs.json files
 MRS_struct = GannetSegment(MRS_struct);
 MRS_struct = GannetQuantify(MRS_struct);
 ```
