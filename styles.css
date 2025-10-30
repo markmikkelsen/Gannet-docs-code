@@ -1,8 +1,4 @@
 /* ----- Main ----- */
-html {
-  scroll-padding-top: 5rem;
-}
-
 body .main-container {
   max-width: 850px;
 }

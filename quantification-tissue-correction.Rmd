@@ -44,7 +44,7 @@ tfoot, tr:nth-child(even) {
 <br>
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; The formulas below apply to releases 3.1+ and may not be applicable to older releases.
+<i class="fa fa-info-circle" style="color: white"></i>  The formulas below apply to releases 3.1+ and may not be applicable to older releases.
 :::
 
 Gannet quantifies metabolite levels in different ways at various points in the pipeline depending on what reference signals are present and if structural image data are available. It is important to understand what the underlying quantification formulas are for the interpretation and reporting of results.
@@ -75,14 +75,14 @@ $$
 where:
 
 | <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
-| :- | :-------- | :------ |
-| $C_{corr}$ | Estimated metabolite concentration in i.u. | |
-| $I_{M}$ | Metabolite signal integral | |
-| $I_{W}$ | Water signal integral | |
+|:--------------|:-------------------------------|:------------------------|
+| $C_{corr}$ | Estimated metabolite concentration in i.u. |  |
+| $I_{M}$ | Metabolite signal integral |  |
+| $I_{W}$ | Water signal integral |  |
 | $H_{M}$ | Number of ^1^H protons that give rise to the metabolite signal | Metabolite dependent; see `GannetFit.m` for default values |
 | $H_{W}$ | Number of ^1^H protons that give rise to the water signal | 2 |
-| $MM$ | Correction factor for the contribution of the co-edited macromolecule signal in the metabolite signal | 0.45 for GABA editing and 1 for all other edited metabolites |
-| $\kappa$ | Editing efficiency | Acquisition dependent; 0.5 for GABA editing |
+| $MM$ | Correction factor for the contribution of co-edited macromolecules to the edited metabolite signal | 0.45 for GABA editing and 1 for all other edited metabolites [@Harris2017a] |
+| $\kappa$ | Editing efficiency | Acquisition dependent; 0.5 for GABA editing [@Harris2017a] |
 | $C_{W}$ | Molal concentration of pure water | 55.51 mol/kg |
 | $W_{vis}$ | Approximate relative MR visibility of water in brain tissue | 0.65 [@Ernst1993] |
 | $TE_{W}$ | Echo time of the water reference acquisition | Acquisition dependent |
@@ -116,7 +116,7 @@ where $C_{CSFcorr}$ is the estimated metabolite concentration in i.u. corrected 
 
 ## GannetQuantify
 
-`GannetQuantify.m` goes a step further and corrects for partial volume effects that attenuate the observed water and metabolite signals. There are two approaches that are employed. The first is termed the Gasparovic et al. [@Gasparovic2006] method and the second is termed the Harris et al. [@Harris2015] method. Although similar, the difference between these approaches is that the Harris et al. method additionally accounts for intrinsic differences in metabolite concentrations in GM and WM. 
+`GannetQuantify.m` goes a step further and corrects for partial volume effects that attenuate the observed water and metabolite signals. There are two approaches that are employed. The first is termed the Gasparovic et al. [@Gasparovic2006] method and the second is termed the Harris et al. [@Harris2015] method. Although similar, the difference between these approaches is that the Harris et al. method additionally accounts for intrinsic differences in metabolite concentrations in GM and WM.
 
 ### <u>The Gasparovic et al. method</u>
 
@@ -135,9 +135,9 @@ $$
 where:
 
 | <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
-| :- | :-------- | :------ |
-| $C_{TissCorr}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water | |
-| $f_{i}$ | Voxel volume fraction of GM, WM, or CSF | |
+|:--------------|:-------------------------------|:------------------------|
+| $C_{TissCorr}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water |  |
+| $f_{i}$ | Voxel volume fraction of GM, WM, or CSF |  |
 | $\beta_i$ | Relative MR visibility of water in GM, WM, or CSF | 0.78, 0.65, and 0.97 [@Ernst1993] |
 | $T_{2W,i}$ | Transverse relaxation time of water in GM, WM, or CSF | 0.110, 0.0792, and 0.503 s [@Wansapura1999; @Piechnik2009] |
 | $T_{1W,i}$ | Longitudinal relaxation time of water in GM, WM, or CSF | 1.331, 0.832, and 3.817 s [@Wansapura1999; @Lu2005] |
@@ -159,8 +159,8 @@ $$
 where:
 
 | <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
-| :- | :-------- | :------ |
-| $C_{AlphaCorr}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water and metabolite | |
+|:--------------|:-------------------------------|:------------------------|
+| $C_{AlphaCorr}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water and metabolite |  |
 | $C_{W,i}$ | Molal concentration of water in GM, WM, or CSF | 43.30, 36.08, and 53.84 mol/kg [@Ernst1993; @Gasparovic2006] |
 | $\alpha$ | Ratio of intrinsic WM:GM metabolite concentrations | Metabolite dependent; see `GannetQuantify.m` for default values |
 
@@ -181,7 +181,7 @@ $$
 where:
 
 | <u>Parameter</u> | <u>Description</u> |
-| :- | :-------- |
+|:---------------|:-------------------------------------------------------|
 | $C_{AlphaCorrNorm}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water and metabolite and adjusted to the average voxel GM and WM composition across a group |
 | ${\mu_{GM}}$ | Group-averaged voxel volume fraction of GM |
 | ${\mu_{WM}}$ | Group-averaged voxel volume fraction of WM |
@@ -189,5 +189,3 @@ where:
 <br>
 
 ### References
-
-
