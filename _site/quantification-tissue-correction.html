@@ -453,7 +453,7 @@ div.tocify {
 
 
 <h1 class="title toc-ignore">Quantification &amp; tissue correction</h1>
-<h4 class="date">Last updated: October 30, 2025</h4>
+<h4 class="date">Last updated: November 04, 2025</h4>
 
 </div>
 
@@ -515,14 +515,14 @@ and if structural image data are available. It is important to
 understand what the underlying quantification formulas are for the
 interpretation and reporting of results.</p>
 <p><u>A note on units of concentration</u></p>
-<p>There is a perennial issue surrounding how quantified in vivo MRS
+<p>There is a perennial issue regarding how quantified in vivo MRS
 measurements should be expressed; that is, in what biochemical units (if
 any) they should be reported. In vivo MRS measurements can be, and have
 been, reported in molar, molal, and institutional units (i.u.) or as
 simple signal area ratios. However, this makes interpreting and
 comparing such values, especially across published studies, highly
-challenging. While Gannet does apply a number of signal scaling factors
-to water-referenced metabolite measurements (that are required when
+challenging. While Gannet does apply several signal scaling factors to
+water-referenced metabolite measurements (which are required when
 reporting “absolute” concentrations), it is our philosophy that these
 measurements should be considered pseudo-absolute because accounting for
 all empirical signal scaling factors is impractical (perhaps even
@@ -536,21 +536,22 @@ class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <code>MRS_struct.out.vox1.(metab).ConcNAA</code> are simple signal
 integral ratios of the metabolite of interest and the metabolite
 reference signals Cr, Cho, and NAA, respectively:</p>
-<p><span class="math display">\[C = \frac{I_{M}}{I_{ref}}\]</span></p>
+<p><span class="math display">\[C =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{Ref}}}\]</span></p>
 <p>If a water reference is provided,
 <code>MRS_struct.out.vox1.(metab).ConcIU</code> is also calculated. It
 is defined as the signal integral ratio of the metabolite of interest
 and water reference scaled by a number of global signal scaling
 factors:</p>
 <p><span class="math display">\[
-C_{corr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-C_{W}\cdot
-W_{vis}\cdot
-\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}
+C_{\mathrm{Corr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+C_{\mathrm{W}}\cdot
+W_{\mathrm{Vis}}\cdot
+\frac{\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W}}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1\mathrm{M}}}\right)\right]}
 \]</span></p>
 <p>where:</p>
 <table>
@@ -568,29 +569,34 @@ W_{vis}\cdot
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(C_{corr}\)</span></td>
+<td align="left"><span
+class="math inline">\(C_{\mathrm{Corr}}\)</span></td>
 <td align="left">Estimated metabolite concentration in i.u.</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(I_{M}\)</span></td>
+<td align="left"><span
+class="math inline">\(I_{\mathrm{M}}\)</span></td>
 <td align="left">Metabolite signal integral</td>
 <td align="left"></td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(I_{W}\)</span></td>
+<td align="left"><span
+class="math inline">\(I_{\mathrm{W}}\)</span></td>
 <td align="left">Water signal integral</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(H_{M}\)</span></td>
+<td align="left"><span
+class="math inline">\(H_{\mathrm{M}}\)</span></td>
 <td align="left">Number of <sup>1</sup>H protons that give rise to the
 metabolite signal</td>
 <td align="left">Metabolite dependent; see <code>GannetFit.m</code> for
 default values</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(H_{W}\)</span></td>
+<td align="left"><span
+class="math inline">\(H_{\mathrm{W}}\)</span></td>
 <td align="left">Number of <sup>1</sup>H protons that give rise to the
 water signal</td>
 <td align="left">2</td>
@@ -610,59 +616,69 @@ href="#ref-Harris2017a">1</a></sup></span></td>
 class="citation"><sup><a href="#ref-Harris2017a">1</a></sup></span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(C_{W}\)</span></td>
+<td align="left"><span
+class="math inline">\(C_{\mathrm{W}}\)</span></td>
 <td align="left">Molal concentration of pure water</td>
 <td align="left">55.51 mol/kg</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(W_{vis}\)</span></td>
+<td align="left"><span
+class="math inline">\(W_{\mathrm{Vis}}\)</span></td>
 <td align="left">Approximate relative MR visibility of water in brain
 tissue</td>
 <td align="left">0.65<span class="citation"><sup><a
 href="#ref-Ernst1993">2</a></sup></span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(TE_{W}\)</span></td>
+<td align="left"><span
+class="math inline">\(TE_{\mathrm{W}}\)</span></td>
 <td align="left">Echo time of the water reference acquisition</td>
 <td align="left">Acquisition dependent</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(TR_{W}\)</span></td>
+<td align="left"><span
+class="math inline">\(TR_{\mathrm{W}}\)</span></td>
 <td align="left">Repetition time of the water reference acquisition</td>
 <td align="left">Acquisition dependent</td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(TE_{M}\)</span></td>
+<td align="left"><span
+class="math inline">\(TE_{\mathrm{M}}\)</span></td>
 <td align="left">Echo time of the metabolite acquisition</td>
 <td align="left">Acquisition dependent</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(TR_{M}\)</span></td>
+<td align="left"><span
+class="math inline">\(TR_{\mathrm{M}}\)</span></td>
 <td align="left">Repetition time of the metabolite acquisition</td>
 <td align="left">Acquisition dependent</td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(T_{2W}\)</span></td>
+<td align="left"><span
+class="math inline">\(T_{\mathrm{2W}}\)</span></td>
 <td align="left">Average transverse relaxation time of water in GM and
 WM</td>
 <td align="left">1.100 s<span class="citation"><sup><a
 href="#ref-Wansapura1999">3</a></sup></span></td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(T_{1W}\)</span></td>
+<td align="left"><span
+class="math inline">\(T_{\mathrm{1W}}\)</span></td>
 <td align="left">Average longitudinal relaxation time of water in GM and
 WM</td>
 <td align="left">0.095 s<span class="citation"><sup><a
 href="#ref-Wansapura1999">3</a></sup></span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(T_{2M}\)</span></td>
+<td align="left"><span
+class="math inline">\(T_{\mathrm{2M}}\)</span></td>
 <td align="left">Transverse relaxation time of metabolite</td>
 <td align="left">Metabolite dependent; see <code>GannetFit.m</code> for
 default values</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(T_{1M}\)</span></td>
+<td align="left"><span
+class="math inline">\(T_{\mathrm{1M}}\)</span></td>
 <td align="left">Longitudinal relaxation time of metabolite</td>
 <td align="left">Metabolite dependent; see <code>GannetFit.m</code> for
 default values</td>
@@ -678,20 +694,20 @@ GM, WM, and CSF, and if a water reference is available, a CSF-only
 correction is applied to the <code>ConcIU</code> measurement.</p>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_CSFcorr</code>:</p>
 <p><span class="math display">\[
-C_{CSFcorr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-C_{W}\cdot
-W_{vis}\cdot
-\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
-\frac{1}{1-f_{CSF}}
+C_{\mathrm{CSFcorr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+C_{\mathrm{W}}\cdot
+W_{\mathrm{Vis}}\cdot
+\frac{\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W}}}\right)\right]}
+{\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2\mathrm{M}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}\cdot
+\frac{1}{1-f_{\mathrm{CSF}}}
 \]</span></p>
-<p>where <span class="math inline">\(C_{CSFcorr}\)</span> is the
-estimated metabolite concentration in i.u. corrected for CSF and <span
-class="math inline">\(f_{CSF}\)</span> is the voxel volume fraction of
-CSF.</p>
+<p>where <span class="math inline">\(C_{\mathrm{CSFcorr}}\)</span> is
+the estimated metabolite concentration in i.u. corrected for CSF and
+<span class="math inline">\(f_{\mathrm{CSF}}\)</span> is the voxel
+volume fraction of CSF.</p>
 </div>
 <div id="gannetquantify" class="section level2 hasAnchor">
 <h2 class="hasAnchor">GannetQuantify<a href="#gannetquantify"
@@ -712,13 +728,13 @@ href="#the-gasparovic-et-al.-method" class="anchor-section"
 aria-label="Anchor link to header"></a></h3>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_TissCorr</code>:</p>
 <p><span class="math display">\[
-C_{TissCorr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-C_{W}\cdot
-\frac{\sum_{i}^{GM,WM,CSF}f_{i}\beta_{i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{(1-f_{CSF})\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}
+C_{\mathrm{TissCorr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+C_{\mathrm{W}}\cdot
+\frac{\sum_{i}^{\mathrm{GM,WM,CSF}}f_{i}\beta_{i}\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2\mathrm{W}},i}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W},i}}\right)\right]}
+{(1-f_{\mathrm{CSF}})\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2\mathrm{M}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}
 \]</span></p>
 <p>where:</p>
 <table>
@@ -736,7 +752,8 @@ C_{W}\cdot
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(C_{TissCorr}\)</span></td>
+<td align="left"><span
+class="math inline">\(C_{\mathrm{TissCorr}}\)</span></td>
 <td align="left">Estimated metabolite concentration in i.u. corrected
 for partial volume effects of water</td>
 <td align="left"></td>
@@ -753,7 +770,8 @@ for partial volume effects of water</td>
 href="#ref-Ernst1993">2</a></sup></span></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(T_{2W,i}\)</span></td>
+<td align="left"><span
+class="math inline">\(T_{\mathrm{2W},i}\)</span></td>
 <td align="left">Transverse relaxation time of water in GM, WM, or
 CSF</td>
 <td align="left">0.110, 0.0792, and 0.503 s<span
@@ -761,7 +779,8 @@ class="citation"><sup><a href="#ref-Wansapura1999">3</a>,<a
 href="#ref-Piechnik2009">6</a></sup></span></td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\(T_{1W,i}\)</span></td>
+<td align="left"><span
+class="math inline">\(T_{\mathrm{1W},i}\)</span></td>
 <td align="left">Longitudinal relaxation time of water in GM, WM, or
 CSF</td>
 <td align="left">1.331, 0.832, and 3.817 s<span class="citation"><sup><a
@@ -777,13 +796,13 @@ href="#the-harris-et-al.-method" class="anchor-section"
 aria-label="Anchor link to header"></a></h3>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr</code>:</p>
 <p><span class="math display">\[
-C_{AlphaCorr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
-\frac{1}{f_{GM}+\alpha{f_{WM}}}
+C_{\mathrm{AlphaTissCorr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+\frac{\sum_{i}^{\mathrm{GM,WM,CSF}}f_{i}C_{\mathrm{W},i}\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W},i}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W},i}}\right)\right]}
+{\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}\cdot
+\frac{1}{f_{\mathrm{GM}}+\alpha{f_{\mathrm{WM}}}}
 \]</span></p>
 <p>where:</p>
 <table>
@@ -801,13 +820,15 @@ C_{AlphaCorr} =
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left"><span class="math inline">\(C_{AlphaCorr}\)</span></td>
+<td align="left"><span
+class="math inline">\(C_{\mathrm{AlphaTissCorr}}\)</span></td>
 <td align="left">Estimated metabolite concentration in i.u. corrected
 for partial volume effects of water and metabolite</td>
 <td align="left"></td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\(C_{W,i}\)</span></td>
+<td align="left"><span
+class="math inline">\(C_{\mathrm{W},i}\)</span></td>
 <td align="left">Molal concentration of water in GM, WM, or CSF</td>
 <td align="left">43.30, 36.08, and 53.84 mol/kg<span
 class="citation"><sup><a href="#ref-Ernst1993">2</a>,<a
@@ -826,13 +847,13 @@ for default values</td>
 GM and WM composition of all datasets in a group.</p>
 <p><code>MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr_GrpNorm</code>:</p>
 <p><span class="math display">\[
-C_{AlphaCorrNorm} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
-\frac{\mu_{GM}+\alpha{\mu_{WM}}}{(f_{GM}+\alpha{f_{WM}})(\mu_{GM}+{\mu_{WM}})}
+C_{\mathrm{AlphaTissCorrNorm}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+\frac{\sum_{i}^{\mathrm{GM,WM,CSF}}f_{i}C_{\mathrm{W},i}\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W},i}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W},i}}\right)\right]}
+{\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2\mathrm{M}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}\cdot
+\frac{\mu_{\mathrm{GM}}+\alpha{\mu_{\mathrm{WM}}}}{(f_{\mathrm{GM}}+\alpha{f_{\mathrm{WM}}})(\mu_{\mathrm{GM}}+{\mu_{\mathrm{WM}}})}
 \]</span></p>
 <p>where:</p>
 <table>
@@ -849,17 +870,19 @@ C_{AlphaCorrNorm} =
 <tbody>
 <tr class="odd">
 <td align="left"><span
-class="math inline">\(C_{AlphaCorrNorm}\)</span></td>
+class="math inline">\(C_{\mathrm{AlphaTissCorrNorm}}\)</span></td>
 <td align="left">Estimated metabolite concentration in i.u. corrected
 for partial volume effects of water and metabolite and adjusted to the
 average voxel GM and WM composition across a group</td>
 </tr>
 <tr class="even">
-<td align="left"><span class="math inline">\({\mu_{GM}}\)</span></td>
+<td align="left"><span
+class="math inline">\({\mu_{\mathrm{GM}}}\)</span></td>
 <td align="left">Group-averaged voxel volume fraction of GM</td>
 </tr>
 <tr class="odd">
-<td align="left"><span class="math inline">\({\mu_{WM}}\)</span></td>
+<td align="left"><span
+class="math inline">\({\mu_{\mathrm{WM}}}\)</span></td>
 <td align="left">Group-averaged voxel volume fraction of WM</td>
 </tr>
 </tbody>
@@ -931,7 +954,7 @@ href="https://doi.org/10.1002/jmri.20356">10.1002/jmri.20356</a></div>
 </div>
 </div>
 
-<div id="rmd-source-code">LS0tCnRpdGxlOiAiUXVhbnRpZmljYXRpb24gJiB0aXNzdWUgY29ycmVjdGlvbiIKZGF0ZTogIkxhc3QgdXBkYXRlZDogYHIgZm9ybWF0KFN5cy50aW1lKCksICclQiAlZCwgJVknKWAiCmJpYmxpb2dyYXBoeTogYmlibGlvZ3JhcGh5LmJpYgpjc2w6IGFtZXJpY2FuLW1lZGljYWwtYXNzb2NpYXRpb24uY3NsCmxpbmstY2l0YXRpb25zOiB5ZXMKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQouaW5mbyB7CiAgbWFyZ2luLWJvdHRvbTogMjBweDsKfQoKdGFibGUgewogIG1hcmdpbjogYXV0bzsKfQoKdGFibGUgdGhlYWQgdGggewogIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZGRkOwp9Cgp0aCwgdGQgewogIHBhZGRpbmc6IDVweDsKfQoKdGZvb3QsIHRyOm50aC1jaGlsZChldmVuKSB7CiAgYmFja2dyb3VuZDogI2VlZTsKfQpgYGAKCjxicj4KCjo6OiBpbmZvCjxpIGNsYXNzPSJmYSBmYS1pbmZvLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPsKgIFRoZSBmb3JtdWxhcyBiZWxvdyBhcHBseSB0byByZWxlYXNlcyAzLjErIGFuZCBtYXkgbm90IGJlIGFwcGxpY2FibGUgdG8gb2xkZXIgcmVsZWFzZXMuCjo6OgoKR2FubmV0IHF1YW50aWZpZXMgbWV0YWJvbGl0ZSBsZXZlbHMgaW4gZGlmZmVyZW50IHdheXMgYXQgdmFyaW91cyBwb2ludHMgaW4gdGhlIHBpcGVsaW5lIGRlcGVuZGluZyBvbiB3aGF0IHJlZmVyZW5jZSBzaWduYWxzIGFyZSBwcmVzZW50IGFuZCBpZiBzdHJ1Y3R1cmFsIGltYWdlIGRhdGEgYXJlIGF2YWlsYWJsZS4gSXQgaXMgaW1wb3J0YW50IHRvIHVuZGVyc3RhbmQgd2hhdCB0aGUgdW5kZXJseWluZyBxdWFudGlmaWNhdGlvbiBmb3JtdWxhcyBhcmUgZm9yIHRoZSBpbnRlcnByZXRhdGlvbiBhbmQgcmVwb3J0aW5nIG9mIHJlc3VsdHMuCgo8dT5BIG5vdGUgb24gdW5pdHMgb2YgY29uY2VudHJhdGlvbjwvdT4KClRoZXJlIGlzIGEgcGVyZW5uaWFsIGlzc3VlIHN1cnJvdW5kaW5nIGhvdyBxdWFudGlmaWVkIGluIHZpdm8gTVJTIG1lYXN1cmVtZW50cyBzaG91bGQgYmUgZXhwcmVzc2VkOyB0aGF0IGlzLCBpbiB3aGF0IGJpb2NoZW1pY2FsIHVuaXRzIChpZiBhbnkpIHRoZXkgc2hvdWxkIGJlIHJlcG9ydGVkLiBJbiB2aXZvIE1SUyBtZWFzdXJlbWVudHMgY2FuIGJlLCBhbmQgaGF2ZSBiZWVuLCByZXBvcnRlZCBpbiBtb2xhciwgbW9sYWwsIGFuZCBpbnN0aXR1dGlvbmFsIHVuaXRzIChpLnUuKSBvciBhcyBzaW1wbGUgc2lnbmFsIGFyZWEgcmF0aW9zLiBIb3dldmVyLCB0aGlzIG1ha2VzIGludGVycHJldGluZyBhbmQgY29tcGFyaW5nIHN1Y2ggdmFsdWVzLCBlc3BlY2lhbGx5IGFjcm9zcyBwdWJsaXNoZWQgc3R1ZGllcywgaGlnaGx5IGNoYWxsZW5naW5nLiBXaGlsZSBHYW5uZXQgZG9lcyBhcHBseSBhIG51bWJlciBvZiBzaWduYWwgc2NhbGluZyBmYWN0b3JzIHRvIHdhdGVyLXJlZmVyZW5jZWQgbWV0YWJvbGl0ZSBtZWFzdXJlbWVudHMgKHRoYXQgYXJlIHJlcXVpcmVkIHdoZW4gcmVwb3J0aW5nICJhYnNvbHV0ZSIgY29uY2VudHJhdGlvbnMpLCBpdCBpcyBvdXIgcGhpbG9zb3BoeSB0aGF0IHRoZXNlIG1lYXN1cmVtZW50cyBzaG91bGQgYmUgY29uc2lkZXJlZCBwc2V1ZG8tYWJzb2x1dGUgYmVjYXVzZSBhY2NvdW50aW5nIGZvciBhbGwgZW1waXJpY2FsIHNpZ25hbCBzY2FsaW5nIGZhY3RvcnMgaXMgaW1wcmFjdGljYWwgKHBlcmhhcHMgZXZlbiBpbXBvc3NpYmxlKSB0byBwZXJtaXQgdHJ1bHkgYWJzb2x1dGUgcXVhbnRpZmljYXRpb24uIFRoZXJlZm9yZSwgR2FubmV0IHJlcG9ydHMgd2F0ZXItcmVmZXJlbmNlZCBtZXRhYm9saXRlIG1lYXN1cmVtZW50cyBpbiBpLnUuCgojIyBHYW5uZXRGaXQKCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0NyYCwgYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jQ2hvYCwgYW5kIGBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY05BQWAgYXJlIHNpbXBsZSBzaWduYWwgaW50ZWdyYWwgcmF0aW9zIG9mIHRoZSBtZXRhYm9saXRlIG9mIGludGVyZXN0IGFuZCB0aGUgbWV0YWJvbGl0ZSByZWZlcmVuY2Ugc2lnbmFscyBDciwgQ2hvLCBhbmQgTkFBLCByZXNwZWN0aXZlbHk6CgokJEMgPSBcZnJhY3tJX3tNfX17SV97cmVmfX0kJAoKSWYgYSB3YXRlciByZWZlcmVuY2UgaXMgcHJvdmlkZWQsIGBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVYCBpcyBhbHNvIGNhbGN1bGF0ZWQuIEl0IGlzIGRlZmluZWQgYXMgdGhlIHNpZ25hbCBpbnRlZ3JhbCByYXRpbyBvZiB0aGUgbWV0YWJvbGl0ZSBvZiBpbnRlcmVzdCBhbmQgd2F0ZXIgcmVmZXJlbmNlIHNjYWxlZCBieSBhIG51bWJlciBvZiBnbG9iYWwgc2lnbmFsIHNjYWxpbmcgZmFjdG9yczoKCiQkCkNfe2NvcnJ9ID0KXGZyYWN7SV97TX19e0lfe1d9fVxjZG90ClxmcmFje0hfe1d9fXtIX3tNfX1cY2RvdApcZnJhY3tNTX17XGthcHBhfVxjZG90CkNfe1d9XGNkb3QKV197dmlzfVxjZG90ClxmcmFje1xleHBcbGVmdCgtXGZyYWN7VEVfe1d9fXtUX3syV319XHJpZ2h0KVxsZWZ0WzEtXGV4cFxsZWZ0KC1cZnJhY3tUUl97V319e1RfezFXfX1ccmlnaHQpXHJpZ2h0XX0Ke1xleHBcbGVmdCgtXGZyYWN7VEVfe019fXtUX3syTX19XHJpZ2h0KVxsZWZ0WzEtXGV4cFxsZWZ0KC1cZnJhY3tUUl97TX19e1RfezFNfX1ccmlnaHQpXHJpZ2h0XX0KJCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwgPHU+RGVmYXVsdCB2YWx1ZTwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgJENfe2NvcnJ9JCB8IEVzdGltYXRlZCBtZXRhYm9saXRlIGNvbmNlbnRyYXRpb24gaW4gaS51LiB8ICB8CnwgJElfe019JCB8IE1ldGFib2xpdGUgc2lnbmFsIGludGVncmFsIHwgIHwKfCAkSV97V30kIHwgV2F0ZXIgc2lnbmFsIGludGVncmFsIHwgIHwKfCAkSF97TX0kIHwgTnVtYmVyIG9mIF4xXkggcHJvdG9ucyB0aGF0IGdpdmUgcmlzZSB0byB0aGUgbWV0YWJvbGl0ZSBzaWduYWwgfCBNZXRhYm9saXRlIGRlcGVuZGVudDsgc2VlIGBHYW5uZXRGaXQubWAgZm9yIGRlZmF1bHQgdmFsdWVzIHwKfCAkSF97V30kIHwgTnVtYmVyIG9mIF4xXkggcHJvdG9ucyB0aGF0IGdpdmUgcmlzZSB0byB0aGUgd2F0ZXIgc2lnbmFsIHwgMiB8CnwgJE1NJCB8IENvcnJlY3Rpb24gZmFjdG9yIGZvciB0aGUgY29udHJpYnV0aW9uIG9mIGNvLWVkaXRlZCBtYWNyb21vbGVjdWxlcyB0byB0aGUgZWRpdGVkIG1ldGFib2xpdGUgc2lnbmFsIHwgMC40NSBmb3IgR0FCQSBlZGl0aW5nIGFuZCAxIGZvciBhbGwgb3RoZXIgZWRpdGVkIG1ldGFib2xpdGVzIFtASGFycmlzMjAxN2FdIHwKfCAkXGthcHBhJCB8IEVkaXRpbmcgZWZmaWNpZW5jeSB8IEFjcXVpc2l0aW9uIGRlcGVuZGVudDsgMC41IGZvciBHQUJBIGVkaXRpbmcgW0BIYXJyaXMyMDE3YV0gfAp8ICRDX3tXfSQgfCBNb2xhbCBjb25jZW50cmF0aW9uIG9mIHB1cmUgd2F0ZXIgfCA1NS41MSBtb2wva2cgfAp8ICRXX3t2aXN9JCB8IEFwcHJveGltYXRlIHJlbGF0aXZlIE1SIHZpc2liaWxpdHkgb2Ygd2F0ZXIgaW4gYnJhaW4gdGlzc3VlIHwgMC42NSBbQEVybnN0MTk5M10gfAp8ICRURV97V30kIHwgRWNobyB0aW1lIG9mIHRoZSB3YXRlciByZWZlcmVuY2UgYWNxdWlzaXRpb24gfCBBY3F1aXNpdGlvbiBkZXBlbmRlbnQgfAp8ICRUUl97V30kIHwgUmVwZXRpdGlvbiB0aW1lIG9mIHRoZSB3YXRlciByZWZlcmVuY2UgYWNxdWlzaXRpb24gfCBBY3F1aXNpdGlvbiBkZXBlbmRlbnQgfAp8ICRURV97TX0kIHwgRWNobyB0aW1lIG9mIHRoZSBtZXRhYm9saXRlIGFjcXVpc2l0aW9uIHwgQWNxdWlzaXRpb24gZGVwZW5kZW50IHwKfCAkVFJfe019JCB8IFJlcGV0aXRpb24gdGltZSBvZiB0aGUgbWV0YWJvbGl0ZSBhY3F1aXNpdGlvbiB8IEFjcXVpc2l0aW9uIGRlcGVuZGVudCB8CnwgJFRfezJXfSQgfCBBdmVyYWdlIHRyYW5zdmVyc2UgcmVsYXhhdGlvbiB0aW1lIG9mIHdhdGVyIGluIEdNIGFuZCBXTSB8IDEuMTAwIHMgW0BXYW5zYXB1cmExOTk5XSB8CnwgJFRfezFXfSQgfCBBdmVyYWdlIGxvbmdpdHVkaW5hbCByZWxheGF0aW9uIHRpbWUgb2Ygd2F0ZXIgaW4gR00gYW5kIFdNIHwgMC4wOTUgcyBbQFdhbnNhcHVyYTE5OTldIHwKfCAkVF97Mk19JCB8IFRyYW5zdmVyc2UgcmVsYXhhdGlvbiB0aW1lIG9mIG1ldGFib2xpdGUgfCBNZXRhYm9saXRlIGRlcGVuZGVudDsgc2VlIGBHYW5uZXRGaXQubWAgZm9yIGRlZmF1bHQgdmFsdWVzIHwKfCAkVF97MU19JCB8IExvbmdpdHVkaW5hbCByZWxheGF0aW9uIHRpbWUgb2YgbWV0YWJvbGl0ZSB8IE1ldGFib2xpdGUgZGVwZW5kZW50OyBzZWUgYEdhbm5ldEZpdC5tYCBmb3IgZGVmYXVsdCB2YWx1ZXMgfAoKIyMgR2FubmV0U2VnbWVudAoKV2hlbiBzZWdtZW50aW5nIHN0cnVjdHVyYWwgaW1hZ2VzIHRvIG9idGFpbiB2b3hlbCB2b2x1bWUgZnJhY3Rpb25zIG9mIEdNLCBXTSwgYW5kIENTRiwgYW5kIGlmIGEgd2F0ZXIgcmVmZXJlbmNlIGlzIGF2YWlsYWJsZSwgYSBDU0Ytb25seSBjb3JyZWN0aW9uIGlzIGFwcGxpZWQgdG8gdGhlIGBDb25jSVVgIG1lYXN1cmVtZW50LgoKYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jSVVfQ1NGY29ycmA6CgokJApDX3tDU0Zjb3JyfSA9ClxmcmFje0lfe019fXtJX3tXfX1cY2RvdApcZnJhY3tIX3tXfX17SF97TX19XGNkb3QKXGZyYWN7TU19e1xrYXBwYX1cY2RvdApDX3tXfVxjZG90Cldfe3Zpc31cY2RvdApcZnJhY3tcZXhwXGxlZnQoLVxmcmFje1RFX3tXfX17VF97Mld9fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe1d9fXtUX3sxV319XHJpZ2h0KVxyaWdodF19CntcZXhwXGxlZnQoLVxmcmFje1RFX3tNfX17VF97Mk19fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe019fXtUX3sxTX19XHJpZ2h0KVxyaWdodF19XGNkb3QKXGZyYWN7MX17MS1mX3tDU0Z9fQokJAoKd2hlcmUgJENfe0NTRmNvcnJ9JCBpcyB0aGUgZXN0aW1hdGVkIG1ldGFib2xpdGUgY29uY2VudHJhdGlvbiBpbiBpLnUuIGNvcnJlY3RlZCBmb3IgQ1NGIGFuZCAkZl97Q1NGfSQgaXMgdGhlIHZveGVsIHZvbHVtZSBmcmFjdGlvbiBvZiBDU0YuCgojIyBHYW5uZXRRdWFudGlmeQoKYEdhbm5ldFF1YW50aWZ5Lm1gIGdvZXMgYSBzdGVwIGZ1cnRoZXIgYW5kIGNvcnJlY3RzIGZvciBwYXJ0aWFsIHZvbHVtZSBlZmZlY3RzIHRoYXQgYXR0ZW51YXRlIHRoZSBvYnNlcnZlZCB3YXRlciBhbmQgbWV0YWJvbGl0ZSBzaWduYWxzLiBUaGVyZSBhcmUgdHdvIGFwcHJvYWNoZXMgdGhhdCBhcmUgZW1wbG95ZWQuIFRoZSBmaXJzdCBpcyB0ZXJtZWQgdGhlIEdhc3Bhcm92aWMgZXQgYWwuIFtAR2FzcGFyb3ZpYzIwMDZdIG1ldGhvZCBhbmQgdGhlIHNlY29uZCBpcyB0ZXJtZWQgdGhlIEhhcnJpcyBldCBhbC4gW0BIYXJyaXMyMDE1XSBtZXRob2QuIEFsdGhvdWdoIHNpbWlsYXIsIHRoZSBkaWZmZXJlbmNlIGJldHdlZW4gdGhlc2UgYXBwcm9hY2hlcyBpcyB0aGF0IHRoZSBIYXJyaXMgZXQgYWwuIG1ldGhvZCBhZGRpdGlvbmFsbHkgYWNjb3VudHMgZm9yIGludHJpbnNpYyBkaWZmZXJlbmNlcyBpbiBtZXRhYm9saXRlIGNvbmNlbnRyYXRpb25zIGluIEdNIGFuZCBXTS4KCiMjIyA8dT5UaGUgR2FzcGFyb3ZpYyBldCBhbC4gbWV0aG9kPC91PgoKYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jSVVfVGlzc0NvcnJgOgoKJCQKQ197VGlzc0NvcnJ9ID0KXGZyYWN7SV97TX19e0lfe1d9fVxjZG90ClxmcmFje0hfe1d9fXtIX3tNfX1cY2RvdApcZnJhY3tNTX17XGthcHBhfVxjZG90CkNfe1d9XGNkb3QKXGZyYWN7XHN1bV97aX1ee0dNLFdNLENTRn1mX3tpfVxiZXRhX3tpfVxleHBcbGVmdCgtXGZyYWN7VEVfe1d9fXtUX3syVyxpfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tXfX17VF97MVcsaX19XHJpZ2h0KVxyaWdodF19CnsoMS1mX3tDU0Z9KVxleHBcbGVmdCgtXGZyYWN7VEVfe019fXtUX3syTX19XHJpZ2h0KVxsZWZ0WzEtXGV4cFxsZWZ0KC1cZnJhY3tUUl97TX19e1RfezFNfX1ccmlnaHQpXHJpZ2h0XX0KJCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwgPHU+RGVmYXVsdCB2YWx1ZTwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgJENfe1Rpc3NDb3JyfSQgfCBFc3RpbWF0ZWQgbWV0YWJvbGl0ZSBjb25jZW50cmF0aW9uIGluIGkudS4gY29ycmVjdGVkIGZvciBwYXJ0aWFsIHZvbHVtZSBlZmZlY3RzIG9mIHdhdGVyIHwgIHwKfCAkZl97aX0kIHwgVm94ZWwgdm9sdW1lIGZyYWN0aW9uIG9mIEdNLCBXTSwgb3IgQ1NGIHwgIHwKfCAkXGJldGFfaSQgfCBSZWxhdGl2ZSBNUiB2aXNpYmlsaXR5IG9mIHdhdGVyIGluIEdNLCBXTSwgb3IgQ1NGIHwgMC43OCwgMC42NSwgYW5kIDAuOTcgW0BFcm5zdDE5OTNdIHwKfCAkVF97MlcsaX0kIHwgVHJhbnN2ZXJzZSByZWxheGF0aW9uIHRpbWUgb2Ygd2F0ZXIgaW4gR00sIFdNLCBvciBDU0YgfCAwLjExMCwgMC4wNzkyLCBhbmQgMC41MDMgcyBbQFdhbnNhcHVyYTE5OTk7IEBQaWVjaG5pazIwMDldIHwKfCAkVF97MVcsaX0kIHwgTG9uZ2l0dWRpbmFsIHJlbGF4YXRpb24gdGltZSBvZiB3YXRlciBpbiBHTSwgV00sIG9yIENTRiB8IDEuMzMxLCAwLjgzMiwgYW5kIDMuODE3IHMgW0BXYW5zYXB1cmExOTk5OyBATHUyMDA1XSB8CgojIyMgPHU+VGhlIEhhcnJpcyBldCBhbC4gbWV0aG9kPC91PgoKYE1SU19zdHJ1Y3Qub3V0LnZveDEuKG1ldGFiKS5Db25jSVVfQWxwaGFUaXNzQ29ycmA6CgokJApDX3tBbHBoYUNvcnJ9ID0KXGZyYWN7SV97TX19e0lfe1d9fVxjZG90ClxmcmFje0hfe1d9fXtIX3tNfX1cY2RvdApcZnJhY3tNTX17XGthcHBhfVxjZG90ClxmcmFje1xzdW1fe2l9XntHTSxXTSxDU0Z9Zl97aX1DX3tXLGl9XGV4cFxsZWZ0KC1cZnJhY3tURV97V319e1RfezJXLGl9fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe1d9fXtUX3sxVyxpfX1ccmlnaHQpXHJpZ2h0XX0Ke1xleHBcbGVmdCgtXGZyYWN7VEVfe019fXtUX3syTX19XHJpZ2h0KVxsZWZ0WzEtXGV4cFxsZWZ0KC1cZnJhY3tUUl97TX19e1RfezFNfX1ccmlnaHQpXHJpZ2h0XX1cY2RvdApcZnJhY3sxfXtmX3tHTX0rXGFscGhhe2Zfe1dNfX19CiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8IDx1PkRlZmF1bHQgdmFsdWU8L3U+IHwKfDotLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfAp8ICRDX3tBbHBoYUNvcnJ9JCB8IEVzdGltYXRlZCBtZXRhYm9saXRlIGNvbmNlbnRyYXRpb24gaW4gaS51LiBjb3JyZWN0ZWQgZm9yIHBhcnRpYWwgdm9sdW1lIGVmZmVjdHMgb2Ygd2F0ZXIgYW5kIG1ldGFib2xpdGUgfCAgfAp8ICRDX3tXLGl9JCB8IE1vbGFsIGNvbmNlbnRyYXRpb24gb2Ygd2F0ZXIgaW4gR00sIFdNLCBvciBDU0YgfCA0My4zMCwgMzYuMDgsIGFuZCA1My44NCBtb2wva2cgW0BFcm5zdDE5OTM7IEBHYXNwYXJvdmljMjAwNl0gfAp8ICRcYWxwaGEkIHwgUmF0aW8gb2YgaW50cmluc2ljIFdNOkdNIG1ldGFib2xpdGUgY29uY2VudHJhdGlvbnMgfCBNZXRhYm9saXRlIGRlcGVuZGVudDsgc2VlIGBHYW5uZXRRdWFudGlmeS5tYCBmb3IgZGVmYXVsdCB2YWx1ZXMgfAoKQSBtb2RpZmljYXRpb24gb2YgdGhlIEhhcnJpcyBldCBhbC4gbWV0aG9kIGlzIGFsc28gY2FsY3VsYXRlZCB3aGVyZSBgQ29uY0lVX0FscGhhVGlzc0NvcnJgIGlzIGZ1cnRoZXIgc2NhbGVkIGJ5IHRoZSBhdmVyYWdlIHZveGVsIEdNIGFuZCBXTSBjb21wb3NpdGlvbiBvZiBhbGwgZGF0YXNldHMgaW4gYSBncm91cC4KCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVX0FscGhhVGlzc0NvcnJfR3JwTm9ybWA6CgokJApDX3tBbHBoYUNvcnJOb3JtfSA9ClxmcmFje0lfe019fXtJX3tXfX1cY2RvdApcZnJhY3tIX3tXfX17SF97TX19XGNkb3QKXGZyYWN7TU19e1xrYXBwYX1cY2RvdApcZnJhY3tcc3VtX3tpfV57R00sV00sQ1NGfWZfe2l9Q197VyxpfVxleHBcbGVmdCgtXGZyYWN7VEVfe1d9fXtUX3syVyxpfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tXfX17VF97MVcsaX19XHJpZ2h0KVxyaWdodF19CntcZXhwXGxlZnQoLVxmcmFje1RFX3tNfX17VF97Mk19fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe019fXtUX3sxTX19XHJpZ2h0KVxyaWdodF19XGNkb3QKXGZyYWN7XG11X3tHTX0rXGFscGhhe1xtdV97V019fX17KGZfe0dNfStcYWxwaGF7Zl97V019fSkoXG11X3tHTX0re1xtdV97V019fSl9CiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8Cnw6LS0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfAp8ICRDX3tBbHBoYUNvcnJOb3JtfSQgfCBFc3RpbWF0ZWQgbWV0YWJvbGl0ZSBjb25jZW50cmF0aW9uIGluIGkudS4gY29ycmVjdGVkIGZvciBwYXJ0aWFsIHZvbHVtZSBlZmZlY3RzIG9mIHdhdGVyIGFuZCBtZXRhYm9saXRlIGFuZCBhZGp1c3RlZCB0byB0aGUgYXZlcmFnZSB2b3hlbCBHTSBhbmQgV00gY29tcG9zaXRpb24gYWNyb3NzIGEgZ3JvdXAgfAp8ICR7XG11X3tHTX19JCB8IEdyb3VwLWF2ZXJhZ2VkIHZveGVsIHZvbHVtZSBmcmFjdGlvbiBvZiBHTSB8CnwgJHtcbXVfe1dNfX0kIHwgR3JvdXAtYXZlcmFnZWQgdm94ZWwgdm9sdW1lIGZyYWN0aW9uIG9mIFdNIHwKCjxicj4KCiMjIyBSZWZlcmVuY2VzCg==</div>
+<div id="rmd-source-code">LS0tCnRpdGxlOiAiUXVhbnRpZmljYXRpb24gJiB0aXNzdWUgY29ycmVjdGlvbiIKZGF0ZTogIkxhc3QgdXBkYXRlZDogYHIgZm9ybWF0KFN5cy50aW1lKCksICclQiAlZCwgJVknKWAiCmJpYmxpb2dyYXBoeTogYmlibGlvZ3JhcGh5LmJpYgpjc2w6IGFtZXJpY2FuLW1lZGljYWwtYXNzb2NpYXRpb24uY3NsCmxpbmstY2l0YXRpb25zOiB5ZXMKb3V0cHV0OgogIGh0bWxfZG9jdW1lbnQ6CiAgICB0b2M6IFRSVUUKICAgIHRvY19kZXB0aDogMgogICAgdG9jX2Zsb2F0OgogICAgICBjb2xsYXBzZWQ6IEZBTFNFCi0tLQoKYGBge3Igc2V0dXAsIGluY2x1ZGUgPSBGQUxTRX0Ka25pdHI6Om9wdHNfY2h1bmskc2V0KGVjaG8gPSBUUlVFKQpgYGAKCmBgYHtyLCBjaGlsZCA9ICJqcy9iYWNrLXRvLXRvcC5qcyJ9CmBgYAoKYGBge2NzcywgZWNobyA9IEZBTFNFfQouaW5mbyB7CiAgbWFyZ2luLWJvdHRvbTogMjBweDsKfQoKdGFibGUgewogIG1hcmdpbjogYXV0bzsKfQoKdGFibGUgdGhlYWQgdGggewogIGJvcmRlci1ib3R0b206IDFweCBzb2xpZCAjZGRkOwp9Cgp0aCwgdGQgewogIHBhZGRpbmc6IDVweDsKfQoKdGZvb3QsIHRyOm50aC1jaGlsZChldmVuKSB7CiAgYmFja2dyb3VuZDogI2VlZTsKfQpgYGAKCjxicj4KCjo6OiBpbmZvCjxpIGNsYXNzPSJmYSBmYS1pbmZvLWNpcmNsZSIgc3R5bGU9ImNvbG9yOiB3aGl0ZSI+PC9pPsKgIFRoZSBmb3JtdWxhcyBiZWxvdyBhcHBseSB0byByZWxlYXNlcyAzLjErIGFuZCBtYXkgbm90IGJlIGFwcGxpY2FibGUgdG8gb2xkZXIgcmVsZWFzZXMuCjo6OgoKR2FubmV0IHF1YW50aWZpZXMgbWV0YWJvbGl0ZSBsZXZlbHMgaW4gZGlmZmVyZW50IHdheXMgYXQgdmFyaW91cyBwb2ludHMgaW4gdGhlIHBpcGVsaW5lIGRlcGVuZGluZyBvbiB3aGF0IHJlZmVyZW5jZSBzaWduYWxzIGFyZSBwcmVzZW50IGFuZCBpZiBzdHJ1Y3R1cmFsIGltYWdlIGRhdGEgYXJlIGF2YWlsYWJsZS4gSXQgaXMgaW1wb3J0YW50IHRvIHVuZGVyc3RhbmQgd2hhdCB0aGUgdW5kZXJseWluZyBxdWFudGlmaWNhdGlvbiBmb3JtdWxhcyBhcmUgZm9yIHRoZSBpbnRlcnByZXRhdGlvbiBhbmQgcmVwb3J0aW5nIG9mIHJlc3VsdHMuCgo8dT5BIG5vdGUgb24gdW5pdHMgb2YgY29uY2VudHJhdGlvbjwvdT4KClRoZXJlIGlzIGEgcGVyZW5uaWFsIGlzc3VlIHJlZ2FyZGluZyBob3cgcXVhbnRpZmllZCBpbiB2aXZvIE1SUyBtZWFzdXJlbWVudHMgc2hvdWxkIGJlIGV4cHJlc3NlZDsgdGhhdCBpcywgaW4gd2hhdCBiaW9jaGVtaWNhbCB1bml0cyAoaWYgYW55KSB0aGV5IHNob3VsZCBiZSByZXBvcnRlZC4gSW4gdml2byBNUlMgbWVhc3VyZW1lbnRzIGNhbiBiZSwgYW5kIGhhdmUgYmVlbiwgcmVwb3J0ZWQgaW4gbW9sYXIsIG1vbGFsLCBhbmQgaW5zdGl0dXRpb25hbCB1bml0cyAoaS51Likgb3IgYXMgc2ltcGxlIHNpZ25hbCBhcmVhIHJhdGlvcy4gSG93ZXZlciwgdGhpcyBtYWtlcyBpbnRlcnByZXRpbmcgYW5kIGNvbXBhcmluZyBzdWNoIHZhbHVlcywgZXNwZWNpYWxseSBhY3Jvc3MgcHVibGlzaGVkIHN0dWRpZXMsIGhpZ2hseSBjaGFsbGVuZ2luZy4gV2hpbGUgR2FubmV0IGRvZXMgYXBwbHkgc2V2ZXJhbCBzaWduYWwgc2NhbGluZyBmYWN0b3JzIHRvIHdhdGVyLXJlZmVyZW5jZWQgbWV0YWJvbGl0ZSBtZWFzdXJlbWVudHMgKHdoaWNoIGFyZSByZXF1aXJlZCB3aGVuIHJlcG9ydGluZyAiYWJzb2x1dGUiIGNvbmNlbnRyYXRpb25zKSwgaXQgaXMgb3VyIHBoaWxvc29waHkgdGhhdCB0aGVzZSBtZWFzdXJlbWVudHMgc2hvdWxkIGJlIGNvbnNpZGVyZWQgcHNldWRvLWFic29sdXRlIGJlY2F1c2UgYWNjb3VudGluZyBmb3IgYWxsIGVtcGlyaWNhbCBzaWduYWwgc2NhbGluZyBmYWN0b3JzIGlzIGltcHJhY3RpY2FsIChwZXJoYXBzIGV2ZW4gaW1wb3NzaWJsZSkgdG8gcGVybWl0IHRydWx5IGFic29sdXRlIHF1YW50aWZpY2F0aW9uLiBUaGVyZWZvcmUsIEdhbm5ldCByZXBvcnRzIHdhdGVyLXJlZmVyZW5jZWQgbWV0YWJvbGl0ZSBtZWFzdXJlbWVudHMgaW4gaS51LgoKIyMgR2FubmV0Rml0CgpgTVJTX3N0cnVjdC5vdXQudm94MS4obWV0YWIpLkNvbmNDcmAsIGBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0Nob2AsIGFuZCBgTVJTX3N0cnVjdC5vdXQudm94MS4obWV0YWIpLkNvbmNOQUFgIGFyZSBzaW1wbGUgc2lnbmFsIGludGVncmFsIHJhdGlvcyBvZiB0aGUgbWV0YWJvbGl0ZSBvZiBpbnRlcmVzdCBhbmQgdGhlIG1ldGFib2xpdGUgcmVmZXJlbmNlIHNpZ25hbHMgQ3IsIENobywgYW5kIE5BQSwgcmVzcGVjdGl2ZWx5OgoKJCRDID0gXGZyYWN7SV97XG1hdGhybXtNfX19e0lfe1xtYXRocm17UmVmfX19JCQKCklmIGEgd2F0ZXIgcmVmZXJlbmNlIGlzIHByb3ZpZGVkLCBgTVJTX3N0cnVjdC5vdXQudm94MS4obWV0YWIpLkNvbmNJVWAgaXMgYWxzbyBjYWxjdWxhdGVkLiBJdCBpcyBkZWZpbmVkIGFzIHRoZSBzaWduYWwgaW50ZWdyYWwgcmF0aW8gb2YgdGhlIG1ldGFib2xpdGUgb2YgaW50ZXJlc3QgYW5kIHdhdGVyIHJlZmVyZW5jZSBzY2FsZWQgYnkgYSBudW1iZXIgb2YgZ2xvYmFsIHNpZ25hbCBzY2FsaW5nIGZhY3RvcnM6CgokJApDX3tcbWF0aHJte0NvcnJ9fSA9ClxmcmFje0lfe1xtYXRocm17TX19fXtJX3tcbWF0aHJte1d9fX1cY2RvdApcZnJhY3tIX3tcbWF0aHJte1d9fX17SF97XG1hdGhybXtNfX19XGNkb3QKXGZyYWN7XG1hdGhybXtNTX19e1xrYXBwYX1cY2RvdApDX3tcbWF0aHJte1d9fVxjZG90Cldfe1xtYXRocm17VmlzfX1cY2RvdApcZnJhY3tcZXhwXGxlZnQoLVxmcmFje1RFX3tcbWF0aHJte1d9fX17VF97XG1hdGhybXsyV319fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe1xtYXRocm17V319fXtUX3sxXG1hdGhybXtXfX19XHJpZ2h0KVxyaWdodF19CntcZXhwXGxlZnQoLVxmcmFje1RFX3tNfX17VF97Mk19fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe019fXtUX3sxXG1hdGhybXtNfX19XHJpZ2h0KVxyaWdodF19CiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8IDx1PkRlZmF1bHQgdmFsdWU8L3U+IHwKfDotLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfAp8ICRDX3tcbWF0aHJte0NvcnJ9fSQgfCBFc3RpbWF0ZWQgbWV0YWJvbGl0ZSBjb25jZW50cmF0aW9uIGluIGkudS4gfCAgfAp8ICRJX3tcbWF0aHJte019fSQgfCBNZXRhYm9saXRlIHNpZ25hbCBpbnRlZ3JhbCB8ICB8CnwgJElfe1xtYXRocm17V319JCB8IFdhdGVyIHNpZ25hbCBpbnRlZ3JhbCB8ICB8CnwgJEhfe1xtYXRocm17TX19JCB8IE51bWJlciBvZiBeMV5IIHByb3RvbnMgdGhhdCBnaXZlIHJpc2UgdG8gdGhlIG1ldGFib2xpdGUgc2lnbmFsIHwgTWV0YWJvbGl0ZSBkZXBlbmRlbnQ7IHNlZSBgR2FubmV0Rml0Lm1gIGZvciBkZWZhdWx0IHZhbHVlcyB8CnwgJEhfe1xtYXRocm17V319JCB8IE51bWJlciBvZiBeMV5IIHByb3RvbnMgdGhhdCBnaXZlIHJpc2UgdG8gdGhlIHdhdGVyIHNpZ25hbCB8IDIgfAp8ICRNTSQgfCBDb3JyZWN0aW9uIGZhY3RvciBmb3IgdGhlIGNvbnRyaWJ1dGlvbiBvZiBjby1lZGl0ZWQgbWFjcm9tb2xlY3VsZXMgdG8gdGhlIGVkaXRlZCBtZXRhYm9saXRlIHNpZ25hbCB8IDAuNDUgZm9yIEdBQkEgZWRpdGluZyBhbmQgMSBmb3IgYWxsIG90aGVyIGVkaXRlZCBtZXRhYm9saXRlcyBbQEhhcnJpczIwMTdhXSB8CnwgJFxrYXBwYSQgfCBFZGl0aW5nIGVmZmljaWVuY3kgfCBBY3F1aXNpdGlvbiBkZXBlbmRlbnQ7IDAuNSBmb3IgR0FCQSBlZGl0aW5nIFtASGFycmlzMjAxN2FdIHwKfCAkQ197XG1hdGhybXtXfX0kIHwgTW9sYWwgY29uY2VudHJhdGlvbiBvZiBwdXJlIHdhdGVyIHwgNTUuNTEgbW9sL2tnIHwKfCAkV197XG1hdGhybXtWaXN9fSQgfCBBcHByb3hpbWF0ZSByZWxhdGl2ZSBNUiB2aXNpYmlsaXR5IG9mIHdhdGVyIGluIGJyYWluIHRpc3N1ZSB8IDAuNjUgW0BFcm5zdDE5OTNdIHwKfCAkVEVfe1xtYXRocm17V319JCB8IEVjaG8gdGltZSBvZiB0aGUgd2F0ZXIgcmVmZXJlbmNlIGFjcXVpc2l0aW9uIHwgQWNxdWlzaXRpb24gZGVwZW5kZW50IHwKfCAkVFJfe1xtYXRocm17V319JCB8IFJlcGV0aXRpb24gdGltZSBvZiB0aGUgd2F0ZXIgcmVmZXJlbmNlIGFjcXVpc2l0aW9uIHwgQWNxdWlzaXRpb24gZGVwZW5kZW50IHwKfCAkVEVfe1xtYXRocm17TX19JCB8IEVjaG8gdGltZSBvZiB0aGUgbWV0YWJvbGl0ZSBhY3F1aXNpdGlvbiB8IEFjcXVpc2l0aW9uIGRlcGVuZGVudCB8CnwgJFRSX3tcbWF0aHJte019fSQgfCBSZXBldGl0aW9uIHRpbWUgb2YgdGhlIG1ldGFib2xpdGUgYWNxdWlzaXRpb24gfCBBY3F1aXNpdGlvbiBkZXBlbmRlbnQgfAp8ICRUX3tcbWF0aHJtezJXfX0kIHwgQXZlcmFnZSB0cmFuc3ZlcnNlIHJlbGF4YXRpb24gdGltZSBvZiB3YXRlciBpbiBHTSBhbmQgV00gfCAxLjEwMCBzIFtAV2Fuc2FwdXJhMTk5OV0gfAp8ICRUX3tcbWF0aHJtezFXfX0kIHwgQXZlcmFnZSBsb25naXR1ZGluYWwgcmVsYXhhdGlvbiB0aW1lIG9mIHdhdGVyIGluIEdNIGFuZCBXTSB8IDAuMDk1IHMgW0BXYW5zYXB1cmExOTk5XSB8CnwgJFRfe1xtYXRocm17Mk19fSQgfCBUcmFuc3ZlcnNlIHJlbGF4YXRpb24gdGltZSBvZiBtZXRhYm9saXRlIHwgTWV0YWJvbGl0ZSBkZXBlbmRlbnQ7IHNlZSBgR2FubmV0Rml0Lm1gIGZvciBkZWZhdWx0IHZhbHVlcyB8CnwgJFRfe1xtYXRocm17MU19fSQgfCBMb25naXR1ZGluYWwgcmVsYXhhdGlvbiB0aW1lIG9mIG1ldGFib2xpdGUgfCBNZXRhYm9saXRlIGRlcGVuZGVudDsgc2VlIGBHYW5uZXRGaXQubWAgZm9yIGRlZmF1bHQgdmFsdWVzIHwKCiMjIEdhbm5ldFNlZ21lbnQKCldoZW4gc2VnbWVudGluZyBzdHJ1Y3R1cmFsIGltYWdlcyB0byBvYnRhaW4gdm94ZWwgdm9sdW1lIGZyYWN0aW9ucyBvZiBHTSwgV00sIGFuZCBDU0YsIGFuZCBpZiBhIHdhdGVyIHJlZmVyZW5jZSBpcyBhdmFpbGFibGUsIGEgQ1NGLW9ubHkgY29ycmVjdGlvbiBpcyBhcHBsaWVkIHRvIHRoZSBgQ29uY0lVYCBtZWFzdXJlbWVudC4KCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVX0NTRmNvcnJgOgoKJCQKQ197XG1hdGhybXtDU0Zjb3JyfX0gPQpcZnJhY3tJX3tcbWF0aHJte019fX17SV97XG1hdGhybXtXfX19XGNkb3QKXGZyYWN7SF97XG1hdGhybXtXfX19e0hfe1xtYXRocm17TX19fVxjZG90ClxmcmFje1xtYXRocm17TU19fXtca2FwcGF9XGNkb3QKQ197XG1hdGhybXtXfX1cY2RvdApXX3tcbWF0aHJte1Zpc319XGNkb3QKXGZyYWN7XGV4cFxsZWZ0KC1cZnJhY3tURV97XG1hdGhybXtXfX19e1Rfe1xtYXRocm17Mld9fX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tcbWF0aHJte1d9fX17VF97MVxtYXRocm17V319fVxyaWdodClccmlnaHRdfQp7XGV4cFxsZWZ0KC1cZnJhY3tURV97XG1hdGhybXtNfX19e1RfezJcbWF0aHJte019fX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tcbWF0aHJte019fX17VF97MVxtYXRocm17TX19fVxyaWdodClccmlnaHRdfVxjZG90ClxmcmFjezF9ezEtZl97XG1hdGhybXtDU0Z9fX0KJCQKCndoZXJlICRDX3tcbWF0aHJte0NTRmNvcnJ9fSQgaXMgdGhlIGVzdGltYXRlZCBtZXRhYm9saXRlIGNvbmNlbnRyYXRpb24gaW4gaS51LiBjb3JyZWN0ZWQgZm9yIENTRiBhbmQgJGZfe1xtYXRocm17Q1NGfX0kIGlzIHRoZSB2b3hlbCB2b2x1bWUgZnJhY3Rpb24gb2YgQ1NGLgoKIyMgR2FubmV0UXVhbnRpZnkKCmBHYW5uZXRRdWFudGlmeS5tYCBnb2VzIGEgc3RlcCBmdXJ0aGVyIGFuZCBjb3JyZWN0cyBmb3IgcGFydGlhbCB2b2x1bWUgZWZmZWN0cyB0aGF0IGF0dGVudWF0ZSB0aGUgb2JzZXJ2ZWQgd2F0ZXIgYW5kIG1ldGFib2xpdGUgc2lnbmFscy4gVGhlcmUgYXJlIHR3byBhcHByb2FjaGVzIHRoYXQgYXJlIGVtcGxveWVkLiBUaGUgZmlyc3QgaXMgdGVybWVkIHRoZSBHYXNwYXJvdmljIGV0IGFsLiBbQEdhc3Bhcm92aWMyMDA2XSBtZXRob2QgYW5kIHRoZSBzZWNvbmQgaXMgdGVybWVkIHRoZSBIYXJyaXMgZXQgYWwuIFtASGFycmlzMjAxNV0gbWV0aG9kLiBBbHRob3VnaCBzaW1pbGFyLCB0aGUgZGlmZmVyZW5jZSBiZXR3ZWVuIHRoZXNlIGFwcHJvYWNoZXMgaXMgdGhhdCB0aGUgSGFycmlzIGV0IGFsLiBtZXRob2QgYWRkaXRpb25hbGx5IGFjY291bnRzIGZvciBpbnRyaW5zaWMgZGlmZmVyZW5jZXMgaW4gbWV0YWJvbGl0ZSBjb25jZW50cmF0aW9ucyBpbiBHTSBhbmQgV00uCgojIyMgPHU+VGhlIEdhc3Bhcm92aWMgZXQgYWwuIG1ldGhvZDwvdT4KCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVX1Rpc3NDb3JyYDoKCiQkCkNfe1xtYXRocm17VGlzc0NvcnJ9fSA9ClxmcmFje0lfe1xtYXRocm17TX19fXtJX3tcbWF0aHJte1d9fX1cY2RvdApcZnJhY3tIX3tcbWF0aHJte1d9fX17SF97XG1hdGhybXtNfX19XGNkb3QKXGZyYWN7XG1hdGhybXtNTX19e1xrYXBwYX1cY2RvdApDX3tcbWF0aHJte1d9fVxjZG90ClxmcmFje1xzdW1fe2l9XntcbWF0aHJte0dNLFdNLENTRn19Zl97aX1cYmV0YV97aX1cZXhwXGxlZnQoLVxmcmFje1RFX3tcbWF0aHJte1d9fX17VF97XG1hdGhybXsyXG1hdGhybXtXfX0saX19XHJpZ2h0KVxsZWZ0WzEtXGV4cFxsZWZ0KC1cZnJhY3tUUl97XG1hdGhybXtXfX19e1RfezFcbWF0aHJte1d9LGl9fVxyaWdodClccmlnaHRdfQp7KDEtZl97XG1hdGhybXtDU0Z9fSlcZXhwXGxlZnQoLVxmcmFje1RFX3tcbWF0aHJte019fX17VF97MlxtYXRocm17TX19fVxyaWdodClcbGVmdFsxLVxleHBcbGVmdCgtXGZyYWN7VFJfe1xtYXRocm17TX19fXtUX3sxXG1hdGhybXtNfX19XHJpZ2h0KVxyaWdodF19CiQkCgp3aGVyZToKCnwgPHU+UGFyYW1ldGVyPC91PiB8IDx1PkRlc2NyaXB0aW9uPC91PiB8IDx1PkRlZmF1bHQgdmFsdWU8L3U+IHwKfDotLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfAp8ICRDX3tcbWF0aHJte1Rpc3NDb3JyfX0kIHwgRXN0aW1hdGVkIG1ldGFib2xpdGUgY29uY2VudHJhdGlvbiBpbiBpLnUuIGNvcnJlY3RlZCBmb3IgcGFydGlhbCB2b2x1bWUgZWZmZWN0cyBvZiB3YXRlciB8ICB8CnwgJGZfe2l9JCB8IFZveGVsIHZvbHVtZSBmcmFjdGlvbiBvZiBHTSwgV00sIG9yIENTRiB8ICB8CnwgJFxiZXRhX2kkIHwgUmVsYXRpdmUgTVIgdmlzaWJpbGl0eSBvZiB3YXRlciBpbiBHTSwgV00sIG9yIENTRiB8IDAuNzgsIDAuNjUsIGFuZCAwLjk3IFtARXJuc3QxOTkzXSB8CnwgJFRfe1xtYXRocm17Mld9LGl9JCB8IFRyYW5zdmVyc2UgcmVsYXhhdGlvbiB0aW1lIG9mIHdhdGVyIGluIEdNLCBXTSwgb3IgQ1NGIHwgMC4xMTAsIDAuMDc5MiwgYW5kIDAuNTAzIHMgW0BXYW5zYXB1cmExOTk5OyBAUGllY2huaWsyMDA5XSB8CnwgJFRfe1xtYXRocm17MVd9LGl9JCB8IExvbmdpdHVkaW5hbCByZWxheGF0aW9uIHRpbWUgb2Ygd2F0ZXIgaW4gR00sIFdNLCBvciBDU0YgfCAxLjMzMSwgMC44MzIsIGFuZCAzLjgxNyBzIFtAV2Fuc2FwdXJhMTk5OTsgQEx1MjAwNV0gfAoKIyMjIDx1PlRoZSBIYXJyaXMgZXQgYWwuIG1ldGhvZDwvdT4KCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVX0FscGhhVGlzc0NvcnJgOgoKJCQKQ197XG1hdGhybXtBbHBoYVRpc3NDb3JyfX0gPQpcZnJhY3tJX3tcbWF0aHJte019fX17SV97XG1hdGhybXtXfX19XGNkb3QKXGZyYWN7SF97XG1hdGhybXtXfX19e0hfe1xtYXRocm17TX19fVxjZG90ClxmcmFje1xtYXRocm17TU19fXtca2FwcGF9XGNkb3QKXGZyYWN7XHN1bV97aX1ee1xtYXRocm17R00sV00sQ1NGfX1mX3tpfUNfe1xtYXRocm17V30saX1cZXhwXGxlZnQoLVxmcmFje1RFX3tcbWF0aHJte1d9fX17VF97XG1hdGhybXsyV30saX19XHJpZ2h0KVxsZWZ0WzEtXGV4cFxsZWZ0KC1cZnJhY3tUUl97XG1hdGhybXtXfX19e1RfezFcbWF0aHJte1d9LGl9fVxyaWdodClccmlnaHRdfQp7XGV4cFxsZWZ0KC1cZnJhY3tURV97XG1hdGhybXtNfX19e1RfezJNfX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tcbWF0aHJte019fX17VF97MVxtYXRocm17TX19fVxyaWdodClccmlnaHRdfVxjZG90ClxmcmFjezF9e2Zfe1xtYXRocm17R019fStcYWxwaGF7Zl97XG1hdGhybXtXTX19fX0KJCQKCndoZXJlOgoKfCA8dT5QYXJhbWV0ZXI8L3U+IHwgPHU+RGVzY3JpcHRpb248L3U+IHwgPHU+RGVmYXVsdCB2YWx1ZTwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tfDotLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS18CnwgJENfe1xtYXRocm17QWxwaGFUaXNzQ29ycn19JCB8IEVzdGltYXRlZCBtZXRhYm9saXRlIGNvbmNlbnRyYXRpb24gaW4gaS51LiBjb3JyZWN0ZWQgZm9yIHBhcnRpYWwgdm9sdW1lIGVmZmVjdHMgb2Ygd2F0ZXIgYW5kIG1ldGFib2xpdGUgfCAgfAp8ICRDX3tcbWF0aHJte1d9LGl9JCB8IE1vbGFsIGNvbmNlbnRyYXRpb24gb2Ygd2F0ZXIgaW4gR00sIFdNLCBvciBDU0YgfCA0My4zMCwgMzYuMDgsIGFuZCA1My44NCBtb2wva2cgW0BFcm5zdDE5OTM7IEBHYXNwYXJvdmljMjAwNl0gfAp8ICRcYWxwaGEkIHwgUmF0aW8gb2YgaW50cmluc2ljIFdNOkdNIG1ldGFib2xpdGUgY29uY2VudHJhdGlvbnMgfCBNZXRhYm9saXRlIGRlcGVuZGVudDsgc2VlIGBHYW5uZXRRdWFudGlmeS5tYCBmb3IgZGVmYXVsdCB2YWx1ZXMgfAoKQSBtb2RpZmljYXRpb24gb2YgdGhlIEhhcnJpcyBldCBhbC4gbWV0aG9kIGlzIGFsc28gY2FsY3VsYXRlZCB3aGVyZSBgQ29uY0lVX0FscGhhVGlzc0NvcnJgIGlzIGZ1cnRoZXIgc2NhbGVkIGJ5IHRoZSBhdmVyYWdlIHZveGVsIEdNIGFuZCBXTSBjb21wb3NpdGlvbiBvZiBhbGwgZGF0YXNldHMgaW4gYSBncm91cC4KCmBNUlNfc3RydWN0Lm91dC52b3gxLihtZXRhYikuQ29uY0lVX0FscGhhVGlzc0NvcnJfR3JwTm9ybWA6CgokJApDX3tcbWF0aHJte0FscGhhVGlzc0NvcnJOb3JtfX0gPQpcZnJhY3tJX3tcbWF0aHJte019fX17SV97XG1hdGhybXtXfX19XGNkb3QKXGZyYWN7SF97XG1hdGhybXtXfX19e0hfe1xtYXRocm17TX19fVxjZG90ClxmcmFje1xtYXRocm17TU19fXtca2FwcGF9XGNkb3QKXGZyYWN7XHN1bV97aX1ee1xtYXRocm17R00sV00sQ1NGfX1mX3tpfUNfe1xtYXRocm17V30saX1cZXhwXGxlZnQoLVxmcmFje1RFX3tcbWF0aHJte1d9fX17VF97XG1hdGhybXsyV30saX19XHJpZ2h0KVxsZWZ0WzEtXGV4cFxsZWZ0KC1cZnJhY3tUUl97XG1hdGhybXtXfX19e1RfezFcbWF0aHJte1d9LGl9fVxyaWdodClccmlnaHRdfQp7XGV4cFxsZWZ0KC1cZnJhY3tURV97XG1hdGhybXtNfX19e1RfezJcbWF0aHJte019fX1ccmlnaHQpXGxlZnRbMS1cZXhwXGxlZnQoLVxmcmFje1RSX3tcbWF0aHJte019fX17VF97MVxtYXRocm17TX19fVxyaWdodClccmlnaHRdfVxjZG90ClxmcmFje1xtdV97XG1hdGhybXtHTX19K1xhbHBoYXtcbXVfe1xtYXRocm17V019fX19eyhmX3tcbWF0aHJte0dNfX0rXGFscGhhe2Zfe1xtYXRocm17V019fX0pKFxtdV97XG1hdGhybXtHTX19K3tcbXVfe1xtYXRocm17V019fX0pfQokJAoKd2hlcmU6Cgp8IDx1PlBhcmFtZXRlcjwvdT4gfCA8dT5EZXNjcmlwdGlvbjwvdT4gfAp8Oi0tLS0tLS0tLS0tLS0tLXw6LS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLS0tLXwKfCAkQ197XG1hdGhybXtBbHBoYVRpc3NDb3JyTm9ybX19JCB8IEVzdGltYXRlZCBtZXRhYm9saXRlIGNvbmNlbnRyYXRpb24gaW4gaS51LiBjb3JyZWN0ZWQgZm9yIHBhcnRpYWwgdm9sdW1lIGVmZmVjdHMgb2Ygd2F0ZXIgYW5kIG1ldGFib2xpdGUgYW5kIGFkanVzdGVkIHRvIHRoZSBhdmVyYWdlIHZveGVsIEdNIGFuZCBXTSBjb21wb3NpdGlvbiBhY3Jvc3MgYSBncm91cCB8CnwgJHtcbXVfe1xtYXRocm17R019fX0kIHwgR3JvdXAtYXZlcmFnZWQgdm94ZWwgdm9sdW1lIGZyYWN0aW9uIG9mIEdNIHwKfCAke1xtdV97XG1hdGhybXtXTX19fSQgfCBHcm91cC1hdmVyYWdlZCB2b3hlbCB2b2x1bWUgZnJhY3Rpb24gb2YgV00gfAoKPGJyPgoKIyMjIFJlZmVyZW5jZXMK</div>
 <!DOCTYPE html>
 <br>
 <hr>

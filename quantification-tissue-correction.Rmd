@@ -51,48 +51,48 @@ Gannet quantifies metabolite levels in different ways at various points in the p
 
 <u>A note on units of concentration</u>
 
-There is a perennial issue surrounding how quantified in vivo MRS measurements should be expressed; that is, in what biochemical units (if any) they should be reported. In vivo MRS measurements can be, and have been, reported in molar, molal, and institutional units (i.u.) or as simple signal area ratios. However, this makes interpreting and comparing such values, especially across published studies, highly challenging. While Gannet does apply a number of signal scaling factors to water-referenced metabolite measurements (that are required when reporting "absolute" concentrations), it is our philosophy that these measurements should be considered pseudo-absolute because accounting for all empirical signal scaling factors is impractical (perhaps even impossible) to permit truly absolute quantification. Therefore, Gannet reports water-referenced metabolite measurements in i.u.
+There is a perennial issue regarding how quantified in vivo MRS measurements should be expressed; that is, in what biochemical units (if any) they should be reported. In vivo MRS measurements can be, and have been, reported in molar, molal, and institutional units (i.u.) or as simple signal area ratios. However, this makes interpreting and comparing such values, especially across published studies, highly challenging. While Gannet does apply several signal scaling factors to water-referenced metabolite measurements (which are required when reporting "absolute" concentrations), it is our philosophy that these measurements should be considered pseudo-absolute because accounting for all empirical signal scaling factors is impractical (perhaps even impossible) to permit truly absolute quantification. Therefore, Gannet reports water-referenced metabolite measurements in i.u.
 
 ## GannetFit
 
 `MRS_struct.out.vox1.(metab).ConcCr`, `MRS_struct.out.vox1.(metab).ConcCho`, and `MRS_struct.out.vox1.(metab).ConcNAA` are simple signal integral ratios of the metabolite of interest and the metabolite reference signals Cr, Cho, and NAA, respectively:
 
-$$C = \frac{I_{M}}{I_{ref}}$$
+$$C = \frac{I_{\mathrm{M}}}{I_{\mathrm{Ref}}}$$
 
 If a water reference is provided, `MRS_struct.out.vox1.(metab).ConcIU` is also calculated. It is defined as the signal integral ratio of the metabolite of interest and water reference scaled by a number of global signal scaling factors:
 
 $$
-C_{corr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-C_{W}\cdot
-W_{vis}\cdot
-\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}
+C_{\mathrm{Corr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+C_{\mathrm{W}}\cdot
+W_{\mathrm{Vis}}\cdot
+\frac{\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W}}}\right)\right]}
+{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1\mathrm{M}}}\right)\right]}
 $$
 
 where:
 
 | <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
 |:--------------|:-------------------------------|:------------------------|
-| $C_{corr}$ | Estimated metabolite concentration in i.u. |  |
-| $I_{M}$ | Metabolite signal integral |  |
-| $I_{W}$ | Water signal integral |  |
-| $H_{M}$ | Number of ^1^H protons that give rise to the metabolite signal | Metabolite dependent; see `GannetFit.m` for default values |
-| $H_{W}$ | Number of ^1^H protons that give rise to the water signal | 2 |
+| $C_{\mathrm{Corr}}$ | Estimated metabolite concentration in i.u. |  |
+| $I_{\mathrm{M}}$ | Metabolite signal integral |  |
+| $I_{\mathrm{W}}$ | Water signal integral |  |
+| $H_{\mathrm{M}}$ | Number of ^1^H protons that give rise to the metabolite signal | Metabolite dependent; see `GannetFit.m` for default values |
+| $H_{\mathrm{W}}$ | Number of ^1^H protons that give rise to the water signal | 2 |
 | $MM$ | Correction factor for the contribution of co-edited macromolecules to the edited metabolite signal | 0.45 for GABA editing and 1 for all other edited metabolites [@Harris2017a] |
 | $\kappa$ | Editing efficiency | Acquisition dependent; 0.5 for GABA editing [@Harris2017a] |
-| $C_{W}$ | Molal concentration of pure water | 55.51 mol/kg |
-| $W_{vis}$ | Approximate relative MR visibility of water in brain tissue | 0.65 [@Ernst1993] |
-| $TE_{W}$ | Echo time of the water reference acquisition | Acquisition dependent |
-| $TR_{W}$ | Repetition time of the water reference acquisition | Acquisition dependent |
-| $TE_{M}$ | Echo time of the metabolite acquisition | Acquisition dependent |
-| $TR_{M}$ | Repetition time of the metabolite acquisition | Acquisition dependent |
-| $T_{2W}$ | Average transverse relaxation time of water in GM and WM | 1.100 s [@Wansapura1999] |
-| $T_{1W}$ | Average longitudinal relaxation time of water in GM and WM | 0.095 s [@Wansapura1999] |
-| $T_{2M}$ | Transverse relaxation time of metabolite | Metabolite dependent; see `GannetFit.m` for default values |
-| $T_{1M}$ | Longitudinal relaxation time of metabolite | Metabolite dependent; see `GannetFit.m` for default values |
+| $C_{\mathrm{W}}$ | Molal concentration of pure water | 55.51 mol/kg |
+| $W_{\mathrm{Vis}}$ | Approximate relative MR visibility of water in brain tissue | 0.65 [@Ernst1993] |
+| $TE_{\mathrm{W}}$ | Echo time of the water reference acquisition | Acquisition dependent |
+| $TR_{\mathrm{W}}$ | Repetition time of the water reference acquisition | Acquisition dependent |
+| $TE_{\mathrm{M}}$ | Echo time of the metabolite acquisition | Acquisition dependent |
+| $TR_{\mathrm{M}}$ | Repetition time of the metabolite acquisition | Acquisition dependent |
+| $T_{\mathrm{2W}}$ | Average transverse relaxation time of water in GM and WM | 1.100 s [@Wansapura1999] |
+| $T_{\mathrm{1W}}$ | Average longitudinal relaxation time of water in GM and WM | 0.095 s [@Wansapura1999] |
+| $T_{\mathrm{2M}}$ | Transverse relaxation time of metabolite | Metabolite dependent; see `GannetFit.m` for default values |
+| $T_{\mathrm{1M}}$ | Longitudinal relaxation time of metabolite | Metabolite dependent; see `GannetFit.m` for default values |
 
 ## GannetSegment
 
@@ -101,18 +101,18 @@ When segmenting structural images to obtain voxel volume fractions of GM, WM, an
 `MRS_struct.out.vox1.(metab).ConcIU_CSFcorr`:
 
 $$
-C_{CSFcorr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-C_{W}\cdot
-W_{vis}\cdot
-\frac{\exp\left(-\frac{TE_{W}}{T_{2W}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
-\frac{1}{1-f_{CSF}}
+C_{\mathrm{CSFcorr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+C_{\mathrm{W}}\cdot
+W_{\mathrm{Vis}}\cdot
+\frac{\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W}}}\right)\right]}
+{\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2\mathrm{M}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}\cdot
+\frac{1}{1-f_{\mathrm{CSF}}}
 $$
 
-where $C_{CSFcorr}$ is the estimated metabolite concentration in i.u. corrected for CSF and $f_{CSF}$ is the voxel volume fraction of CSF.
+where $C_{\mathrm{CSFcorr}}$ is the estimated metabolite concentration in i.u. corrected for CSF and $f_{\mathrm{CSF}}$ is the voxel volume fraction of CSF.
 
 ## GannetQuantify
 
@@ -123,45 +123,45 @@ where $C_{CSFcorr}$ is the estimated metabolite concentration in i.u. corrected 
 `MRS_struct.out.vox1.(metab).ConcIU_TissCorr`:
 
 $$
-C_{TissCorr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-C_{W}\cdot
-\frac{\sum_{i}^{GM,WM,CSF}f_{i}\beta_{i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{(1-f_{CSF})\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}
+C_{\mathrm{TissCorr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+C_{\mathrm{W}}\cdot
+\frac{\sum_{i}^{\mathrm{GM,WM,CSF}}f_{i}\beta_{i}\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2\mathrm{W}},i}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W},i}}\right)\right]}
+{(1-f_{\mathrm{CSF}})\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2\mathrm{M}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}
 $$
 
 where:
 
 | <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
 |:--------------|:-------------------------------|:------------------------|
-| $C_{TissCorr}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water |  |
+| $C_{\mathrm{TissCorr}}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water |  |
 | $f_{i}$ | Voxel volume fraction of GM, WM, or CSF |  |
 | $\beta_i$ | Relative MR visibility of water in GM, WM, or CSF | 0.78, 0.65, and 0.97 [@Ernst1993] |
-| $T_{2W,i}$ | Transverse relaxation time of water in GM, WM, or CSF | 0.110, 0.0792, and 0.503 s [@Wansapura1999; @Piechnik2009] |
-| $T_{1W,i}$ | Longitudinal relaxation time of water in GM, WM, or CSF | 1.331, 0.832, and 3.817 s [@Wansapura1999; @Lu2005] |
+| $T_{\mathrm{2W},i}$ | Transverse relaxation time of water in GM, WM, or CSF | 0.110, 0.0792, and 0.503 s [@Wansapura1999; @Piechnik2009] |
+| $T_{\mathrm{1W},i}$ | Longitudinal relaxation time of water in GM, WM, or CSF | 1.331, 0.832, and 3.817 s [@Wansapura1999; @Lu2005] |
 
 ### <u>The Harris et al. method</u>
 
 `MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr`:
 
 $$
-C_{AlphaCorr} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
-\frac{1}{f_{GM}+\alpha{f_{WM}}}
+C_{\mathrm{AlphaTissCorr}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+\frac{\sum_{i}^{\mathrm{GM,WM,CSF}}f_{i}C_{\mathrm{W},i}\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W},i}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W},i}}\right)\right]}
+{\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}\cdot
+\frac{1}{f_{\mathrm{GM}}+\alpha{f_{\mathrm{WM}}}}
 $$
 
 where:
 
 | <u>Parameter</u> | <u>Description</u> | <u>Default value</u> |
 |:--------------|:-------------------------------|:------------------------|
-| $C_{AlphaCorr}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water and metabolite |  |
-| $C_{W,i}$ | Molal concentration of water in GM, WM, or CSF | 43.30, 36.08, and 53.84 mol/kg [@Ernst1993; @Gasparovic2006] |
+| $C_{\mathrm{AlphaTissCorr}}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water and metabolite |  |
+| $C_{\mathrm{W},i}$ | Molal concentration of water in GM, WM, or CSF | 43.30, 36.08, and 53.84 mol/kg [@Ernst1993; @Gasparovic2006] |
 | $\alpha$ | Ratio of intrinsic WM:GM metabolite concentrations | Metabolite dependent; see `GannetQuantify.m` for default values |
 
 A modification of the Harris et al. method is also calculated where `ConcIU_AlphaTissCorr` is further scaled by the average voxel GM and WM composition of all datasets in a group.
@@ -169,22 +169,22 @@ A modification of the Harris et al. method is also calculated where `ConcIU_Alph
 `MRS_struct.out.vox1.(metab).ConcIU_AlphaTissCorr_GrpNorm`:
 
 $$
-C_{AlphaCorrNorm} =
-\frac{I_{M}}{I_{W}}\cdot
-\frac{H_{W}}{H_{M}}\cdot
-\frac{MM}{\kappa}\cdot
-\frac{\sum_{i}^{GM,WM,CSF}f_{i}C_{W,i}\exp\left(-\frac{TE_{W}}{T_{2W,i}}\right)\left[1-\exp\left(-\frac{TR_{W}}{T_{1W,i}}\right)\right]}
-{\exp\left(-\frac{TE_{M}}{T_{2M}}\right)\left[1-\exp\left(-\frac{TR_{M}}{T_{1M}}\right)\right]}\cdot
-\frac{\mu_{GM}+\alpha{\mu_{WM}}}{(f_{GM}+\alpha{f_{WM}})(\mu_{GM}+{\mu_{WM}})}
+C_{\mathrm{AlphaTissCorrNorm}} =
+\frac{I_{\mathrm{M}}}{I_{\mathrm{W}}}\cdot
+\frac{H_{\mathrm{W}}}{H_{\mathrm{M}}}\cdot
+\frac{\mathrm{MM}}{\kappa}\cdot
+\frac{\sum_{i}^{\mathrm{GM,WM,CSF}}f_{i}C_{\mathrm{W},i}\exp\left(-\frac{TE_{\mathrm{W}}}{T_{\mathrm{2W},i}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{W}}}{T_{1\mathrm{W},i}}\right)\right]}
+{\exp\left(-\frac{TE_{\mathrm{M}}}{T_{2\mathrm{M}}}\right)\left[1-\exp\left(-\frac{TR_{\mathrm{M}}}{T_{1\mathrm{M}}}\right)\right]}\cdot
+\frac{\mu_{\mathrm{GM}}+\alpha{\mu_{\mathrm{WM}}}}{(f_{\mathrm{GM}}+\alpha{f_{\mathrm{WM}}})(\mu_{\mathrm{GM}}+{\mu_{\mathrm{WM}}})}
 $$
 
 where:
 
 | <u>Parameter</u> | <u>Description</u> |
 |:---------------|:-------------------------------------------------------|
-| $C_{AlphaCorrNorm}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water and metabolite and adjusted to the average voxel GM and WM composition across a group |
-| ${\mu_{GM}}$ | Group-averaged voxel volume fraction of GM |
-| ${\mu_{WM}}$ | Group-averaged voxel volume fraction of WM |
+| $C_{\mathrm{AlphaTissCorrNorm}}$ | Estimated metabolite concentration in i.u. corrected for partial volume effects of water and metabolite and adjusted to the average voxel GM and WM composition across a group |
+| ${\mu_{\mathrm{GM}}}$ | Group-averaged voxel volume fraction of GM |
+| ${\mu_{\mathrm{WM}}}$ | Group-averaged voxel volume fraction of WM |
 
 <br>
 

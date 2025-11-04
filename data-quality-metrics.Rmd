@@ -20,18 +20,22 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ```{css, echo = FALSE}
-.warning {
-  margin-bottom: 20px;
+body .main-container {
+  width: 90%;
+}
+
+#TOC {
+
 }
 ```
 
 <br>
 
-Listed below are the data quality metrics that Gannet computes during data processing, signal fitting, and tissue segmentation.
+Listed below are the data quality metrics that Gannet computes during data preprocessing, signal fitting, and tissue segmentation.
 
 ## Linewidth
 
-Linewidth is calculated as the full-width half-maximum (FWHM) (in Hz) of fitted model signals. When reporting linewidths of datasets, it is recommended to use the FWHM of Cr or NAA from the OFF spectrum, or the FWHM of the water reference (if a water reference is provided).
+Linewidth is calculated as the full-width half-maximum (FWHM) (in Hz) of fitted model signals. When reporting linewidths of datasets, it is recommended to use the FWHM of tCr or tNAA from the OFF spectrum, or the FWHM of the water reference (if a water reference is provided).
 
 ## Signal-to-noise ratio (SNR)
 
@@ -40,32 +44,31 @@ The SNR of fitted signals is calculated as the amplitude of the given signal mod
 Formulaically, this is defined as:
 
 $$
-SNR_{signal} = \frac{A_{signal}}{2\cdot\mathrm{std}(noise)}
+\mathrm{SNR} = \frac{A_{\mathrm{metab}}}{2\cdot\mathrm{std}[S_{\mathrm{noise}}(f)]}
 $$
 
 where:
 
 | <u>Parameter</u> | <u>Definition</u> |
-| :- | :--------- |
-| $A_{signal}$ | Signal model amplitude |
-| $noise$ | Detrended noise signal between either 8–9 or 9–10 ppm (whichever produces a lower standard deviation) in the appropriate spectrum (i.e., either the OFF or DIFF spectrum) |
+| :- | :------ |
+| $A_{\mathrm{metab}}$ | Maximum signal model amplitude of the metabolite of interest |
+| $S_{\mathrm{noise}}(f)$ | Detrended noise signal between either 8–9 or 9–10 ppm (whichever yields a lower standard deviation) in the appropriate spectrum (i.e., either the OFF or DIFF spectrum) |
 
-## Frequency offsets (frequency drift/motion)
+## Frequency offsets
 
 To estimate the degree of frequency offsets that result from scanner-related frequency drift [@Hui2021a] and participant motion [@Evans2013], Gannet calculates an average frequency offset [@Mikkelsen2017] $\overline{\Delta\delta_{0}}$. This is calculated as the mean (over the course of the acquisition) difference between the observed frequency of the residual water signal in the pre-frequency-corrected subspectra and the nominal water frequency $\delta_{0}$ at 4.68 ppm (4.8 ppm for room-temperature phantoms), or the nominal Cr frequency at 3.02 ppm for HERMES acquisitions. It should be noted that using the mean of offset differences does not fully characterize frequency offsets but is a useful heuristic.
 
 Formulaically, this is defined as:
 
 $$
-\overline{\Delta\delta_{0}} = \frac{1}{m}\sum{\widehat{\delta}_{0,m} - \delta_{0}}
-$$
-where:
+\overline{\Delta\delta_{0}} = \frac{1}{M}\sum{\widehat{\delta}_{0,m} - \delta_{0}}
+$$ where:
 
 | <u>Parameter</u> | <u>Definition</u> |
-| :- | :--------- |
-| $m$ | Each individual subspectrum index number |
-| $\widehat{\delta}_{0,m}$ | Observed water or Cr frequency in each individual subspectrum |
-| $\delta_{0}$ | Nominal water or Cr frequency |
+| :- | :------ |
+| $m$ | Subspectrum index number, $m \in 1, 2, 3, ... M$ |
+| $\widehat{\delta}_{0,m}$ | Observed water or tCr frequency in subspectrum $m$ |
+| $\delta_{0}$ | Nominal water or tCr frequency |
 
 ## Fit error
 
@@ -74,31 +77,138 @@ When fitting signal functions to metabolite peaks, Gannet will also estimate the
 For metabolite peak fits, this is:
 
 $$
-\epsilon_{metab} = 100\cdot\frac{\mathrm{std}(resid_{metab})}{A_{metab}}
+\epsilon_{\mathrm{metab}} = 100\cdot\frac{\mathrm{std}[resid_{\mathrm{metab}}(f)]}{A_{\mathrm{metab}}}
 $$
 
 where:
 
 | <u>Parameter</u> | <u>Definition</u> |
-| :- | :--------- |
-| $resid_{metab}$ | Signal model fit residuals |
-| $A_{metab}$ | Signal model amplitude |
+| :- | :------ |
+| $resid_{\mathrm{metab}}$ | Fit residuals of signal model for metabolite |
+| $A_{\mathrm{metab}}$| Signal model amplitude |
 
 Similarly, for reference signal fits, this is:
 
 $$
-\epsilon_{ref} = 100\cdot\frac{\mathrm{std}(resid_{ref})}{A_{ref}}
+\epsilon_{\mathrm{ref}} = 100\cdot\frac{\mathrm{std}[resid_{\mathrm{ref}}(f)]}{A_{\mathrm{ref}}}
 $$
 
-Since all metabolites are normalized to a reference signal (either Cr or unsuppressed water) and reported as such, the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature.
+Since all metabolites are normalized to a reference signal (either tCr or unsuppressed water) and reported as such, the fit error that really should be considered (and reported) is the combined error of the metabolite and reference signal model fits, which add up in quadrature.
 
 Formulaically, this is defined as:
 
 $$
-\epsilon_{metab,ref} = \sqrt{\epsilon_{metab}^2 + \epsilon_{ref}^2}
+\epsilon_{\mathrm{metab},\mathrm{ref}} = \sqrt{\epsilon_{\mathrm{metab}}^2 + \epsilon_{\mathrm{ref}}^2}
 $$
 
+## Image quality metrics
+
+When segmenting structural images to obtain voxel tissue fractions of GM, WM, and CSF, Gannet computes several metrics to quantify the quality of structural images and the segmentation. These are stored in the `MRS_struct.out.QA` structure. Several metrics from the MRI Quality Control tool (MRIQC) [@Esteban2017] are computed. More details are also provided in the MRIQC <a href="https://mriqc.readthedocs.io/en/latest/iqms/t1w.html" target="_blank">documentation</a>.
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :-- | :------ |
+| $\mathrm{mad}$ | Median absolute deviation |
+| $\mathrm{med}$ | Median |
+| $GM$, $WM$, $CSF$, $BG$ | GM, WM, CSF, and air background segmented images |
+| $\sigma$ | Standard deviation |
+| $\mathrm{P}_{99.95}$ | 99.95th percentile |
+
+<br>
+
+### Coefficient of variation (CV) of GM, WM, and CSF
+
+$$
+\mathrm{CV} = \frac{\mathrm{mad}(F)}{\mathrm{med}(F)}
+$$
+
+where $F$ can be GM, WM, or CSF, $\mathrm{mad}$ is the median absolute deviation, and $\mathrm{med}$ is the median.
+
+<br>
+
+### Coefficient of joint variation (CJV)
+
+$$
+\mathrm{CJV} = \frac{\mathrm{mad}(WM) + \mathrm{mad}(GM)}{|\mathrm{med}(WM) + \mathrm{med}(GM)|}
+$$
+
+<br>
+
+### Contrast-to-noise ratio (CNR)
+
+$$
+\mathrm{CNR} = \frac{|\mathrm{med}(GM) - \mathrm{med}(WM)|}{\sqrt{\sigma_{\mathrm{GM}}^{2} + \sigma_{\mathrm{WM}}^{2} + \sigma_{\mathrm{BG}}^{2}}}
+$$
+
+where $\sigma$ is the standard deviation of the respective tissue class or background.
+
+<br>
+
+### SNR of GM, WM, CSF, and total
+
+$$
+\mathrm{SNR} = \frac{\mathrm{med}(F)}{\sigma_{F}\sqrt{\frac{n}{n-1}}}
+$$
+
+An alternative SNR measure based on Dietrich et al. (2007) [@Dietrich2007] is also computed using the background mask that is generated during tissue segmentation:
+
+$$
+\mathrm{SNR_{D}} = \frac{\mathrm{med}(F)}{\sqrt{\frac{2}{4-\pi}}\mathrm{mad}(BG)}
+$$
+
+For both SNR measures, $F$ can be GM, WM, or CSF. Total SNR is the mean of all SNR measures.
+
+<br>
+
+### Entropy-focus criterion (EFC)
+
+Uses the Shannon entropy of voxel intensities as an indication of ghosting and blurring induced by head motion. Low values are better.
+
+$$
+E = -\sum_{j=1}^{N}{\frac{x_j}{x_{\mathrm{max}}}\ln\left(\frac{x_j}{x_{\mathrm{max}}}\right)}
+$$
+
+with $x_{max} = \sqrt{\sum_{j=1}^{N}x_{j}^{2}}$.
+
+The EFC is then:
+
+$$
+\mathrm{EFC} = \left(\frac{N}{\sqrt{N}}\log{\sqrt{N}}^{-1}\right)E
+$$
+
+where:
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :- | :------ |
+| $x$ | Image voxels |
+| $N$ | Number of image voxels |
+
+<br>
+
+### Foreground-to-background energy ratio (FBER)
+
+The average energy of image voxel intensities within the head relative to outside the head. Higher values are better, and an FBER = -1 indicates that there is no signal outside the head mask (e.g., a skull-stripped dataset).
+
+$$
+\mathrm{FBER} = \frac{\mathrm{E}[|F|^{2}]}{\mathrm{E}[|B|^{2}]}
+$$
+
+where:
+
+| <u>Parameter</u> | <u>Definition</u> |
+| :- | :------ |
+| $F$ | Image voxels inside the head (foreground) |
+| $B$ | Image voxels outside the head (background) |
+
+<br>
+
+### White-matter-to-maximum-intensity ratio (WM2MAX)
+
+The median image voxel intensity within the WM mask over the 99.95th percentile of the full structural image signal distribution. Values closer to 1 are better.
+
+$$
+\mathrm{WM2MAX} = \frac{\mathrm{med}(WM)}{\mathrm{P}_{99.95}(X)}
+$$
+
+<br>
+
 ### References
-
-
-

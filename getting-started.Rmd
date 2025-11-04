@@ -150,7 +150,7 @@ MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii'});
 
 ### Segmenting MR images
 
-Gannet uses SPM12's segmentation routine to segment structural MR images. The grey matter, white matter, and cerebrospinal fluid fractions are then used in subsequent tissue corrections of metabolite concentration estimates.
+Gannet uses SPM12's segmentation routine to segment structural MR images into grey matter (GM), white matter (WM), and cerebrospinal fluid (CSF) probabilistic tissue maps, from which voxel tissue fractions are then used in subsequent tissue corrections of metabolite concentration estimates.
 
 Installation instructions for SPM12 can be found [here](https://markmikkelsen.github.io/Gannet-docs/index.html#installation).
 

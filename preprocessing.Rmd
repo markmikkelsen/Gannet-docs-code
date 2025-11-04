@@ -44,14 +44,14 @@ Certain raw MRS data formats store data without coil combination; specifically, 
 ## Eddy-current correction
 
 ::: info
-<i class="fa fa-info-circle" style="color: white"></i>&nbsp; Eddy-current correction can only be applied if water reference data are provided.
+<i class="fa fa-info-circle" style="color: white"></i>  Eddy-current correction can only be applied if water reference data are provided.
 :::
 
 In `GannetPreInitialise.m`, users have the option to apply eddy-current correction (ECC) to metabolite and water data. If applied, Gannet uses the method described by Klose (1990) [@Klose1990]. The code for the ECC routine can be found in `EddyCurrentCorrection.m`.
 
 ## Phase correction
 
-It is common for unprocessed spectra to be out of phase. Gannet applies a global zero-order phase correction to all transients by fitting the real-valued 3 ppm Cr and 3.2 ppm Cho signals in the frequency domain and correcting the phase to be 0&deg; phase (i.e., to make all the Cr and Cho peaks have positive phase). This is performed in `PhaseCorrection.m`.
+It is common for unprocessed spectra to be out of phase. Gannet applies a global zero-order phase correction to all transients by fitting the real-valued 3 ppm Cr and 3.2 ppm Cho signals in the frequency domain and correcting the phase to be 0° phase (i.e., to make all the Cr and Cho peaks have positive phase). This is performed in `PhaseCorrection.m`.
 
 ## Line-broadending (apodization)
 
@@ -66,28 +66,28 @@ Gannet zero-pads all raw FIDs (i.e., adds zeros to the end of each FID) to obtai
 During acquisition, spectral data are affected by frequency and phase offsets as a result of biophysical, electronic, and participant factors. Gannet has several algorithms to correct for these errors during preprocessing. Users can choose which method to use in `GannetPreInitialise.m`:
 
 | <u>Method</u> | <u>Option</u> | <u>Description</u> | <u>Function</u> |
-| :---- | :---- | :--------- | :---- |
+|:-----------------|:-----------------|:------------------|:-----------------|
 | Spectral registration [@Near2015] | `SpecReg` | A time-domain-based alignment method that uses nonlinear least-squares optimization to align each individual transient to a reference transient. | `SpectralRegistration.m` |
 | Multi-step frequency and phase correction [@Mikkelsen2018] | `SpecRegHERMES` | A method originally developed to align multiplexed edited HERMES data. This approach is based on spectral registration. | `SpectralRegistrationHERMES.m` |
-| Robust spectral registration [@Mikkelsen2020] (the default and recommended) | `RobustSpecReg` | A method based on spectral registration that is robust against spectral distortions caused by unstable residual water peaks and lipid contamination. | `RobustSpectralRegistration.m` | 
+| Robust spectral registration [@Mikkelsen2020] (the default and recommended) | `RobustSpecReg` | A method based on spectral registration that is robust against spectral distortions caused by unstable residual water peaks and lipid contamination. | `RobustSpectralRegistration.m` |
 | Peak alignment | `Cr`, `Cho`, `NAA`, `H2O` | Frequency-domain-based alignment using one of the following peaks in each transient as the target signal: Cr, Cho, NAA, or residual H2O. | `AlignUsingPeak.m`, `AlignUsingH2O.m` |
 | No alignment | `none` | Do not perform any frequency or phase alignment between transients. | n/a |
 
-## Signal averaging
+## Signal averaging and subtraction
 
 Gannet provides two methods for averaging individual transients (selected in `GannetPreInitialise.m`): arithmetic averaging (with outlier rejection) and weighted averaging (the default). The code for the signal averaging routines can be found in `SignalAveraging.m`.
 
 ### Arithmetic averaging
 
-Arithmetic averaging is straightforward. All sequentially acquired $n$ pairs of subspectra $x_i$ (e.g., all edit-ON and edit-OFF subspectra) are averaged using the arithmetic mean: $\bar{x} = \frac{1}{n}\sum_{i=1}^nx_i$.
+Arithmetic averaging is straightforward. All subspectra for each editing experiment $x_m$ (e.g., all edit-ON and all edit-OFF subspectra) are averaged using the arithmetic mean: $\bar{x} = \frac{1}{M}\sum{x_m}$. The difference between the averaged edit-ON and edit-OFF spectra is then calculated to yield the final difference spectrum: $x_{DIFF} = \bar{x}_{ON} - \bar{x}_{OFF}$.
 
 Note that before the arithmetic averaging of subspectra, individual transients are excluded based on the outlier rejection algorithm used during frequency and phase alignment.
 
 ### Weighted averaging
 
-Weighted averaging down-weights individual difference subspectra that are corrupted by signal artifacts — this is an important distinction from traditional signal averaging. First, the difference between sequentially acquired pairs (e.g., all edit-ON and edit-OFF subspectra) is calculated. A similarity matrix $\mathbf{D}\in\mathbb{R}^{P{\times}P}$ is obtained by calculating the mean squared error between each real-valued difference subspectrum $p$ and every other real-valued difference subspectrum (in the range 1.8 to 3.4 ppm). A similarity metric $d_{p}$ is calculated as the column-wise median of $\mathbf{D}$. Normalized weights $w_{p}$ are then derived, $w_{p} = d^{-2}_p/\sum{d^{-2}_p}$, and applied to the difference pairs before summation.
+Weighted averaging down-weights individual subspectra that are corrupted by signal artifacts — this is an important distinction from traditional signal averaging. As described in Mikkelsen et al. [@Mikkelsen2020], for all subspectra for each editing experiment, a similarity matrix $\mathbf{D}\in\mathbb{R}^{M{\times}M}$ is obtained by calculating the mean squared error between each real-valued subspectrum and every other real-valued subspectrum (in the range 1.8 to 3.4 ppm). A similarity metric $d$ is calculated as the column-wise median of $\mathbf{D}$. Normalized weights $w_{m}$ are then derived, $w_{m} = d^{-2}_m/\sum{d^{-2}_m}$, and applied to the subspectra to give the weighted average: $\bar{x} = \sum{w_{m}x_{m}}$. As above, the difference is then taken to obtain the difference spectrum.
 
-Other algorithms to calculate weights can be found in `SignalAveraging.m`. (Note: These have not been tested extensively and should be considered experimental.)
+Other algorithms to calculate weights can be found in `SignalAveraging.m`. (Note: These have not been tested extensively and should be used with caution.)
 
 ## Residual water removal
 
@@ -96,6 +96,3 @@ If `water_removal` is set to 1 in `GannetPreInitialise.m` (the default), the res
 <br>
 
 ### References
-
-
-
