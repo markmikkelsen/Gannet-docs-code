@@ -161,7 +161,7 @@ For both SNR measures, $F$ can be GM, WM, or CSF. Total SNR is the mean of all S
 
 ### Entropy-focus criterion (EFC)
 
-Uses the Shannon entropy of voxel intensities as an indication of ghosting and blurring induced by head motion. Low values are better.
+Uses the Shannon entropy of voxel intensities as an indication of ghosting and blurring induced by head motion. Lower values are better.
 
 $$
 E = -\sum_{j=1}^{N}{\frac{x_j}{x_{\mathrm{max}}}\ln\left(\frac{x_j}{x_{\mathrm{max}}}\right)}
@@ -186,7 +186,7 @@ where:
 
 ### Foreground-to-background energy ratio (FBER)
 
-The average energy of image voxel intensities within the head relative to outside the head. Higher values are better, and an FBER = -1 indicates that there is no signal outside the head mask (e.g., a skull-stripped dataset).
+The average energy of image voxel intensities within the head relative to outside the head. Higher values are better.
 
 $$
 \mathrm{FBER} = \frac{\mathrm{E}[|F|^{2}]}{\mathrm{E}[|B|^{2}]}
