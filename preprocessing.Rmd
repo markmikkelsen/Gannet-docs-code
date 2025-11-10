@@ -79,13 +79,13 @@ Gannet provides two methods for averaging individual transients (selected in `Ga
 
 ### Arithmetic averaging
 
-Arithmetic averaging is straightforward. All subspectra for each editing experiment $x_m$ (e.g., all edit-ON and all edit-OFF subspectra) are averaged using the arithmetic mean: $\bar{x} = \frac{1}{M}\sum{x_m}$. The difference between the averaged edit-ON and edit-OFF spectra is then calculated to yield the final difference spectrum: $x_{DIFF} = \bar{x}_{ON} - \bar{x}_{OFF}$.
+Arithmetic averaging is straightforward. All subspectra for each editing experiment $x_m$ (e.g., all edit-ON and all edit-OFF subspectra) are averaged using the arithmetic mean: $\bar{x} = \frac{1}{M}\sum{x_m}$. The average difference between the averaged edit-ON and edit-OFF spectra is then calculated to yield the final difference spectrum: $x_{DIFF} = (\bar{x}_{ON} - \bar{x}_{OFF})/2$.
 
 Note that before the arithmetic averaging of subspectra, individual transients are excluded based on the outlier rejection algorithm used during frequency and phase alignment.
 
 ### Weighted averaging
 
-Weighted averaging down-weights individual subspectra that are corrupted by signal artifacts — this is an important distinction from traditional signal averaging. As described in Mikkelsen et al. [@Mikkelsen2020], for all subspectra for each editing experiment, a similarity matrix $\mathbf{D}\in\mathbb{R}^{M{\times}M}$ is obtained by calculating the mean squared error between each real-valued subspectrum and every other real-valued subspectrum (in the range 1.8 to 3.4 ppm). A similarity metric $d$ is calculated as the column-wise median of $\mathbf{D}$. Normalized weights $w_{m}$ are then derived, $w_{m} = d^{-2}_m/\sum{d^{-2}_m}$, and applied to the subspectra to give the weighted average: $\bar{x} = \sum{w_{m}x_{m}}$. As above, the difference is then taken to obtain the difference spectrum.
+Weighted averaging down-weights individual subspectra that are corrupted by signal artifacts — this is an important distinction from traditional signal averaging. As described in Mikkelsen et al. [@Mikkelsen2020], for all subspectra for each editing experiment, a similarity matrix $\mathbf{D}\in\mathbb{R}^{M{\times}M}$ is obtained by calculating the mean squared error between each real-valued subspectrum and every other real-valued subspectrum (in the range 1.8 to 3.4 ppm). A similarity metric $d$ is calculated as the column-wise median of $\mathbf{D}$. Normalized weights $w_{m}$ are then derived, $w_{m} = d^{-2}_m/\sum{d^{-2}_m}$, and applied to the subspectra to give the weighted average: $\bar{x} = \sum{w_{m}x_{m}}$. As above, the difference is then taken to obtain the average difference spectrum.
 
 Other algorithms to calculate weights can be found in `SignalAveraging.m`. (Note: These have not been tested extensively and should be used with caution.)
 
