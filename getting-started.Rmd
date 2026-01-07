@@ -41,9 +41,9 @@ Familiarize yourself with the five basic Gannet commands, as described below. Th
 
 ## Usage
 
-### GannetPreInitialise
+### Setting up Gannet
 
-The first step in using Gannet is to set up the `GannetPreInitialise.m` function. While the toolkit has many routines that automatically recognize data formats, sequences, and acquisition parameters from data file headers; some settings need to be set by the user to run Gannet properly. Additionally, `GannetPreInitialise.m` allows the user to choose how to process their data (for example, which frequency-and-phase correction algorithm to use).
+The first step in using Gannet is to set up an analysis with the `GannetPreInitialise.m` function. While the toolkit has many routines that automatically recognize data formats, sequences, and acquisition parameters from data file headers; some settings need to be set by the user to run Gannet properly. Additionally, `GannetPreInitialise.m` allows the user to choose how to process their data (e.g., which frequency-and-phase correction algorithm to use).
 
 ::: warning
 <i class="fa fa-exclamation-circle" style="color: white"></i>  Any time you run Gannet, make sure to check that the settings in `GannetPreInitialise.m` are correct. Many errors can be avoided by following this simple step.
