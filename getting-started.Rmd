@@ -189,9 +189,13 @@ This shows that it is crucial that users adhere to the BIDS specifications to av
 Example usage:
 
 ```{octave, eval = FALSE}
-MRS_struct = GannetLoad({'path/to/bids_dataset/'}, {'megapress'}); % 'megapress' would be the 'acq' entity label for the MEGA-PRESS files in 'path/to/bids_dataset/'
+MRS_struct = GannetLoad('path/to/bids_dataset/', 'megapress');
+% 'megapress' would be the 'acq' entity label for the MEGA-PRESS files in
+% 'path/to/bids_dataset/'
 MRS_struct = GannetFit(MRS_struct);
-MRS_struct = GannetCoRegister(MRS_struct); % No second input argument is needed as Gannet will find the associated structural images from the *_svs.json files
+MRS_struct = GannetCoRegister(MRS_struct);
+% No second input argument is needed as Gannet will find the associated
+% structural images from the *_svs.json files
 MRS_struct = GannetSegment(MRS_struct);
 MRS_struct = GannetQuantify(MRS_struct);
 ```
@@ -207,7 +211,8 @@ MRS_struct = GannetLoad({'sub-01_act.sdat', 'sub-02_act.sdat', 'sub-03_act.sdat'
                         {'sub-01_ref.sdat', 'sub-02_ref.sdat', 'sub-03_ref.sdat'});
 MRS_struct = GannetFit(MRS_struct);
 % Only if structural MR images are available can the next lines can be run
-% Note that the number of structural images must match the number of MRS metabolite data files inputted in GannetLoad
+% Note that the number of structural images must match the number of MRS
+% metabolite data files inputted in GannetLoad
 MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii', 'T1w.nii', 'T1w.nii'});
 MRS_struct = GannetSegment(MRS_struct);
 MRS_struct = GannetQuantify(MRS_struct);
