@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <img id="img_50" src="images/logo+title.png" alt="The Gannet logo"/>
 
 ::: release
-<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.5.1</a></h3>
+<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.5.2</a></h3>
 :::
 
 ## Overview
@@ -82,7 +82,7 @@ SPM12 can be installed in the same manner after it has been downloaded from the 
 
 ## Compatibility
 
-Gannet is currently being developed in MATLAB R2025b in macOS 26 Tahoe (Apple silicon). While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
+Gannet is developed in MATLAB R2025b in macOS 26 Tahoe (Apple silicon). While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
 
 ## Supported file formats
 

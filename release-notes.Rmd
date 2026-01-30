@@ -20,13 +20,34 @@ knitr::opts_chunk$set(echo = TRUE)
 
 This page lists the stable releases of Gannet since v3.1.3. All releases can be found on GitHub <a href="https://github.com/markmikkelsen/Gannet/releases" target="_blank">here</a> and <a href="https://github.com/richardedden/Gannet3.1/releases" target="_blank">here</a>. The development version of Gannet can be found <a href="https://github.com/markmikkelsen/Gannet/tree/dev" target="_blank">here</a>. For a more comprehensive list of changes to the current main version, see the commits logged on GitHub <a href="https://github.com/markmikkelsen/Gannet/commits/main" target="_blank">here</a>.
 
+## 3.5.2
+<span style="color: grey;">2026-01-30</span>
+
+### What's changed
+
+* Added dynamic font size adjustment for R2025a+
+* Refactored segmentation and QA metrics in `Seg.m`
+* Consolidated dependency update workflows
+* Fixed spacing in MRIQC metrics comment
+* Added linewidth parameter to `PaperPlot.m`
+* Removed blank issue template
+* Added more labels to the image montage in GannetQuantify output figure
+* Updated `README.md`: logo path, compatibility, and contributors
+* Updated `CoRegStandAlone.m` settings and added normalization to MNI space
+* Added workflow to automerge Dependabot PRs
+* Updated dependencies - bids-matlab, dic2nii, etc.
+* Bumped actions/checkout from 5 to 6
+* Bumped peter-evans/create-pull-request from 7 to 8
+
+**Full changelog**: <a href="**Full Changelog**: https://github.com/markmikkelsen/Gannet/compare/v3.5.1...v3.5.2" target="_blank">`v3.5.1...v3.5.2`</a>
+
 ## 3.5.1
 <span style="color: grey;">2025-09-13</span>
 
 ### What's changed
 
-* Set figure theme to light for MATLAB R2025a and newer in https://github.com/markmikkelsen/Gannet/pull/51
-* Minor bug fixes for MATLAB R2025a in https://github.com/markmikkelsen/Gannet/pull/52
+* Set figure theme to light for MATLAB R2025a and newer
+* Minor bug fixes for MATLAB R2025a
 
 **Full changelog**: <a href="https://github.com/markmikkelsen/Gannet/compare/v3.5.0...v3.5.1" target="_blank">`v3.5.0...v3.5.1`</a>
 
