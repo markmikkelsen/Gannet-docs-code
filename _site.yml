@@ -54,7 +54,3 @@ output:
       after_body: footer.html
     css: styles.css
     code_download: TRUE
-
-    
-    
-    
