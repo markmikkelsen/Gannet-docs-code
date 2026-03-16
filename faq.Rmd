@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, child = "js/back-to-top.html"}
+```{r, child = c("js/back-to-top.html", "js/copy-to-clipboard.html")}
 ```
 
 <br>
@@ -65,13 +65,15 @@ MRS_struct.fids.data = -MRS_struct.fids.data;
 Specifically:
 
 ```{verbatim}
-"*.mexmaci64" cannot be opened because the developer cannot be verified. macOS cannot verify that this app is free from malware.
+"*.mexmaci64" cannot be opened because the developer cannot be verified. macOS cannot verify that
+this app is free from malware.
 ```
 
 or
 
 ```{verbatim}
-Code signature not valid for use in process using Library Validation: library load disallowed by system policy.
+Code signature not valid for use in process using Library Validation: library load disallowed by
+system policy.
 ```
 
 Please visit the <a href="https://en.wikibooks.org/wiki/SPM/Installation_on_64bit_Mac_OS_(Intel)#macOS_Catalina,_Big_Sur,_Monterey,_Ventura" target="_blank">SPM Wikibooks page</a> for troubleshooting.

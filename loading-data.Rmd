@@ -19,7 +19,7 @@ body .main-container {
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, child = "js/back-to-top.html"}
+```{r, child = c("js/back-to-top.html", "js/copy-to-clipboard.html")}
 ```
 
 <br>
