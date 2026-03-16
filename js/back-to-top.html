@@ -1,0 +1,20 @@
+<div>
+  <button id="myBtn" title="Go to top">Back to top</button>
+
+  <script>
+    const mybutton = document.getElementById("myBtn");
+
+    // Show the button when the user scrolls down 20px from the top
+    window.addEventListener("scroll", function () {
+      mybutton.style.display =
+        document.body.scrollTop > 20 || document.documentElement.scrollTop > 20
+          ? "block"
+          : "none";
+    });
+
+    // Scroll to top when the button is clicked
+    mybutton.addEventListener("click", function () {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  </script>
+</div>

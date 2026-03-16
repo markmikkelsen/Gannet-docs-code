@@ -8,7 +8,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, child = "js/back-to-top.js"}
+```{r, child = "js/back-to-top.html"}
 ```
 
 <br>
