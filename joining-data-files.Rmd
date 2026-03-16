@@ -73,7 +73,6 @@ MRS = GannetFit(MRS);
 MRS = GannetCoRegister(MRS, anat);
 MRS = GannetSegment(MRS);
 MRS = GannetQuantify(MRS);
-
 ```
 
 ### Siemens RDA files
@@ -128,5 +127,4 @@ MRS = GannetFit(MRS);
 MRS = GannetCoRegister(MRS, anat);
 MRS = GannetSegment(MRS);
 MRS = GannetQuantify(MRS);
-
 ```

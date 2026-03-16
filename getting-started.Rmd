@@ -228,6 +228,10 @@ In some instances users may want to conjoin consecutively acquired data files, s
 
 However, there is a different command syntax when batch-processing across multiple subjects' datasets In such cases, rather than entering files as vectors, the input cell arrays must be M $\times$ N matrices, where M is the number of files per subject to be conjoined and N is the number of subjects.
 
+::: info
+<i class="fa fa-info-circle" style="color: white"></i> The syntax is different for Siemens .rda files as these are typically pre-averaged and, for for MEGA editing, are exported as two files for edit-ON and edit-OFF acquisitions. In such cases, the input cell arrays must be M $\times$ N $\times$ P matrices, where P is the number of subexperiments (e.g., 2 for MEGA-PRESS, 4 for HERMES, etc.).
+:::
+
 We have provided an [example script](https://markmikkelsen.github.io/Gannet-docs/joining-data-files.html) for joining files.
 
 ## Output
