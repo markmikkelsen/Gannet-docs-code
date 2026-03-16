@@ -163,6 +163,25 @@ img {
 }
 /* ------------------------------ */
 
+/* ----- Copy-to-clipboard button ----- */
+.copy-btn {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+  cursor: pointer;
+  opacity: 0.6;
+}
+.copy-btn:hover {
+  opacity: 1;
+  background: #e0e0e0;
+}
+/* ------------------------------------ */
+
 /* ----- Code blocks ----- */
 /* This enables wrapping of code blocks */
 pre.sourceCode code {

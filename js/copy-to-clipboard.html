@@ -1,0 +1,39 @@
+<script>
+$(document).ready(function () {
+  // Add a copy button to each code block
+  $("pre").each(function () {
+    var $pre = $(this);
+    var $btn = $(
+      '<button class="copy-btn" title="Copy to clipboard">Copy</button>',
+    );
+
+    $pre.css("position", "relative");
+    $pre.append($btn);
+
+    $btn.on("click", function () {
+      var code = $pre.find("code").text() || $pre.text();
+
+      navigator.clipboard
+        .writeText(code)
+        .then(function () {
+          $btn.text("Copied!");
+          setTimeout(function () {
+            $btn.text("Copy");
+          }, 2000);
+        })
+        .catch(function () {
+          // Fallback for older browsers
+          var $temp = $("<textarea>");
+          $("body").append($temp);
+          $temp.val(code).select();
+          document.execCommand("copy");
+          $temp.remove();
+          $btn.text("Copied!");
+          setTimeout(function () {
+            $btn.text("Copy");
+          }, 2000);
+        });
+    });
+  });
+});
+</script>
