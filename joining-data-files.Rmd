@@ -19,6 +19,10 @@ body .main-container {
 
 <br>
 
+## {.tabset .tabset-fade .tabset-pills}
+
+### General example
+
 ```{octave, eval = FALSE}
 % Example script for batch-processing multiple subjects' Siemens IMA data
 % with accompanying water references. Each subject has four scans each to
@@ -29,11 +33,10 @@ body .main-container {
 
 data_dir = '/Users/username/Documents/my_project/data'; % Root data directory
 
-% For joining the four files per subject and batching over multiple
-% subjects, the data must be entered an an M x N cell array, where M is the
-% number of files per subject and N is the number of subjects. In this
-% example, we have only two subjects, each with four files that are to be
-% joined.
+% For joining files for each subject and batching over multiple subjects, the
+% data must be entered as an M x N cell array, where M is the number of
+% files per subject and N is the number of subjects. In this example, we
+% have only two subjects, each with four files that are to be joined.
 sub01 = {'sub-01-1/MPRESS1_1.IMA', ...
          'sub-01-2/MPRESS2_1.IMA', ...
          'sub-01-3/MPRESS3_1.IMA', ...
@@ -70,4 +73,60 @@ MRS = GannetFit(MRS);
 MRS = GannetCoRegister(MRS, anat);
 MRS = GannetSegment(MRS);
 MRS = GannetQuantify(MRS);
+
+```
+
+### Siemens RDA files
+
+```{octave, eval = FALSE}
+% Example script for batch-processing multiple subjects' Siemens RDA data
+% with accompanying water references. Each subject has two scans each to
+% be joined together and treated as single datasets during data processing.
+% 
+% As Siemens .rda files are typically exported in pairs for MEGA-edited
+% data (i.e., edit-ON/edit-OFF subexperiments), the command syntax for
+% joining such files is slightly different, as shown below.
+%
+% Remember to check GannetPreInitialise.m has the appropriate settings for
+% your data: 'join' must be set to '1'.
+
+data_dir = '/Users/username/Documents/my_project/data'; % Root data directory
+
+% For joining files for each subject and batching over multiple subjects,
+% the data must be entered as an M x N x P cell array, where M is the
+% number of files per subject to join, N is the number of subjects, and P
+% is the number of subexperiment scans (two for MEGA editing). In this
+% example, we have only two subjects, each with two pairs of .rda files
+% (two scans) that are to be joined.
+fnames_metab = {'sub01_run1_OFF.rda'
+                'sub01_run1_ON.rda'
+                'sub01_run2_OFF.rda'
+                'sub01_run2_ON.rda'
+                'sub02_run1_OFF.rda'
+                'sub02_run1_ON.rda'
+                'sub02_run2_OFF.rda'
+                'sub02_run2_ON.rda'};
+metab_data(:,1,1) = fnames_metab([1 3]);
+metab_data(:,1,2) = fnames_metab([2 4]);
+metab_data(:,2,1) = fnames_metab([5 7]);
+metab_data(:,2,2) = fnames_metab([6 8]);
+metab_data = fullfile(data_dir, metab_data);
+
+% Water reference data are saved as single files. Because of how file
+% joining is currently coded in Gannet, there needs to be the same number
+% of water reference files per subject as the metabolite data.
+fnames_water = {'sub01_water.rda', 'sub02_water.rda'};
+
+water_data(:,1) = fnames_water([1 1]);
+water_data(:,2) = fnames_water([2 2]);
+water_data = fullfile(data_dir, water_data);
+
+anat = {'sub-01_T1w.nii', 'sub-02_T1w.nii'};
+
+MRS = GannetLoad(metab_data, water_data);
+MRS = GannetFit(MRS);
+MRS = GannetCoRegister(MRS, anat);
+MRS = GannetSegment(MRS);
+MRS = GannetQuantify(MRS);
+
 ```
