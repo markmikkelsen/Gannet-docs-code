@@ -23,7 +23,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Gannet simplifies the preprocessing, signal fitting, and quantification pipeline of edited MRS data. All you need to get started is a basic understanding of MATLAB and the five Gannet modules (listed below).
 
-If this is your first time using Gannet, you should read through the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html) as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.
+If this is your first time using Gannet, you should read through the [Reference](./reference.html) as well. If you have previously worked with Gannet and only need a quick refresher about the command syntax, this page will probably be all you need to get started again.
 
 ## Modules
 
@@ -49,7 +49,7 @@ The first step in using Gannet is to set up an analysis with the `GannetPreIniti
 <i class="fa fa-exclamation-circle" style="color: white"></i>  Any time you run Gannet, make sure to check that the settings in `GannetPreInitialise.m` are correct. Many errors can be avoided by following this simple step.
 :::
 
-The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the [Reference](https://markmikkelsen.github.io/Gannet-docs/reference.html#pre-initializing-gannet) for detailed explanations of the options and flags in `GannetPreInitialise.m`.
+The default settings pre-initialize a standard analysis for in vivo GABA-edited MEGA-PRESS data. If you want to analyze data acquired with a different method or from a phantom, or target a different metabolite, you will need to make changes to this file. Please read the [Reference](./reference.html#pre-initializing-gannet) for detailed explanations of the options and flags in `GannetPreInitialise.m`.
 
 <img src="images/getting-started/GannetPreInitialise-example.png" alt="A screenshot example of GannetPreInitialise.m"/>
 
@@ -152,7 +152,7 @@ MRS_struct = GannetCoRegister(MRS_struct, {'T1w.nii'});
 
 Gannet uses SPM12's segmentation routine to segment structural MR images into grey matter (GM), white matter (WM), and cerebrospinal fluid (CSF) probabilistic tissue maps, from which voxel tissue fractions are then used in subsequent tissue corrections of metabolite concentration estimates.
 
-Installation instructions for SPM12 can be found [here](https://markmikkelsen.github.io/Gannet-docs/index.html#installation).
+Installation instructions for SPM12 can be found [here](./index.html#installation).
 
 Run segmentation using the following command:
 
@@ -220,7 +220,7 @@ MRS_struct = GannetQuantify(MRS_struct);
 
 The respective water reference files `sub-01_ref.sdat`, `sub-02_ref.sdat`, etc. need to be listed in the same order as the water-suppressed files `sub-01_act.sdat`, `sub-01_act.sdat`, etc. If you intend to process a large number of datasets, we recommend writing a script as a clear way of defining the input cell arrays.
 
-We have provided an [example batch processing script](https://markmikkelsen.github.io/Gannet-docs/batch-script.html) that you may modify for your own purposes.
+We have provided an [example batch processing script](./batch-script.html) that you may modify for your own purposes.
 
 ## Joining data files
 
@@ -232,13 +232,13 @@ However, there is a different command syntax when batch-processing across multip
 <i class="fa fa-info-circle" style="color: white"></i> The syntax is different for Siemens .rda files as these are typically pre-averaged and, for for MEGA editing, are exported as two files for edit-ON and edit-OFF acquisitions. In such cases, the input cell arrays must be M $\times$ N $\times$ P matrices, where P is the number of subexperiments (e.g., 2 for MEGA-PRESS, 4 for HERMES, etc.).
 :::
 
-We have provided an [example script](https://markmikkelsen.github.io/Gannet-docs/joining-data-files.html) for joining files.
+We have provided an [example script](./joining-data-files.html) for joining files.
 
 ## Output
 
 As shown in the syntax above, Gannet saves all relevant data and results in a structure (e.g., `MRS_struct`) at all steps in the analysis pipeline. After creating the initial output from `GannetLoad.m`, `MRS_struct` is used as both the output and input arguments for the other Gannet modules. (You need not use `MRS_struct`; you can use something more descriptive and relevant to your purposes if you wish.)
 
-The output structure contains several fields and subfields, which grow in number as your proceed through the Gannet analysis pipeline. See the list of [output structure attributes](https://markmikkelsen.github.io/Gannet-docs/output-structure-attributes.html) for a complete description.
+The output structure contains several fields and subfields, which grow in number as your proceed through the Gannet analysis pipeline. See the list of [output structure attributes](./output-structure-attributes.html) for a complete description.
 
 You can also output a CSV file containing useful values from the output structure for further analysis in a statistical program of your choice. This functionality is set in `GannetPreInitialise.m`.
 

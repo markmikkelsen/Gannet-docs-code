@@ -28,7 +28,7 @@ If your issue has not been addressed or is not found in this FAQ, please report 
 
 #### **1. Can Gannet process non-edited data?**
 
-No, Gannet is designed to process edited single-voxel data only. However, the standalone tool [CoRegStandAlone](https://markmikkelsen.github.io/Gannet-docs/additional-tools.html#coregstandalone) can be used with non-edited single-voxel data to co-register voxels to structural images and segment the images to obtain voxel tissue fractions.
+No, Gannet is designed to process edited single-voxel data only. However, the standalone tool [CoRegStandAlone](./additional-tools.html#coregstandalone) can be used with non-edited single-voxel data to co-register voxels to structural images and segment the images to obtain voxel tissue fractions.
 
 #### **2. Can Gannet process MRSI data?**
 

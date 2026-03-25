@@ -67,7 +67,7 @@ This page lists the stable releases of Gannet since v3.1.3. All releases can be 
 ### New features
 
 - Gannet is now compatible with <a href="https://bids-specification.readthedocs.io/en/stable/" target="_blank">BIDS</a>
-  - [`bids-matlab`](https://bids-matlab.readthedocs.io/en/main/), a MATLAB toolkit for interfacing with BIDS datasets, is embedded in Gannet, and users can now input BIDS datasets directly into `GannetLoad.m` (see [documentation](https://markmikkelsen.github.io/Gannet-docs/getting-started.html#compatibility-with-bids) for usage instructions)
+  - [`bids-matlab`](https://bids-matlab.readthedocs.io/en/main/), a MATLAB toolkit for interfacing with BIDS datasets, is embedded in Gannet, and users can now input BIDS datasets directly into `GannetLoad.m` (see [documentation](./getting-started.html#compatibility-with-bids) for usage instructions)
 - Added image QA metrics based on <a href="https://doi.org/10.1371/journal.pone.0184661" target="_blank">MRIQC</a>
   - `GannetSegment.m` now calculates and saves the following QA metrics for each anatomical image:
     - Signal-to-noise ratio (SNR) of GM, WM, CSF, and the whole brain (two variants: one using the median absolute deviation of the air background based on <a href="https://doi.org/10.1002/jmri.20969" target="_blank">Dietrich et al. (2007)</a>, and one using the standard deviation of the noise within the tissue class)

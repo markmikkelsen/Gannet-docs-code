@@ -67,14 +67,12 @@ Gannet includes several functions to remove PHI/PII from the most commonly used 
 
 Please <a href="mailto:mam4041@med.cornell.edu?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contact us</a> if you require a de-identification tool for a different format.
 
-Please note the following:
-
 ::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i>
+<i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; <strong>IMPORTANT:</strong> De-identification is a complex process, and it is your responsibility to ensure that all PHI/PII is removed from your data. The Gannet de-identification functions are designed to remove the most common PHI/PII identifiers, but they may not catch everything. Always double-check your data after de-identification to ensure that no sensitive information remains.
 <ul>
   <li>Gannet does not remove PHI/PII from filenames; this is solely your responsibility.</li>
   <li>In addition to any PHI/PII in the header of structural image files, they need to be defaced as well. Please use a skull-stripping tool (such as the one implemented in FSL) or a defacing tool (e.g., <a href="https://github.com/poldracklab/pydeface" target="_blank" style="color:white"><u>pydeface</u></a>).</li>
-  <li>Per our <a href="https://markmikkelsen.github.io/Gannet-docs/gannet-license.html" target="_blank" style="color:white"><u>software license</u></a>, the Gannet developers are not liable for any failure of our de-identification routines to remove PHI/PII from your data.</li>
+  <li>Per our <a href="./gannet-license.html" target="_blank" style="color:white"><u>software license</u></a>, the Gannet developers are not liable for any failure of our de-identification routines to remove PHI/PII from your data.</li>
 </ul>
 :::
 

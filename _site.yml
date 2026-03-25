@@ -5,10 +5,10 @@ navbar:
     - text: "Home"
       icon: fa-home
       href: index.html
+    - text: "Getting started"
+      href: getting-started.html
     - text: "Documentation"
       menu:
-        - text: "Getting started"
-          href: getting-started.html
         - text: "Reference"
           href: reference.html
         - text: "Output structure attributes"

@@ -122,12 +122,12 @@ A) Edited difference spectrum (spectra) with fitted model function(s) overlaid. 
 
 B) Reference spectra (water and Cr) with fitted model functions overlaid. The fit residuals are also shown. If no water reference data was given during data loading, only Cr is shown.
 
-C) Textual results from GannetFit (full details can be found on the [Data quality metrics](https://markmikkelsen.github.io/Gannet-docs/data-quality-metrics.html) page). For the metabolites listed:
+C) Textual results from GannetFit (full details can be found on the [Data quality metrics](./data-quality-metrics.html) page). For the metabolites listed:
     - Area is the integrated signal (in arbitrary units) of the peaks shown
     - Linewidth is the full-width, half-maximum (FWHM) (in Hz)
     - SNR is defined as the signal model amplitude divided by twice the standard deviation of noise
     - Fit error is defined as the standard deviation of residuals divided by the signal model amplitude multiplied by 100
-    - Quantification details can be found on the [Quantification & tissue correction](https://markmikkelsen.github.io/Gannet-docs/quantification-tissue-correction.html) page.
+    - Quantification details can be found on the [Quantification & tissue correction](./quantification-tissue-correction.html) page.
 
 ------------------------------------------------------------------------
 
@@ -184,7 +184,7 @@ Output:
 
 A) Axial view of the probabilistic voxel tissue segmentation maps for grey matter (GM), white matter (WM), and cerebrospinal fluid (CSF).
 
-B) Textual details of the CSF-corrected metabolites values (see [Quantification & tissue correction](https://markmikkelsen.github.io/Gannet-docs/quantification-tissue-correction.html) for further details) and the voxel tissue volume fractions.
+B) Textual details of the CSF-corrected metabolites values (see [Quantification & tissue correction](./quantification-tissue-correction.html) for further details) and the voxel tissue volume fractions.
 
 ------------------------------------------------------------------------
 
@@ -216,7 +216,7 @@ A) Axial view of the probabilistic voxel tissue segmentation maps for grey matte
 
 B)  Edited difference spectrum (spectra) with fitted model function(s) overlaid.
 
-C) Textual details of tissue-corrected metabolite values (see [Quantification & tissue correction](https://markmikkelsen.github.io/Gannet-docs/quantification-tissue-correction.html) for further details).
+C) Textual details of tissue-corrected metabolite values (see [Quantification & tissue correction](./quantification-tissue-correction.html) for further details).
 
 <br>
 

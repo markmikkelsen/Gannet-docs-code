@@ -16,7 +16,7 @@
         navigator.clipboard
           .writeText(code)
           .then(function () {
-            $btn.text("Copied!");
+            $btn.text("Copied");
             setTimeout(function () {
               $btn.text("Copy");
             }, 2000);
@@ -28,7 +28,7 @@
             $temp.val(code).select();
             document.execCommand("copy");
             $temp.remove();
-            $btn.text("Copied!");
+            $btn.text("Copied");
             setTimeout(function () {
               $btn.text("Copy");
             }, 2000);
