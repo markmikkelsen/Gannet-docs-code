@@ -13,7 +13,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-```{r, child = c("js/back-to-top.html", "js/copy-to-clipboard.html")}
+```{r, child = c("js/back-to-top.html", "js/copy-to-clipboard.html", "js/tocify-offset.html")}
 ```
 
 <br>

@@ -1,0 +1,31 @@
+<script>
+  $(document).ready(function () {
+    $.widget("toc.tocify", $.toc.tocify, {
+      _scrollTo: function (elem) {
+        var self = this,
+          duration = self.options.smoothScroll || 0,
+          navbarHeight = $(".navbar-fixed-top").outerHeight() || 0,
+          currentDiv = $('div[data-unique="' + elem.attr("data-unique") + '"]');
+
+        if (!currentDiv.length) {
+          return self;
+        }
+
+        $("html, body")
+          .promise()
+          .done(function () {
+            $("html, body").animate(
+              {
+                scrollTop: currentDiv.offset().top - navbarHeight + "px",
+              },
+              {
+                duration: duration,
+              },
+            );
+          });
+
+        return self;
+      },
+    });
+  });
+</script>
