@@ -44,20 +44,20 @@ MRS = GannetFit(MRS);
 PaperPlot(MRS); % Use default settings
 ```
 
-<img id="img_75" src="images/additional-tools/paperplot-1.png" alt="Example output of PaperPlot.m">
+<img class="img-75" src="images/additional-tools/paperplot-1.png" alt="Example output of PaperPlot.m">
 
 ```{octave, eval = FALSE}
 PaperPlot(MRS, 'plotModel', true); % Overlay fit models
 ```
 
-<img id="img_75" src="images/additional-tools/paperplot-2.png" alt="Example output of PaperPlot.m">
+<img class="img-75" src="images/additional-tools/paperplot-2.png" alt="Example output of PaperPlot.m">
 
 ```{octave, eval = FALSE}
 PaperPlot(MRS, 'plotModel', true, 'freqLim', [2 4.25]); % Overlay fit models and
                                                         % set ppm limits to 2-4.25
 ```
 
-<img id="img_75" src="images/additional-tools/paperplot-3.png" alt="Example output of PaperPlot.m">
+<img class="img-75" src="images/additional-tools/paperplot-3.png" alt="Example output of PaperPlot.m">
 
 ## De-identification
 

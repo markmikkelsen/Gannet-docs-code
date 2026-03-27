@@ -71,7 +71,7 @@ where:
 <i class="fa fa-info-circle" style="color: white"></i>&nbsp; The GABA+Glx model is fitted using a model that has observation weights between 3.16 and 3.285 ppm, where the Cho subtraction artifact [@Evans2013] appears. The purpose is to down-weight the influence of this artifact (if present) on the model fitting.
 :::
 
-<img id="img_75" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model">
+<img class="img-75" src="images/signal-modeling/GABA+Glx.png" alt="Illustration of the GABA+Glx model">
 
 ## GSH (TE < 100 ms)
 
@@ -92,7 +92,7 @@ where:
 | $m_2$ | Quadratic baseline term |
 | $b$ | Baseline offset |
 
-<img id="img_75" src="images/signal-modeling/GSH-80.png" alt="Illustration of the GSH model at TE = 80 ms">
+<img class="img-75" src="images/signal-modeling/GSH-80.png" alt="Illustration of the GSH model at TE = 80 ms">
 
 ## GSH (TE >= 100 ms)
 
@@ -105,7 +105,7 @@ m_1(f-f_1)+
 m_2(f-f_1)^2+b
 $$
 
-<img id="img_75" src="images/signal-modeling/GSH-120.png" alt="Illustration of the GSH model at TE = 120 ms">
+<img class="img-75" src="images/signal-modeling/GSH-120.png" alt="Illustration of the GSH model at TE = 120 ms">
 
 ## Lac
 
@@ -122,7 +122,7 @@ m_1(f-f_1)+
 m_2(f-f_1)^2+b
 $$
 
-<img id="img_75" src="images/signal-modeling/Lac.png" alt="Illustration of the Lac model">
+<img class="img-75" src="images/signal-modeling/Lac.png" alt="Illustration of the Lac model">
 
 ## EtOH
 
@@ -178,7 +178,7 @@ where:
 | $h$ | Amplitude scaling factor for Cho peak |
 | $\phi$ | Phase |
 
-<img id="img_75" src="images/signal-modeling/Cho+Cr.png" alt="Illustration of the Cho+Cr model">
+<img class="img-75" src="images/signal-modeling/Cho+Cr.png" alt="Illustration of the Cho+Cr model">
 
 ## NAA
 
@@ -212,7 +212,7 @@ S(f) =
 m(f-f_0)+b
 $$
 
-<img id="img_75" src="images/signal-modeling/water.png" alt="Illustration of the water model">
+<img class="img-75" src="images/signal-modeling/water.png" alt="Illustration of the water model">
 
 <br>
 
