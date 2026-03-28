@@ -31,10 +31,10 @@ The linear workflow of Gannet is made up of five modules. For proper functionali
 
 | <u>Module</u> | <u>Description</u> |
 |:---------------|:-------------------------------------------------------|
-| **GannetLoad** | Loads raw data exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the time course of the experiment. |
+| **GannetLoad** | Loads raw MRS data files exported from the scanner; preprocesses them; plots the edited spectra; and gives information about the time course of the experiment. |
 | **GannetFit** | Models the metabolite signals of interest in the difference spectra and the reference compounds; plots the data and the model fits; and gives basic quantification results and information about spectral quality. |
-| **GannetCoRegister** | Loads the provided structural image data files; co-registers the loaded MRS voxel to them; and produces a figure showing the localization of the voxel on the structural image on three orthogonal slices. |
-| **GannetSegment** | Calls SPM to segment the structural images; determines the fractional tissue composition (gray matter, white matter, and CSF) within the MRS voxel; produces a figure showing the tissue fractions as overlays and displays CSF-corrected metabolite estimates. |
+| **GannetCoRegister** | Loads structural MR images; co-registers an MRS voxel mask to them; and produces a figure showing the localization of the voxel on the structural image on three orthogonal slices. |
+| **GannetSegment** | Calls SPM to segment the structural images; determines the fractional tissue composition of gray matter, white matter, and CSF within the MRS voxel; produces a figure showing the tissue-segmented voxel masks as overlays; and displays CSF-corrected metabolite estimates. |
 | **GannetQuantify** | Uses the segmentation information to perform partial volume tissue correction and produces a figure displaying several tissue-corrected metabolite measurements. |
 
 Familiarize yourself with the five basic Gannet commands, as described below. The number of commands is deliberately kept to a minimum, as is the number of possible input arguments to these commands. Incorrect syntax is a common source of user error, so make sure that you understand the argument structure of each function you intend to use.
