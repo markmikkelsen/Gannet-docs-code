@@ -46,7 +46,7 @@ Gannet runs in <a href="https://mathworks.com/products/matlab.html" target="_bla
 
 You can check which toolboxes you have installed by typing `ver` in the MATLAB command window. To install any missing toolboxes, please follow these <a href="https://mathworks.com/matlabcentral/answers/101885-how-do-i-install-additional-toolboxes-into-an-existing-installation-of-matlab" target="_blank">instructions</a>.
 
-To run the voxel co-registration and structural image segmentation modules, <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> must be installed.
+To run the voxel co-registration and structural image segmentation modules, <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> must be installed (see [Dependencies](#dependencies)).
 
 ### Download
 
@@ -70,15 +70,33 @@ Stable releases can be found <a href="https://github.com/markmikkelsen/Gannet/re
 
 Open the *Set Path* dialog box from the MATLAB menu (or run the command `pathtool` in the Command Window), click *Add with Subfolders...*, find the downloaded Gannet directory, and then select it. When done, press *Save* to permanently save the Gannet directory to MATLAB's default search path.
 
-SPM12 can be installed in the same manner after it has been downloaded from the <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM</a> website.
+::: warning
+<i class="fa fa-exclamation-circle" style="color: white"></i> If you have <a href="https://github.com/schorschinho/osprey" target="_blank" style="color:white"><u>Osprey</u></a> also installed on your computer, please ensure that on your search path you either have placed all the Gannet directories at the top (so that they take precedence) or have removed the Osprey directories. Gannet and Osprey historically have shared some functions that may lead to conflicts, resulting in Gannet not functioning correctly.
+:::
+
+### Dependencies
+
+Gannet uses a few third-party software packages that are required for additional functionality.
+
+**SPM12**
+
+SPM12 is required for several core functionalities within Gannet, including voxel co-registration and image segmentation. It can be downloaded from the <a href="https://www.fil.ion.ucl.ac.uk/spm/software/spm12/" target="_blank">SPM12</a> website.
+
+It must be installed and added to MATLAB's search path as described in [Setup](#setup).
 
 ::: info
 <i class="fa fa-info-circle" style="color: white"></i> It is highly recommended that you only add the main SPM12 directory (`spm12/`) to your search path instead of including all the subdirectories. This prevents function conflicts.
 :::
 
-::: warning
-<i class="fa fa-exclamation-circle" style="color: white"></i> If you have <a href="https://github.com/schorschinho/osprey" target="_blank" style="color:white"><u>Osprey</u></a> also installed on your computer, please ensure that you either have all the Gannet and SPM12 directories at the top of your search path or have removed the Osprey directories from your search path. Gannet and Osprey share several functions that can lead to conflicts that result in Gannet not functioning correctly.
-:::
+**Ghostscript**
+
+Users may append their PDF outputs into single PDF files using Ghostscript. To do this, Ghostscript must be installed and available on your system. Download Ghostscript from the <a href="https://www.ghostscript.com/download/gsdnld.html" target="_blank">official website</a>. macOS users can download a compatible version <a href="https://pages.uoregon.edu/koch/" target="_blank">here</a>.
+
+Alternatively, macOS users may install Ghostscript using Homebrew with the following command:
+
+```{verbatim, eval = FALSE}
+brew install ghostscript
+```
 
 ## Compatibility
 
