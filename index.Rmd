@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 <img class="img-50" src="images/logo+title_2026.png" alt="The Gannet logo"/>
 
 ::: release
-<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.5.3</a></h3>
+<h3>Current stable release: <a href="https://github.com/markmikkelsen/Gannet" target="_blank" class="badge badge-secondary">3.5.4</a></h3>
 :::
 
 ## Overview
@@ -136,7 +136,7 @@ Gannet uses a form of <a href="https://semver.org/" target="_blank">semantic ver
 
 ## Lead developer
 
-- Mark Mikkelsen (independent)
+- Mark Mikkelsen
 
 ## Creator
 
