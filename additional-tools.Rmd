@@ -65,7 +65,7 @@ MRI examinations involving human volunteers routinely store sensitive protected 
 
 Gannet includes several functions to remove PHI/PII from the most commonly used file formats. Currently, we offer functions to remove PHI/PII from GE P-files (\*.7), Siemens TWIX (\*.dat), Philips (\*.sdat/\*.spar), and generic DICOM (\*.dcm) files. We plan to add support for other formats in the future.
 
-Please <a href="mailto:mark.mikkelsen@gmail.com?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contact us</a> if you require a de-identification tool for a different format.
+Please <a href="mailto:mark.mikkelsen@gmail.com?subject=%5BGannet%5D%20Your%20subject%20here">contact us</a> if you require a de-identification tool for a different format.
 
 ::: warning
 <i class="fa fa-exclamation-circle" style="color: white"></i>&nbsp; <strong>IMPORTANT:</strong> De-identification is a complex process, and it is your responsibility to ensure that all PHI/PII is removed from your data. The Gannet de-identification functions are designed to remove the most common PHI/PII identifiers, but they may not catch everything. Always double-check your data after de-identification to ensure that no sensitive information remains.
@@ -98,7 +98,7 @@ The Gannet de-identification functions currently remove PHI/PII identifiers defi
 - Medical record numbers
 - Device identifiers and serial numbers
 
-Should the regulations in your country or institution require additional information to be removed, please <a href="mailto:mark.mikkelsen@gmail.com?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contact us</a>.
+Should the regulations in your country or institution require additional information to be removed, please <a href="mailto:mark.mikkelsen@gmail.com?subject=%5BGannet%5D%20Your%20subject%20here">contact us</a>.
 
 ::: danger
 <i class="fa fa-exclamation-triangle" style="color: white"></i>&nbsp; There is <u>no way</u> to retrieve PHI/PII from a de-identified file! Make sure that you either retain a copy of the original file or that you keep a separate record that uniquely links all necessary subject information to the de-identified file.

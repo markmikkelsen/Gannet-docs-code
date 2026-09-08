@@ -100,7 +100,7 @@ brew install ghostscript
 
 ## Compatibility
 
-Gannet is developed in MATLAB R2026a in macOS 26 Tahoe (Apple silicon). While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
+Gannet is developed in MATLAB R2026a on macOS 26 Tahoe (Apple silicon). While reasonable effort is made to ensure legacy and cross-OS compatibility, an error-free user experience is not guaranteed.
 
 ## Supported file formats
 
@@ -128,7 +128,7 @@ If you encounter any problems, please first check the Documentation or [FAQ](./f
 
 Otherwise, you can post your query on the <a href="https://forum.mrshub.org/c/mrs-software/gannet/9" target="_blank">Gannet forum</a> on <a href="https://mrshub.org/" target="_blank">MRSHub</a>.
 
-The Gannet team can also be <a href="mailto:mark.mikkelsen@gmail.com?subject=[Gannet]%20<Please enter the subject of your query here>" target="_blank">contacted</a> directly. We will do our best to work with you to solve your issue.
+The Gannet team can also be <a href="mailto:mark.mikkelsen@gmail.com?subject=%5BGannet%5D%20Your%20subject%20here">contacted</a> directly. We will do our best to work with you to solve your issue.
 
 ## Versioning
 
